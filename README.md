@@ -5,8 +5,8 @@ This project allows IDAA users to capture production IDAAV5 workloads and run th
 > 1) **Capture:** From a default IDAAV5 server trace, all queries executed for the past 7 days are captured. Host variables or parameter markers in SQL are replaced with the actual value. A set of DSNTIAUL jobs are generated for all captured queries. Each SQL is appended with a QUERYNO clause to easily map the V5 query execution against the V7 query execution. A csv file is also generated to store query attributes and measurements. This csv file can be loaded into a Db2 table.
 > 2) **Replay:** The DSNTIAUL jobs should then be executed on the V7 accelerator. From a default IDAAV7 trace a csv file is generated and loaded into a Db2 table.
 
-### Pre-requisites
-* The IDAAV5 accelerator must be at V5 PTF6 or later.
+### Prerequisites
+* The IDAAV5 accelerator must be at V5 PTF7 or later.
 * A java compiler that includes the xmlparser.
 * The programs require the Linux commands fold and unix2dos.
 * Google protobuf. The latest version is here https://developers.google.com/protocol-buffers/docs/downloads . The latest version should work, the matching version of what was used, 3.10.0 is here https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.10.0/protobuf-java-3.10.0.jar  
