@@ -6,6 +6,7 @@ This project allows IDAA users to capture production IDAAV5 workloads and run th
 > 2) **Replay:** The DSNTIAUL jobs should then be executed on the V7 accelerator. From a default IDAAV7 trace a csv file is generated and loaded into a Db2 table.
 
 ### Pre-requisites
+* The IDAAV5 accelerator must be at V5 PTF6 or later.
 * A java compiler that includes the xmlparser.
 * The programs require the Linux commands fold and unix2dos.
 * Google protobuf. The latest version is here https://developers.google.com/protocol-buffers/docs/downloads . The latest version should work, the matching version of what was used, 3.10.0 is here https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.10.0/protobuf-java-3.10.0.jar  
@@ -167,3 +168,6 @@ AND V7. INSERT_TSTAMP > '<BEGINNING TIMESTAMP OF WHEN THE WORKLOAD WAS STARTED I
 GROUP BY V5.HASH_ORIGINAL 
 ) AS TX1;
 ```
+### Tips
+The INSERT_TSTAMP is in UTC0. Adjust accordingly in the queries for the predicate V7. INSERT_TSTAMP > 
+Pay close attention to the SQLCODE values on both V5 and V7. A negative SQLCODE for V7 executions should be investigated.
