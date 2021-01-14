@@ -66,7 +66,7 @@ On Db2z/OS create the following two tables in UNICODE to load the csv files
 2) Load the tables that are defined on the V5 accelerator to the V7 accelerator. The load to V7 should be done before tables are reloaded to V5 again. The data on the V5 accelerated tables must be the same as the data on the V7 accelerator to make valid comparisons.
 3) Modify the JCL section of SQLHistoryGetHostvarValues in generateTIAULFile() to match the IDAAV7 accelerator name. Compile SQLHistoryGetHostvarValues.java
   Run the program SQLHistoryGetHostvarValues to generate both the csv file and DSNTIAUL jobs
-  java SQLHistoryGetHostvarValues /root/java/PRODNZ1
+  java SQLHistoryGetHostvarValues /root/java/PRODNZ1 1 sanitizeit
 4) The generated DSNTIAUL files will have a maximum of 100 DSNTIAUL steps in each .TIAUL file. Each step contains 1 SQL statement. For example
 ```  
 //RUNTIAUL JOB 'USER=$$USER','<USERNAME:JOBNAME>',CLASS=A,          
