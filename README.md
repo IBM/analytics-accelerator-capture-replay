@@ -6,7 +6,7 @@ This project allows IDAA users to capture production IDAAV5 workloads and run th
 > 2) **Replay:** The DSNTIAUL jobs should then be executed on the V7 accelerator. From a default IDAAV7 trace a csv file is generated and loaded into a Db2 table.
 
 ### Prerequisites
-* The IDAAV5 accelerator must be at V5 PTF7 or later.
+* The IDAAV5 accelerator must be at V5 PTF8 or later.
 * A java compiler that includes the xmlparser.
 * The programs require the Linux commands fold and unix2dos.
 * Google protobuf. The latest version is here https://developers.google.com/protocol-buffers/docs/downloads . The latest version should work, the matching version of what was used, 3.10.0 is here https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.10.0/protobuf-java-3.10.0.jar  
