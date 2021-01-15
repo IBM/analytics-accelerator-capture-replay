@@ -1,6 +1,6 @@
 import com.google.protobuf.TextFormat;
-import java.io. * ;
-import java.nio.file. * ;
+import java.io.* ;
+import java.nio.file.* ;
 import java.lang.String;
 import java.util.Arrays;
 import java.util.regex.Pattern;
