@@ -171,3 +171,14 @@ GROUP BY V5.HASH_ORIGINAL
 ### Tips
 The INSERT_TSTAMP is in UTC0. Adjust accordingly in the queries for the predicate V7. INSERT_TSTAMP > 
 Pay close attention to the SQLCODE values on both V5 and V7. A negative SQLCODE for V7 executions should be investigated.
+
+#### V5 CSV file generation only
+The SQLHistoryGetHostvarValues program can be used to generate only a csv file that contains all queries executed on IDAA for a provided directory of SQLHistory files. To do this run SQLHistoryGetHostvarValues with the following options:
+java SQLHistoryGetHostvarValues <path to directory with SQLHistory files> 1 sanitizeit csvonly
+
+```
+C:\java>java SQLHistoryGetHostvarValues C:\java\V5SQLHistorySTLEC1beforePTF8 1 sanitizeit csvonly
+Processing SQLHistory.STLEC1
+Finished processing SQLHistory.STLEC1
+```
+Linux is not required to run SQLHistoryGetHostvarValues. Any V5 PTF level will work for the csvonly option, PTF8 is not required.
