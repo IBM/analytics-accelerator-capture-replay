@@ -152,7 +152,11 @@ public class SQLHistorySummaryV75 {
         entryTimestamp = entryTimestamp.replace("Z", "");
 
         String sqlStmtText = SQLStatementDetailsDataMessage.getOriginalSqlStatementText();
-        sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf(";") + 1);
+        if (sqlStmtText.indexOf(";")>0){
+          sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf(";") + 1);
+		    }else {
+          sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf("backend_sql_statement_text"));
+		    }
         sqlStmtText = sqlStmtText.replaceAll(",  ", ",");
         sqlStmtText = sqlStmtText.replaceAll("\"", "");
         sqlStmtText = sqlStmtText.replaceAll("'", "''");
