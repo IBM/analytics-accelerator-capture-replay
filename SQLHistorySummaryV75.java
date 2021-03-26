@@ -75,14 +75,20 @@ public class SQLHistorySummaryV75 {
     try {
       String pathToSQLHistory = args[0];
       String iterationNum = "0";
+      boolean db2advis = false;
+
       if (args.length > 1 ){
         iterationNum = args[1];
 	  }
+	  if (args.length > 2 && args[2].equals("db2advis")){
+		  db2advis = true;
+	  }
+
       String outputCSVfilename = "sql_history.csv";
       BufferedWriter writer = new BufferedWriter(new FileWriter(pathToSQLHistory + System.getProperty("file.separator") + outputCSVfilename));
       File directory = new File(pathToSQLHistory);
 
-      if (args.length <= 2) {
+      if (args.length <= 3) {
         File[] listOfSQLHistoryFiles = directory.listFiles(filterSQLHistory);
         System.out.println("Generating .sqlhistory files");
         int stmtNo = 0;
@@ -152,16 +158,21 @@ public class SQLHistorySummaryV75 {
         entryTimestamp = entryTimestamp.replace("Z", "");
 
         String sqlStmtText = SQLStatementDetailsDataMessage.getOriginalSqlStatementText();
-        if (sqlStmtText.indexOf(";")>0){
-          sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf(";") + 1);
-		    }else {
-          sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf("backend_sql_statement_text"));
-		    }
-        sqlStmtText = sqlStmtText.replaceAll(",  ", ",");
-        sqlStmtText = sqlStmtText.replaceAll("\"", "");
-        sqlStmtText = sqlStmtText.replaceAll("'", "''");
-        sqlStmtText = sqlStmtText.replaceAll("\t", " ");
-        sqlStmtText = sqlStmtText.replaceAll("\n", "");
+        if (db2advis == false){
+    	    if (sqlStmtText.indexOf(";")>0){
+    	      sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf(";") + 1);
+			}else if (sqlStmtText.indexOf("backend_sql_statement_text")>0){
+    	      sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf("backend_sql_statement_text"));
+			}
+    	    sqlStmtText = sqlStmtText.replaceAll(",  ", ",");
+    	    sqlStmtText = sqlStmtText.replaceAll("\"", "");
+    	    sqlStmtText = sqlStmtText.replaceAll("'", "''");
+    	    sqlStmtText = sqlStmtText.replaceAll("\t", " ");
+    	    sqlStmtText = sqlStmtText.replaceAll("\r", "");
+    	    sqlStmtText = sqlStmtText.replaceAll("\n", "");
+		}else{
+			sqlStmtText = SQLStatementDetailsDataMessage.getBackendSqlStatementText();
+		}
         String v5TaskID = "";
         if (sqlStmtText.indexOf("QUERYNO") > -1) {
           v5TaskID = sqlStmtText.substring(sqlStmtText.indexOf("QUERYNO") + 8, sqlStmtText.indexOf(";"));
