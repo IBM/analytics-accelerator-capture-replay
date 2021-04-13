@@ -273,13 +273,14 @@ private static boolean queryHasDateorTimestampLiteral(String db2zSQLStmt){
 				   String parameterMarkerValues = new String();
 				   String clientSQLQuery = new String();
 				   String sqlcode = new String();
+				   String taskID = new String();
 				   while(reader.hasNext()) {
 					switch( reader.next())
 					{
 						case XMLStreamConstants.START_ELEMENT:
 							if (reader.getLocalName().equals( "SQLStatementDetails" ) ) {
 								if(reader.getAttributeCount() > 0) {
-									String taskID = reader.getAttributeValue(null,"taskID");
+									taskID = reader.getAttributeValue(null,"taskID");
 									String entryTimestamp = reader.getAttributeValue(null,"entryTimestamp");
 									entryTimestamp = entryTimestamp.replace("T"," ");
 									entryTimestamp = entryTimestamp.replace("Z","");
@@ -314,23 +315,26 @@ private static boolean queryHasDateorTimestampLiteral(String db2zSQLStmt){
 									String hash = reader.getAttributeValue(null,"hash");
 									mSummaryString+="'"+hash+"',";
 								}//hash
+								try{
+									int clientSQLQueryEventType = reader.next();
 
-								int clientSQLQueryEventType = reader.next();
+									if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS || clientSQLQueryEventType == XMLStreamConstants.CDATA){
+										clientSQLQuery = removeComments(reader.getText());
+									}
 
-								if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS || clientSQLQueryEventType == XMLStreamConstants.CDATA){
-									clientSQLQuery = removeComments(reader.getText());
-								}
-
-
-								if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS || clientSQLQueryEventType == XMLStreamConstants.CDATA){
-									String sqlStmt = reader.getText();
-									sqlStmt = sqlStmt.replaceAll(",  ",",");
-									sqlStmt = sqlStmt.replaceAll("\"", "");
-									sqlStmt = sqlStmt.replaceAll("'", "''");
-									sqlStmt = sqlStmt.replaceAll("\t", " ");
-									sqlStmt = sqlStmt.replaceAll("(\r|\n)", "");
-									mSummaryString += "'"+sqlStmt+"','"+location+"',"+iterationNum+","+sqlcode;
-									writer.write(mSummaryString+"\n");
+									if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS || clientSQLQueryEventType == XMLStreamConstants.CDATA){
+										String sqlStmt = reader.getText();
+										sqlStmt = sqlStmt.replaceAll(",  ",",");
+										sqlStmt = sqlStmt.replaceAll("\"", "");
+										sqlStmt = sqlStmt.replaceAll("'", "''");
+										sqlStmt = sqlStmt.replaceAll("\t", " ");
+										sqlStmt = sqlStmt.replaceAll("(\r|\n)", "");
+										mSummaryString += "'"+sqlStmt+"','"+location+"',"+iterationNum+","+sqlcode;
+										writer.write(mSummaryString+"\n");
+									}
+								}catch (XMLStreamException e){
+									System.out.println("Error processing taskID "+taskID);
+									System.out.println(e.getMessage() + " at " + reader.getLocation().getLineNumber() + ":" + reader.getLocation().getColumnNumber());
 								}
 							}else if(reader.getLocalName().equals( "OriginalWithPMReplaced" )){
 								if(reader.getAttributeCount() > 0) {
