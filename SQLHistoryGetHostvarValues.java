@@ -187,11 +187,8 @@ public class SQLHistoryGetHostvarValues {
 	public static void main(String[] args) throws IOException {
 		int numSQLperTIAUL = 100; // number of SQL statements per DSNTIAUL file, max is 100. CHANGE WITH CAUTION
 		BigInteger maxInt = new BigInteger("2147483647");
-		String xml10pattern = "[^" + "\u0009\r\n" + 
-		                             "\u0020-\uD7FF" + 
-									 "\uE000-\uFFFD" + 
-									 "\ud800\udc00-\udbff\udfff" +
-							   "]";
+		String xml10pattern = "[^" + "\u0009\r\n" + "\u0020-\uD7FF" + "\uE000-\uFFFD" + "\ud800\udc00-\udbff\udfff"
+				+ "]";
 		FilenameFilter filterSQLHistory = new FilenameFilter() {
 			public boolean accept(File dir, String name) {
 				return name.startsWith("SQLHistory.");
@@ -280,7 +277,7 @@ public class SQLHistoryGetHostvarValues {
 				String parameterMarkerValues = new String();
 				String clientSQLQuery = new String();
 				String sqlcode = new String();
-        String taskID = new String();
+				String taskID = new String();
 				while (reader.hasNext()) {
 					switch (reader.next()) {
 					case XMLStreamConstants.START_ELEMENT:
@@ -323,30 +320,31 @@ public class SQLHistoryGetHostvarValues {
 								String hash = reader.getAttributeValue(null, "hash");
 								mSummaryString += "'" + hash + "',";
 							} // hash
-								try{
-							      int clientSQLQueryEventType = reader.next();
+							try {
+								int clientSQLQueryEventType = reader.next();
 
-							      if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS
-									      || clientSQLQueryEventType == XMLStreamConstants.CDATA) {
-								      clientSQLQuery = removeComments(reader.getText());
-							      }
+								if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS
+										|| clientSQLQueryEventType == XMLStreamConstants.CDATA) {
+									clientSQLQuery = removeComments(reader.getText());
+								}
 
-							      if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS
-									      || clientSQLQueryEventType == XMLStreamConstants.CDATA) {
-								      String sqlStmt = reader.getText();
-								      sqlStmt = sqlStmt.replaceAll(",  ", ",");
-								      sqlStmt = sqlStmt.replaceAll("\"", "");
-								      sqlStmt = sqlStmt.replaceAll("'", "''");
-								      sqlStmt = sqlStmt.replaceAll("\t", " ");
-								      sqlStmt = sqlStmt.replaceAll("(\r|\n)", "");
-								      mSummaryString += "'" + sqlStmt + "','" + location + "'," + iterationNum + ","
-										      + sqlcode;
-								      writer.write(mSummaryString + "\n");
+								if (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS
+										|| clientSQLQueryEventType == XMLStreamConstants.CDATA) {
+									String sqlStmt = reader.getText();
+									sqlStmt = sqlStmt.replaceAll(",  ", ",");
+									sqlStmt = sqlStmt.replaceAll("\"", "");
+									sqlStmt = sqlStmt.replaceAll("'", "''");
+									sqlStmt = sqlStmt.replaceAll("\t", " ");
+									sqlStmt = sqlStmt.replaceAll("(\r|\n)", "");
+									mSummaryString += "'" + sqlStmt + "','" + location + "'," + iterationNum + ","
+											+ sqlcode;
+									writer.write(mSummaryString + "\n");
+								}
+							} catch (XMLStreamException e) {
+								System.out.println("Error processing taskID " + taskID);
+								System.out.println(e.getMessage() + " at " + reader.getLocation().getLineNumber() + ":"
+										+ reader.getLocation().getColumnNumber());
 							}
-								}catch (XMLStreamException e){
-									System.out.println("Error processing taskID "+taskID);
-									System.out.println(e.getMessage() + " at " + reader.getLocation().getLineNumber() + ":" + reader.getLocation().getColumnNumber());
-								}                  
 						} else if (reader.getLocalName().equals("OriginalWithPMReplaced")) {
 							if (reader.getAttributeCount() > 0) {
 								String hash = reader.getAttributeValue(null, "hash");
