@@ -71,16 +71,28 @@ public class SQLHistorySummaryV75 {
       }
     };
 
+		String ExcelDelimiter ="\"";
+		String defaultDelimiter ="'";    
+
     try {
       String pathToSQLHistory = args[0];
       String iterationNum = "0";
       boolean db2advis = false;
+      boolean forexcel = false;      
 
       if (args.length > 1) {
         iterationNum = args[1];
       }
-      if (args.length > 2 && args[2].equals("db2advis")) {
-        db2advis = true;
+      if (args.length >= 2 ) {
+        if (args[2].equals("db2advis")){
+          db2advis = true;
+        }else if (args[2].equals("forexcel")){
+          forexcel = true;
+        }
+
+        if (args.length >= 4 && args[3].equals("forexcel")){
+          forexcel = true;
+        }
       }
 
       String outputCSVfilename = "sql_history.csv";
@@ -88,7 +100,7 @@ public class SQLHistorySummaryV75 {
           new FileWriter(pathToSQLHistory + System.getProperty("file.separator") + outputCSVfilename));
       File directory = new File(pathToSQLHistory);
 
-      if (args.length <= 3) {
+      if (args.length <= 4) {
         File[] listOfSQLHistoryFiles = directory.listFiles(filterSQLHistory);
         System.out.println("Generating .sqlhistory files");
         int stmtNo = 0;
@@ -111,6 +123,7 @@ public class SQLHistorySummaryV75 {
             if (skipWriteToFile == false) {
               String sanitizedline = line.replaceAll("SQLEditor <Scrip", "SQLEditor Scrip");
               sanitizedline = sanitizedline.replaceAll("\t", "");
+              sanitizedline = sanitizedline.replaceAll("(\r|\n)", "");
               sanitizedline = sanitizedline.replaceAll(xml10pattern, "");
 
               int attrIndex = indexStringContainsItemFromList(sanitizedline, attr);
@@ -149,10 +162,20 @@ public class SQLHistorySummaryV75 {
       int numLines = 0;
       writer.write(
           "taskID,V5taskID,backendDBSExecTime,totalElapsedTime,backendWaitTime,numResultRows,numResultBytes,fetchTime,entryTimestamp,originalUserID,hash,SQL Text,location,iteration,sqlcode\n");
+      String sqlDelimiter = defaultDelimiter;
+      if (forexcel == true){
+        sqlDelimiter = ExcelDelimiter;
+      }
       for (File file : fileList) {
         SQLStatementDetailsData.Builder SQLStatementDetailsDataMessage = SQLStatementDetailsData.newBuilder();
         String contents = new String(Files.readAllBytes(file.toPath()));
-        com.google.protobuf.TextFormat.getParser().merge(contents, SQLStatementDetailsDataMessage);
+        try{
+          com.google.protobuf.TextFormat.getParser().merge(contents, SQLStatementDetailsDataMessage);
+        } catch (Exception e) {
+          System.out.println("Error processing "+file.getName());
+          System.out.println(contents);
+          e.printStackTrace();
+        }
 
         SQLStatementDetailsData.Timings timingsData = SQLStatementDetailsDataMessage.getTimings();
         SQLStatementDetailsData.ExecutionResult executionResultData = SQLStatementDetailsDataMessage
@@ -171,7 +194,11 @@ public class SQLHistorySummaryV75 {
           }
           sqlStmtText = sqlStmtText.replaceAll(",  ", ",");
           sqlStmtText = sqlStmtText.replaceAll("\"", "");
-          sqlStmtText = sqlStmtText.replaceAll("'", "''");
+          if (forexcel == false){
+            sqlStmtText = sqlStmtText.replaceAll("'", "''");
+          }else{
+
+          }
           sqlStmtText = sqlStmtText.replaceAll("\t", " ");
           sqlStmtText = sqlStmtText.replaceAll("\r", "");
           sqlStmtText = sqlStmtText.replaceAll("\n", "");
@@ -187,7 +214,7 @@ public class SQLHistorySummaryV75 {
             + timingsData.getBackendWaitTime() + "," + executionResultData.getNumResultRows() + ","
             + executionResultData.getNumResultBytes() + "," + timingsData.getFetchTime() + ",'" + entryTimestamp + "','"
             + SQLStatementDetailsDataMessage.getOriginalUserId() + "','"
-            + SQLStatementDetailsDataMessage.getOriginalSqlStatementTextHash() + "','" + sqlStmtText + "','"
+            + SQLStatementDetailsDataMessage.getOriginalSqlStatementTextHash() + "',"+sqlDelimiter + sqlStmtText + sqlDelimiter+",'"
             + SQLStatementDetailsDataMessage.getDatabaseSystemLocationName() + "'," + iterationNum + ","
             + executionResultData.getSqlCode() + "\n");
         numLines += 1;

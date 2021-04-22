@@ -187,6 +187,8 @@ public class SQLHistoryGetHostvarValues {
 	public static void main(String[] args) throws IOException {
 		int numSQLperTIAUL = 100; // number of SQL statements per DSNTIAUL file, max is 100. CHANGE WITH CAUTION
 		BigInteger maxInt = new BigInteger("2147483647");
+		String ExcelDelimiter ="\"";
+		String defaultDelimiter ="'";
 		String xml10pattern = "[^" + "\u0009\r\n" + "\u0020-\uD7FF" + "\uE000-\uFFFD" + "\ud800\udc00-\udbff\udfff"
 				+ "]";
 		FilenameFilter filterSQLHistory = new FilenameFilter() {
@@ -206,9 +208,14 @@ public class SQLHistoryGetHostvarValues {
 			File folder = new File(pathToSQLHistory);
 			FilenameFilter filterToUse = null;
 			boolean csvOnly = false;
+			boolean forExcel = false;
+			String sqlDelimiter = defaultDelimiter;
 
-			if (args.length == 4 && args[3].equals("csvonly")) {
+			if (args.length >= 4 && args[3].equals("csvonly")) {
 				csvOnly = true;
+			}
+			if (args.length >= 5 && args[4].equals("forexcel")) {
+				forExcel = true;
 			}
 
 			if (args.length == 2) {
@@ -333,10 +340,14 @@ public class SQLHistoryGetHostvarValues {
 									String sqlStmt = reader.getText();
 									sqlStmt = sqlStmt.replaceAll(",  ", ",");
 									sqlStmt = sqlStmt.replaceAll("\"", "");
-									sqlStmt = sqlStmt.replaceAll("'", "''");
+									if (forExcel == false){
+										sqlStmt = sqlStmt.replaceAll("'", "''");
+									}else{
+										sqlDelimiter = ExcelDelimiter;
+									}
 									sqlStmt = sqlStmt.replaceAll("\t", " ");
 									sqlStmt = sqlStmt.replaceAll("(\r|\n)", "");
-									mSummaryString += "'" + sqlStmt + "','" + location + "'," + iterationNum + ","
+									mSummaryString += sqlDelimiter + sqlStmt + sqlDelimiter+",'" + location + "'," + iterationNum + ","
 											+ sqlcode;
 									writer.write(mSummaryString + "\n");
 								}
