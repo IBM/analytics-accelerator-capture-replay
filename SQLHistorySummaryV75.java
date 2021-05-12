@@ -14,8 +14,9 @@ public class SQLHistorySummaryV75 {
       + "\ud800\udc00-\udbff\udfff" + "]";
   static final int ORIGINALSQL = 0;
   static final int BACKENDSQL = 1;
+  static final int PACKAGENAME = 4;
   static final String[] attr = { "original_sql_statement_text: \"", "backend_sql_statement_text: \"",
-      "client_accounting: \"", "backend_error_message: \"" };
+      "client_accounting: \"", "backend_error_message: \"", "package_name: \"" };
 
   private static int indexStringContainsItemFromList(String inputStr, String[] items) {
     for (int i = 0; i < items.length; i++) {
@@ -32,20 +33,22 @@ public class SQLHistorySummaryV75 {
     return returnVal.replace("'", "\\'");
   }
 
-  private static String processOriginalSQL(BufferedWriter writerSanitizedSQLHistory, String sanitizedline,
-      BufferedReader in) {
+  private static String processSQL(BufferedWriter writerSanitizedSQLHistory, String sanitizedline, BufferedReader in,
+      int startAttrIndex, int endAttrIndex) {
     String originalSQLString = replaceForProto(sanitizedline);
-    int attrIndex = ORIGINALSQL;
+    int attrIndex = startAttrIndex;
     String line = "";
 
     try {
-      while (attrIndex != BACKENDSQL && (line = in.readLine()) != null) {
+      while (attrIndex != endAttrIndex && (line = in.readLine()) != null) {
         attrIndex = indexStringContainsItemFromList(line, attr);
-        originalSQLString += replaceForProto(line);
+        if (attrIndex != endAttrIndex) {
+          originalSQLString += replaceForProto(line);
+        }
       }
       originalSQLString = originalSQLString.substring(0, originalSQLString.length() - 2);
       originalSQLString = originalSQLString + "\"";
-      String valueToWrite = attr[ORIGINALSQL] + originalSQLString;
+      String valueToWrite = attr[startAttrIndex] + originalSQLString;
       writerSanitizedSQLHistory.write(valueToWrite + "\n");
     } catch (Exception e) {
       e.printStackTrace();
@@ -71,26 +74,27 @@ public class SQLHistorySummaryV75 {
       }
     };
 
-		String ExcelDelimiter ="\"";
-		String defaultDelimiter ="'";    
+    String ExcelDelimiter = "\"";
+    String defaultDelimiter = "'";
 
     try {
       String pathToSQLHistory = args[0];
       String iterationNum = "0";
       boolean db2advis = false;
-      boolean forexcel = false;      
+      boolean forexcel = false;
+      boolean generatesqlhistoryFiles = false;
 
       if (args.length > 1) {
         iterationNum = args[1];
       }
-      if (args.length >= 2 ) {
-        if (args[2].equals("db2advis")){
+      if (args.length > 2) {
+        if (args[2].equals("db2advis")) {
           db2advis = true;
-        }else if (args[2].equals("forexcel")){
+        } else if (args[2].equals("forexcel")) {
           forexcel = true;
         }
 
-        if (args.length >= 4 && args[3].equals("forexcel")){
+        if (args.length > 3 && args[3].equals("forexcel")) {
           forexcel = true;
         }
       }
@@ -99,9 +103,12 @@ public class SQLHistorySummaryV75 {
       BufferedWriter writer = new BufferedWriter(
           new FileWriter(pathToSQLHistory + System.getProperty("file.separator") + outputCSVfilename));
       File directory = new File(pathToSQLHistory);
+      File[] listOfSQLHistoryFiles = directory.listFiles(filterSQLHistory);
+      if (listOfSQLHistoryFiles.length > 0) {
+        generatesqlhistoryFiles = true;
+      }
 
-      if (args.length <= 4) {
-        File[] listOfSQLHistoryFiles = directory.listFiles(filterSQLHistory);
+      if (args.length <= 4 && generatesqlhistoryFiles == true) {
         System.out.println("Generating .sqlhistory files");
         int stmtNo = 0;
         for (int i = 0; i < listOfSQLHistoryFiles.length; i++) {
@@ -132,15 +139,17 @@ public class SQLHistorySummaryV75 {
                     .substring(sanitizedline.indexOf(attr[attrIndex]) + attr[attrIndex].length());
 
                 if (attrIndex == ORIGINALSQL) {
-                  String backendSQLString = processOriginalSQL(writerSanitizedSQLHistory, value, in);
+                  value = processSQL(writerSanitizedSQLHistory, value, in, ORIGINALSQL, BACKENDSQL);
                   attrIndex = BACKENDSQL;
-                  value = backendSQLString
-                      .substring(backendSQLString.indexOf(attr[attrIndex]) + attr[attrIndex].length());
-                }
-                value = replaceForProto(value);
+                  value = value.replaceAll("\t", "");
+                  value = value.substring(value.indexOf(attr[attrIndex]) + attr[attrIndex].length());
 
-                value = value.substring(0, value.length() - 2);
-                value = value + "\"";
+                  value = sanitizedline.substring(sanitizedline.indexOf(attr[attrIndex]) + attr[attrIndex].length());
+                  value = processSQL(writerSanitizedSQLHistory, value, in, BACKENDSQL, PACKAGENAME);
+                  attrIndex = PACKAGENAME;
+                  value = value.replaceAll("\t", "");
+                  value = value.substring(value.indexOf(attr[attrIndex]) + attr[attrIndex].length());
+                }
                 sanitizedline = attr[attrIndex] + value;
               }
               sanitizedline = sanitizedline.replaceAll("<SQLHistory>", "");
@@ -163,16 +172,22 @@ public class SQLHistorySummaryV75 {
       writer.write(
           "taskID,V5taskID,backendDBSExecTime,totalElapsedTime,backendWaitTime,numResultRows,numResultBytes,fetchTime,entryTimestamp,originalUserID,hash,SQL Text,location,iteration,sqlcode\n");
       String sqlDelimiter = defaultDelimiter;
-      if (forexcel == true){
+      if (forexcel == true) {
         sqlDelimiter = ExcelDelimiter;
       }
       for (File file : fileList) {
         SQLStatementDetailsData.Builder SQLStatementDetailsDataMessage = SQLStatementDetailsData.newBuilder();
         String contents = new String(Files.readAllBytes(file.toPath()));
-        try{
+        if (generatesqlhistoryFiles == false) {
+          contents = contents.replaceAll("\t", " ");
+          contents = contents.replaceAll("(\r|\n)", " ");
+          contents = contents.replaceAll(xml10pattern, "");
+        }
+
+        try {
           com.google.protobuf.TextFormat.getParser().merge(contents, SQLStatementDetailsDataMessage);
         } catch (Exception e) {
-          System.out.println("Error processing "+file.getName());
+          System.out.println("Error processing " + file.getName());
           System.out.println(contents);
           e.printStackTrace();
         }
@@ -193,10 +208,9 @@ public class SQLHistorySummaryV75 {
             sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf("backend_sql_statement_text"));
           }
           sqlStmtText = sqlStmtText.replaceAll(",  ", ",");
-          sqlStmtText = sqlStmtText.replaceAll("\"", "");
-          if (forexcel == false){
+          if (forexcel == false) {
             sqlStmtText = sqlStmtText.replaceAll("'", "''");
-          }else{
+          } else {
 
           }
           sqlStmtText = sqlStmtText.replaceAll("\t", " ");
@@ -214,20 +228,22 @@ public class SQLHistorySummaryV75 {
             + timingsData.getBackendWaitTime() + "," + executionResultData.getNumResultRows() + ","
             + executionResultData.getNumResultBytes() + "," + timingsData.getFetchTime() + ",'" + entryTimestamp + "','"
             + SQLStatementDetailsDataMessage.getOriginalUserId() + "','"
-            + SQLStatementDetailsDataMessage.getOriginalSqlStatementTextHash() + "',"+sqlDelimiter + sqlStmtText + sqlDelimiter+",'"
-            + SQLStatementDetailsDataMessage.getDatabaseSystemLocationName() + "'," + iterationNum + ","
-            + executionResultData.getSqlCode() + "\n");
+            + SQLStatementDetailsDataMessage.getOriginalSqlStatementTextHash() + "'," + sqlDelimiter + sqlStmtText
+            + sqlDelimiter + ",'" + SQLStatementDetailsDataMessage.getDatabaseSystemLocationName() + "'," + iterationNum
+            + "," + executionResultData.getSqlCode() + "\n");
         numLines += 1;
       }
       writer.close();
       System.out.println("Generated csv file with " + numLines + " query entries");
-      System.out.println("Cleaning up .sqlhistory files");
-      File[] listOfsqlhistoryFiles = directory.listFiles(filterSQLHistoryProto);
-      for (int sqlhistoryFileNum = 0; sqlhistoryFileNum < listOfsqlhistoryFiles.length; sqlhistoryFileNum++) {
-        File sqlhistoryFile = listOfsqlhistoryFiles[sqlhistoryFileNum];
-        sqlhistoryFile.delete();
+      if (generatesqlhistoryFiles == true) {
+        System.out.println("Cleaning up .sqlhistory files");
+        File[] listOfsqlhistoryFiles = directory.listFiles(filterSQLHistoryProto);
+        for (int sqlhistoryFileNum = 0; sqlhistoryFileNum < listOfsqlhistoryFiles.length; sqlhistoryFileNum++) {
+          File sqlhistoryFile = listOfsqlhistoryFiles[sqlhistoryFileNum];
+          sqlhistoryFile.delete();
+        }
+        System.out.println("Cleanup of .sqlhistory files complete");
       }
-      System.out.println("Cleanup of .sqlhistory files complete");
     } catch (Exception e) {
       e.printStackTrace();
     }
