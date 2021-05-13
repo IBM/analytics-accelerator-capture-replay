@@ -53,6 +53,10 @@ public class SQLHistorySummaryV75 {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+    attrIndex = endAttrIndex;
+    line = line.replaceAll("\t", "");
+    line = line.substring(line.indexOf(attr[attrIndex]) + attr[attrIndex].length());
     return line;
   }
 
@@ -141,14 +145,8 @@ public class SQLHistorySummaryV75 {
                 if (attrIndex == ORIGINALSQL) {
                   value = processSQL(writerSanitizedSQLHistory, value, in, ORIGINALSQL, BACKENDSQL);
                   attrIndex = BACKENDSQL;
-                  value = value.replaceAll("\t", "");
-                  value = value.substring(value.indexOf(attr[attrIndex]) + attr[attrIndex].length());
-
-                  value = sanitizedline.substring(sanitizedline.indexOf(attr[attrIndex]) + attr[attrIndex].length());
                   value = processSQL(writerSanitizedSQLHistory, value, in, BACKENDSQL, PACKAGENAME);
                   attrIndex = PACKAGENAME;
-                  value = value.replaceAll("\t", "");
-                  value = value.substring(value.indexOf(attr[attrIndex]) + attr[attrIndex].length());
                 }
                 sanitizedline = attr[attrIndex] + value;
               }
@@ -188,7 +186,9 @@ public class SQLHistorySummaryV75 {
           com.google.protobuf.TextFormat.getParser().merge(contents, SQLStatementDetailsDataMessage);
         } catch (Exception e) {
           System.out.println("Error processing " + file.getName());
-          System.out.println(contents);
+          if (generatesqlhistoryFiles == true) {
+            System.out.println(contents);
+          }
           e.printStackTrace();
         }
 
@@ -207,18 +207,16 @@ public class SQLHistorySummaryV75 {
           } else if (sqlStmtText.indexOf("backend_sql_statement_text") > 0) {
             sqlStmtText = sqlStmtText.substring(0, sqlStmtText.indexOf("backend_sql_statement_text"));
           }
-          sqlStmtText = sqlStmtText.replaceAll(",  ", ",");
           if (forexcel == false) {
             sqlStmtText = sqlStmtText.replaceAll("'", "''");
-          } else {
-
           }
-          sqlStmtText = sqlStmtText.replaceAll("\t", " ");
-          sqlStmtText = sqlStmtText.replaceAll("\r", "");
-          sqlStmtText = sqlStmtText.replaceAll("\n", "");
         } else {
           sqlStmtText = SQLStatementDetailsDataMessage.getBackendSqlStatementText();
         }
+        sqlStmtText = sqlStmtText.replaceAll(",  ", ",");
+        sqlStmtText = sqlStmtText.replaceAll("\t", " ");
+        sqlStmtText = sqlStmtText.replaceAll("(\r|\n)", " ");
+
         String v5TaskID = "";
         if (sqlStmtText.indexOf("QUERYNO") > -1) {
           v5TaskID = sqlStmtText.substring(sqlStmtText.indexOf("QUERYNO") + 8, sqlStmtText.indexOf(";"));
