@@ -99,8 +99,17 @@ QUERYNO 9472;
   
 #### Replay
 1) Run the DSNTIAUL jobs sequentially against the V7 accelerator.
-2) Save the default IDAAV7 trace. Copy the SQLHistory file(s) to a separate folder. For example TS000000000.accel-trace-archive-20200810-094235-642\Server\accel-trace-20200810-094134-618\accelerator\profiling\profiling\head\dwa\var\log\profiling\SQLHistory.PROD2
-3) Run the program SQLHistorySummaryV75. The 1st input argument is the path to the folder with the SQLHistory file(s). The 2nd input argument is the iteration number that you define. The example below is the third execution of the workload on V7
+2) Save the default IDAAV7 trace. 
+
+for IDAA server 7.5.6+
+Use the dbs-nn folder as the input path. For example TS000000000.accel-trace-archive-20210706-143519-432\Server\accelerator\sql-history\dbs-11
+
+for IDAA server up to and including 7.5.5
+Copy the SQLHistory file(s) to a separate folder. For example TS000000000.accel-trace-archive-20200810-094235-642\Server\accel-trace-20200810-094134-618\accelerator\profiling\profiling\head\dwa\var\log\profiling\SQLHistory.PROD2
+
+ 3) Run the program SQLHistorySummaryV75. The 1st input argument is the path to the folder with the SQLHistory file(s) or .sqlhistory files. The 2nd input argument is the iteration number that you define. The example below is the third execution of the workload on V7
+
+example for IDAA server up to 7.5.5
 ```
 java SQLHistorySummaryV75 /root/java/sql_historyV7.iteration3/ 3
 Generating .sqlhistory files
@@ -110,6 +119,14 @@ Generated csv file with 47090 query entries
 Cleaning up .sqlhistory files
 Cleanup of .sqlhistory files complete
 ```
+ 
+example for IDAA server 7.5.6+
+``` 
+java SQLHistorySummaryV75 C:\TS000000000.accel-trace-archive-20210706-143519-432\Server\accelerator\sql-history\dbs-11\ 3
+Generating csv file
+Generated csv file with 2 query entries
+```
+ 
 4) Load the generated csv file into DB2ADMN.ACCEL_QUERY_HIST_POC_NEW
 
 Here are some sample queries to compare the V7 workload runs against the V5 production run
