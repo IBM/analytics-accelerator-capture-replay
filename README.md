@@ -193,14 +193,23 @@ GROUP BY V5.HASH_ORIGINAL
  SIMN55 is a V5 accelerator, STATUS is STARTED
  SIM143 is a V7 accelerator started with ACCESS(MAINT), STATUS is STARTMNT
  ```
-- 09.47.11           -db2adis accel                                         
-- 09.47.11 STC00065  DSNX810I  -DB2A DSNX8CMD DISPLAY ACCEL FOLLOWS -       
-- 09.47.11 STC00065  DSNX830I  -DB2A DSNX8CDA                               
+- 10.18.22           -DB2ASTART ACCEL(SIM143) ACCESS(MAINT)                
+- 10.18.22 STC00065  DSNX810I  -DB2A DSNX8CMD START ACCEL FOLLOWS -        
+- 10.18.22 STC00065  DSNX820I  -DB2A DSNX8STA START ACCELERATOR SUCCESSFUL 
+-  FOR SIM143                                                              
+- 10.18.22 STC00065  DSN9022I  -DB2A DSNX8CMD '-START ACCEL' NORMAL        
+-  COMPLETION                                                              
+- 10.18.22 STC00065  DSNX871I  -DB2A DSNX8EKG ACCELERATOR SIM143 IS ONLINE 
+- 10.19.31           -db2adis accel                                         
+- 10.19.31 STC00065  DSNX810I  -DB2A DSNX8CMD DISPLAY ACCEL FOLLOWS -       
+- 10.19.31 STC00065  DSNX830I  -DB2A DSNX8CDA                               
 - ACCELERATOR                      MEMB  STATUS  REQUESTS ACTV QUED MAXQ    
 - -------------------------------- ---- -------- -------- ---- ---- ----    
-- SIMN55                           DB2A STARTED         0    0    0    0    
-- SIM143                           DB2A STARTMNT        0    0    0  N/A    
-- DISPLAY ACCEL REPORT COMPLETE 
+- SIMN55                           DB2A STARTED         1    0    0    0    
+- SIM143                           DB2A STARTMNT        1    0    0  N/A    
+- DISPLAY ACCEL REPORT COMPLETE                                             
+- 10.19.31 STC00065  DSN9022I  -DB2A DSNX8CMD '-DISPLAY ACCEL' NORMAL       
+-  COMPLETION                                                               
 ```
 
 A job using USER=USRT001 will execute only on V5 accelerator SIMN55 even with SET CURRENT ACCELERATOR=SIM143. If the v5 accelerator is stopped or cannot be reached the SQL statement will either execute on Db2z/OS or fail with -4742 reason code 13, depending on the value of CURRENT QUERY ACCELERATION used for the SQL statement.
