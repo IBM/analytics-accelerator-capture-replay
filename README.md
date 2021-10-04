@@ -3,7 +3,7 @@
 This project allows IDAA users to capture production IDAAV5 workloads and run the workloads on IDAAV7. Ideally this is done during migration from V5 to V7 before IDAAV7 goes to production.  The project has two parts:
 
 > 1) **Capture:** From a default IDAAV5 server trace, all queries executed for the past 7 days are captured. Host variables or parameter markers in SQL are replaced with the actual value. A set of DSNTIAUL jobs are generated for all captured queries. Each SQL is appended with a QUERYNO clause to easily map the V5 query execution against the V7 query execution. A csv file is also generated to store query attributes and measurements. This csv file can be loaded into a Db2 table.
-> 2) **Replay:** The DSNTIAUL jobs should then be executed on the V7 accelerator. From a default IDAAV7 trace a csv file is generated and loaded into a Db2 table.
+> 2) **Replay:** The DSNTIAUL jobs should then be executed on the V7 accelerator. From a default IDAAV7 trace a csv file is generated and loaded into a Db2 table. It is possible to replay on a Db2z/OS subsystem that is paired to both a V5 and V7 accelerator where only capture replace queries execute on the V7 accelerator and all other queries continue executing on the V5 accelerator. Instructions on how to do this are below in the **Replay with ACCESS(MAINT)** section.
 
 ### Prerequisites
 * The IDAAV5 accelerator must be at V5 PTF8 or later.
@@ -185,6 +185,35 @@ AND V7. INSERT_TSTAMP > '<BEGINNING TIMESTAMP OF WHEN THE WORKLOAD WAS STARTED I
 GROUP BY V5.HASH_ORIGINAL 
 ) AS TX1;
 ```
+ 
+### Replay on an existing Db2z/OS IDAAV5 and IDAAV7 pairing, replay with ACCESS(MAINT)
+ For some configurations of IDAA a Db2z/OS subsytem may be paired to both a V5 and V7 accelerator. The V5 accelerator is used in production for current IDAA workloads. The V7 accelerator is in a migration phase to test specific queries and/or workloads. For capture replay the replay queries should go to the V7 accelerator while existing production workloads continue to run on the V5 accelerator. To accomplish this, use the START ACCEL option ACCESS(MAINT) for the V7 accelerator. 
+ https://www.ibm.com/docs/en/db2-for-zos/12?topic=accelerators-start-accel-db2
+ This command will start an accelerator for query acceleration only for install SYSADM and install SYSOPR. All other users will use the V5 accelerator, even when the V5 accelerator may go offline unexpectedly. For example:
+ SIMN55 is a V5 accelerator, STATUS is STARTED
+ SIM143 is a V7 accelerator started with ACCESS(MAINT), STATUS is STARTMNT
+ ```
+- 09.47.11           -db2adis accel                                         
+- 09.47.11 STC00065  DSNX810I  -DB2A DSNX8CMD DISPLAY ACCEL FOLLOWS -       
+- 09.47.11 STC00065  DSNX830I  -DB2A DSNX8CDA                               
+- ACCELERATOR                      MEMB  STATUS  REQUESTS ACTV QUED MAXQ    
+- -------------------------------- ---- -------- -------- ---- ---- ----    
+- SIMN55                           DB2A STARTED         0    0    0    0    
+- SIM143                           DB2A STARTMNT        0    0    0  N/A    
+- DISPLAY ACCEL REPORT COMPLETE 
+```
+
+A job using USER=USRT001 will execute only on V5 accelerator SIMN55 even with SET CURRENT ACCELERATOR=SIM143. If the v5 accelerator is stopped or cannot be reached the SQL statement will either execute on Db2z/OS or fail with -4742 reason code 13, depending on the value of CURRENT QUERY ACCELERATION used for the SQL statement.
+ ```
+SET CURRENT QUERY ACCELERATION=ALL;
+SET CURRENT ACCELERATOR=SIM143;
+SELECT COUNT(*)
+ FROM TPCD2PCT.NATION WHERE
+ 'USRT001' = 'USRT001' WITH UR;
+ ```
+The same job using install SYSADM or install SYSOPR will execute on the V7 accelerator SIM143. **If the V7 accelerator is stopped or cannot be reached the SQL statement will execute on V5 accelerator SIMN55.** It is recommended to run the replay DSNTIAUL jobs during off peak hours to minimize the risk of this occurrence.
+ 
+ 
 ### Tips
 The INSERT_TSTAMP is in UTC0. Adjust accordingly in the queries for the predicate V7. INSERT_TSTAMP > 
 Pay close attention to the SQLCODE values on both V5 and V7. A negative SQLCODE for V7 executions should be investigated.
