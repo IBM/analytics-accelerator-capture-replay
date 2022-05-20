@@ -3,8 +3,11 @@ import java.io.*;
 import java.nio.file.*;
 import java.lang.String;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.IDAA.SQLFormat.SQLStatementDetails.SQLStatementDetailsData;
 
@@ -17,6 +20,11 @@ public class SQLHistorySummaryV75 {
   static final int PACKAGENAME = 4;
   static final String[] attr = { "original_sql_statement_text: \"", "backend_sql_statement_text: \"",
       "client_accounting: \"", "backend_error_message: \"", "package_name: \"" };
+
+  public static List<Path> getListOfSQLHistoryFiles(String sDir) throws IOException{
+    Stream<Path> listOfFiles = Files.find(Paths.get(sDir), 999, (p, bfa) -> bfa.isRegularFile() && p.getFileName().toString().matches(".*\\.sqlhistory"));
+    return listOfFiles.collect(Collectors.toList());
+  }
 
   private static int indexStringContainsItemFromList(String inputStr, String[] items) {
     for (int i = 0; i < items.length; i++) {
@@ -164,7 +172,7 @@ public class SQLHistorySummaryV75 {
         System.out.println("Generated " + stmtNo + " .sqlhistory files");
       } // args.length==2
 
-      File[] fileList = directory.listFiles((dir, name) -> name.endsWith(".sqlhistory"));
+      List<Path> listOFFiles = getListOfSQLHistoryFiles(pathToSQLHistory);
       System.out.println("Generating csv file");
       int numLines = 0;
       writer.write(
@@ -173,13 +181,14 @@ public class SQLHistorySummaryV75 {
       if (forexcel == true) {
         sqlDelimiter = ExcelDelimiter;
       }
-      for (File file : fileList) {
+      for (Path filepath : listOFFiles) {
+        File file = filepath.toFile();
         SQLStatementDetailsData.Builder SQLStatementDetailsDataMessage = SQLStatementDetailsData.newBuilder();
         String contents = new String(Files.readAllBytes(file.toPath()));
         if (generatesqlhistoryFiles == false) {
           contents = contents.replaceAll("\t", " ");
           contents = contents.replaceAll("(\r|\n)", " ");
-          contents = contents.replaceAll(xml10pattern, "");
+          //contents = contents.replaceAll(xml10pattern, "");
         }
 
         try {
@@ -233,6 +242,7 @@ public class SQLHistorySummaryV75 {
       }
       writer.close();
       System.out.println("Generated csv file with " + numLines + " query entries");
+      generatesqlhistoryFiles = false;
       if (generatesqlhistoryFiles == true) {
         System.out.println("Cleaning up .sqlhistory files");
         File[] listOfsqlhistoryFiles = directory.listFiles(filterSQLHistoryProto);
