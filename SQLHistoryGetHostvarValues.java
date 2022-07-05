@@ -150,7 +150,7 @@ public class SQLHistoryGetHostvarValues {
 		return result.toString();
 	}
 
-	private static String replacePMWithValues(String clientSQLQuery, String parameterMarkerValues, String db2zSQLStmt) {
+	private static String replacePMWithValues(String clientSQLQuery, String parameterMarkerValues) {
 		String newDb2zSQLStmt = new String();
 		StringTokenizer pmTokenizer = new StringTokenizer(parameterMarkerValues, ",");
 
@@ -158,17 +158,15 @@ public class SQLHistoryGetHostvarValues {
 			int numPM = pmTokenizer.countTokens();
 			long countPM = clientSQLQuery.chars().filter(ch -> ch == '?').count();
 			if (numPM != countPM) {
-				newDb2zSQLStmt = db2zSQLStmt;
+				throw new IllegalArgumentException("Number of ? in SQL does not match number of parameter marker values in\n parameterMarkerValues="+parameterMarkerValues+"\n in SQLHistory ");
 			} else {
 				for (int i = 0; i < numPM; i++) {
 					String pmVal = pmTokenizer.nextToken();
 					clientSQLQuery = clientSQLQuery.replaceFirst("\\?", pmVal);
-				}
-				newDb2zSQLStmt = clientSQLQuery;
+				}		
 			}
-		} else {
-			newDb2zSQLStmt = db2zSQLStmt;
 		}
+		newDb2zSQLStmt = clientSQLQuery;
 		return newDb2zSQLStmt;
 	}
 
@@ -321,6 +319,20 @@ public class SQLHistoryGetHostvarValues {
 						} else if (reader.getLocalName().equals("SQLStatementInstance")) {
 							if (reader.getAttributeCount() > 0) {
 								parameterMarkerValues = reader.getAttributeValue(null, "parameterMarkerValues");
+								String newDb2zSQLStmt = replacePMWithValues(clientSQLQuery, parameterMarkerValues);
+								String db2zSQLStmt = newDb2zSQLStmt.replaceAll("\t", "        ");
+
+								Pattern patternWithUR = Pattern.compile("WITH\\s*UR", Pattern.CASE_INSENSITIVE);
+								Pattern patternNewlineWithUR = Pattern.compile("\nWITH\\s*UR",
+										Pattern.CASE_INSENSITIVE);
+								if (patternWithUR.matcher(db2zSQLStmt).find() == false) {
+									sqlForDSNTIAUL.add(db2zSQLStmt + "\nWITH UR QUERYNO " + queryno + ";");
+								} else {
+									if (patternNewlineWithUR.matcher(db2zSQLStmt).find() == false) {
+										db2zSQLStmt = db2zSQLStmt.replaceAll("WITH UR", "\nWITH UR\n");
+									}
+									sqlForDSNTIAUL.add(db2zSQLStmt + "\nQUERYNO " + queryno + ";");
+								}										
 							}
 						} else if (reader.getLocalName().equals("ClientSQLQuery")) {
 							if (reader.getAttributeCount() > 0) {
@@ -356,32 +368,7 @@ public class SQLHistoryGetHostvarValues {
 								System.out.println(e.getMessage() + " at " + reader.getLocation().getLineNumber() + ":"
 										+ reader.getLocation().getColumnNumber());
 							}
-						} else if (reader.getLocalName().equals("OriginalWithPMReplaced")) {
-							if (reader.getAttributeCount() > 0) {
-								String hash = reader.getAttributeValue(null, "hash");
-							} // hash
-							int clientSQLQueryEventType = reader.next();
-							if (!finishState.equals("CANCELED")
-									&& (clientSQLQueryEventType == XMLStreamConstants.CHARACTERS
-											|| clientSQLQueryEventType == XMLStreamConstants.CDATA)) {
-								String db2zSQLStmt = removeComments(reader.getText());
-								String newDb2zSQLStmt = replacePMWithValues(clientSQLQuery, parameterMarkerValues,
-										db2zSQLStmt);
-								db2zSQLStmt = newDb2zSQLStmt.replaceAll("\t", "        ");
-
-								Pattern patternWithUR = Pattern.compile("WITH\\s*UR", Pattern.CASE_INSENSITIVE);
-								Pattern patternNewlineWithUR = Pattern.compile("\nWITH\\s*UR",
-										Pattern.CASE_INSENSITIVE);
-								if (patternWithUR.matcher(db2zSQLStmt).find() == false) {
-									sqlForDSNTIAUL.add(db2zSQLStmt + "\nWITH UR QUERYNO " + queryno + ";");
-								} else {
-									if (patternNewlineWithUR.matcher(db2zSQLStmt).find() == false) {
-										db2zSQLStmt = db2zSQLStmt.replaceAll("WITH UR", "\nWITH UR\n");
-									}
-									sqlForDSNTIAUL.add(db2zSQLStmt + "\nQUERYNO " + queryno + ";");
-								}
-							}
-						}
+						} 
 						break;
 					default:
 						break;
