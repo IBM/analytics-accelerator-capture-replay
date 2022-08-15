@@ -34,7 +34,7 @@ public class SQLHistoryGetHostvarValues {
 
 		String dsntiaulHeader = "//RUNTIAUL JOB 'USER=$$USER','<USERNAME:JOBNAME>',CLASS=A,\n"
 				+ "//         MSGCLASS=A,MSGLEVEL=(1,1),USER=SYSADM,REGION=4096K,\n"
-				+ "//         PASSWORD=C0DESHOP                                  \n"
+				+ "//         PASSWORD=xxxxxxxx                                  \n"
 				+ "/*ROUTE PRINT STLVM14.CHIHCHAN                                \n"
 				+ "//*                                                           \n"
 				+ "//*                                                           \n"
