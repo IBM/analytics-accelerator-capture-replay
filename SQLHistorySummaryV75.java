@@ -95,6 +95,7 @@ public class SQLHistorySummaryV75 {
       boolean db2advis = false;
       boolean forexcel = false;
       boolean generatesqlhistoryFiles = false;
+      boolean optprofile = false;
 
       if (args.length > 1) {
         iterationNum = args[1];
@@ -104,6 +105,8 @@ public class SQLHistorySummaryV75 {
           db2advis = true;
         } else if (args[2].equals("forexcel")) {
           forexcel = true;
+        }else if (args[2].equals("optprofile")) {
+          optprofile = true;
         }
 
         if (args.length > 3 && args[3].equals("forexcel")) {
@@ -175,8 +178,14 @@ public class SQLHistorySummaryV75 {
       List<Path> listOFFiles = getListOfSQLHistoryFiles(pathToSQLHistory);
       System.out.println("Generating csv file");
       int numLines = 0;
-      writer.write(
+      if (optprofile == false){
+      	writer.write(
           "taskID,V5taskID,backendDBSExecTime,totalElapsedTime,backendWaitTime,numResultRows,numResultBytes,fetchTime,entryTimestamp,originalUserID,hash,SQL Text,location,iteration,sqlcode\n");
+	  }else{
+      	writer.write(
+          "taskID,V5taskID,backendDBSExecTime,totalElapsedTime,backendWaitTime,numResultRows,numResultBytes,fetchTime,entryTimestamp,originalUserID,hash,Db2z SQL Text,Backend SQL Text,location,iteration,sqlcode\n");
+	  }
+
       String sqlDelimiter = defaultDelimiter;
       if (forexcel == true) {
         sqlDelimiter = ExcelDelimiter;
@@ -226,18 +235,35 @@ public class SQLHistorySummaryV75 {
         sqlStmtText = sqlStmtText.replaceAll("\t", " ");
         sqlStmtText = sqlStmtText.replaceAll("(\r|\n)", " ");
 
+
+
         String v5TaskID = "";
         if (sqlStmtText.indexOf("QUERYNO") > -1) {
           v5TaskID = sqlStmtText.substring(sqlStmtText.indexOf("QUERYNO") + 8, sqlStmtText.indexOf(";"));
         }
-        writer.write(SQLStatementDetailsDataMessage.getTaskId() + "," + v5TaskID + ","
-            + timingsData.getBackendDBSExecTime() + "," + timingsData.getTotalElapsedTime() + ","
-            + timingsData.getBackendWaitTime() + "," + executionResultData.getNumResultRows() + ","
-            + executionResultData.getNumResultBytes() + "," + timingsData.getFetchTime() + ",'" + entryTimestamp + "','"
-            + SQLStatementDetailsDataMessage.getOriginalUserId() + "','"
-            + SQLStatementDetailsDataMessage.getOriginalSqlStatementTextHash() + "'," + sqlDelimiter + sqlStmtText
-            + sqlDelimiter + ",'" + SQLStatementDetailsDataMessage.getDatabaseSystemLocationName() + "'," + iterationNum
-            + "," + executionResultData.getSqlCode() + "\n");
+
+        if (optprofile == true){
+			String backendSqlStmtText = SQLStatementDetailsDataMessage.getBackendSqlStatementText();
+        	writer.write(SQLStatementDetailsDataMessage.getTaskId() + "," + v5TaskID + ","
+            	+ timingsData.getBackendDBSExecTime() + "," + timingsData.getTotalElapsedTime() + ","
+	            + timingsData.getBackendWaitTime() + "," + executionResultData.getNumResultRows() + ","
+            	+ executionResultData.getNumResultBytes() + "," + timingsData.getFetchTime() + ",'" + entryTimestamp + "','"
+	            + SQLStatementDetailsDataMessage.getOriginalUserId() + "','"
+            	+ SQLStatementDetailsDataMessage.getOriginalSqlStatementTextHash() + "',"
+            	+ sqlDelimiter + sqlStmtText + sqlDelimiter + ","
+            	+ sqlDelimiter + backendSqlStmtText + sqlDelimiter + ",'"
+            	+ SQLStatementDetailsDataMessage.getDatabaseSystemLocationName() + "'," + iterationNum
+            	+ "," + executionResultData.getSqlCode() + "\n");
+		}else{
+        	writer.write(SQLStatementDetailsDataMessage.getTaskId() + "," + v5TaskID + ","
+            	+ timingsData.getBackendDBSExecTime() + "," + timingsData.getTotalElapsedTime() + ","
+	            + timingsData.getBackendWaitTime() + "," + executionResultData.getNumResultRows() + ","
+            	+ executionResultData.getNumResultBytes() + "," + timingsData.getFetchTime() + ",'" + entryTimestamp + "','"
+	            + SQLStatementDetailsDataMessage.getOriginalUserId() + "','"
+            	+ SQLStatementDetailsDataMessage.getOriginalSqlStatementTextHash() + "'," + sqlDelimiter + sqlStmtText
+	            + sqlDelimiter + ",'" + SQLStatementDetailsDataMessage.getDatabaseSystemLocationName() + "'," + iterationNum
+            	+ "," + executionResultData.getSqlCode() + "\n");
+	   }
         numLines += 1;
       }
       writer.close();
