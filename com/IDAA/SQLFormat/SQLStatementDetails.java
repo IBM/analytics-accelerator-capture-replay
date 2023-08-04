@@ -19,7 +19,10 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; unique ID of the SQL statement
+     **
+     * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+     * only. The highest used statement ID is stored persistently in file
+     * "last-statement-id" in the same directory where the SQL history files reside.
      * </pre>
      *
      * <code>optional uint64 statement_id = 1;</code>
@@ -28,7 +31,10 @@ public final class SQLStatementDetails {
     boolean hasStatementId();
     /**
      * <pre>
-     *&#47; unique ID of the SQL statement
+     **
+     * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+     * only. The highest used statement ID is stored persistently in file
+     * "last-statement-id" in the same directory where the SQL history files reside.
      * </pre>
      *
      * <code>optional uint64 statement_id = 1;</code>
@@ -38,7 +44,9 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; task ID of the SQL statement execution
+     **
+     * ID of the task that executes the SQL statement. Note that task IDs are reset
+     * upon restart of the accelerator.
      * </pre>
      *
      * <code>optional uint64 task_id = 2;</code>
@@ -47,7 +55,9 @@ public final class SQLStatementDetails {
     boolean hasTaskId();
     /**
      * <pre>
-     *&#47; task ID of the SQL statement execution
+     **
+     * ID of the task that executes the SQL statement. Note that task IDs are reset
+     * upon restart of the accelerator.
      * </pre>
      *
      * <code>optional uint64 task_id = 2;</code>
@@ -57,7 +67,9 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; unique identifier of the database system of the SQL statement
+     **
+     * Each client must provide a unique location name when the pairing is established.
+     * That location name is stored for each SQL statement here.
      * </pre>
      *
      * <code>optional string database_system_location_name = 3;</code>
@@ -66,7 +78,9 @@ public final class SQLStatementDetails {
     boolean hasDatabaseSystemLocationName();
     /**
      * <pre>
-     *&#47; unique identifier of the database system of the SQL statement
+     **
+     * Each client must provide a unique location name when the pairing is established.
+     * That location name is stored for each SQL statement here.
      * </pre>
      *
      * <code>optional string database_system_location_name = 3;</code>
@@ -75,7 +89,9 @@ public final class SQLStatementDetails {
     java.lang.String getDatabaseSystemLocationName();
     /**
      * <pre>
-     *&#47; unique identifier of the database system of the SQL statement
+     **
+     * Each client must provide a unique location name when the pairing is established.
+     * That location name is stored for each SQL statement here.
      * </pre>
      *
      * <code>optional string database_system_location_name = 3;</code>
@@ -86,7 +102,11 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; correlation token sent in the ACCRDB
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * uses "correlation tokens" to identify the connection. The correlation token
+     * is provided when the DRDA connection is established, and message ACCRDB
+     * (Access Relational Database) carries it.
      * </pre>
      *
      * <code>optional string correlation_token = 4;</code>
@@ -95,7 +115,11 @@ public final class SQLStatementDetails {
     boolean hasCorrelationToken();
     /**
      * <pre>
-     *&#47; correlation token sent in the ACCRDB
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * uses "correlation tokens" to identify the connection. The correlation token
+     * is provided when the DRDA connection is established, and message ACCRDB
+     * (Access Relational Database) carries it.
      * </pre>
      *
      * <code>optional string correlation_token = 4;</code>
@@ -104,7 +128,11 @@ public final class SQLStatementDetails {
     java.lang.String getCorrelationToken();
     /**
      * <pre>
-     *&#47; correlation token sent in the ACCRDB
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * uses "correlation tokens" to identify the connection. The correlation token
+     * is provided when the DRDA connection is established, and message ACCRDB
+     * (Access Relational Database) carries it.
      * </pre>
      *
      * <code>optional string correlation_token = 4;</code>
@@ -115,7 +143,9 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; original UserID
+     **
+     * This is the user ID that was used when an application connects to the client
+     * database system (DB2z) for executing the SQL statement.
      * </pre>
      *
      * <code>optional string original_user_id = 5;</code>
@@ -124,7 +154,9 @@ public final class SQLStatementDetails {
     boolean hasOriginalUserId();
     /**
      * <pre>
-     *&#47; original UserID
+     **
+     * This is the user ID that was used when an application connects to the client
+     * database system (DB2z) for executing the SQL statement.
      * </pre>
      *
      * <code>optional string original_user_id = 5;</code>
@@ -133,7 +165,9 @@ public final class SQLStatementDetails {
     java.lang.String getOriginalUserId();
     /**
      * <pre>
-     *&#47; original UserID
+     **
+     * This is the user ID that was used when an application connects to the client
+     * database system (DB2z) for executing the SQL statement.
      * </pre>
      *
      * <code>optional string original_user_id = 5;</code>
@@ -144,7 +178,10 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; EXTNAM of EXCSAT
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * contains an "external name". This name is provided in DRDA message EXCSAT
+     * (Exchange Server Attributes) in field EXTNAM (External Name).
      * </pre>
      *
      * <code>optional string external_name = 6;</code>
@@ -153,7 +190,10 @@ public final class SQLStatementDetails {
     boolean hasExternalName();
     /**
      * <pre>
-     *&#47; EXTNAM of EXCSAT
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * contains an "external name". This name is provided in DRDA message EXCSAT
+     * (Exchange Server Attributes) in field EXTNAM (External Name).
      * </pre>
      *
      * <code>optional string external_name = 6;</code>
@@ -162,7 +202,10 @@ public final class SQLStatementDetails {
     java.lang.String getExternalName();
     /**
      * <pre>
-     *&#47; EXTNAM of EXCSAT
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * contains an "external name". This name is provided in DRDA message EXCSAT
+     * (Exchange Server Attributes) in field EXTNAM (External Name).
      * </pre>
      *
      * <code>optional string external_name = 6;</code>
@@ -173,7 +216,12 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; IP address or resolved host name of remote client
+     **
+     * The client's IP address is obtained from the TCP/IP connection itself by
+     * querying the respective attributes from the socket.
+     * The client's port number is _not_ included because the port numbers are
+     * typically assigned randomly by the client's operating system when a
+     * &#64;c connect() system call is made.
      * </pre>
      *
      * <code>optional string peer_identifier = 7;</code>
@@ -182,7 +230,12 @@ public final class SQLStatementDetails {
     boolean hasPeerIdentifier();
     /**
      * <pre>
-     *&#47; IP address or resolved host name of remote client
+     **
+     * The client's IP address is obtained from the TCP/IP connection itself by
+     * querying the respective attributes from the socket.
+     * The client's port number is _not_ included because the port numbers are
+     * typically assigned randomly by the client's operating system when a
+     * &#64;c connect() system call is made.
      * </pre>
      *
      * <code>optional string peer_identifier = 7;</code>
@@ -191,7 +244,12 @@ public final class SQLStatementDetails {
     java.lang.String getPeerIdentifier();
     /**
      * <pre>
-     *&#47; IP address or resolved host name of remote client
+     **
+     * The client's IP address is obtained from the TCP/IP connection itself by
+     * querying the respective attributes from the socket.
+     * The client's port number is _not_ included because the port numbers are
+     * typically assigned randomly by the client's operating system when a
+     * &#64;c connect() system call is made.
      * </pre>
      *
      * <code>optional string peer_identifier = 7;</code>
@@ -202,8 +260,11 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; SQL statement that the client has originally received. The client translated it
-     * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+     **
+     * An application sends a SQL statement to our client (DB2z). The client
+     * rewrites this original SQL statement to the backend (and does syntax
+     * adjustments, table name mappings). The original SQL statement text is
+     * provided to the accelerator, primarily for diagnostics purposes.
      * </pre>
      *
      * <code>optional string original_sql_statement_text = 8;</code>
@@ -212,8 +273,11 @@ public final class SQLStatementDetails {
     boolean hasOriginalSqlStatementText();
     /**
      * <pre>
-     *&#47; SQL statement that the client has originally received. The client translated it
-     * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+     **
+     * An application sends a SQL statement to our client (DB2z). The client
+     * rewrites this original SQL statement to the backend (and does syntax
+     * adjustments, table name mappings). The original SQL statement text is
+     * provided to the accelerator, primarily for diagnostics purposes.
      * </pre>
      *
      * <code>optional string original_sql_statement_text = 8;</code>
@@ -222,8 +286,11 @@ public final class SQLStatementDetails {
     java.lang.String getOriginalSqlStatementText();
     /**
      * <pre>
-     *&#47; SQL statement that the client has originally received. The client translated it
-     * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+     **
+     * An application sends a SQL statement to our client (DB2z). The client
+     * rewrites this original SQL statement to the backend (and does syntax
+     * adjustments, table name mappings). The original SQL statement text is
+     * provided to the accelerator, primarily for diagnostics purposes.
      * </pre>
      *
      * <code>optional string original_sql_statement_text = 8;</code>
@@ -234,28 +301,70 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; BackendDBS SQL statement text with resolved parameter markers
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the original SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the original SQL statement text for two different statements
+     * is the same or not.
      * </pre>
      *
-     * <code>optional string backend_sql_statement_text = 9;</code>
+     * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+     * @return Whether the originalSqlStatementTextHash field is set.
+     */
+    boolean hasOriginalSqlStatementTextHash();
+    /**
+     * <pre>
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the original SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the original SQL statement text for two different statements
+     * is the same or not.
+     * </pre>
+     *
+     * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+     * @return The originalSqlStatementTextHash.
+     */
+    long getOriginalSqlStatementTextHash();
+
+    /**
+     * <pre>
+     **
+     * The original SQL statement text (see &#64;c original_sql_statement_text)
+     * is rewritten by the client to adhere to the backend's SQL syntax and
+     * use the table/view names defined by the accelerator. This field here
+     * contains the rewritten SQL statement text, which is actually executed
+     * in the backend as-is.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text = 10;</code>
      * @return Whether the backendSqlStatementText field is set.
      */
     boolean hasBackendSqlStatementText();
     /**
      * <pre>
-     *&#47; BackendDBS SQL statement text with resolved parameter markers
+     **
+     * The original SQL statement text (see &#64;c original_sql_statement_text)
+     * is rewritten by the client to adhere to the backend's SQL syntax and
+     * use the table/view names defined by the accelerator. This field here
+     * contains the rewritten SQL statement text, which is actually executed
+     * in the backend as-is.
      * </pre>
      *
-     * <code>optional string backend_sql_statement_text = 9;</code>
+     * <code>optional string backend_sql_statement_text = 10;</code>
      * @return The backendSqlStatementText.
      */
     java.lang.String getBackendSqlStatementText();
     /**
      * <pre>
-     *&#47; BackendDBS SQL statement text with resolved parameter markers
+     **
+     * The original SQL statement text (see &#64;c original_sql_statement_text)
+     * is rewritten by the client to adhere to the backend's SQL syntax and
+     * use the table/view names defined by the accelerator. This field here
+     * contains the rewritten SQL statement text, which is actually executed
+     * in the backend as-is.
      * </pre>
      *
-     * <code>optional string backend_sql_statement_text = 9;</code>
+     * <code>optional string backend_sql_statement_text = 10;</code>
      * @return The bytes for backendSqlStatementText.
      */
     com.google.protobuf.ByteString
@@ -263,28 +372,64 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the backend SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the backend SQL statement text for two different statements
+     * is the same or not.
      * </pre>
      *
-     * <code>optional string package_name = 10;</code>
+     * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+     * @return Whether the backendSqlStatementTextHash field is set.
+     */
+    boolean hasBackendSqlStatementTextHash();
+    /**
+     * <pre>
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the backend SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the backend SQL statement text for two different statements
+     * is the same or not.
+     * </pre>
+     *
+     * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+     * @return The backendSqlStatementTextHash.
+     */
+    long getBackendSqlStatementTextHash();
+
+    /**
+     * <pre>
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the name of the package in which that SQL statement was
+     * compiled into.
+     * </pre>
+     *
+     * <code>optional string package_name = 12;</code>
      * @return Whether the packageName field is set.
      */
     boolean hasPackageName();
     /**
      * <pre>
-     *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the name of the package in which that SQL statement was
+     * compiled into.
      * </pre>
      *
-     * <code>optional string package_name = 10;</code>
+     * <code>optional string package_name = 12;</code>
      * @return The packageName.
      */
     java.lang.String getPackageName();
     /**
      * <pre>
-     *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the name of the package in which that SQL statement was
+     * compiled into.
      * </pre>
      *
-     * <code>optional string package_name = 10;</code>
+     * <code>optional string package_name = 12;</code>
      * @return The bytes for packageName.
      */
     com.google.protobuf.ByteString
@@ -292,282 +437,407 @@ public final class SQLStatementDetails {
 
     /**
      * <pre>
-     *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the collection ID related to that SQL statement.
      * </pre>
      *
-     * <code>optional string collection_id = 11;</code>
+     * <code>optional string collection_id = 13;</code>
      * @return Whether the collectionId field is set.
      */
     boolean hasCollectionId();
     /**
      * <pre>
-     *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the collection ID related to that SQL statement.
      * </pre>
      *
-     * <code>optional string collection_id = 11;</code>
+     * <code>optional string collection_id = 13;</code>
      * @return The collectionId.
      */
     java.lang.String getCollectionId();
     /**
      * <pre>
-     *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the collection ID related to that SQL statement.
      * </pre>
      *
-     * <code>optional string collection_id = 11;</code>
+     * <code>optional string collection_id = 13;</code>
      * @return The bytes for collectionId.
      */
     com.google.protobuf.ByteString
         getCollectionIdBytes();
 
     /**
-     * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+     * <pre>
+     **
+     * The client provides all IDs of tables that are referenced in a SQL statement.
+     * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+     * Object ID).
+     * </pre>
+     *
+     * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
      * @return Whether the dbidObidOfAccessedTables field is set.
      */
     boolean hasDbidObidOfAccessedTables();
     /**
-     * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+     * <pre>
+     **
+     * The client provides all IDs of tables that are referenced in a SQL statement.
+     * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+     * Object ID).
+     * </pre>
+     *
+     * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
      * @return The dbidObidOfAccessedTables.
      */
     java.lang.String getDbidObidOfAccessedTables();
     /**
-     * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+     * <pre>
+     **
+     * The client provides all IDs of tables that are referenced in a SQL statement.
+     * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+     * Object ID).
+     * </pre>
+     *
+     * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
      * @return The bytes for dbidObidOfAccessedTables.
      */
     com.google.protobuf.ByteString
         getDbidObidOfAccessedTablesBytes();
 
     /**
-     * <code>optional int64 backend_sql_session_id = 13;</code>
+     * <pre>
+     **
+     * Each SQL connection to the backend has an application handle. The application
+     * handle for the SQL connection on which the SQL statement is executed is
+     * stored here as SQL session ID.
+     * </pre>
+     *
+     * <code>optional int64 backend_sql_session_id = 15;</code>
      * @return Whether the backendSqlSessionId field is set.
      */
     boolean hasBackendSqlSessionId();
     /**
-     * <code>optional int64 backend_sql_session_id = 13;</code>
+     * <pre>
+     **
+     * Each SQL connection to the backend has an application handle. The application
+     * handle for the SQL connection on which the SQL statement is executed is
+     * stored here as SQL session ID.
+     * </pre>
+     *
+     * <code>optional int64 backend_sql_session_id = 15;</code>
      * @return The backendSqlSessionId.
      */
     long getBackendSqlSessionId();
 
     /**
-     * <code>optional string backend_sql_application_id = 27;</code>
+     * <pre>
+     **
+     * Besides the application handle (see field &#64;c backend_sql_session_id), the
+     * backend has an application ID assigned to each SQL connection.
+     * </pre>
+     *
+     * <code>optional string backend_sql_application_id = 16;</code>
      * @return Whether the backendSqlApplicationId field is set.
      */
     boolean hasBackendSqlApplicationId();
     /**
-     * <code>optional string backend_sql_application_id = 27;</code>
+     * <pre>
+     **
+     * Besides the application handle (see field &#64;c backend_sql_session_id), the
+     * backend has an application ID assigned to each SQL connection.
+     * </pre>
+     *
+     * <code>optional string backend_sql_application_id = 16;</code>
      * @return The backendSqlApplicationId.
      */
     java.lang.String getBackendSqlApplicationId();
     /**
-     * <code>optional string backend_sql_application_id = 27;</code>
+     * <pre>
+     **
+     * Besides the application handle (see field &#64;c backend_sql_session_id), the
+     * backend has an application ID assigned to each SQL connection.
+     * </pre>
+     *
+     * <code>optional string backend_sql_application_id = 16;</code>
      * @return The bytes for backendSqlApplicationId.
      */
     com.google.protobuf.ByteString
         getBackendSqlApplicationIdBytes();
 
     /**
-     * <code>optional int32 task_priority = 14;</code>
+     * <pre>
+     **
+     * The task priority is derived from the client's WLM (workload management) importance level.
+     * </pre>
+     *
+     * <code>optional int32 task_priority = 17;</code>
      * @return Whether the taskPriority field is set.
      */
     boolean hasTaskPriority();
     /**
-     * <code>optional int32 task_priority = 14;</code>
+     * <pre>
+     **
+     * The task priority is derived from the client's WLM (workload management) importance level.
+     * </pre>
+     *
+     * <code>optional int32 task_priority = 17;</code>
      * @return The taskPriority.
      */
     int getTaskPriority();
 
     /**
-     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
      * @return Whether the specialRegisters field is set.
      */
     boolean hasSpecialRegisters();
     /**
-     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
      * @return The specialRegisters.
      */
     SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters getSpecialRegisters();
     /**
-     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
      */
     SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegistersOrBuilder getSpecialRegistersOrBuilder();
 
     /**
-     * <code>optional uint32 finish_state = 16;</code>
+     * <pre>
+     *&#47; indicator whether execution of the SQL statement has finished
+     * </pre>
+     *
+     * <code>optional bool finished = 19;</code>
+     * @return Whether the finished field is set.
+     */
+    boolean hasFinished();
+    /**
+     * <pre>
+     *&#47; indicator whether execution of the SQL statement has finished
+     * </pre>
+     *
+     * <code>optional bool finished = 19;</code>
+     * @return The finished.
+     */
+    boolean getFinished();
+
+    /**
+     * <pre>
+     **
+     * The state how the SQL statement execution was finished is one of:
+     *  - 3 = DONE (successful completion without error)
+     *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+     *  - 5 = CANCELLED (execution was canceled)
+     * </pre>
+     *
+     * <code>optional uint32 finish_state = 20;</code>
      * @return Whether the finishState field is set.
      */
     boolean hasFinishState();
     /**
-     * <code>optional uint32 finish_state = 16;</code>
+     * <pre>
+     **
+     * The state how the SQL statement execution was finished is one of:
+     *  - 3 = DONE (successful completion without error)
+     *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+     *  - 5 = CANCELLED (execution was canceled)
+     * </pre>
+     *
+     * <code>optional uint32 finish_state = 20;</code>
      * @return The finishState.
      */
     int getFinishState();
 
     /**
-     * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+     * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
      * @return Whether the timings field is set.
      */
     boolean hasTimings();
     /**
-     * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+     * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
      * @return The timings.
      */
     SQLStatementDetails.SQLStatementDetailsData.Timings getTimings();
     /**
-     * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+     * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
      */
     SQLStatementDetails.SQLStatementDetailsData.TimingsOrBuilder getTimingsOrBuilder();
 
     /**
-     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
      * @return Whether the executionResult field is set.
      */
     boolean hasExecutionResult();
     /**
-     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
      * @return The executionResult.
      */
     SQLStatementDetails.SQLStatementDetailsData.ExecutionResult getExecutionResult();
     /**
-     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
      */
     SQLStatementDetails.SQLStatementDetailsData.ExecutionResultOrBuilder getExecutionResultOrBuilder();
 
     /**
-     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
      * @return Whether the waitForData field is set.
      */
     boolean hasWaitForData();
     /**
-     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
      * @return The waitForData.
      */
     SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics getWaitForData();
     /**
-     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
      */
     SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatisticsOrBuilder getWaitForDataOrBuilder();
 
     /**
-     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
      * @return Whether the multiRowInsert field is set.
      */
     boolean hasMultiRowInsert();
     /**
-     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
      * @return The multiRowInsert.
      */
     SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails getMultiRowInsert();
     /**
-     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
      */
     SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetailsOrBuilder getMultiRowInsertOrBuilder();
 
     /**
      * <pre>
-     *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-     * / statement execution. For example, profiling data for the individual execution phases
-     * / are gathered. A dump of those information is stored in the current attribute so
-     * / that they are available for problem determination purposes. Processing and filtering
-     * / based on this attribute is not supported as for the others.
+     **
+     * The SQL controller typically collects a lot of detailed information for each
+     * SQL statement execution. For example, profiling data for the individual execution
+     * phases are gathered. A dump (in XML format) of those information is stored so
+     * that it is available for problem determination purposes.
      * </pre>
      *
-     * <code>optional string auxiliary_data = 21;</code>
+     * <code>optional string auxiliary_data = 25;</code>
      * @return Whether the auxiliaryData field is set.
      */
     boolean hasAuxiliaryData();
     /**
      * <pre>
-     *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-     * / statement execution. For example, profiling data for the individual execution phases
-     * / are gathered. A dump of those information is stored in the current attribute so
-     * / that they are available for problem determination purposes. Processing and filtering
-     * / based on this attribute is not supported as for the others.
+     **
+     * The SQL controller typically collects a lot of detailed information for each
+     * SQL statement execution. For example, profiling data for the individual execution
+     * phases are gathered. A dump (in XML format) of those information is stored so
+     * that it is available for problem determination purposes.
      * </pre>
      *
-     * <code>optional string auxiliary_data = 21;</code>
+     * <code>optional string auxiliary_data = 25;</code>
      * @return The auxiliaryData.
      */
     java.lang.String getAuxiliaryData();
     /**
      * <pre>
-     *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-     * / statement execution. For example, profiling data for the individual execution phases
-     * / are gathered. A dump of those information is stored in the current attribute so
-     * / that they are available for problem determination purposes. Processing and filtering
-     * / based on this attribute is not supported as for the others.
+     **
+     * The SQL controller typically collects a lot of detailed information for each
+     * SQL statement execution. For example, profiling data for the individual execution
+     * phases are gathered. A dump (in XML format) of those information is stored so
+     * that it is available for problem determination purposes.
      * </pre>
      *
-     * <code>optional string auxiliary_data = 21;</code>
+     * <code>optional string auxiliary_data = 25;</code>
      * @return The bytes for auxiliaryData.
      */
     com.google.protobuf.ByteString
         getAuxiliaryDataBytes();
 
     /**
-     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
      * @return Whether the clientAccountingDetails field is set.
      */
     boolean hasClientAccountingDetails();
     /**
-     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
      * @return The clientAccountingDetails.
      */
     SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails getClientAccountingDetails();
     /**
-     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
      */
     SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetailsOrBuilder getClientAccountingDetailsOrBuilder();
 
     /**
-     * <code>optional bool finished = 23;</code>
-     * @return Whether the finished field is set.
-     */
-    boolean hasFinished();
-    /**
-     * <code>optional bool finished = 23;</code>
-     * @return The finished.
-     */
-    boolean getFinished();
-
-    /**
-     * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-     * @return Whether the originalSqlStatementTextHash field is set.
-     */
-    boolean hasOriginalSqlStatementTextHash();
-    /**
-     * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-     * @return The originalSqlStatementTextHash.
-     */
-    long getOriginalSqlStatementTextHash();
-
-    /**
-     * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-     * @return Whether the backendSqlStatementTextHash field is set.
-     */
-    boolean hasBackendSqlStatementTextHash();
-    /**
-     * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-     * @return The backendSqlStatementTextHash.
-     */
-    long getBackendSqlStatementTextHash();
-
-    /**
-     * <code>optional string backend_sql_statement_text_hex = 26;</code>
+     * <pre>
+     **
+     * Deprecrated.
+     * In the past, we used to store the backend SQL statement text as hex representation
+     * for all the individual bytes. That can be helpful to figure out, for example,
+     * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+     * (Unicode code U+00A0).
+     * We no longer store that hex representation these days. System command
+     * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+     * SQL statement text and/or the backend SQL statement text.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text_hex = 27;</code>
      * @return Whether the backendSqlStatementTextHex field is set.
      */
     boolean hasBackendSqlStatementTextHex();
     /**
-     * <code>optional string backend_sql_statement_text_hex = 26;</code>
+     * <pre>
+     **
+     * Deprecrated.
+     * In the past, we used to store the backend SQL statement text as hex representation
+     * for all the individual bytes. That can be helpful to figure out, for example,
+     * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+     * (Unicode code U+00A0).
+     * We no longer store that hex representation these days. System command
+     * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+     * SQL statement text and/or the backend SQL statement text.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text_hex = 27;</code>
      * @return The backendSqlStatementTextHex.
      */
     java.lang.String getBackendSqlStatementTextHex();
     /**
-     * <code>optional string backend_sql_statement_text_hex = 26;</code>
+     * <pre>
+     **
+     * Deprecrated.
+     * In the past, we used to store the backend SQL statement text as hex representation
+     * for all the individual bytes. That can be helpful to figure out, for example,
+     * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+     * (Unicode code U+00A0).
+     * We no longer store that hex representation these days. System command
+     * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+     * SQL statement text and/or the backend SQL statement text.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text_hex = 27;</code>
      * @return The bytes for backendSqlStatementTextHex.
      */
     com.google.protobuf.ByteString
         getBackendSqlStatementTextHexBytes();
   }
   /**
+   * <pre>
+   **
+   * Proto object describing the details for the execution of a user-driver SQL statement.
+   * Various attributes are collected for a SQL statement that was executed
+   * on behalf of the client (DB2z). The attributes are tracked for currently
+   * running SQL statements and also for already finished ones.
+   ********************************************************************************
+   * &#64;attention These proto objects are serialized in Text Format and that is written
+   *            persistently to SQL history files! We do not use any binary representation
+   *            of the proto objects. That implies:
+   *             (1) Attribute names MUST NOT be changed or removed because (persisted)
+   *                 values are identified by them.
+   *             (2) Attribute numbers/IDs can be changed. In fact, they should be changed
+   *                 as they define the sequence for the fields in the SQL history file.
+   *                 A logical sequence makes it easier to consume that file.
+   ********************************************************************************
+   * </pre>
+   *
    * Protobuf type {@code SQLStatementDetailsData}
    */
   public  static final class SQLStatementDetailsData extends
@@ -672,43 +942,59 @@ public final class SQLStatementDetails {
               originalSqlStatementText_ = bs;
               break;
             }
-            case 74: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 72: {
               bitField0_ |= 0x00000100;
-              backendSqlStatementText_ = bs;
+              originalSqlStatementTextHash_ = input.readUInt64();
               break;
             }
             case 82: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000200;
-              packageName_ = bs;
+              backendSqlStatementText_ = bs;
               break;
             }
-            case 90: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 88: {
               bitField0_ |= 0x00000400;
-              collectionId_ = bs;
+              backendSqlStatementTextHash_ = input.readUInt64();
               break;
             }
             case 98: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000800;
+              packageName_ = bs;
+              break;
+            }
+            case 106: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00001000;
+              collectionId_ = bs;
+              break;
+            }
+            case 114: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00002000;
               dbidObidOfAccessedTables_ = bs;
               break;
             }
-            case 104: {
-              bitField0_ |= 0x00001000;
+            case 120: {
+              bitField0_ |= 0x00004000;
               backendSqlSessionId_ = input.readInt64();
               break;
             }
-            case 112: {
-              bitField0_ |= 0x00004000;
+            case 130: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00008000;
+              backendSqlApplicationId_ = bs;
+              break;
+            }
+            case 136: {
+              bitField0_ |= 0x00010000;
               taskPriority_ = input.readInt32();
               break;
             }
-            case 122: {
+            case 146: {
               SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.Builder subBuilder = null;
-              if (((bitField0_ & 0x00008000) != 0)) {
+              if (((bitField0_ & 0x00020000) != 0)) {
                 subBuilder = specialRegisters_.toBuilder();
               }
               specialRegisters_ = input.readMessage(SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.PARSER, extensionRegistry);
@@ -716,17 +1002,22 @@ public final class SQLStatementDetails {
                 subBuilder.mergeFrom(specialRegisters_);
                 specialRegisters_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00008000;
+              bitField0_ |= 0x00020000;
               break;
             }
-            case 128: {
-              bitField0_ |= 0x00010000;
+            case 152: {
+              bitField0_ |= 0x00040000;
+              finished_ = input.readBool();
+              break;
+            }
+            case 160: {
+              bitField0_ |= 0x00080000;
               finishState_ = input.readUInt32();
               break;
             }
-            case 138: {
+            case 170: {
               SQLStatementDetails.SQLStatementDetailsData.Timings.Builder subBuilder = null;
-              if (((bitField0_ & 0x00020000) != 0)) {
+              if (((bitField0_ & 0x00100000) != 0)) {
                 subBuilder = timings_.toBuilder();
               }
               timings_ = input.readMessage(SQLStatementDetails.SQLStatementDetailsData.Timings.PARSER, extensionRegistry);
@@ -734,12 +1025,12 @@ public final class SQLStatementDetails {
                 subBuilder.mergeFrom(timings_);
                 timings_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00020000;
+              bitField0_ |= 0x00100000;
               break;
             }
-            case 146: {
+            case 178: {
               SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.Builder subBuilder = null;
-              if (((bitField0_ & 0x00040000) != 0)) {
+              if (((bitField0_ & 0x00200000) != 0)) {
                 subBuilder = executionResult_.toBuilder();
               }
               executionResult_ = input.readMessage(SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.PARSER, extensionRegistry);
@@ -747,12 +1038,12 @@ public final class SQLStatementDetails {
                 subBuilder.mergeFrom(executionResult_);
                 executionResult_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00040000;
+              bitField0_ |= 0x00200000;
               break;
             }
-            case 154: {
+            case 186: {
               SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.Builder subBuilder = null;
-              if (((bitField0_ & 0x00080000) != 0)) {
+              if (((bitField0_ & 0x00400000) != 0)) {
                 subBuilder = waitForData_.toBuilder();
               }
               waitForData_ = input.readMessage(SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.PARSER, extensionRegistry);
@@ -760,12 +1051,12 @@ public final class SQLStatementDetails {
                 subBuilder.mergeFrom(waitForData_);
                 waitForData_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00080000;
+              bitField0_ |= 0x00400000;
               break;
             }
-            case 162: {
+            case 194: {
               SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.Builder subBuilder = null;
-              if (((bitField0_ & 0x00100000) != 0)) {
+              if (((bitField0_ & 0x00800000) != 0)) {
                 subBuilder = multiRowInsert_.toBuilder();
               }
               multiRowInsert_ = input.readMessage(SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.PARSER, extensionRegistry);
@@ -773,18 +1064,18 @@ public final class SQLStatementDetails {
                 subBuilder.mergeFrom(multiRowInsert_);
                 multiRowInsert_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00100000;
+              bitField0_ |= 0x00800000;
               break;
             }
-            case 170: {
+            case 202: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00200000;
+              bitField0_ |= 0x01000000;
               auxiliaryData_ = bs;
               break;
             }
-            case 178: {
+            case 210: {
               SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.Builder subBuilder = null;
-              if (((bitField0_ & 0x00400000) != 0)) {
+              if (((bitField0_ & 0x02000000) != 0)) {
                 subBuilder = clientAccountingDetails_.toBuilder();
               }
               clientAccountingDetails_ = input.readMessage(SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.PARSER, extensionRegistry);
@@ -792,34 +1083,13 @@ public final class SQLStatementDetails {
                 subBuilder.mergeFrom(clientAccountingDetails_);
                 clientAccountingDetails_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00400000;
-              break;
-            }
-            case 184: {
-              bitField0_ |= 0x00800000;
-              finished_ = input.readBool();
-              break;
-            }
-            case 192: {
-              bitField0_ |= 0x01000000;
-              originalSqlStatementTextHash_ = input.readUInt64();
-              break;
-            }
-            case 200: {
               bitField0_ |= 0x02000000;
-              backendSqlStatementTextHash_ = input.readUInt64();
-              break;
-            }
-            case 210: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x04000000;
-              backendSqlStatementTextHex_ = bs;
               break;
             }
             case 218: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00002000;
-              backendSqlApplicationId_ = bs;
+              bitField0_ |= 0x04000000;
+              backendSqlStatementTextHex_ = bs;
               break;
             }
             default: {
@@ -860,7 +1130,8 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+       **
+       * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timestamp = 1;</code>
@@ -869,7 +1140,8 @@ public final class SQLStatementDetails {
       boolean hasClientReferenceTimestamp();
       /**
        * <pre>
-       *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+       **
+       * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timestamp = 1;</code>
@@ -878,7 +1150,8 @@ public final class SQLStatementDetails {
       java.lang.String getClientReferenceTimestamp();
       /**
        * <pre>
-       *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+       **
+       * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timestamp = 1;</code>
@@ -889,7 +1162,8 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; reference timezone sent by client DBMS (e.g. DB2)
+       **
+       * Timezone configured for the client when the SQL statement was send to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timezone = 2;</code>
@@ -898,7 +1172,8 @@ public final class SQLStatementDetails {
       boolean hasClientReferenceTimezone();
       /**
        * <pre>
-       *&#47; reference timezone sent by client DBMS (e.g. DB2)
+       **
+       * Timezone configured for the client when the SQL statement was send to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timezone = 2;</code>
@@ -907,7 +1182,8 @@ public final class SQLStatementDetails {
       java.lang.String getClientReferenceTimezone();
       /**
        * <pre>
-       *&#47; reference timezone sent by client DBMS (e.g. DB2)
+       **
+       * Timezone configured for the client when the SQL statement was send to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timezone = 2;</code>
@@ -918,7 +1194,12 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; time when the reference timestamp was received.
+       **
+       * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+       * received from the client.
+       * Note that the system clock is counted from the last reboot. Therefore, the value here
+       * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+       * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
        * </pre>
        *
        * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -927,7 +1208,12 @@ public final class SQLStatementDetails {
       boolean hasClientReferenceTimestampReceiveTime();
       /**
        * <pre>
-       *&#47; time when the reference timestamp was received.
+       **
+       * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+       * received from the client.
+       * Note that the system clock is counted from the last reboot. Therefore, the value here
+       * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+       * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
        * </pre>
        *
        * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -937,7 +1223,11 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; client user ID (CURRENT CLIENT_USERID special register)
+       **
+       * Setting of the special register CURRENT CLIENT_USERID on the client side.
+       * This client user ID can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_user_id = 4;</code>
@@ -946,7 +1236,11 @@ public final class SQLStatementDetails {
       boolean hasClientUserId();
       /**
        * <pre>
-       *&#47; client user ID (CURRENT CLIENT_USERID special register)
+       **
+       * Setting of the special register CURRENT CLIENT_USERID on the client side.
+       * This client user ID can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_user_id = 4;</code>
@@ -955,7 +1249,11 @@ public final class SQLStatementDetails {
       java.lang.String getClientUserId();
       /**
        * <pre>
-       *&#47; client user ID (CURRENT CLIENT_USERID special register)
+       **
+       * Setting of the special register CURRENT CLIENT_USERID on the client side.
+       * This client user ID can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_user_id = 4;</code>
@@ -966,7 +1264,11 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+       * This workstation name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_workstation = 5;</code>
@@ -975,7 +1277,11 @@ public final class SQLStatementDetails {
       boolean hasClientWorkstation();
       /**
        * <pre>
-       *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+       * This workstation name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_workstation = 5;</code>
@@ -984,7 +1290,11 @@ public final class SQLStatementDetails {
       java.lang.String getClientWorkstation();
       /**
        * <pre>
-       *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+       * This workstation name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_workstation = 5;</code>
@@ -995,7 +1305,11 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+       * This application name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_application = 6;</code>
@@ -1004,7 +1318,11 @@ public final class SQLStatementDetails {
       boolean hasClientApplication();
       /**
        * <pre>
-       *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+       * This application name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_application = 6;</code>
@@ -1013,7 +1331,11 @@ public final class SQLStatementDetails {
       java.lang.String getClientApplication();
       /**
        * <pre>
-       *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+       * This application name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_application = 6;</code>
@@ -1024,7 +1346,9 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+       **
+       * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+       * This accounting information can be set by the user's application.
        * </pre>
        *
        * <code>optional string client_accounting = 7;</code>
@@ -1033,7 +1357,9 @@ public final class SQLStatementDetails {
       boolean hasClientAccounting();
       /**
        * <pre>
-       *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+       **
+       * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+       * This accounting information can be set by the user's application.
        * </pre>
        *
        * <code>optional string client_accounting = 7;</code>
@@ -1042,7 +1368,9 @@ public final class SQLStatementDetails {
       java.lang.String getClientAccounting();
       /**
        * <pre>
-       *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+       **
+       * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+       * This accounting information can be set by the user's application.
        * </pre>
        *
        * <code>optional string client_accounting = 7;</code>
@@ -1181,7 +1509,8 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object clientReferenceTimestamp_;
       /**
        * <pre>
-       *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+       **
+       * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timestamp = 1;</code>
@@ -1192,7 +1521,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+       **
+       * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timestamp = 1;</code>
@@ -1214,7 +1544,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+       **
+       * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timestamp = 1;</code>
@@ -1238,7 +1569,8 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object clientReferenceTimezone_;
       /**
        * <pre>
-       *&#47; reference timezone sent by client DBMS (e.g. DB2)
+       **
+       * Timezone configured for the client when the SQL statement was send to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timezone = 2;</code>
@@ -1249,7 +1581,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; reference timezone sent by client DBMS (e.g. DB2)
+       **
+       * Timezone configured for the client when the SQL statement was send to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timezone = 2;</code>
@@ -1271,7 +1604,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; reference timezone sent by client DBMS (e.g. DB2)
+       **
+       * Timezone configured for the client when the SQL statement was send to the accelerator.
        * </pre>
        *
        * <code>optional string client_reference_timezone = 2;</code>
@@ -1295,7 +1629,12 @@ public final class SQLStatementDetails {
       private long clientReferenceTimestampReceiveTime_;
       /**
        * <pre>
-       *&#47; time when the reference timestamp was received.
+       **
+       * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+       * received from the client.
+       * Note that the system clock is counted from the last reboot. Therefore, the value here
+       * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+       * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
        * </pre>
        *
        * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -1306,7 +1645,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; time when the reference timestamp was received.
+       **
+       * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+       * received from the client.
+       * Note that the system clock is counted from the last reboot. Therefore, the value here
+       * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+       * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
        * </pre>
        *
        * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -1320,7 +1664,11 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object clientUserId_;
       /**
        * <pre>
-       *&#47; client user ID (CURRENT CLIENT_USERID special register)
+       **
+       * Setting of the special register CURRENT CLIENT_USERID on the client side.
+       * This client user ID can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_user_id = 4;</code>
@@ -1331,7 +1679,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client user ID (CURRENT CLIENT_USERID special register)
+       **
+       * Setting of the special register CURRENT CLIENT_USERID on the client side.
+       * This client user ID can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_user_id = 4;</code>
@@ -1353,7 +1705,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client user ID (CURRENT CLIENT_USERID special register)
+       **
+       * Setting of the special register CURRENT CLIENT_USERID on the client side.
+       * This client user ID can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_user_id = 4;</code>
@@ -1377,7 +1733,11 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object clientWorkstation_;
       /**
        * <pre>
-       *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+       * This workstation name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_workstation = 5;</code>
@@ -1388,7 +1748,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+       * This workstation name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_workstation = 5;</code>
@@ -1410,7 +1774,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+       * This workstation name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_workstation = 5;</code>
@@ -1434,7 +1802,11 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object clientApplication_;
       /**
        * <pre>
-       *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+       * This application name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_application = 6;</code>
@@ -1445,7 +1817,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+       * This application name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_application = 6;</code>
@@ -1467,7 +1843,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+       **
+       * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+       * This application name can be set by the user's application. The value is
+       * associated with the backend SQL connection via stored procedure call
+       * WLM_SET_CLIENT_INFO().
        * </pre>
        *
        * <code>optional string client_application = 6;</code>
@@ -1491,7 +1871,9 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object clientAccounting_;
       /**
        * <pre>
-       *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+       **
+       * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+       * This accounting information can be set by the user's application.
        * </pre>
        *
        * <code>optional string client_accounting = 7;</code>
@@ -1502,7 +1884,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+       **
+       * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+       * This accounting information can be set by the user's application.
        * </pre>
        *
        * <code>optional string client_accounting = 7;</code>
@@ -1524,7 +1908,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+       **
+       * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+       * This accounting information can be set by the user's application.
        * </pre>
        *
        * <code>optional string client_accounting = 7;</code>
@@ -2018,7 +2404,8 @@ public final class SQLStatementDetails {
         private java.lang.Object clientReferenceTimestamp_ = "";
         /**
          * <pre>
-         *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+         **
+         * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timestamp = 1;</code>
@@ -2029,7 +2416,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+         **
+         * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timestamp = 1;</code>
@@ -2051,7 +2439,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+         **
+         * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timestamp = 1;</code>
@@ -2072,7 +2461,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+         **
+         * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timestamp = 1;</code>
@@ -2091,7 +2481,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+         **
+         * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timestamp = 1;</code>
@@ -2105,7 +2496,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timestamp sent by client DBMS (e.g. DB2)
+         **
+         * Current timestamp (in UTC) when the client sent the SQL statement to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timestamp = 1;</code>
@@ -2126,7 +2518,8 @@ public final class SQLStatementDetails {
         private java.lang.Object clientReferenceTimezone_ = "";
         /**
          * <pre>
-         *&#47; reference timezone sent by client DBMS (e.g. DB2)
+         **
+         * Timezone configured for the client when the SQL statement was send to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timezone = 2;</code>
@@ -2137,7 +2530,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timezone sent by client DBMS (e.g. DB2)
+         **
+         * Timezone configured for the client when the SQL statement was send to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timezone = 2;</code>
@@ -2159,7 +2553,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timezone sent by client DBMS (e.g. DB2)
+         **
+         * Timezone configured for the client when the SQL statement was send to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timezone = 2;</code>
@@ -2180,7 +2575,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timezone sent by client DBMS (e.g. DB2)
+         **
+         * Timezone configured for the client when the SQL statement was send to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timezone = 2;</code>
@@ -2199,7 +2595,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timezone sent by client DBMS (e.g. DB2)
+         **
+         * Timezone configured for the client when the SQL statement was send to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timezone = 2;</code>
@@ -2213,7 +2610,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; reference timezone sent by client DBMS (e.g. DB2)
+         **
+         * Timezone configured for the client when the SQL statement was send to the accelerator.
          * </pre>
          *
          * <code>optional string client_reference_timezone = 2;</code>
@@ -2234,7 +2632,12 @@ public final class SQLStatementDetails {
         private long clientReferenceTimestampReceiveTime_ ;
         /**
          * <pre>
-         *&#47; time when the reference timestamp was received.
+         **
+         * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+         * received from the client.
+         * Note that the system clock is counted from the last reboot. Therefore, the value here
+         * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+         * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
          * </pre>
          *
          * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -2245,7 +2648,12 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; time when the reference timestamp was received.
+         **
+         * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+         * received from the client.
+         * Note that the system clock is counted from the last reboot. Therefore, the value here
+         * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+         * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
          * </pre>
          *
          * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -2256,7 +2664,12 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; time when the reference timestamp was received.
+         **
+         * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+         * received from the client.
+         * Note that the system clock is counted from the last reboot. Therefore, the value here
+         * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+         * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
          * </pre>
          *
          * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -2271,7 +2684,12 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; time when the reference timestamp was received.
+         **
+         * The system clock is queried when the value for field &#64;c client_reference_timestamp is
+         * received from the client.
+         * Note that the system clock is counted from the last reboot. Therefore, the value here
+         * can only be related to field &#64;c real_world_entry_time (in section &#64;c timings) because
+         * we have the wall clock time for that in field &#64;c real_world_entry_timestamp.
          * </pre>
          *
          * <code>optional uint64 client_reference_timestamp_receive_time = 3;</code>
@@ -2287,7 +2705,11 @@ public final class SQLStatementDetails {
         private java.lang.Object clientUserId_ = "";
         /**
          * <pre>
-         *&#47; client user ID (CURRENT CLIENT_USERID special register)
+         **
+         * Setting of the special register CURRENT CLIENT_USERID on the client side.
+         * This client user ID can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_user_id = 4;</code>
@@ -2298,7 +2720,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client user ID (CURRENT CLIENT_USERID special register)
+         **
+         * Setting of the special register CURRENT CLIENT_USERID on the client side.
+         * This client user ID can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_user_id = 4;</code>
@@ -2320,7 +2746,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client user ID (CURRENT CLIENT_USERID special register)
+         **
+         * Setting of the special register CURRENT CLIENT_USERID on the client side.
+         * This client user ID can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_user_id = 4;</code>
@@ -2341,7 +2771,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client user ID (CURRENT CLIENT_USERID special register)
+         **
+         * Setting of the special register CURRENT CLIENT_USERID on the client side.
+         * This client user ID can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_user_id = 4;</code>
@@ -2360,7 +2794,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client user ID (CURRENT CLIENT_USERID special register)
+         **
+         * Setting of the special register CURRENT CLIENT_USERID on the client side.
+         * This client user ID can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_user_id = 4;</code>
@@ -2374,7 +2812,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client user ID (CURRENT CLIENT_USERID special register)
+         **
+         * Setting of the special register CURRENT CLIENT_USERID on the client side.
+         * This client user ID can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_user_id = 4;</code>
@@ -2395,7 +2837,11 @@ public final class SQLStatementDetails {
         private java.lang.Object clientWorkstation_ = "";
         /**
          * <pre>
-         *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+         * This workstation name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_workstation = 5;</code>
@@ -2406,7 +2852,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+         * This workstation name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_workstation = 5;</code>
@@ -2428,7 +2878,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+         * This workstation name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_workstation = 5;</code>
@@ -2449,7 +2903,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+         * This workstation name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_workstation = 5;</code>
@@ -2468,7 +2926,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+         * This workstation name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_workstation = 5;</code>
@@ -2482,7 +2944,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client workstation name (CURRENT CLIENT_WRKSTNNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_WLKSTNNAME on the client side.
+         * This workstation name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_workstation = 5;</code>
@@ -2503,7 +2969,11 @@ public final class SQLStatementDetails {
         private java.lang.Object clientApplication_ = "";
         /**
          * <pre>
-         *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+         * This application name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_application = 6;</code>
@@ -2514,7 +2984,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+         * This application name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_application = 6;</code>
@@ -2536,7 +3010,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+         * This application name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_application = 6;</code>
@@ -2557,7 +3035,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+         * This application name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_application = 6;</code>
@@ -2576,7 +3058,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+         * This application name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_application = 6;</code>
@@ -2590,7 +3076,11 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Application (CURRENT CLIENT_APPLNAME special register)
+         **
+         * Setting of the special register CURRENT CLIENT_APPLNAME on the client side.
+         * This application name can be set by the user's application. The value is
+         * associated with the backend SQL connection via stored procedure call
+         * WLM_SET_CLIENT_INFO().
          * </pre>
          *
          * <code>optional string client_application = 6;</code>
@@ -2611,7 +3101,9 @@ public final class SQLStatementDetails {
         private java.lang.Object clientAccounting_ = "";
         /**
          * <pre>
-         *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+         **
+         * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+         * This accounting information can be set by the user's application.
          * </pre>
          *
          * <code>optional string client_accounting = 7;</code>
@@ -2622,7 +3114,9 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+         **
+         * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+         * This accounting information can be set by the user's application.
          * </pre>
          *
          * <code>optional string client_accounting = 7;</code>
@@ -2644,7 +3138,9 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+         **
+         * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+         * This accounting information can be set by the user's application.
          * </pre>
          *
          * <code>optional string client_accounting = 7;</code>
@@ -2665,7 +3161,9 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+         **
+         * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+         * This accounting information can be set by the user's application.
          * </pre>
          *
          * <code>optional string client_accounting = 7;</code>
@@ -2684,7 +3182,9 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+         **
+         * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+         * This accounting information can be set by the user's application.
          * </pre>
          *
          * <code>optional string client_accounting = 7;</code>
@@ -2698,7 +3198,9 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; client Accounting (CURRENT CLIENT_ACCTNG special register)
+         **
+         * Setting of the special register CURRENT CLIENT_ACCTNG on the client side.
+         * This accounting information can be set by the user's application.
          * </pre>
          *
          * <code>optional string client_accounting = 7;</code>
@@ -2774,278 +3276,34 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; wall-clock time when the SQL statement entered the system
+       **
+       * Time from the wall clock when the SQL statement entered the system. This
+       * timestamp is in UTC timezone.
        * </pre>
        *
-       * <code>optional uint64 real_world_entry_time = 1;</code>
-       * @return Whether the realWorldEntryTime field is set.
-       */
-      boolean hasRealWorldEntryTime();
-      /**
-       * <pre>
-       *&#47; wall-clock time when the SQL statement entered the system
-       * </pre>
-       *
-       * <code>optional uint64 real_world_entry_time = 1;</code>
-       * @return The realWorldEntryTime.
-       */
-      long getRealWorldEntryTime();
-
-      /**
-       * <pre>
-       *&#47; system time when the SQL statement entered the system
-       * / (used to compute elapsed time for SQL execution)
-       * </pre>
-       *
-       * <code>optional uint64 system_entry_time = 2;</code>
-       * @return Whether the systemEntryTime field is set.
-       */
-      boolean hasSystemEntryTime();
-      /**
-       * <pre>
-       *&#47; system time when the SQL statement entered the system
-       * / (used to compute elapsed time for SQL execution)
-       * </pre>
-       *
-       * <code>optional uint64 system_entry_time = 2;</code>
-       * @return The systemEntryTime.
-       */
-      long getSystemEntryTime();
-
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS started
-       * / (set by setBackendDBSExecutionStartTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_start_time = 3;</code>
-       * @return Whether the backendExecutionStartTime field is set.
-       */
-      boolean hasBackendExecutionStartTime();
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS started
-       * / (set by setBackendDBSExecutionStartTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_start_time = 3;</code>
-       * @return The backendExecutionStartTime.
-       */
-      long getBackendExecutionStartTime();
-
-      /**
-       * <pre>
-       *&#47; system time when the first row was fetched from BackendDBS
-       * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-       * @return Whether the backendFirstRowFetchTime field is set.
-       */
-      boolean hasBackendFirstRowFetchTime();
-      /**
-       * <pre>
-       *&#47; system time when the first row was fetched from BackendDBS
-       * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-       * @return The backendFirstRowFetchTime.
-       */
-      long getBackendFirstRowFetchTime();
-
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS finished
-       * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_finish_time = 5;</code>
-       * @return Whether the backendExecutionFinishTime field is set.
-       */
-      boolean hasBackendExecutionFinishTime();
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS finished
-       * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_finish_time = 5;</code>
-       * @return The backendExecutionFinishTime.
-       */
-      long getBackendExecutionFinishTime();
-
-      /**
-       * <pre>
-       *&#47; system time when the last row was requested/sent to the client DBMS
-       * / (set by setClientLastRowFetchTime())
-       * </pre>
-       *
-       * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-       * @return Whether the clientLastRowFetchTime field is set.
-       */
-      boolean hasClientLastRowFetchTime();
-      /**
-       * <pre>
-       *&#47; system time when the last row was requested/sent to the client DBMS
-       * / (set by setClientLastRowFetchTime())
-       * </pre>
-       *
-       * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-       * @return The clientLastRowFetchTime.
-       */
-      long getClientLastRowFetchTime();
-
-      /**
-       * <pre>
-       *&#47; system time when the SQL execution was finished
-       * / (set by finishExecution() method)
-       * </pre>
-       *
-       * <code>optional uint64 system_finish_time = 7;</code>
-       * @return Whether the systemFinishTime field is set.
-       */
-      boolean hasSystemFinishTime();
-      /**
-       * <pre>
-       *&#47; system time when the SQL execution was finished
-       * / (set by finishExecution() method)
-       * </pre>
-       *
-       * <code>optional uint64 system_finish_time = 7;</code>
-       * @return The systemFinishTime.
-       */
-      long getSystemFinishTime();
-
-      /**
-       * <pre>
-       *&#47; system time when the post-processing was finished
-       * / (set by the end of finishPostProcessing() method)
-       * </pre>
-       *
-       * <code>optional uint64 post_processing_exit_time = 8;</code>
-       * @return Whether the postProcessingExitTime field is set.
-       */
-      boolean hasPostProcessingExitTime();
-      /**
-       * <pre>
-       *&#47; system time when the post-processing was finished
-       * / (set by the end of finishPostProcessing() method)
-       * </pre>
-       *
-       * <code>optional uint64 post_processing_exit_time = 8;</code>
-       * @return The postProcessingExitTime.
-       */
-      long getPostProcessingExitTime();
-
-      /**
-       * <pre>
-       *&#47; CPU time spent for the SQL statement in DWA only;
-       * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-       * / mLastGatheredAccountingInformation
-       * </pre>
-       *
-       * <code>optional uint64 dwa_cpu_time = 9;</code>
-       * @return Whether the dwaCpuTime field is set.
-       */
-      boolean hasDwaCpuTime();
-      /**
-       * <pre>
-       *&#47; CPU time spent for the SQL statement in DWA only;
-       * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-       * / mLastGatheredAccountingInformation
-       * </pre>
-       *
-       * <code>optional uint64 dwa_cpu_time = 9;</code>
-       * @return The dwaCpuTime.
-       */
-      long getDwaCpuTime();
-
-      /**
-       * <pre>
-       *&#47; CPU time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_cpu_time = 10;</code>
-       * @return Whether the backendCpuTime field is set.
-       */
-      boolean hasBackendCpuTime();
-      /**
-       * <pre>
-       *&#47; CPU time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_cpu_time = 10;</code>
-       * @return The backendCpuTime.
-       */
-      long getBackendCpuTime();
-
-      /**
-       * <pre>
-       *&#47; wait time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_wait_time = 11;</code>
-       * @return Whether the backendWaitTime field is set.
-       */
-      boolean hasBackendWaitTime();
-      /**
-       * <pre>
-       *&#47; wait time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_wait_time = 11;</code>
-       * @return The backendWaitTime.
-       */
-      long getBackendWaitTime();
-
-      /**
-       * <pre>
-       *&#47; collection time for CPU/wait time in backend
-       * </pre>
-       *
-       * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-       * @return Whether the backendAccountingCollectionTime field is set.
-       */
-      boolean hasBackendAccountingCollectionTime();
-      /**
-       * <pre>
-       *&#47; collection time for CPU/wait time in backend
-       * </pre>
-       *
-       * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-       * @return The backendAccountingCollectionTime.
-       */
-      long getBackendAccountingCollectionTime();
-
-      /**
-       * <pre>
-       *&#47; wall-clock timestamp when the SQL statement entered the system
-       * </pre>
-       *
-       * <code>optional string real_world_entry_timestamp = 13;</code>
+       * <code>optional string real_world_entry_timestamp = 1;</code>
        * @return Whether the realWorldEntryTimestamp field is set.
        */
       boolean hasRealWorldEntryTimestamp();
       /**
        * <pre>
-       *&#47; wall-clock timestamp when the SQL statement entered the system
+       **
+       * Time from the wall clock when the SQL statement entered the system. This
+       * timestamp is in UTC timezone.
        * </pre>
        *
-       * <code>optional string real_world_entry_timestamp = 13;</code>
+       * <code>optional string real_world_entry_timestamp = 1;</code>
        * @return The realWorldEntryTimestamp.
        */
       java.lang.String getRealWorldEntryTimestamp();
       /**
        * <pre>
-       *&#47; wall-clock timestamp when the SQL statement entered the system
+       **
+       * Time from the wall clock when the SQL statement entered the system. This
+       * timestamp is in UTC timezone.
        * </pre>
        *
-       * <code>optional string real_world_entry_timestamp = 13;</code>
+       * <code>optional string real_world_entry_timestamp = 1;</code>
        * @return The bytes for realWorldEntryTimestamp.
        */
       com.google.protobuf.ByteString
@@ -3053,201 +3311,527 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; time that was spent in fetching query result rows.
+       **
+       * Time from the wall clock when the SQL statement entered the system.
+       * This is number of micro-seconds since 1970-01-01 00:00:00.
        * </pre>
        *
-       * <code>optional double fetch_time = 14;</code>
-       * @return Whether the fetchTime field is set.
+       * <code>optional uint64 real_world_entry_time = 2;</code>
+       * @return Whether the realWorldEntryTime field is set.
        */
-      boolean hasFetchTime();
+      boolean hasRealWorldEntryTime();
       /**
        * <pre>
-       *&#47; time that was spent in fetching query result rows.
+       **
+       * Time from the wall clock when the SQL statement entered the system.
+       * This is number of micro-seconds since 1970-01-01 00:00:00.
        * </pre>
        *
-       * <code>optional double fetch_time = 14;</code>
-       * @return The fetchTime.
+       * <code>optional uint64 real_world_entry_time = 2;</code>
+       * @return The realWorldEntryTime.
        */
-      double getFetchTime();
+      long getRealWorldEntryTime();
 
       /**
        * <pre>
-       *&#47; time that the SQL statement spend in executing in the BackendDBS backend
+       **
+       * Time from the system clock when the SQL statement entered the system.
+       * This time is collected together with &#64;c real_world_entry_timestamp.
        * </pre>
        *
-       * <code>optional double backendDBSExecTime = 15;</code>
-       * @return Whether the backendDBSExecTime field is set.
+       * <code>optional uint64 system_entry_time = 3;</code>
+       * @return Whether the systemEntryTime field is set.
        */
-      boolean hasBackendDBSExecTime();
+      boolean hasSystemEntryTime();
       /**
        * <pre>
-       *&#47; time that the SQL statement spend in executing in the BackendDBS backend
+       **
+       * Time from the system clock when the SQL statement entered the system.
+       * This time is collected together with &#64;c real_world_entry_timestamp.
        * </pre>
        *
-       * <code>optional double backendDBSExecTime = 15;</code>
-       * @return The backendDBSExecTime.
+       * <code>optional uint64 system_entry_time = 3;</code>
+       * @return The systemEntryTime.
        */
-      double getBackendDBSExecTime();
+      long getSystemEntryTime();
 
       /**
        * <pre>
-       *&#47; the elapsed time for the SQL statement execution
+       *&#47; time from the system clock when the prepare of the SQL statement was started
        * </pre>
        *
-       * <code>optional double totalElapsedTime = 16;</code>
-       * @return Whether the totalElapsedTime field is set.
-       */
-      boolean hasTotalElapsedTime();
-      /**
-       * <pre>
-       *&#47; the elapsed time for the SQL statement execution
-       * </pre>
-       *
-       * <code>optional double totalElapsedTime = 16;</code>
-       * @return The totalElapsedTime.
-       */
-      double getTotalElapsedTime();
-
-      /**
-       * <pre>
-       *&#47; the time since the SQL statement execution was finished until the post-processing is done.
-       * </pre>
-       *
-       * <code>optional double postProcessingTime = 17;</code>
-       * @return Whether the postProcessingTime field is set.
-       */
-      boolean hasPostProcessingTime();
-      /**
-       * <pre>
-       *&#47; the time since the SQL statement execution was finished until the post-processing is done.
-       * </pre>
-       *
-       * <code>optional double postProcessingTime = 17;</code>
-       * @return The postProcessingTime.
-       */
-      double getPostProcessingTime();
-
-      /**
-       * <pre>
-       *&#47; Start time when the prepare has started
-       * </pre>
-       *
-       * <code>optional uint64 prepare_start_time = 18;</code>
+       * <code>optional uint64 prepare_start_time = 4;</code>
        * @return Whether the prepareStartTime field is set.
        */
       boolean hasPrepareStartTime();
       /**
        * <pre>
-       *&#47; Start time when the prepare has started
+       *&#47; time from the system clock when the prepare of the SQL statement was started
        * </pre>
        *
-       * <code>optional uint64 prepare_start_time = 18;</code>
+       * <code>optional uint64 prepare_start_time = 4;</code>
        * @return The prepareStartTime.
        */
       long getPrepareStartTime();
 
       /**
        * <pre>
-       *&#47; collected perpare time or calcualted while query is running
+       *&#47; time from the system clock when the prepare of the SQL statement has finished
        * </pre>
        *
-       * <code>optional uint64 prepare_time = 19;</code>
+       * <code>optional uint64 prepare_finish_time = 5;</code>
+       * @return Whether the prepareFinishTime field is set.
+       */
+      boolean hasPrepareFinishTime();
+      /**
+       * <pre>
+       *&#47; time from the system clock when the prepare of the SQL statement has finished
+       * </pre>
+       *
+       * <code>optional uint64 prepare_finish_time = 5;</code>
+       * @return The prepareFinishTime.
+       */
+      long getPrepareFinishTime();
+
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend was started
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_start_time = 6;</code>
+       * @return Whether the backendExecutionStartTime field is set.
+       */
+      boolean hasBackendExecutionStartTime();
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend was started
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_start_time = 6;</code>
+       * @return The backendExecutionStartTime.
+       */
+      long getBackendExecutionStartTime();
+
+      /**
+       * <pre>
+       *&#47; time from the system clock when the first row was fetched from the backend
+       * </pre>
+       *
+       * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+       * @return Whether the backendFirstRowFetchTime field is set.
+       */
+      boolean hasBackendFirstRowFetchTime();
+      /**
+       * <pre>
+       *&#47; time from the system clock when the first row was fetched from the backend
+       * </pre>
+       *
+       * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+       * @return The backendFirstRowFetchTime.
+       */
+      long getBackendFirstRowFetchTime();
+
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend finished
+       * / (note that result rows may still be fetched after statement execution finished)
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_finish_time = 8;</code>
+       * @return Whether the backendExecutionFinishTime field is set.
+       */
+      boolean hasBackendExecutionFinishTime();
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend finished
+       * / (note that result rows may still be fetched after statement execution finished)
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_finish_time = 8;</code>
+       * @return The backendExecutionFinishTime.
+       */
+      long getBackendExecutionFinishTime();
+
+      /**
+       * <pre>
+       *&#47; time from the system clock when the last row was requested/sent to the client
+       * </pre>
+       *
+       * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+       * @return Whether the clientLastRowFetchTime field is set.
+       */
+      boolean hasClientLastRowFetchTime();
+      /**
+       * <pre>
+       *&#47; time from the system clock when the last row was requested/sent to the client
+       * </pre>
+       *
+       * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+       * @return The clientLastRowFetchTime.
+       */
+      long getClientLastRowFetchTime();
+
+      /**
+       * <pre>
+       *&#47; time from the system clock when the execution in the accelerator finished; that time
+       * / does not include any post-processing time
+       * </pre>
+       *
+       * <code>optional uint64 system_finish_time = 10;</code>
+       * @return Whether the systemFinishTime field is set.
+       */
+      boolean hasSystemFinishTime();
+      /**
+       * <pre>
+       *&#47; time from the system clock when the execution in the accelerator finished; that time
+       * / does not include any post-processing time
+       * </pre>
+       *
+       * <code>optional uint64 system_finish_time = 10;</code>
+       * @return The systemFinishTime.
+       */
+      long getSystemFinishTime();
+
+      /**
+       * <pre>
+       *&#47; time from the system clock when the post-processing was finished
+       * </pre>
+       *
+       * <code>optional uint64 post_processing_exit_time = 11;</code>
+       * @return Whether the postProcessingExitTime field is set.
+       */
+      boolean hasPostProcessingExitTime();
+      /**
+       * <pre>
+       *&#47; time from the system clock when the post-processing was finished
+       * </pre>
+       *
+       * <code>optional uint64 post_processing_exit_time = 11;</code>
+       * @return The postProcessingExitTime.
+       */
+      long getPostProcessingExitTime();
+
+      /**
+       * <pre>
+       *&#47; CPU time spent for the SQL statement in the accelerator only
+       * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+       * </pre>
+       *
+       * <code>optional uint64 dwa_cpu_time = 12;</code>
+       * @return Whether the dwaCpuTime field is set.
+       */
+      boolean hasDwaCpuTime();
+      /**
+       * <pre>
+       *&#47; CPU time spent for the SQL statement in the accelerator only
+       * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+       * </pre>
+       *
+       * <code>optional uint64 dwa_cpu_time = 12;</code>
+       * @return The dwaCpuTime.
+       */
+      long getDwaCpuTime();
+
+      /**
+       * <pre>
+       **
+       * CPU time spend for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished. It may also include the CPU time spend for fetching
+       * the result set from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_cpu_time = 13;</code>
+       * @return Whether the backendCpuTime field is set.
+       */
+      boolean hasBackendCpuTime();
+      /**
+       * <pre>
+       **
+       * CPU time spend for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished. It may also include the CPU time spend for fetching
+       * the result set from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_cpu_time = 13;</code>
+       * @return The backendCpuTime.
+       */
+      long getBackendCpuTime();
+
+      /**
+       * <pre>
+       **
+       * Wait time for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished.
+       * </pre>
+       *
+       * <code>optional uint64 backend_wait_time = 14;</code>
+       * @return Whether the backendWaitTime field is set.
+       */
+      boolean hasBackendWaitTime();
+      /**
+       * <pre>
+       **
+       * Wait time for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished.
+       * </pre>
+       *
+       * <code>optional uint64 backend_wait_time = 14;</code>
+       * @return The backendWaitTime.
+       */
+      long getBackendWaitTime();
+
+      /**
+       * <pre>
+       **
+       * Time spend for collecting monitoring/accounting information from the backend.
+       * Additional queries are executed before/after the execution of the actual SQL
+       * statement to obtain monitoring counters from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+       * @return Whether the backendAccountingCollectionTime field is set.
+       */
+      boolean hasBackendAccountingCollectionTime();
+      /**
+       * <pre>
+       **
+       * Time spend for collecting monitoring/accounting information from the backend.
+       * Additional queries are executed before/after the execution of the actual SQL
+       * statement to obtain monitoring counters from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+       * @return The backendAccountingCollectionTime.
+       */
+      long getBackendAccountingCollectionTime();
+
+      /**
+       * <pre>
+       *&#47; time spend for preparing the SQL statement;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double prepare_time = 16;</code>
        * @return Whether the prepareTime field is set.
        */
       boolean hasPrepareTime();
       /**
        * <pre>
-       *&#47; collected perpare time or calcualted while query is running
+       *&#47; time spend for preparing the SQL statement;
+       * / this is an elapsed time measured in seconds (with fractions)
        * </pre>
        *
-       * <code>optional uint64 prepare_time = 19;</code>
+       * <code>optional double prepare_time = 16;</code>
        * @return The prepareTime.
        */
-      long getPrepareTime();
+      double getPrepareTime();
 
       /**
        * <pre>
-       *&#47; wall-clock time of the client reference timestamp provided via special registers
+       *&#47; time spend for executing the SQL statement (without result set fetching);
+       * / this is an elapsed time measured in seconds (with fractions)
        * </pre>
        *
-       * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
+       * <code>optional double backendDBSExecTime = 17;</code>
+       * @return Whether the backendDBSExecTime field is set.
+       */
+      boolean hasBackendDBSExecTime();
+      /**
+       * <pre>
+       *&#47; time spend for executing the SQL statement (without result set fetching);
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double backendDBSExecTime = 17;</code>
+       * @return The backendDBSExecTime.
+       */
+      double getBackendDBSExecTime();
+
+      /**
+       * <pre>
+       *&#47; time spend for fetching the result set of the SQL statement after execution;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double fetch_time = 18;</code>
+       * @return Whether the fetchTime field is set.
+       */
+      boolean hasFetchTime();
+      /**
+       * <pre>
+       *&#47; time spend for fetching the result set of the SQL statement after execution;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double fetch_time = 18;</code>
+       * @return The fetchTime.
+       */
+      double getFetchTime();
+
+      /**
+       * <pre>
+       *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double totalElapsedTime = 19;</code>
+       * @return Whether the totalElapsedTime field is set.
+       */
+      boolean hasTotalElapsedTime();
+      /**
+       * <pre>
+       *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double totalElapsedTime = 19;</code>
+       * @return The totalElapsedTime.
+       */
+      double getTotalElapsedTime();
+
+      /**
+       * <pre>
+       *&#47; time spend for post-processing activities;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double postProcessingTime = 20;</code>
+       * @return Whether the postProcessingTime field is set.
+       */
+      boolean hasPostProcessingTime();
+      /**
+       * <pre>
+       *&#47; time spend for post-processing activities;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double postProcessingTime = 20;</code>
+       * @return The postProcessingTime.
+       */
+      double getPostProcessingTime();
+
+      /**
+       * <pre>
+       **
+       * The value of the special register value stored in field &#64;c client_reference_timestamp)
+       * is parsed into the internal representation and stored here. The value is a
+       * time from the wall clock that measures the number of seconds from
+       * 1970-01-01 00:00:00.
+       * Note that this is _not_ like all the other timers. The purpose of this field
+       * is very much unclear as well. But we cannot remove it to keep things
+       * backward-compatible.
+       * </pre>
+       *
+       * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
        * @return Whether the cachedParsedClientReferenceTimestamp field is set.
        */
       boolean hasCachedParsedClientReferenceTimestamp();
       /**
        * <pre>
-       *&#47; wall-clock time of the client reference timestamp provided via special registers
+       **
+       * The value of the special register value stored in field &#64;c client_reference_timestamp)
+       * is parsed into the internal representation and stored here. The value is a
+       * time from the wall clock that measures the number of seconds from
+       * 1970-01-01 00:00:00.
+       * Note that this is _not_ like all the other timers. The purpose of this field
+       * is very much unclear as well. But we cannot remove it to keep things
+       * backward-compatible.
        * </pre>
        *
-       * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
+       * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
        * @return The cachedParsedClientReferenceTimestamp.
        */
       long getCachedParsedClientReferenceTimestamp();
 
       /**
        * <pre>
-       *&#47; collected wait times between continue query calls
+       **
+       * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+       * set from the accelerator. Each such message is responded to with another chunk
+       * of data in QRYDTA (Query Data) messages. The wait times between sending those
+       * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+       * following fields. The fields are updated and recalculated for each CNTQRY message.
        * </pre>
        *
-       * <code>optional int64 total_continue_query_wait_time = 21;</code>
+       * <code>optional int64 total_continue_query_wait_time = 22;</code>
        * @return Whether the totalContinueQueryWaitTime field is set.
        */
       boolean hasTotalContinueQueryWaitTime();
       /**
        * <pre>
-       *&#47; collected wait times between continue query calls
+       **
+       * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+       * set from the accelerator. Each such message is responded to with another chunk
+       * of data in QRYDTA (Query Data) messages. The wait times between sending those
+       * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+       * following fields. The fields are updated and recalculated for each CNTQRY message.
        * </pre>
        *
-       * <code>optional int64 total_continue_query_wait_time = 21;</code>
+       * <code>optional int64 total_continue_query_wait_time = 22;</code>
        * @return The totalContinueQueryWaitTime.
        */
       long getTotalContinueQueryWaitTime();
 
       /**
-       * <code>optional int64 average_continue_query_wait_time = 22;</code>
+       * <code>optional int64 average_continue_query_wait_time = 23;</code>
        * @return Whether the averageContinueQueryWaitTime field is set.
        */
       boolean hasAverageContinueQueryWaitTime();
       /**
-       * <code>optional int64 average_continue_query_wait_time = 22;</code>
+       * <code>optional int64 average_continue_query_wait_time = 23;</code>
        * @return The averageContinueQueryWaitTime.
        */
       long getAverageContinueQueryWaitTime();
 
       /**
-       * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+       * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
        * @return Whether the smallestContinueQueryWaitTime field is set.
        */
       boolean hasSmallestContinueQueryWaitTime();
       /**
-       * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+       * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
        * @return The smallestContinueQueryWaitTime.
        */
       long getSmallestContinueQueryWaitTime();
 
       /**
-       * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+       * <code>optional int64 largest_continue_query_wait_time = 25;</code>
        * @return Whether the largestContinueQueryWaitTime field is set.
        */
       boolean hasLargestContinueQueryWaitTime();
       /**
-       * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+       * <code>optional int64 largest_continue_query_wait_time = 25;</code>
        * @return The largestContinueQueryWaitTime.
        */
       long getLargestContinueQueryWaitTime();
 
       /**
-       * <code>optional int64 num_continue_query_wait_times = 25;</code>
+       * <code>optional int64 num_continue_query_wait_times = 26;</code>
        * @return Whether the numContinueQueryWaitTimes field is set.
        */
       boolean hasNumContinueQueryWaitTimes();
       /**
-       * <code>optional int64 num_continue_query_wait_times = 25;</code>
+       * <code>optional int64 num_continue_query_wait_times = 26;</code>
        * @return The numContinueQueryWaitTimes.
        */
       long getNumContinueQueryWaitTimes();
     }
     /**
+     * <pre>
+     **
+     * All times that are based on the system clock. The system clock counts the number
+     * of micro-seconds since the last boot of the operating system. That clock is stable
+     * insofar as it will not jump forward or backwards (as other clocks may do in case
+     * time adjustments are necessary).
+     * In order to map values from the system clock to the corresponding wall clock time,
+     * calculate the delta to field &#64;c system_entry_time, and add that delta to field
+     * &#64;c real_world_entry_timestamp.
+     * </pre>
+     *
      * Protobuf type {@code SQLStatementDetailsData.Timings}
      */
     public  static final class Timings extends
@@ -3294,129 +3878,134 @@ public final class SQLStatementDetails {
               case 0:
                 done = true;
                 break;
-              case 8: {
+              case 10: {
+                com.google.protobuf.ByteString bs = input.readBytes();
                 bitField0_ |= 0x00000001;
-                realWorldEntryTime_ = input.readUInt64();
+                realWorldEntryTimestamp_ = bs;
                 break;
               }
               case 16: {
                 bitField0_ |= 0x00000002;
-                systemEntryTime_ = input.readUInt64();
+                realWorldEntryTime_ = input.readUInt64();
                 break;
               }
               case 24: {
                 bitField0_ |= 0x00000004;
-                backendExecutionStartTime_ = input.readUInt64();
+                systemEntryTime_ = input.readUInt64();
                 break;
               }
               case 32: {
                 bitField0_ |= 0x00000008;
-                backendFirstRowFetchTime_ = input.readUInt64();
+                prepareStartTime_ = input.readUInt64();
                 break;
               }
               case 40: {
                 bitField0_ |= 0x00000010;
-                backendExecutionFinishTime_ = input.readUInt64();
+                prepareFinishTime_ = input.readUInt64();
                 break;
               }
               case 48: {
                 bitField0_ |= 0x00000020;
-                clientLastRowFetchTime_ = input.readUInt64();
+                backendExecutionStartTime_ = input.readUInt64();
                 break;
               }
               case 56: {
                 bitField0_ |= 0x00000040;
-                systemFinishTime_ = input.readUInt64();
+                backendFirstRowFetchTime_ = input.readUInt64();
                 break;
               }
               case 64: {
                 bitField0_ |= 0x00000080;
-                postProcessingExitTime_ = input.readUInt64();
+                backendExecutionFinishTime_ = input.readUInt64();
                 break;
               }
               case 72: {
                 bitField0_ |= 0x00000100;
-                dwaCpuTime_ = input.readUInt64();
+                clientLastRowFetchTime_ = input.readUInt64();
                 break;
               }
               case 80: {
                 bitField0_ |= 0x00000200;
-                backendCpuTime_ = input.readUInt64();
+                systemFinishTime_ = input.readUInt64();
                 break;
               }
               case 88: {
                 bitField0_ |= 0x00000400;
-                backendWaitTime_ = input.readUInt64();
+                postProcessingExitTime_ = input.readUInt64();
                 break;
               }
               case 96: {
                 bitField0_ |= 0x00000800;
-                backendAccountingCollectionTime_ = input.readUInt64();
+                dwaCpuTime_ = input.readUInt64();
                 break;
               }
-              case 106: {
-                com.google.protobuf.ByteString bs = input.readBytes();
+              case 104: {
                 bitField0_ |= 0x00001000;
-                realWorldEntryTimestamp_ = bs;
+                backendCpuTime_ = input.readUInt64();
                 break;
               }
-              case 113: {
+              case 112: {
                 bitField0_ |= 0x00002000;
-                fetchTime_ = input.readDouble();
+                backendWaitTime_ = input.readUInt64();
                 break;
               }
-              case 121: {
+              case 120: {
                 bitField0_ |= 0x00004000;
-                backendDBSExecTime_ = input.readDouble();
+                backendAccountingCollectionTime_ = input.readUInt64();
                 break;
               }
               case 129: {
                 bitField0_ |= 0x00008000;
-                totalElapsedTime_ = input.readDouble();
+                prepareTime_ = input.readDouble();
                 break;
               }
               case 137: {
                 bitField0_ |= 0x00010000;
-                postProcessingTime_ = input.readDouble();
+                backendDBSExecTime_ = input.readDouble();
                 break;
               }
-              case 144: {
+              case 145: {
                 bitField0_ |= 0x00020000;
-                prepareStartTime_ = input.readUInt64();
+                fetchTime_ = input.readDouble();
                 break;
               }
-              case 152: {
+              case 153: {
                 bitField0_ |= 0x00040000;
-                prepareTime_ = input.readUInt64();
+                totalElapsedTime_ = input.readDouble();
                 break;
               }
-              case 160: {
+              case 161: {
                 bitField0_ |= 0x00080000;
-                cachedParsedClientReferenceTimestamp_ = input.readUInt64();
+                postProcessingTime_ = input.readDouble();
                 break;
               }
               case 168: {
                 bitField0_ |= 0x00100000;
-                totalContinueQueryWaitTime_ = input.readInt64();
+                cachedParsedClientReferenceTimestamp_ = input.readUInt64();
                 break;
               }
               case 176: {
                 bitField0_ |= 0x00200000;
-                averageContinueQueryWaitTime_ = input.readInt64();
+                totalContinueQueryWaitTime_ = input.readInt64();
                 break;
               }
               case 184: {
                 bitField0_ |= 0x00400000;
-                smallestContinueQueryWaitTime_ = input.readInt64();
+                averageContinueQueryWaitTime_ = input.readInt64();
                 break;
               }
               case 192: {
                 bitField0_ |= 0x00800000;
-                largestContinueQueryWaitTime_ = input.readInt64();
+                smallestContinueQueryWaitTime_ = input.readInt64();
                 break;
               }
               case 200: {
                 bitField0_ |= 0x01000000;
+                largestContinueQueryWaitTime_ = input.readInt64();
+                break;
+              }
+              case 208: {
+                bitField0_ |= 0x02000000;
                 numContinueQueryWaitTimes_ = input.readInt64();
                 break;
               }
@@ -3453,347 +4042,29 @@ public final class SQLStatementDetails {
       }
 
       private int bitField0_;
-      public static final int REAL_WORLD_ENTRY_TIME_FIELD_NUMBER = 1;
-      private long realWorldEntryTime_;
+      public static final int REAL_WORLD_ENTRY_TIMESTAMP_FIELD_NUMBER = 1;
+      private volatile java.lang.Object realWorldEntryTimestamp_;
       /**
        * <pre>
-       *&#47; wall-clock time when the SQL statement entered the system
+       **
+       * Time from the wall clock when the SQL statement entered the system. This
+       * timestamp is in UTC timezone.
        * </pre>
        *
-       * <code>optional uint64 real_world_entry_time = 1;</code>
-       * @return Whether the realWorldEntryTime field is set.
+       * <code>optional string real_world_entry_timestamp = 1;</code>
+       * @return Whether the realWorldEntryTimestamp field is set.
        */
-      public boolean hasRealWorldEntryTime() {
+      public boolean hasRealWorldEntryTimestamp() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
-       *&#47; wall-clock time when the SQL statement entered the system
+       **
+       * Time from the wall clock when the SQL statement entered the system. This
+       * timestamp is in UTC timezone.
        * </pre>
        *
-       * <code>optional uint64 real_world_entry_time = 1;</code>
-       * @return The realWorldEntryTime.
-       */
-      public long getRealWorldEntryTime() {
-        return realWorldEntryTime_;
-      }
-
-      public static final int SYSTEM_ENTRY_TIME_FIELD_NUMBER = 2;
-      private long systemEntryTime_;
-      /**
-       * <pre>
-       *&#47; system time when the SQL statement entered the system
-       * / (used to compute elapsed time for SQL execution)
-       * </pre>
-       *
-       * <code>optional uint64 system_entry_time = 2;</code>
-       * @return Whether the systemEntryTime field is set.
-       */
-      public boolean hasSystemEntryTime() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; system time when the SQL statement entered the system
-       * / (used to compute elapsed time for SQL execution)
-       * </pre>
-       *
-       * <code>optional uint64 system_entry_time = 2;</code>
-       * @return The systemEntryTime.
-       */
-      public long getSystemEntryTime() {
-        return systemEntryTime_;
-      }
-
-      public static final int BACKEND_EXECUTION_START_TIME_FIELD_NUMBER = 3;
-      private long backendExecutionStartTime_;
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS started
-       * / (set by setBackendDBSExecutionStartTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_start_time = 3;</code>
-       * @return Whether the backendExecutionStartTime field is set.
-       */
-      public boolean hasBackendExecutionStartTime() {
-        return ((bitField0_ & 0x00000004) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS started
-       * / (set by setBackendDBSExecutionStartTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_start_time = 3;</code>
-       * @return The backendExecutionStartTime.
-       */
-      public long getBackendExecutionStartTime() {
-        return backendExecutionStartTime_;
-      }
-
-      public static final int BACKEND_FIRST_ROW_FETCH_TIME_FIELD_NUMBER = 4;
-      private long backendFirstRowFetchTime_;
-      /**
-       * <pre>
-       *&#47; system time when the first row was fetched from BackendDBS
-       * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-       * @return Whether the backendFirstRowFetchTime field is set.
-       */
-      public boolean hasBackendFirstRowFetchTime() {
-        return ((bitField0_ & 0x00000008) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; system time when the first row was fetched from BackendDBS
-       * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-       * @return The backendFirstRowFetchTime.
-       */
-      public long getBackendFirstRowFetchTime() {
-        return backendFirstRowFetchTime_;
-      }
-
-      public static final int BACKEND_EXECUTION_FINISH_TIME_FIELD_NUMBER = 5;
-      private long backendExecutionFinishTime_;
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS finished
-       * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_finish_time = 5;</code>
-       * @return Whether the backendExecutionFinishTime field is set.
-       */
-      public boolean hasBackendExecutionFinishTime() {
-        return ((bitField0_ & 0x00000010) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; system time when execution of the SQL statement in BackendDBS finished
-       * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-       * </pre>
-       *
-       * <code>optional uint64 backend_execution_finish_time = 5;</code>
-       * @return The backendExecutionFinishTime.
-       */
-      public long getBackendExecutionFinishTime() {
-        return backendExecutionFinishTime_;
-      }
-
-      public static final int CLIENT_LAST_ROW_FETCH_TIME_FIELD_NUMBER = 6;
-      private long clientLastRowFetchTime_;
-      /**
-       * <pre>
-       *&#47; system time when the last row was requested/sent to the client DBMS
-       * / (set by setClientLastRowFetchTime())
-       * </pre>
-       *
-       * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-       * @return Whether the clientLastRowFetchTime field is set.
-       */
-      public boolean hasClientLastRowFetchTime() {
-        return ((bitField0_ & 0x00000020) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; system time when the last row was requested/sent to the client DBMS
-       * / (set by setClientLastRowFetchTime())
-       * </pre>
-       *
-       * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-       * @return The clientLastRowFetchTime.
-       */
-      public long getClientLastRowFetchTime() {
-        return clientLastRowFetchTime_;
-      }
-
-      public static final int SYSTEM_FINISH_TIME_FIELD_NUMBER = 7;
-      private long systemFinishTime_;
-      /**
-       * <pre>
-       *&#47; system time when the SQL execution was finished
-       * / (set by finishExecution() method)
-       * </pre>
-       *
-       * <code>optional uint64 system_finish_time = 7;</code>
-       * @return Whether the systemFinishTime field is set.
-       */
-      public boolean hasSystemFinishTime() {
-        return ((bitField0_ & 0x00000040) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; system time when the SQL execution was finished
-       * / (set by finishExecution() method)
-       * </pre>
-       *
-       * <code>optional uint64 system_finish_time = 7;</code>
-       * @return The systemFinishTime.
-       */
-      public long getSystemFinishTime() {
-        return systemFinishTime_;
-      }
-
-      public static final int POST_PROCESSING_EXIT_TIME_FIELD_NUMBER = 8;
-      private long postProcessingExitTime_;
-      /**
-       * <pre>
-       *&#47; system time when the post-processing was finished
-       * / (set by the end of finishPostProcessing() method)
-       * </pre>
-       *
-       * <code>optional uint64 post_processing_exit_time = 8;</code>
-       * @return Whether the postProcessingExitTime field is set.
-       */
-      public boolean hasPostProcessingExitTime() {
-        return ((bitField0_ & 0x00000080) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; system time when the post-processing was finished
-       * / (set by the end of finishPostProcessing() method)
-       * </pre>
-       *
-       * <code>optional uint64 post_processing_exit_time = 8;</code>
-       * @return The postProcessingExitTime.
-       */
-      public long getPostProcessingExitTime() {
-        return postProcessingExitTime_;
-      }
-
-      public static final int DWA_CPU_TIME_FIELD_NUMBER = 9;
-      private long dwaCpuTime_;
-      /**
-       * <pre>
-       *&#47; CPU time spent for the SQL statement in DWA only;
-       * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-       * / mLastGatheredAccountingInformation
-       * </pre>
-       *
-       * <code>optional uint64 dwa_cpu_time = 9;</code>
-       * @return Whether the dwaCpuTime field is set.
-       */
-      public boolean hasDwaCpuTime() {
-        return ((bitField0_ & 0x00000100) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; CPU time spent for the SQL statement in DWA only;
-       * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-       * / mLastGatheredAccountingInformation
-       * </pre>
-       *
-       * <code>optional uint64 dwa_cpu_time = 9;</code>
-       * @return The dwaCpuTime.
-       */
-      public long getDwaCpuTime() {
-        return dwaCpuTime_;
-      }
-
-      public static final int BACKEND_CPU_TIME_FIELD_NUMBER = 10;
-      private long backendCpuTime_;
-      /**
-       * <pre>
-       *&#47; CPU time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_cpu_time = 10;</code>
-       * @return Whether the backendCpuTime field is set.
-       */
-      public boolean hasBackendCpuTime() {
-        return ((bitField0_ & 0x00000200) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; CPU time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_cpu_time = 10;</code>
-       * @return The backendCpuTime.
-       */
-      public long getBackendCpuTime() {
-        return backendCpuTime_;
-      }
-
-      public static final int BACKEND_WAIT_TIME_FIELD_NUMBER = 11;
-      private long backendWaitTime_;
-      /**
-       * <pre>
-       *&#47; wait time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_wait_time = 11;</code>
-       * @return Whether the backendWaitTime field is set.
-       */
-      public boolean hasBackendWaitTime() {
-        return ((bitField0_ & 0x00000400) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; wait time for finished SQL statement
-       * / (from ODBC wrapper, provided by SQL executor)
-       * </pre>
-       *
-       * <code>optional uint64 backend_wait_time = 11;</code>
-       * @return The backendWaitTime.
-       */
-      public long getBackendWaitTime() {
-        return backendWaitTime_;
-      }
-
-      public static final int BACKEND_ACCOUNTING_COLLECTION_TIME_FIELD_NUMBER = 12;
-      private long backendAccountingCollectionTime_;
-      /**
-       * <pre>
-       *&#47; collection time for CPU/wait time in backend
-       * </pre>
-       *
-       * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-       * @return Whether the backendAccountingCollectionTime field is set.
-       */
-      public boolean hasBackendAccountingCollectionTime() {
-        return ((bitField0_ & 0x00000800) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; collection time for CPU/wait time in backend
-       * </pre>
-       *
-       * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-       * @return The backendAccountingCollectionTime.
-       */
-      public long getBackendAccountingCollectionTime() {
-        return backendAccountingCollectionTime_;
-      }
-
-      public static final int REAL_WORLD_ENTRY_TIMESTAMP_FIELD_NUMBER = 13;
-      private volatile java.lang.Object realWorldEntryTimestamp_;
-      /**
-       * <pre>
-       *&#47; wall-clock timestamp when the SQL statement entered the system
-       * </pre>
-       *
-       * <code>optional string real_world_entry_timestamp = 13;</code>
-       * @return Whether the realWorldEntryTimestamp field is set.
-       */
-      public boolean hasRealWorldEntryTimestamp() {
-        return ((bitField0_ & 0x00001000) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; wall-clock timestamp when the SQL statement entered the system
-       * </pre>
-       *
-       * <code>optional string real_world_entry_timestamp = 13;</code>
+       * <code>optional string real_world_entry_timestamp = 1;</code>
        * @return The realWorldEntryTimestamp.
        */
       public java.lang.String getRealWorldEntryTimestamp() {
@@ -3812,10 +4083,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; wall-clock timestamp when the SQL statement entered the system
+       **
+       * Time from the wall clock when the SQL statement entered the system. This
+       * timestamp is in UTC timezone.
        * </pre>
        *
-       * <code>optional string real_world_entry_timestamp = 13;</code>
+       * <code>optional string real_world_entry_timestamp = 1;</code>
        * @return The bytes for realWorldEntryTimestamp.
        */
       public com.google.protobuf.ByteString
@@ -3832,268 +4105,661 @@ public final class SQLStatementDetails {
         }
       }
 
-      public static final int FETCH_TIME_FIELD_NUMBER = 14;
-      private double fetchTime_;
+      public static final int REAL_WORLD_ENTRY_TIME_FIELD_NUMBER = 2;
+      private long realWorldEntryTime_;
       /**
        * <pre>
-       *&#47; time that was spent in fetching query result rows.
+       **
+       * Time from the wall clock when the SQL statement entered the system.
+       * This is number of micro-seconds since 1970-01-01 00:00:00.
        * </pre>
        *
-       * <code>optional double fetch_time = 14;</code>
-       * @return Whether the fetchTime field is set.
+       * <code>optional uint64 real_world_entry_time = 2;</code>
+       * @return Whether the realWorldEntryTime field is set.
        */
-      public boolean hasFetchTime() {
-        return ((bitField0_ & 0x00002000) != 0);
+      public boolean hasRealWorldEntryTime() {
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
-       *&#47; time that was spent in fetching query result rows.
+       **
+       * Time from the wall clock when the SQL statement entered the system.
+       * This is number of micro-seconds since 1970-01-01 00:00:00.
        * </pre>
        *
-       * <code>optional double fetch_time = 14;</code>
-       * @return The fetchTime.
+       * <code>optional uint64 real_world_entry_time = 2;</code>
+       * @return The realWorldEntryTime.
        */
-      public double getFetchTime() {
-        return fetchTime_;
-      }
-
-      public static final int BACKENDDBSEXECTIME_FIELD_NUMBER = 15;
-      private double backendDBSExecTime_;
-      /**
-       * <pre>
-       *&#47; time that the SQL statement spend in executing in the BackendDBS backend
-       * </pre>
-       *
-       * <code>optional double backendDBSExecTime = 15;</code>
-       * @return Whether the backendDBSExecTime field is set.
-       */
-      public boolean hasBackendDBSExecTime() {
-        return ((bitField0_ & 0x00004000) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; time that the SQL statement spend in executing in the BackendDBS backend
-       * </pre>
-       *
-       * <code>optional double backendDBSExecTime = 15;</code>
-       * @return The backendDBSExecTime.
-       */
-      public double getBackendDBSExecTime() {
-        return backendDBSExecTime_;
+      public long getRealWorldEntryTime() {
+        return realWorldEntryTime_;
       }
 
-      public static final int TOTALELAPSEDTIME_FIELD_NUMBER = 16;
-      private double totalElapsedTime_;
+      public static final int SYSTEM_ENTRY_TIME_FIELD_NUMBER = 3;
+      private long systemEntryTime_;
       /**
        * <pre>
-       *&#47; the elapsed time for the SQL statement execution
+       **
+       * Time from the system clock when the SQL statement entered the system.
+       * This time is collected together with &#64;c real_world_entry_timestamp.
        * </pre>
        *
-       * <code>optional double totalElapsedTime = 16;</code>
-       * @return Whether the totalElapsedTime field is set.
+       * <code>optional uint64 system_entry_time = 3;</code>
+       * @return Whether the systemEntryTime field is set.
        */
-      public boolean hasTotalElapsedTime() {
-        return ((bitField0_ & 0x00008000) != 0);
+      public boolean hasSystemEntryTime() {
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <pre>
-       *&#47; the elapsed time for the SQL statement execution
+       **
+       * Time from the system clock when the SQL statement entered the system.
+       * This time is collected together with &#64;c real_world_entry_timestamp.
        * </pre>
        *
-       * <code>optional double totalElapsedTime = 16;</code>
-       * @return The totalElapsedTime.
+       * <code>optional uint64 system_entry_time = 3;</code>
+       * @return The systemEntryTime.
        */
-      public double getTotalElapsedTime() {
-        return totalElapsedTime_;
-      }
-
-      public static final int POSTPROCESSINGTIME_FIELD_NUMBER = 17;
-      private double postProcessingTime_;
-      /**
-       * <pre>
-       *&#47; the time since the SQL statement execution was finished until the post-processing is done.
-       * </pre>
-       *
-       * <code>optional double postProcessingTime = 17;</code>
-       * @return Whether the postProcessingTime field is set.
-       */
-      public boolean hasPostProcessingTime() {
-        return ((bitField0_ & 0x00010000) != 0);
-      }
-      /**
-       * <pre>
-       *&#47; the time since the SQL statement execution was finished until the post-processing is done.
-       * </pre>
-       *
-       * <code>optional double postProcessingTime = 17;</code>
-       * @return The postProcessingTime.
-       */
-      public double getPostProcessingTime() {
-        return postProcessingTime_;
+      public long getSystemEntryTime() {
+        return systemEntryTime_;
       }
 
-      public static final int PREPARE_START_TIME_FIELD_NUMBER = 18;
+      public static final int PREPARE_START_TIME_FIELD_NUMBER = 4;
       private long prepareStartTime_;
       /**
        * <pre>
-       *&#47; Start time when the prepare has started
+       *&#47; time from the system clock when the prepare of the SQL statement was started
        * </pre>
        *
-       * <code>optional uint64 prepare_start_time = 18;</code>
+       * <code>optional uint64 prepare_start_time = 4;</code>
        * @return Whether the prepareStartTime field is set.
        */
       public boolean hasPrepareStartTime() {
-        return ((bitField0_ & 0x00020000) != 0);
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <pre>
-       *&#47; Start time when the prepare has started
+       *&#47; time from the system clock when the prepare of the SQL statement was started
        * </pre>
        *
-       * <code>optional uint64 prepare_start_time = 18;</code>
+       * <code>optional uint64 prepare_start_time = 4;</code>
        * @return The prepareStartTime.
        */
       public long getPrepareStartTime() {
         return prepareStartTime_;
       }
 
-      public static final int PREPARE_TIME_FIELD_NUMBER = 19;
-      private long prepareTime_;
+      public static final int PREPARE_FINISH_TIME_FIELD_NUMBER = 5;
+      private long prepareFinishTime_;
       /**
        * <pre>
-       *&#47; collected perpare time or calcualted while query is running
+       *&#47; time from the system clock when the prepare of the SQL statement has finished
        * </pre>
        *
-       * <code>optional uint64 prepare_time = 19;</code>
+       * <code>optional uint64 prepare_finish_time = 5;</code>
+       * @return Whether the prepareFinishTime field is set.
+       */
+      public boolean hasPrepareFinishTime() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time from the system clock when the prepare of the SQL statement has finished
+       * </pre>
+       *
+       * <code>optional uint64 prepare_finish_time = 5;</code>
+       * @return The prepareFinishTime.
+       */
+      public long getPrepareFinishTime() {
+        return prepareFinishTime_;
+      }
+
+      public static final int BACKEND_EXECUTION_START_TIME_FIELD_NUMBER = 6;
+      private long backendExecutionStartTime_;
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend was started
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_start_time = 6;</code>
+       * @return Whether the backendExecutionStartTime field is set.
+       */
+      public boolean hasBackendExecutionStartTime() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend was started
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_start_time = 6;</code>
+       * @return The backendExecutionStartTime.
+       */
+      public long getBackendExecutionStartTime() {
+        return backendExecutionStartTime_;
+      }
+
+      public static final int BACKEND_FIRST_ROW_FETCH_TIME_FIELD_NUMBER = 7;
+      private long backendFirstRowFetchTime_;
+      /**
+       * <pre>
+       *&#47; time from the system clock when the first row was fetched from the backend
+       * </pre>
+       *
+       * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+       * @return Whether the backendFirstRowFetchTime field is set.
+       */
+      public boolean hasBackendFirstRowFetchTime() {
+        return ((bitField0_ & 0x00000040) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time from the system clock when the first row was fetched from the backend
+       * </pre>
+       *
+       * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+       * @return The backendFirstRowFetchTime.
+       */
+      public long getBackendFirstRowFetchTime() {
+        return backendFirstRowFetchTime_;
+      }
+
+      public static final int BACKEND_EXECUTION_FINISH_TIME_FIELD_NUMBER = 8;
+      private long backendExecutionFinishTime_;
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend finished
+       * / (note that result rows may still be fetched after statement execution finished)
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_finish_time = 8;</code>
+       * @return Whether the backendExecutionFinishTime field is set.
+       */
+      public boolean hasBackendExecutionFinishTime() {
+        return ((bitField0_ & 0x00000080) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time from the system clock when execution of the SQL statement in the backend finished
+       * / (note that result rows may still be fetched after statement execution finished)
+       * </pre>
+       *
+       * <code>optional uint64 backend_execution_finish_time = 8;</code>
+       * @return The backendExecutionFinishTime.
+       */
+      public long getBackendExecutionFinishTime() {
+        return backendExecutionFinishTime_;
+      }
+
+      public static final int CLIENT_LAST_ROW_FETCH_TIME_FIELD_NUMBER = 9;
+      private long clientLastRowFetchTime_;
+      /**
+       * <pre>
+       *&#47; time from the system clock when the last row was requested/sent to the client
+       * </pre>
+       *
+       * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+       * @return Whether the clientLastRowFetchTime field is set.
+       */
+      public boolean hasClientLastRowFetchTime() {
+        return ((bitField0_ & 0x00000100) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time from the system clock when the last row was requested/sent to the client
+       * </pre>
+       *
+       * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+       * @return The clientLastRowFetchTime.
+       */
+      public long getClientLastRowFetchTime() {
+        return clientLastRowFetchTime_;
+      }
+
+      public static final int SYSTEM_FINISH_TIME_FIELD_NUMBER = 10;
+      private long systemFinishTime_;
+      /**
+       * <pre>
+       *&#47; time from the system clock when the execution in the accelerator finished; that time
+       * / does not include any post-processing time
+       * </pre>
+       *
+       * <code>optional uint64 system_finish_time = 10;</code>
+       * @return Whether the systemFinishTime field is set.
+       */
+      public boolean hasSystemFinishTime() {
+        return ((bitField0_ & 0x00000200) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time from the system clock when the execution in the accelerator finished; that time
+       * / does not include any post-processing time
+       * </pre>
+       *
+       * <code>optional uint64 system_finish_time = 10;</code>
+       * @return The systemFinishTime.
+       */
+      public long getSystemFinishTime() {
+        return systemFinishTime_;
+      }
+
+      public static final int POST_PROCESSING_EXIT_TIME_FIELD_NUMBER = 11;
+      private long postProcessingExitTime_;
+      /**
+       * <pre>
+       *&#47; time from the system clock when the post-processing was finished
+       * </pre>
+       *
+       * <code>optional uint64 post_processing_exit_time = 11;</code>
+       * @return Whether the postProcessingExitTime field is set.
+       */
+      public boolean hasPostProcessingExitTime() {
+        return ((bitField0_ & 0x00000400) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time from the system clock when the post-processing was finished
+       * </pre>
+       *
+       * <code>optional uint64 post_processing_exit_time = 11;</code>
+       * @return The postProcessingExitTime.
+       */
+      public long getPostProcessingExitTime() {
+        return postProcessingExitTime_;
+      }
+
+      public static final int DWA_CPU_TIME_FIELD_NUMBER = 12;
+      private long dwaCpuTime_;
+      /**
+       * <pre>
+       *&#47; CPU time spent for the SQL statement in the accelerator only
+       * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+       * </pre>
+       *
+       * <code>optional uint64 dwa_cpu_time = 12;</code>
+       * @return Whether the dwaCpuTime field is set.
+       */
+      public boolean hasDwaCpuTime() {
+        return ((bitField0_ & 0x00000800) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; CPU time spent for the SQL statement in the accelerator only
+       * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+       * </pre>
+       *
+       * <code>optional uint64 dwa_cpu_time = 12;</code>
+       * @return The dwaCpuTime.
+       */
+      public long getDwaCpuTime() {
+        return dwaCpuTime_;
+      }
+
+      public static final int BACKEND_CPU_TIME_FIELD_NUMBER = 13;
+      private long backendCpuTime_;
+      /**
+       * <pre>
+       **
+       * CPU time spend for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished. It may also include the CPU time spend for fetching
+       * the result set from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_cpu_time = 13;</code>
+       * @return Whether the backendCpuTime field is set.
+       */
+      public boolean hasBackendCpuTime() {
+        return ((bitField0_ & 0x00001000) != 0);
+      }
+      /**
+       * <pre>
+       **
+       * CPU time spend for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished. It may also include the CPU time spend for fetching
+       * the result set from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_cpu_time = 13;</code>
+       * @return The backendCpuTime.
+       */
+      public long getBackendCpuTime() {
+        return backendCpuTime_;
+      }
+
+      public static final int BACKEND_WAIT_TIME_FIELD_NUMBER = 14;
+      private long backendWaitTime_;
+      /**
+       * <pre>
+       **
+       * Wait time for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished.
+       * </pre>
+       *
+       * <code>optional uint64 backend_wait_time = 14;</code>
+       * @return Whether the backendWaitTime field is set.
+       */
+      public boolean hasBackendWaitTime() {
+        return ((bitField0_ & 0x00002000) != 0);
+      }
+      /**
+       * <pre>
+       **
+       * Wait time for SQL statement in the backend.
+       * This information is available only after the SQL statement execution in the
+       * backend has finished.
+       * </pre>
+       *
+       * <code>optional uint64 backend_wait_time = 14;</code>
+       * @return The backendWaitTime.
+       */
+      public long getBackendWaitTime() {
+        return backendWaitTime_;
+      }
+
+      public static final int BACKEND_ACCOUNTING_COLLECTION_TIME_FIELD_NUMBER = 15;
+      private long backendAccountingCollectionTime_;
+      /**
+       * <pre>
+       **
+       * Time spend for collecting monitoring/accounting information from the backend.
+       * Additional queries are executed before/after the execution of the actual SQL
+       * statement to obtain monitoring counters from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+       * @return Whether the backendAccountingCollectionTime field is set.
+       */
+      public boolean hasBackendAccountingCollectionTime() {
+        return ((bitField0_ & 0x00004000) != 0);
+      }
+      /**
+       * <pre>
+       **
+       * Time spend for collecting monitoring/accounting information from the backend.
+       * Additional queries are executed before/after the execution of the actual SQL
+       * statement to obtain monitoring counters from the backend.
+       * </pre>
+       *
+       * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+       * @return The backendAccountingCollectionTime.
+       */
+      public long getBackendAccountingCollectionTime() {
+        return backendAccountingCollectionTime_;
+      }
+
+      public static final int PREPARE_TIME_FIELD_NUMBER = 16;
+      private double prepareTime_;
+      /**
+       * <pre>
+       *&#47; time spend for preparing the SQL statement;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double prepare_time = 16;</code>
        * @return Whether the prepareTime field is set.
        */
       public boolean hasPrepareTime() {
+        return ((bitField0_ & 0x00008000) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time spend for preparing the SQL statement;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double prepare_time = 16;</code>
+       * @return The prepareTime.
+       */
+      public double getPrepareTime() {
+        return prepareTime_;
+      }
+
+      public static final int BACKENDDBSEXECTIME_FIELD_NUMBER = 17;
+      private double backendDBSExecTime_;
+      /**
+       * <pre>
+       *&#47; time spend for executing the SQL statement (without result set fetching);
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double backendDBSExecTime = 17;</code>
+       * @return Whether the backendDBSExecTime field is set.
+       */
+      public boolean hasBackendDBSExecTime() {
+        return ((bitField0_ & 0x00010000) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time spend for executing the SQL statement (without result set fetching);
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double backendDBSExecTime = 17;</code>
+       * @return The backendDBSExecTime.
+       */
+      public double getBackendDBSExecTime() {
+        return backendDBSExecTime_;
+      }
+
+      public static final int FETCH_TIME_FIELD_NUMBER = 18;
+      private double fetchTime_;
+      /**
+       * <pre>
+       *&#47; time spend for fetching the result set of the SQL statement after execution;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double fetch_time = 18;</code>
+       * @return Whether the fetchTime field is set.
+       */
+      public boolean hasFetchTime() {
+        return ((bitField0_ & 0x00020000) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; time spend for fetching the result set of the SQL statement after execution;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double fetch_time = 18;</code>
+       * @return The fetchTime.
+       */
+      public double getFetchTime() {
+        return fetchTime_;
+      }
+
+      public static final int TOTALELAPSEDTIME_FIELD_NUMBER = 19;
+      private double totalElapsedTime_;
+      /**
+       * <pre>
+       *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+       * / this is an elapsed time measured in seconds (with fractions)
+       * </pre>
+       *
+       * <code>optional double totalElapsedTime = 19;</code>
+       * @return Whether the totalElapsedTime field is set.
+       */
+      public boolean hasTotalElapsedTime() {
         return ((bitField0_ & 0x00040000) != 0);
       }
       /**
        * <pre>
-       *&#47; collected perpare time or calcualted while query is running
+       *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+       * / this is an elapsed time measured in seconds (with fractions)
        * </pre>
        *
-       * <code>optional uint64 prepare_time = 19;</code>
-       * @return The prepareTime.
+       * <code>optional double totalElapsedTime = 19;</code>
+       * @return The totalElapsedTime.
        */
-      public long getPrepareTime() {
-        return prepareTime_;
+      public double getTotalElapsedTime() {
+        return totalElapsedTime_;
       }
 
-      public static final int CACHED_PARSED_CLIENT_REFERENCE_TIMESTAMP_FIELD_NUMBER = 20;
-      private long cachedParsedClientReferenceTimestamp_;
+      public static final int POSTPROCESSINGTIME_FIELD_NUMBER = 20;
+      private double postProcessingTime_;
       /**
        * <pre>
-       *&#47; wall-clock time of the client reference timestamp provided via special registers
+       *&#47; time spend for post-processing activities;
+       * / this is an elapsed time measured in seconds (with fractions)
        * </pre>
        *
-       * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
-       * @return Whether the cachedParsedClientReferenceTimestamp field is set.
+       * <code>optional double postProcessingTime = 20;</code>
+       * @return Whether the postProcessingTime field is set.
        */
-      public boolean hasCachedParsedClientReferenceTimestamp() {
+      public boolean hasPostProcessingTime() {
         return ((bitField0_ & 0x00080000) != 0);
       }
       /**
        * <pre>
-       *&#47; wall-clock time of the client reference timestamp provided via special registers
+       *&#47; time spend for post-processing activities;
+       * / this is an elapsed time measured in seconds (with fractions)
        * </pre>
        *
-       * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
+       * <code>optional double postProcessingTime = 20;</code>
+       * @return The postProcessingTime.
+       */
+      public double getPostProcessingTime() {
+        return postProcessingTime_;
+      }
+
+      public static final int CACHED_PARSED_CLIENT_REFERENCE_TIMESTAMP_FIELD_NUMBER = 21;
+      private long cachedParsedClientReferenceTimestamp_;
+      /**
+       * <pre>
+       **
+       * The value of the special register value stored in field &#64;c client_reference_timestamp)
+       * is parsed into the internal representation and stored here. The value is a
+       * time from the wall clock that measures the number of seconds from
+       * 1970-01-01 00:00:00.
+       * Note that this is _not_ like all the other timers. The purpose of this field
+       * is very much unclear as well. But we cannot remove it to keep things
+       * backward-compatible.
+       * </pre>
+       *
+       * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
+       * @return Whether the cachedParsedClientReferenceTimestamp field is set.
+       */
+      public boolean hasCachedParsedClientReferenceTimestamp() {
+        return ((bitField0_ & 0x00100000) != 0);
+      }
+      /**
+       * <pre>
+       **
+       * The value of the special register value stored in field &#64;c client_reference_timestamp)
+       * is parsed into the internal representation and stored here. The value is a
+       * time from the wall clock that measures the number of seconds from
+       * 1970-01-01 00:00:00.
+       * Note that this is _not_ like all the other timers. The purpose of this field
+       * is very much unclear as well. But we cannot remove it to keep things
+       * backward-compatible.
+       * </pre>
+       *
+       * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
        * @return The cachedParsedClientReferenceTimestamp.
        */
       public long getCachedParsedClientReferenceTimestamp() {
         return cachedParsedClientReferenceTimestamp_;
       }
 
-      public static final int TOTAL_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 21;
+      public static final int TOTAL_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 22;
       private long totalContinueQueryWaitTime_;
       /**
        * <pre>
-       *&#47; collected wait times between continue query calls
+       **
+       * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+       * set from the accelerator. Each such message is responded to with another chunk
+       * of data in QRYDTA (Query Data) messages. The wait times between sending those
+       * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+       * following fields. The fields are updated and recalculated for each CNTQRY message.
        * </pre>
        *
-       * <code>optional int64 total_continue_query_wait_time = 21;</code>
+       * <code>optional int64 total_continue_query_wait_time = 22;</code>
        * @return Whether the totalContinueQueryWaitTime field is set.
        */
       public boolean hasTotalContinueQueryWaitTime() {
-        return ((bitField0_ & 0x00100000) != 0);
+        return ((bitField0_ & 0x00200000) != 0);
       }
       /**
        * <pre>
-       *&#47; collected wait times between continue query calls
+       **
+       * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+       * set from the accelerator. Each such message is responded to with another chunk
+       * of data in QRYDTA (Query Data) messages. The wait times between sending those
+       * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+       * following fields. The fields are updated and recalculated for each CNTQRY message.
        * </pre>
        *
-       * <code>optional int64 total_continue_query_wait_time = 21;</code>
+       * <code>optional int64 total_continue_query_wait_time = 22;</code>
        * @return The totalContinueQueryWaitTime.
        */
       public long getTotalContinueQueryWaitTime() {
         return totalContinueQueryWaitTime_;
       }
 
-      public static final int AVERAGE_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 22;
+      public static final int AVERAGE_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 23;
       private long averageContinueQueryWaitTime_;
       /**
-       * <code>optional int64 average_continue_query_wait_time = 22;</code>
+       * <code>optional int64 average_continue_query_wait_time = 23;</code>
        * @return Whether the averageContinueQueryWaitTime field is set.
        */
       public boolean hasAverageContinueQueryWaitTime() {
-        return ((bitField0_ & 0x00200000) != 0);
+        return ((bitField0_ & 0x00400000) != 0);
       }
       /**
-       * <code>optional int64 average_continue_query_wait_time = 22;</code>
+       * <code>optional int64 average_continue_query_wait_time = 23;</code>
        * @return The averageContinueQueryWaitTime.
        */
       public long getAverageContinueQueryWaitTime() {
         return averageContinueQueryWaitTime_;
       }
 
-      public static final int SMALLEST_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 23;
+      public static final int SMALLEST_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 24;
       private long smallestContinueQueryWaitTime_;
       /**
-       * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+       * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
        * @return Whether the smallestContinueQueryWaitTime field is set.
        */
       public boolean hasSmallestContinueQueryWaitTime() {
-        return ((bitField0_ & 0x00400000) != 0);
+        return ((bitField0_ & 0x00800000) != 0);
       }
       /**
-       * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+       * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
        * @return The smallestContinueQueryWaitTime.
        */
       public long getSmallestContinueQueryWaitTime() {
         return smallestContinueQueryWaitTime_;
       }
 
-      public static final int LARGEST_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 24;
+      public static final int LARGEST_CONTINUE_QUERY_WAIT_TIME_FIELD_NUMBER = 25;
       private long largestContinueQueryWaitTime_;
       /**
-       * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+       * <code>optional int64 largest_continue_query_wait_time = 25;</code>
        * @return Whether the largestContinueQueryWaitTime field is set.
        */
       public boolean hasLargestContinueQueryWaitTime() {
-        return ((bitField0_ & 0x00800000) != 0);
+        return ((bitField0_ & 0x01000000) != 0);
       }
       /**
-       * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+       * <code>optional int64 largest_continue_query_wait_time = 25;</code>
        * @return The largestContinueQueryWaitTime.
        */
       public long getLargestContinueQueryWaitTime() {
         return largestContinueQueryWaitTime_;
       }
 
-      public static final int NUM_CONTINUE_QUERY_WAIT_TIMES_FIELD_NUMBER = 25;
+      public static final int NUM_CONTINUE_QUERY_WAIT_TIMES_FIELD_NUMBER = 26;
       private long numContinueQueryWaitTimes_;
       /**
-       * <code>optional int64 num_continue_query_wait_times = 25;</code>
+       * <code>optional int64 num_continue_query_wait_times = 26;</code>
        * @return Whether the numContinueQueryWaitTimes field is set.
        */
       public boolean hasNumContinueQueryWaitTimes() {
-        return ((bitField0_ & 0x01000000) != 0);
+        return ((bitField0_ & 0x02000000) != 0);
       }
       /**
-       * <code>optional int64 num_continue_query_wait_times = 25;</code>
+       * <code>optional int64 num_continue_query_wait_times = 26;</code>
        * @return The numContinueQueryWaitTimes.
        */
       public long getNumContinueQueryWaitTimes() {
@@ -4115,79 +4781,82 @@ public final class SQLStatementDetails {
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         if (((bitField0_ & 0x00000001) != 0)) {
-          output.writeUInt64(1, realWorldEntryTime_);
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, realWorldEntryTimestamp_);
         }
         if (((bitField0_ & 0x00000002) != 0)) {
-          output.writeUInt64(2, systemEntryTime_);
+          output.writeUInt64(2, realWorldEntryTime_);
         }
         if (((bitField0_ & 0x00000004) != 0)) {
-          output.writeUInt64(3, backendExecutionStartTime_);
+          output.writeUInt64(3, systemEntryTime_);
         }
         if (((bitField0_ & 0x00000008) != 0)) {
-          output.writeUInt64(4, backendFirstRowFetchTime_);
+          output.writeUInt64(4, prepareStartTime_);
         }
         if (((bitField0_ & 0x00000010) != 0)) {
-          output.writeUInt64(5, backendExecutionFinishTime_);
+          output.writeUInt64(5, prepareFinishTime_);
         }
         if (((bitField0_ & 0x00000020) != 0)) {
-          output.writeUInt64(6, clientLastRowFetchTime_);
+          output.writeUInt64(6, backendExecutionStartTime_);
         }
         if (((bitField0_ & 0x00000040) != 0)) {
-          output.writeUInt64(7, systemFinishTime_);
+          output.writeUInt64(7, backendFirstRowFetchTime_);
         }
         if (((bitField0_ & 0x00000080) != 0)) {
-          output.writeUInt64(8, postProcessingExitTime_);
+          output.writeUInt64(8, backendExecutionFinishTime_);
         }
         if (((bitField0_ & 0x00000100) != 0)) {
-          output.writeUInt64(9, dwaCpuTime_);
+          output.writeUInt64(9, clientLastRowFetchTime_);
         }
         if (((bitField0_ & 0x00000200) != 0)) {
-          output.writeUInt64(10, backendCpuTime_);
+          output.writeUInt64(10, systemFinishTime_);
         }
         if (((bitField0_ & 0x00000400) != 0)) {
-          output.writeUInt64(11, backendWaitTime_);
+          output.writeUInt64(11, postProcessingExitTime_);
         }
         if (((bitField0_ & 0x00000800) != 0)) {
-          output.writeUInt64(12, backendAccountingCollectionTime_);
+          output.writeUInt64(12, dwaCpuTime_);
         }
         if (((bitField0_ & 0x00001000) != 0)) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 13, realWorldEntryTimestamp_);
+          output.writeUInt64(13, backendCpuTime_);
         }
         if (((bitField0_ & 0x00002000) != 0)) {
-          output.writeDouble(14, fetchTime_);
+          output.writeUInt64(14, backendWaitTime_);
         }
         if (((bitField0_ & 0x00004000) != 0)) {
-          output.writeDouble(15, backendDBSExecTime_);
+          output.writeUInt64(15, backendAccountingCollectionTime_);
         }
         if (((bitField0_ & 0x00008000) != 0)) {
-          output.writeDouble(16, totalElapsedTime_);
+          output.writeDouble(16, prepareTime_);
         }
         if (((bitField0_ & 0x00010000) != 0)) {
-          output.writeDouble(17, postProcessingTime_);
+          output.writeDouble(17, backendDBSExecTime_);
         }
         if (((bitField0_ & 0x00020000) != 0)) {
-          output.writeUInt64(18, prepareStartTime_);
+          output.writeDouble(18, fetchTime_);
         }
         if (((bitField0_ & 0x00040000) != 0)) {
-          output.writeUInt64(19, prepareTime_);
+          output.writeDouble(19, totalElapsedTime_);
         }
         if (((bitField0_ & 0x00080000) != 0)) {
-          output.writeUInt64(20, cachedParsedClientReferenceTimestamp_);
+          output.writeDouble(20, postProcessingTime_);
         }
         if (((bitField0_ & 0x00100000) != 0)) {
-          output.writeInt64(21, totalContinueQueryWaitTime_);
+          output.writeUInt64(21, cachedParsedClientReferenceTimestamp_);
         }
         if (((bitField0_ & 0x00200000) != 0)) {
-          output.writeInt64(22, averageContinueQueryWaitTime_);
+          output.writeInt64(22, totalContinueQueryWaitTime_);
         }
         if (((bitField0_ & 0x00400000) != 0)) {
-          output.writeInt64(23, smallestContinueQueryWaitTime_);
+          output.writeInt64(23, averageContinueQueryWaitTime_);
         }
         if (((bitField0_ & 0x00800000) != 0)) {
-          output.writeInt64(24, largestContinueQueryWaitTime_);
+          output.writeInt64(24, smallestContinueQueryWaitTime_);
         }
         if (((bitField0_ & 0x01000000) != 0)) {
-          output.writeInt64(25, numContinueQueryWaitTimes_);
+          output.writeInt64(25, largestContinueQueryWaitTime_);
+        }
+        if (((bitField0_ & 0x02000000) != 0)) {
+          output.writeInt64(26, numContinueQueryWaitTimes_);
         }
         unknownFields.writeTo(output);
       }
@@ -4199,103 +4868,107 @@ public final class SQLStatementDetails {
 
         size = 0;
         if (((bitField0_ & 0x00000001) != 0)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(1, realWorldEntryTime_);
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, realWorldEntryTimestamp_);
         }
         if (((bitField0_ & 0x00000002) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(2, systemEntryTime_);
+            .computeUInt64Size(2, realWorldEntryTime_);
         }
         if (((bitField0_ & 0x00000004) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(3, backendExecutionStartTime_);
+            .computeUInt64Size(3, systemEntryTime_);
         }
         if (((bitField0_ & 0x00000008) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(4, backendFirstRowFetchTime_);
+            .computeUInt64Size(4, prepareStartTime_);
         }
         if (((bitField0_ & 0x00000010) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(5, backendExecutionFinishTime_);
+            .computeUInt64Size(5, prepareFinishTime_);
         }
         if (((bitField0_ & 0x00000020) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(6, clientLastRowFetchTime_);
+            .computeUInt64Size(6, backendExecutionStartTime_);
         }
         if (((bitField0_ & 0x00000040) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(7, systemFinishTime_);
+            .computeUInt64Size(7, backendFirstRowFetchTime_);
         }
         if (((bitField0_ & 0x00000080) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(8, postProcessingExitTime_);
+            .computeUInt64Size(8, backendExecutionFinishTime_);
         }
         if (((bitField0_ & 0x00000100) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(9, dwaCpuTime_);
+            .computeUInt64Size(9, clientLastRowFetchTime_);
         }
         if (((bitField0_ & 0x00000200) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(10, backendCpuTime_);
+            .computeUInt64Size(10, systemFinishTime_);
         }
         if (((bitField0_ & 0x00000400) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(11, backendWaitTime_);
+            .computeUInt64Size(11, postProcessingExitTime_);
         }
         if (((bitField0_ & 0x00000800) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(12, backendAccountingCollectionTime_);
+            .computeUInt64Size(12, dwaCpuTime_);
         }
         if (((bitField0_ & 0x00001000) != 0)) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, realWorldEntryTimestamp_);
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt64Size(13, backendCpuTime_);
         }
         if (((bitField0_ & 0x00002000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeDoubleSize(14, fetchTime_);
+            .computeUInt64Size(14, backendWaitTime_);
         }
         if (((bitField0_ & 0x00004000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeDoubleSize(15, backendDBSExecTime_);
+            .computeUInt64Size(15, backendAccountingCollectionTime_);
         }
         if (((bitField0_ & 0x00008000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeDoubleSize(16, totalElapsedTime_);
+            .computeDoubleSize(16, prepareTime_);
         }
         if (((bitField0_ & 0x00010000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeDoubleSize(17, postProcessingTime_);
+            .computeDoubleSize(17, backendDBSExecTime_);
         }
         if (((bitField0_ & 0x00020000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(18, prepareStartTime_);
+            .computeDoubleSize(18, fetchTime_);
         }
         if (((bitField0_ & 0x00040000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(19, prepareTime_);
+            .computeDoubleSize(19, totalElapsedTime_);
         }
         if (((bitField0_ & 0x00080000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt64Size(20, cachedParsedClientReferenceTimestamp_);
+            .computeDoubleSize(20, postProcessingTime_);
         }
         if (((bitField0_ & 0x00100000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(21, totalContinueQueryWaitTime_);
+            .computeUInt64Size(21, cachedParsedClientReferenceTimestamp_);
         }
         if (((bitField0_ & 0x00200000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(22, averageContinueQueryWaitTime_);
+            .computeInt64Size(22, totalContinueQueryWaitTime_);
         }
         if (((bitField0_ & 0x00400000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(23, smallestContinueQueryWaitTime_);
+            .computeInt64Size(23, averageContinueQueryWaitTime_);
         }
         if (((bitField0_ & 0x00800000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(24, largestContinueQueryWaitTime_);
+            .computeInt64Size(24, smallestContinueQueryWaitTime_);
         }
         if (((bitField0_ & 0x01000000) != 0)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(25, numContinueQueryWaitTimes_);
+            .computeInt64Size(25, largestContinueQueryWaitTime_);
+        }
+        if (((bitField0_ & 0x02000000) != 0)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(26, numContinueQueryWaitTimes_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -4312,6 +4985,11 @@ public final class SQLStatementDetails {
         }
         SQLStatementDetails.SQLStatementDetailsData.Timings other = (SQLStatementDetails.SQLStatementDetailsData.Timings) obj;
 
+        if (hasRealWorldEntryTimestamp() != other.hasRealWorldEntryTimestamp()) return false;
+        if (hasRealWorldEntryTimestamp()) {
+          if (!getRealWorldEntryTimestamp()
+              .equals(other.getRealWorldEntryTimestamp())) return false;
+        }
         if (hasRealWorldEntryTime() != other.hasRealWorldEntryTime()) return false;
         if (hasRealWorldEntryTime()) {
           if (getRealWorldEntryTime()
@@ -4321,6 +4999,16 @@ public final class SQLStatementDetails {
         if (hasSystemEntryTime()) {
           if (getSystemEntryTime()
               != other.getSystemEntryTime()) return false;
+        }
+        if (hasPrepareStartTime() != other.hasPrepareStartTime()) return false;
+        if (hasPrepareStartTime()) {
+          if (getPrepareStartTime()
+              != other.getPrepareStartTime()) return false;
+        }
+        if (hasPrepareFinishTime() != other.hasPrepareFinishTime()) return false;
+        if (hasPrepareFinishTime()) {
+          if (getPrepareFinishTime()
+              != other.getPrepareFinishTime()) return false;
         }
         if (hasBackendExecutionStartTime() != other.hasBackendExecutionStartTime()) return false;
         if (hasBackendExecutionStartTime()) {
@@ -4372,22 +5060,23 @@ public final class SQLStatementDetails {
           if (getBackendAccountingCollectionTime()
               != other.getBackendAccountingCollectionTime()) return false;
         }
-        if (hasRealWorldEntryTimestamp() != other.hasRealWorldEntryTimestamp()) return false;
-        if (hasRealWorldEntryTimestamp()) {
-          if (!getRealWorldEntryTimestamp()
-              .equals(other.getRealWorldEntryTimestamp())) return false;
-        }
-        if (hasFetchTime() != other.hasFetchTime()) return false;
-        if (hasFetchTime()) {
-          if (java.lang.Double.doubleToLongBits(getFetchTime())
+        if (hasPrepareTime() != other.hasPrepareTime()) return false;
+        if (hasPrepareTime()) {
+          if (java.lang.Double.doubleToLongBits(getPrepareTime())
               != java.lang.Double.doubleToLongBits(
-                  other.getFetchTime())) return false;
+                  other.getPrepareTime())) return false;
         }
         if (hasBackendDBSExecTime() != other.hasBackendDBSExecTime()) return false;
         if (hasBackendDBSExecTime()) {
           if (java.lang.Double.doubleToLongBits(getBackendDBSExecTime())
               != java.lang.Double.doubleToLongBits(
                   other.getBackendDBSExecTime())) return false;
+        }
+        if (hasFetchTime() != other.hasFetchTime()) return false;
+        if (hasFetchTime()) {
+          if (java.lang.Double.doubleToLongBits(getFetchTime())
+              != java.lang.Double.doubleToLongBits(
+                  other.getFetchTime())) return false;
         }
         if (hasTotalElapsedTime() != other.hasTotalElapsedTime()) return false;
         if (hasTotalElapsedTime()) {
@@ -4400,16 +5089,6 @@ public final class SQLStatementDetails {
           if (java.lang.Double.doubleToLongBits(getPostProcessingTime())
               != java.lang.Double.doubleToLongBits(
                   other.getPostProcessingTime())) return false;
-        }
-        if (hasPrepareStartTime() != other.hasPrepareStartTime()) return false;
-        if (hasPrepareStartTime()) {
-          if (getPrepareStartTime()
-              != other.getPrepareStartTime()) return false;
-        }
-        if (hasPrepareTime() != other.hasPrepareTime()) return false;
-        if (hasPrepareTime()) {
-          if (getPrepareTime()
-              != other.getPrepareTime()) return false;
         }
         if (hasCachedParsedClientReferenceTimestamp() != other.hasCachedParsedClientReferenceTimestamp()) return false;
         if (hasCachedParsedClientReferenceTimestamp()) {
@@ -4452,6 +5131,10 @@ public final class SQLStatementDetails {
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
+        if (hasRealWorldEntryTimestamp()) {
+          hash = (37 * hash) + REAL_WORLD_ENTRY_TIMESTAMP_FIELD_NUMBER;
+          hash = (53 * hash) + getRealWorldEntryTimestamp().hashCode();
+        }
         if (hasRealWorldEntryTime()) {
           hash = (37 * hash) + REAL_WORLD_ENTRY_TIME_FIELD_NUMBER;
           hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
@@ -4461,6 +5144,16 @@ public final class SQLStatementDetails {
           hash = (37 * hash) + SYSTEM_ENTRY_TIME_FIELD_NUMBER;
           hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
               getSystemEntryTime());
+        }
+        if (hasPrepareStartTime()) {
+          hash = (37 * hash) + PREPARE_START_TIME_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getPrepareStartTime());
+        }
+        if (hasPrepareFinishTime()) {
+          hash = (37 * hash) + PREPARE_FINISH_TIME_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getPrepareFinishTime());
         }
         if (hasBackendExecutionStartTime()) {
           hash = (37 * hash) + BACKEND_EXECUTION_START_TIME_FIELD_NUMBER;
@@ -4512,19 +5205,20 @@ public final class SQLStatementDetails {
           hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
               getBackendAccountingCollectionTime());
         }
-        if (hasRealWorldEntryTimestamp()) {
-          hash = (37 * hash) + REAL_WORLD_ENTRY_TIMESTAMP_FIELD_NUMBER;
-          hash = (53 * hash) + getRealWorldEntryTimestamp().hashCode();
-        }
-        if (hasFetchTime()) {
-          hash = (37 * hash) + FETCH_TIME_FIELD_NUMBER;
+        if (hasPrepareTime()) {
+          hash = (37 * hash) + PREPARE_TIME_FIELD_NUMBER;
           hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              java.lang.Double.doubleToLongBits(getFetchTime()));
+              java.lang.Double.doubleToLongBits(getPrepareTime()));
         }
         if (hasBackendDBSExecTime()) {
           hash = (37 * hash) + BACKENDDBSEXECTIME_FIELD_NUMBER;
           hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
               java.lang.Double.doubleToLongBits(getBackendDBSExecTime()));
+        }
+        if (hasFetchTime()) {
+          hash = (37 * hash) + FETCH_TIME_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              java.lang.Double.doubleToLongBits(getFetchTime()));
         }
         if (hasTotalElapsedTime()) {
           hash = (37 * hash) + TOTALELAPSEDTIME_FIELD_NUMBER;
@@ -4535,16 +5229,6 @@ public final class SQLStatementDetails {
           hash = (37 * hash) + POSTPROCESSINGTIME_FIELD_NUMBER;
           hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
               java.lang.Double.doubleToLongBits(getPostProcessingTime()));
-        }
-        if (hasPrepareStartTime()) {
-          hash = (37 * hash) + PREPARE_START_TIME_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getPrepareStartTime());
-        }
-        if (hasPrepareTime()) {
-          hash = (37 * hash) + PREPARE_TIME_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getPrepareTime());
         }
         if (hasCachedParsedClientReferenceTimestamp()) {
           hash = (37 * hash) + CACHED_PARSED_CLIENT_REFERENCE_TIMESTAMP_FIELD_NUMBER;
@@ -4672,6 +5356,17 @@ public final class SQLStatementDetails {
         return builder;
       }
       /**
+       * <pre>
+       **
+       * All times that are based on the system clock. The system clock counts the number
+       * of micro-seconds since the last boot of the operating system. That clock is stable
+       * insofar as it will not jump forward or backwards (as other clocks may do in case
+       * time adjustments are necessary).
+       * In order to map values from the system clock to the corresponding wall clock time,
+       * calculate the delta to field &#64;c system_entry_time, and add that delta to field
+       * &#64;c real_world_entry_timestamp.
+       * </pre>
+       *
        * Protobuf type {@code SQLStatementDetailsData.Timings}
        */
       public static final class Builder extends
@@ -4709,56 +5404,58 @@ public final class SQLStatementDetails {
         @java.lang.Override
         public Builder clear() {
           super.clear();
-          realWorldEntryTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000001);
-          systemEntryTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000002);
-          backendExecutionStartTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000004);
-          backendFirstRowFetchTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000008);
-          backendExecutionFinishTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000010);
-          clientLastRowFetchTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000020);
-          systemFinishTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000040);
-          postProcessingExitTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000080);
-          dwaCpuTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000100);
-          backendCpuTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000200);
-          backendWaitTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000400);
-          backendAccountingCollectionTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000800);
           realWorldEntryTimestamp_ = "";
-          bitField0_ = (bitField0_ & ~0x00001000);
-          fetchTime_ = 0D;
-          bitField0_ = (bitField0_ & ~0x00002000);
-          backendDBSExecTime_ = 0D;
-          bitField0_ = (bitField0_ & ~0x00004000);
-          totalElapsedTime_ = 0D;
-          bitField0_ = (bitField0_ & ~0x00008000);
-          postProcessingTime_ = 0D;
-          bitField0_ = (bitField0_ & ~0x00010000);
+          bitField0_ = (bitField0_ & ~0x00000001);
+          realWorldEntryTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          systemEntryTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000004);
           prepareStartTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000008);
+          prepareFinishTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000010);
+          backendExecutionStartTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000020);
+          backendFirstRowFetchTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000040);
+          backendExecutionFinishTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000080);
+          clientLastRowFetchTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000100);
+          systemFinishTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000200);
+          postProcessingExitTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000400);
+          dwaCpuTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000800);
+          backendCpuTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00001000);
+          backendWaitTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00002000);
+          backendAccountingCollectionTime_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00004000);
+          prepareTime_ = 0D;
+          bitField0_ = (bitField0_ & ~0x00008000);
+          backendDBSExecTime_ = 0D;
+          bitField0_ = (bitField0_ & ~0x00010000);
+          fetchTime_ = 0D;
           bitField0_ = (bitField0_ & ~0x00020000);
-          prepareTime_ = 0L;
+          totalElapsedTime_ = 0D;
           bitField0_ = (bitField0_ & ~0x00040000);
-          cachedParsedClientReferenceTimestamp_ = 0L;
+          postProcessingTime_ = 0D;
           bitField0_ = (bitField0_ & ~0x00080000);
-          totalContinueQueryWaitTime_ = 0L;
+          cachedParsedClientReferenceTimestamp_ = 0L;
           bitField0_ = (bitField0_ & ~0x00100000);
-          averageContinueQueryWaitTime_ = 0L;
+          totalContinueQueryWaitTime_ = 0L;
           bitField0_ = (bitField0_ & ~0x00200000);
-          smallestContinueQueryWaitTime_ = 0L;
+          averageContinueQueryWaitTime_ = 0L;
           bitField0_ = (bitField0_ & ~0x00400000);
-          largestContinueQueryWaitTime_ = 0L;
+          smallestContinueQueryWaitTime_ = 0L;
           bitField0_ = (bitField0_ & ~0x00800000);
-          numContinueQueryWaitTimes_ = 0L;
+          largestContinueQueryWaitTime_ = 0L;
           bitField0_ = (bitField0_ & ~0x01000000);
+          numContinueQueryWaitTimes_ = 0L;
+          bitField0_ = (bitField0_ & ~0x02000000);
           return this;
         }
 
@@ -4788,104 +5485,108 @@ public final class SQLStatementDetails {
           int from_bitField0_ = bitField0_;
           int to_bitField0_ = 0;
           if (((from_bitField0_ & 0x00000001) != 0)) {
-            result.realWorldEntryTime_ = realWorldEntryTime_;
             to_bitField0_ |= 0x00000001;
           }
+          result.realWorldEntryTimestamp_ = realWorldEntryTimestamp_;
           if (((from_bitField0_ & 0x00000002) != 0)) {
-            result.systemEntryTime_ = systemEntryTime_;
+            result.realWorldEntryTime_ = realWorldEntryTime_;
             to_bitField0_ |= 0x00000002;
           }
           if (((from_bitField0_ & 0x00000004) != 0)) {
-            result.backendExecutionStartTime_ = backendExecutionStartTime_;
+            result.systemEntryTime_ = systemEntryTime_;
             to_bitField0_ |= 0x00000004;
           }
           if (((from_bitField0_ & 0x00000008) != 0)) {
-            result.backendFirstRowFetchTime_ = backendFirstRowFetchTime_;
+            result.prepareStartTime_ = prepareStartTime_;
             to_bitField0_ |= 0x00000008;
           }
           if (((from_bitField0_ & 0x00000010) != 0)) {
-            result.backendExecutionFinishTime_ = backendExecutionFinishTime_;
+            result.prepareFinishTime_ = prepareFinishTime_;
             to_bitField0_ |= 0x00000010;
           }
           if (((from_bitField0_ & 0x00000020) != 0)) {
-            result.clientLastRowFetchTime_ = clientLastRowFetchTime_;
+            result.backendExecutionStartTime_ = backendExecutionStartTime_;
             to_bitField0_ |= 0x00000020;
           }
           if (((from_bitField0_ & 0x00000040) != 0)) {
-            result.systemFinishTime_ = systemFinishTime_;
+            result.backendFirstRowFetchTime_ = backendFirstRowFetchTime_;
             to_bitField0_ |= 0x00000040;
           }
           if (((from_bitField0_ & 0x00000080) != 0)) {
-            result.postProcessingExitTime_ = postProcessingExitTime_;
+            result.backendExecutionFinishTime_ = backendExecutionFinishTime_;
             to_bitField0_ |= 0x00000080;
           }
           if (((from_bitField0_ & 0x00000100) != 0)) {
-            result.dwaCpuTime_ = dwaCpuTime_;
+            result.clientLastRowFetchTime_ = clientLastRowFetchTime_;
             to_bitField0_ |= 0x00000100;
           }
           if (((from_bitField0_ & 0x00000200) != 0)) {
-            result.backendCpuTime_ = backendCpuTime_;
+            result.systemFinishTime_ = systemFinishTime_;
             to_bitField0_ |= 0x00000200;
           }
           if (((from_bitField0_ & 0x00000400) != 0)) {
-            result.backendWaitTime_ = backendWaitTime_;
+            result.postProcessingExitTime_ = postProcessingExitTime_;
             to_bitField0_ |= 0x00000400;
           }
           if (((from_bitField0_ & 0x00000800) != 0)) {
-            result.backendAccountingCollectionTime_ = backendAccountingCollectionTime_;
+            result.dwaCpuTime_ = dwaCpuTime_;
             to_bitField0_ |= 0x00000800;
           }
           if (((from_bitField0_ & 0x00001000) != 0)) {
+            result.backendCpuTime_ = backendCpuTime_;
             to_bitField0_ |= 0x00001000;
           }
-          result.realWorldEntryTimestamp_ = realWorldEntryTimestamp_;
           if (((from_bitField0_ & 0x00002000) != 0)) {
-            result.fetchTime_ = fetchTime_;
+            result.backendWaitTime_ = backendWaitTime_;
             to_bitField0_ |= 0x00002000;
           }
           if (((from_bitField0_ & 0x00004000) != 0)) {
-            result.backendDBSExecTime_ = backendDBSExecTime_;
+            result.backendAccountingCollectionTime_ = backendAccountingCollectionTime_;
             to_bitField0_ |= 0x00004000;
           }
           if (((from_bitField0_ & 0x00008000) != 0)) {
-            result.totalElapsedTime_ = totalElapsedTime_;
+            result.prepareTime_ = prepareTime_;
             to_bitField0_ |= 0x00008000;
           }
           if (((from_bitField0_ & 0x00010000) != 0)) {
-            result.postProcessingTime_ = postProcessingTime_;
+            result.backendDBSExecTime_ = backendDBSExecTime_;
             to_bitField0_ |= 0x00010000;
           }
           if (((from_bitField0_ & 0x00020000) != 0)) {
-            result.prepareStartTime_ = prepareStartTime_;
+            result.fetchTime_ = fetchTime_;
             to_bitField0_ |= 0x00020000;
           }
           if (((from_bitField0_ & 0x00040000) != 0)) {
-            result.prepareTime_ = prepareTime_;
+            result.totalElapsedTime_ = totalElapsedTime_;
             to_bitField0_ |= 0x00040000;
           }
           if (((from_bitField0_ & 0x00080000) != 0)) {
-            result.cachedParsedClientReferenceTimestamp_ = cachedParsedClientReferenceTimestamp_;
+            result.postProcessingTime_ = postProcessingTime_;
             to_bitField0_ |= 0x00080000;
           }
           if (((from_bitField0_ & 0x00100000) != 0)) {
-            result.totalContinueQueryWaitTime_ = totalContinueQueryWaitTime_;
+            result.cachedParsedClientReferenceTimestamp_ = cachedParsedClientReferenceTimestamp_;
             to_bitField0_ |= 0x00100000;
           }
           if (((from_bitField0_ & 0x00200000) != 0)) {
-            result.averageContinueQueryWaitTime_ = averageContinueQueryWaitTime_;
+            result.totalContinueQueryWaitTime_ = totalContinueQueryWaitTime_;
             to_bitField0_ |= 0x00200000;
           }
           if (((from_bitField0_ & 0x00400000) != 0)) {
-            result.smallestContinueQueryWaitTime_ = smallestContinueQueryWaitTime_;
+            result.averageContinueQueryWaitTime_ = averageContinueQueryWaitTime_;
             to_bitField0_ |= 0x00400000;
           }
           if (((from_bitField0_ & 0x00800000) != 0)) {
-            result.largestContinueQueryWaitTime_ = largestContinueQueryWaitTime_;
+            result.smallestContinueQueryWaitTime_ = smallestContinueQueryWaitTime_;
             to_bitField0_ |= 0x00800000;
           }
           if (((from_bitField0_ & 0x01000000) != 0)) {
-            result.numContinueQueryWaitTimes_ = numContinueQueryWaitTimes_;
+            result.largestContinueQueryWaitTime_ = largestContinueQueryWaitTime_;
             to_bitField0_ |= 0x01000000;
+          }
+          if (((from_bitField0_ & 0x02000000) != 0)) {
+            result.numContinueQueryWaitTimes_ = numContinueQueryWaitTimes_;
+            to_bitField0_ |= 0x02000000;
           }
           result.bitField0_ = to_bitField0_;
           onBuilt();
@@ -4936,11 +5637,22 @@ public final class SQLStatementDetails {
 
         public Builder mergeFrom(SQLStatementDetails.SQLStatementDetailsData.Timings other) {
           if (other == SQLStatementDetails.SQLStatementDetailsData.Timings.getDefaultInstance()) return this;
+          if (other.hasRealWorldEntryTimestamp()) {
+            bitField0_ |= 0x00000001;
+            realWorldEntryTimestamp_ = other.realWorldEntryTimestamp_;
+            onChanged();
+          }
           if (other.hasRealWorldEntryTime()) {
             setRealWorldEntryTime(other.getRealWorldEntryTime());
           }
           if (other.hasSystemEntryTime()) {
             setSystemEntryTime(other.getSystemEntryTime());
+          }
+          if (other.hasPrepareStartTime()) {
+            setPrepareStartTime(other.getPrepareStartTime());
+          }
+          if (other.hasPrepareFinishTime()) {
+            setPrepareFinishTime(other.getPrepareFinishTime());
           }
           if (other.hasBackendExecutionStartTime()) {
             setBackendExecutionStartTime(other.getBackendExecutionStartTime());
@@ -4972,28 +5684,20 @@ public final class SQLStatementDetails {
           if (other.hasBackendAccountingCollectionTime()) {
             setBackendAccountingCollectionTime(other.getBackendAccountingCollectionTime());
           }
-          if (other.hasRealWorldEntryTimestamp()) {
-            bitField0_ |= 0x00001000;
-            realWorldEntryTimestamp_ = other.realWorldEntryTimestamp_;
-            onChanged();
-          }
-          if (other.hasFetchTime()) {
-            setFetchTime(other.getFetchTime());
+          if (other.hasPrepareTime()) {
+            setPrepareTime(other.getPrepareTime());
           }
           if (other.hasBackendDBSExecTime()) {
             setBackendDBSExecTime(other.getBackendDBSExecTime());
+          }
+          if (other.hasFetchTime()) {
+            setFetchTime(other.getFetchTime());
           }
           if (other.hasTotalElapsedTime()) {
             setTotalElapsedTime(other.getTotalElapsedTime());
           }
           if (other.hasPostProcessingTime()) {
             setPostProcessingTime(other.getPostProcessingTime());
-          }
-          if (other.hasPrepareStartTime()) {
-            setPrepareStartTime(other.getPrepareStartTime());
-          }
-          if (other.hasPrepareTime()) {
-            setPrepareTime(other.getPrepareTime());
           }
           if (other.hasCachedParsedClientReferenceTimestamp()) {
             setCachedParsedClientReferenceTimestamp(other.getCachedParsedClientReferenceTimestamp());
@@ -5043,704 +5747,28 @@ public final class SQLStatementDetails {
         }
         private int bitField0_;
 
-        private long realWorldEntryTime_ ;
+        private java.lang.Object realWorldEntryTimestamp_ = "";
         /**
          * <pre>
-         *&#47; wall-clock time when the SQL statement entered the system
+         **
+         * Time from the wall clock when the SQL statement entered the system. This
+         * timestamp is in UTC timezone.
          * </pre>
          *
-         * <code>optional uint64 real_world_entry_time = 1;</code>
-         * @return Whether the realWorldEntryTime field is set.
+         * <code>optional string real_world_entry_timestamp = 1;</code>
+         * @return Whether the realWorldEntryTimestamp field is set.
          */
-        public boolean hasRealWorldEntryTime() {
+        public boolean hasRealWorldEntryTimestamp() {
           return ((bitField0_ & 0x00000001) != 0);
         }
         /**
          * <pre>
-         *&#47; wall-clock time when the SQL statement entered the system
+         **
+         * Time from the wall clock when the SQL statement entered the system. This
+         * timestamp is in UTC timezone.
          * </pre>
          *
-         * <code>optional uint64 real_world_entry_time = 1;</code>
-         * @return The realWorldEntryTime.
-         */
-        public long getRealWorldEntryTime() {
-          return realWorldEntryTime_;
-        }
-        /**
-         * <pre>
-         *&#47; wall-clock time when the SQL statement entered the system
-         * </pre>
-         *
-         * <code>optional uint64 real_world_entry_time = 1;</code>
-         * @param value The realWorldEntryTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setRealWorldEntryTime(long value) {
-          bitField0_ |= 0x00000001;
-          realWorldEntryTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; wall-clock time when the SQL statement entered the system
-         * </pre>
-         *
-         * <code>optional uint64 real_world_entry_time = 1;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearRealWorldEntryTime() {
-          bitField0_ = (bitField0_ & ~0x00000001);
-          realWorldEntryTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long systemEntryTime_ ;
-        /**
-         * <pre>
-         *&#47; system time when the SQL statement entered the system
-         * / (used to compute elapsed time for SQL execution)
-         * </pre>
-         *
-         * <code>optional uint64 system_entry_time = 2;</code>
-         * @return Whether the systemEntryTime field is set.
-         */
-        public boolean hasSystemEntryTime() {
-          return ((bitField0_ & 0x00000002) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; system time when the SQL statement entered the system
-         * / (used to compute elapsed time for SQL execution)
-         * </pre>
-         *
-         * <code>optional uint64 system_entry_time = 2;</code>
-         * @return The systemEntryTime.
-         */
-        public long getSystemEntryTime() {
-          return systemEntryTime_;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the SQL statement entered the system
-         * / (used to compute elapsed time for SQL execution)
-         * </pre>
-         *
-         * <code>optional uint64 system_entry_time = 2;</code>
-         * @param value The systemEntryTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setSystemEntryTime(long value) {
-          bitField0_ |= 0x00000002;
-          systemEntryTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the SQL statement entered the system
-         * / (used to compute elapsed time for SQL execution)
-         * </pre>
-         *
-         * <code>optional uint64 system_entry_time = 2;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearSystemEntryTime() {
-          bitField0_ = (bitField0_ & ~0x00000002);
-          systemEntryTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long backendExecutionStartTime_ ;
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS started
-         * / (set by setBackendDBSExecutionStartTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_start_time = 3;</code>
-         * @return Whether the backendExecutionStartTime field is set.
-         */
-        public boolean hasBackendExecutionStartTime() {
-          return ((bitField0_ & 0x00000004) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS started
-         * / (set by setBackendDBSExecutionStartTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_start_time = 3;</code>
-         * @return The backendExecutionStartTime.
-         */
-        public long getBackendExecutionStartTime() {
-          return backendExecutionStartTime_;
-        }
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS started
-         * / (set by setBackendDBSExecutionStartTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_start_time = 3;</code>
-         * @param value The backendExecutionStartTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setBackendExecutionStartTime(long value) {
-          bitField0_ |= 0x00000004;
-          backendExecutionStartTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS started
-         * / (set by setBackendDBSExecutionStartTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_start_time = 3;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearBackendExecutionStartTime() {
-          bitField0_ = (bitField0_ & ~0x00000004);
-          backendExecutionStartTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long backendFirstRowFetchTime_ ;
-        /**
-         * <pre>
-         *&#47; system time when the first row was fetched from BackendDBS
-         * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-         * @return Whether the backendFirstRowFetchTime field is set.
-         */
-        public boolean hasBackendFirstRowFetchTime() {
-          return ((bitField0_ & 0x00000008) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; system time when the first row was fetched from BackendDBS
-         * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-         * @return The backendFirstRowFetchTime.
-         */
-        public long getBackendFirstRowFetchTime() {
-          return backendFirstRowFetchTime_;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the first row was fetched from BackendDBS
-         * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-         * @param value The backendFirstRowFetchTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setBackendFirstRowFetchTime(long value) {
-          bitField0_ |= 0x00000008;
-          backendFirstRowFetchTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the first row was fetched from BackendDBS
-         * / (set by setBackendDBSFirstRowFetchTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_first_row_fetch_time = 4;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearBackendFirstRowFetchTime() {
-          bitField0_ = (bitField0_ & ~0x00000008);
-          backendFirstRowFetchTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long backendExecutionFinishTime_ ;
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS finished
-         * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_finish_time = 5;</code>
-         * @return Whether the backendExecutionFinishTime field is set.
-         */
-        public boolean hasBackendExecutionFinishTime() {
-          return ((bitField0_ & 0x00000010) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS finished
-         * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_finish_time = 5;</code>
-         * @return The backendExecutionFinishTime.
-         */
-        public long getBackendExecutionFinishTime() {
-          return backendExecutionFinishTime_;
-        }
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS finished
-         * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_finish_time = 5;</code>
-         * @param value The backendExecutionFinishTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setBackendExecutionFinishTime(long value) {
-          bitField0_ |= 0x00000010;
-          backendExecutionFinishTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; system time when execution of the SQL statement in BackendDBS finished
-         * / (set by setBackendDBSExecutionFinishTimeToCurrent())
-         * </pre>
-         *
-         * <code>optional uint64 backend_execution_finish_time = 5;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearBackendExecutionFinishTime() {
-          bitField0_ = (bitField0_ & ~0x00000010);
-          backendExecutionFinishTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long clientLastRowFetchTime_ ;
-        /**
-         * <pre>
-         *&#47; system time when the last row was requested/sent to the client DBMS
-         * / (set by setClientLastRowFetchTime())
-         * </pre>
-         *
-         * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-         * @return Whether the clientLastRowFetchTime field is set.
-         */
-        public boolean hasClientLastRowFetchTime() {
-          return ((bitField0_ & 0x00000020) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; system time when the last row was requested/sent to the client DBMS
-         * / (set by setClientLastRowFetchTime())
-         * </pre>
-         *
-         * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-         * @return The clientLastRowFetchTime.
-         */
-        public long getClientLastRowFetchTime() {
-          return clientLastRowFetchTime_;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the last row was requested/sent to the client DBMS
-         * / (set by setClientLastRowFetchTime())
-         * </pre>
-         *
-         * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-         * @param value The clientLastRowFetchTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setClientLastRowFetchTime(long value) {
-          bitField0_ |= 0x00000020;
-          clientLastRowFetchTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the last row was requested/sent to the client DBMS
-         * / (set by setClientLastRowFetchTime())
-         * </pre>
-         *
-         * <code>optional uint64 client_last_row_fetch_time = 6;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearClientLastRowFetchTime() {
-          bitField0_ = (bitField0_ & ~0x00000020);
-          clientLastRowFetchTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long systemFinishTime_ ;
-        /**
-         * <pre>
-         *&#47; system time when the SQL execution was finished
-         * / (set by finishExecution() method)
-         * </pre>
-         *
-         * <code>optional uint64 system_finish_time = 7;</code>
-         * @return Whether the systemFinishTime field is set.
-         */
-        public boolean hasSystemFinishTime() {
-          return ((bitField0_ & 0x00000040) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; system time when the SQL execution was finished
-         * / (set by finishExecution() method)
-         * </pre>
-         *
-         * <code>optional uint64 system_finish_time = 7;</code>
-         * @return The systemFinishTime.
-         */
-        public long getSystemFinishTime() {
-          return systemFinishTime_;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the SQL execution was finished
-         * / (set by finishExecution() method)
-         * </pre>
-         *
-         * <code>optional uint64 system_finish_time = 7;</code>
-         * @param value The systemFinishTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setSystemFinishTime(long value) {
-          bitField0_ |= 0x00000040;
-          systemFinishTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the SQL execution was finished
-         * / (set by finishExecution() method)
-         * </pre>
-         *
-         * <code>optional uint64 system_finish_time = 7;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearSystemFinishTime() {
-          bitField0_ = (bitField0_ & ~0x00000040);
-          systemFinishTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long postProcessingExitTime_ ;
-        /**
-         * <pre>
-         *&#47; system time when the post-processing was finished
-         * / (set by the end of finishPostProcessing() method)
-         * </pre>
-         *
-         * <code>optional uint64 post_processing_exit_time = 8;</code>
-         * @return Whether the postProcessingExitTime field is set.
-         */
-        public boolean hasPostProcessingExitTime() {
-          return ((bitField0_ & 0x00000080) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; system time when the post-processing was finished
-         * / (set by the end of finishPostProcessing() method)
-         * </pre>
-         *
-         * <code>optional uint64 post_processing_exit_time = 8;</code>
-         * @return The postProcessingExitTime.
-         */
-        public long getPostProcessingExitTime() {
-          return postProcessingExitTime_;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the post-processing was finished
-         * / (set by the end of finishPostProcessing() method)
-         * </pre>
-         *
-         * <code>optional uint64 post_processing_exit_time = 8;</code>
-         * @param value The postProcessingExitTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setPostProcessingExitTime(long value) {
-          bitField0_ |= 0x00000080;
-          postProcessingExitTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; system time when the post-processing was finished
-         * / (set by the end of finishPostProcessing() method)
-         * </pre>
-         *
-         * <code>optional uint64 post_processing_exit_time = 8;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearPostProcessingExitTime() {
-          bitField0_ = (bitField0_ & ~0x00000080);
-          postProcessingExitTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long dwaCpuTime_ ;
-        /**
-         * <pre>
-         *&#47; CPU time spent for the SQL statement in DWA only;
-         * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-         * / mLastGatheredAccountingInformation
-         * </pre>
-         *
-         * <code>optional uint64 dwa_cpu_time = 9;</code>
-         * @return Whether the dwaCpuTime field is set.
-         */
-        public boolean hasDwaCpuTime() {
-          return ((bitField0_ & 0x00000100) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; CPU time spent for the SQL statement in DWA only;
-         * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-         * / mLastGatheredAccountingInformation
-         * </pre>
-         *
-         * <code>optional uint64 dwa_cpu_time = 9;</code>
-         * @return The dwaCpuTime.
-         */
-        public long getDwaCpuTime() {
-          return dwaCpuTime_;
-        }
-        /**
-         * <pre>
-         *&#47; CPU time spent for the SQL statement in DWA only;
-         * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-         * / mLastGatheredAccountingInformation
-         * </pre>
-         *
-         * <code>optional uint64 dwa_cpu_time = 9;</code>
-         * @param value The dwaCpuTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setDwaCpuTime(long value) {
-          bitField0_ |= 0x00000100;
-          dwaCpuTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; CPU time spent for the SQL statement in DWA only;
-         * / the CPU time spent in BackendDBS is tracked in &#64;a mAccountingInformation /
-         * / mLastGatheredAccountingInformation
-         * </pre>
-         *
-         * <code>optional uint64 dwa_cpu_time = 9;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearDwaCpuTime() {
-          bitField0_ = (bitField0_ & ~0x00000100);
-          dwaCpuTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long backendCpuTime_ ;
-        /**
-         * <pre>
-         *&#47; CPU time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_cpu_time = 10;</code>
-         * @return Whether the backendCpuTime field is set.
-         */
-        public boolean hasBackendCpuTime() {
-          return ((bitField0_ & 0x00000200) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; CPU time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_cpu_time = 10;</code>
-         * @return The backendCpuTime.
-         */
-        public long getBackendCpuTime() {
-          return backendCpuTime_;
-        }
-        /**
-         * <pre>
-         *&#47; CPU time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_cpu_time = 10;</code>
-         * @param value The backendCpuTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setBackendCpuTime(long value) {
-          bitField0_ |= 0x00000200;
-          backendCpuTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; CPU time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_cpu_time = 10;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearBackendCpuTime() {
-          bitField0_ = (bitField0_ & ~0x00000200);
-          backendCpuTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long backendWaitTime_ ;
-        /**
-         * <pre>
-         *&#47; wait time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_wait_time = 11;</code>
-         * @return Whether the backendWaitTime field is set.
-         */
-        public boolean hasBackendWaitTime() {
-          return ((bitField0_ & 0x00000400) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; wait time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_wait_time = 11;</code>
-         * @return The backendWaitTime.
-         */
-        public long getBackendWaitTime() {
-          return backendWaitTime_;
-        }
-        /**
-         * <pre>
-         *&#47; wait time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_wait_time = 11;</code>
-         * @param value The backendWaitTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setBackendWaitTime(long value) {
-          bitField0_ |= 0x00000400;
-          backendWaitTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; wait time for finished SQL statement
-         * / (from ODBC wrapper, provided by SQL executor)
-         * </pre>
-         *
-         * <code>optional uint64 backend_wait_time = 11;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearBackendWaitTime() {
-          bitField0_ = (bitField0_ & ~0x00000400);
-          backendWaitTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long backendAccountingCollectionTime_ ;
-        /**
-         * <pre>
-         *&#47; collection time for CPU/wait time in backend
-         * </pre>
-         *
-         * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-         * @return Whether the backendAccountingCollectionTime field is set.
-         */
-        public boolean hasBackendAccountingCollectionTime() {
-          return ((bitField0_ & 0x00000800) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; collection time for CPU/wait time in backend
-         * </pre>
-         *
-         * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-         * @return The backendAccountingCollectionTime.
-         */
-        public long getBackendAccountingCollectionTime() {
-          return backendAccountingCollectionTime_;
-        }
-        /**
-         * <pre>
-         *&#47; collection time for CPU/wait time in backend
-         * </pre>
-         *
-         * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-         * @param value The backendAccountingCollectionTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setBackendAccountingCollectionTime(long value) {
-          bitField0_ |= 0x00000800;
-          backendAccountingCollectionTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; collection time for CPU/wait time in backend
-         * </pre>
-         *
-         * <code>optional uint64 backend_accounting_collection_time = 12;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearBackendAccountingCollectionTime() {
-          bitField0_ = (bitField0_ & ~0x00000800);
-          backendAccountingCollectionTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private java.lang.Object realWorldEntryTimestamp_ = "";
-        /**
-         * <pre>
-         *&#47; wall-clock timestamp when the SQL statement entered the system
-         * </pre>
-         *
-         * <code>optional string real_world_entry_timestamp = 13;</code>
-         * @return Whether the realWorldEntryTimestamp field is set.
-         */
-        public boolean hasRealWorldEntryTimestamp() {
-          return ((bitField0_ & 0x00001000) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; wall-clock timestamp when the SQL statement entered the system
-         * </pre>
-         *
-         * <code>optional string real_world_entry_timestamp = 13;</code>
+         * <code>optional string real_world_entry_timestamp = 1;</code>
          * @return The realWorldEntryTimestamp.
          */
         public java.lang.String getRealWorldEntryTimestamp() {
@@ -5759,10 +5787,12 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; wall-clock timestamp when the SQL statement entered the system
+         **
+         * Time from the wall clock when the SQL statement entered the system. This
+         * timestamp is in UTC timezone.
          * </pre>
          *
-         * <code>optional string real_world_entry_timestamp = 13;</code>
+         * <code>optional string real_world_entry_timestamp = 1;</code>
          * @return The bytes for realWorldEntryTimestamp.
          */
         public com.google.protobuf.ByteString
@@ -5780,10 +5810,12 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; wall-clock timestamp when the SQL statement entered the system
+         **
+         * Time from the wall clock when the SQL statement entered the system. This
+         * timestamp is in UTC timezone.
          * </pre>
          *
-         * <code>optional string real_world_entry_timestamp = 13;</code>
+         * <code>optional string real_world_entry_timestamp = 1;</code>
          * @param value The realWorldEntryTimestamp to set.
          * @return This builder for chaining.
          */
@@ -5792,31 +5824,35 @@ public final class SQLStatementDetails {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00001000;
+  bitField0_ |= 0x00000001;
           realWorldEntryTimestamp_ = value;
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; wall-clock timestamp when the SQL statement entered the system
+         **
+         * Time from the wall clock when the SQL statement entered the system. This
+         * timestamp is in UTC timezone.
          * </pre>
          *
-         * <code>optional string real_world_entry_timestamp = 13;</code>
+         * <code>optional string real_world_entry_timestamp = 1;</code>
          * @return This builder for chaining.
          */
         public Builder clearRealWorldEntryTimestamp() {
-          bitField0_ = (bitField0_ & ~0x00001000);
+          bitField0_ = (bitField0_ & ~0x00000001);
           realWorldEntryTimestamp_ = getDefaultInstance().getRealWorldEntryTimestamp();
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; wall-clock timestamp when the SQL statement entered the system
+         **
+         * Time from the wall clock when the SQL statement entered the system. This
+         * timestamp is in UTC timezone.
          * </pre>
          *
-         * <code>optional string real_world_entry_timestamp = 13;</code>
+         * <code>optional string real_world_entry_timestamp = 1;</code>
          * @param value The bytes for realWorldEntryTimestamp to set.
          * @return This builder for chaining.
          */
@@ -5825,61 +5861,875 @@ public final class SQLStatementDetails {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00001000;
+  bitField0_ |= 0x00000001;
           realWorldEntryTimestamp_ = value;
           onChanged();
           return this;
         }
 
-        private double fetchTime_ ;
+        private long realWorldEntryTime_ ;
         /**
          * <pre>
-         *&#47; time that was spent in fetching query result rows.
+         **
+         * Time from the wall clock when the SQL statement entered the system.
+         * This is number of micro-seconds since 1970-01-01 00:00:00.
          * </pre>
          *
-         * <code>optional double fetch_time = 14;</code>
-         * @return Whether the fetchTime field is set.
+         * <code>optional uint64 real_world_entry_time = 2;</code>
+         * @return Whether the realWorldEntryTime field is set.
          */
-        public boolean hasFetchTime() {
-          return ((bitField0_ & 0x00002000) != 0);
+        public boolean hasRealWorldEntryTime() {
+          return ((bitField0_ & 0x00000002) != 0);
         }
         /**
          * <pre>
-         *&#47; time that was spent in fetching query result rows.
+         **
+         * Time from the wall clock when the SQL statement entered the system.
+         * This is number of micro-seconds since 1970-01-01 00:00:00.
          * </pre>
          *
-         * <code>optional double fetch_time = 14;</code>
-         * @return The fetchTime.
+         * <code>optional uint64 real_world_entry_time = 2;</code>
+         * @return The realWorldEntryTime.
          */
-        public double getFetchTime() {
-          return fetchTime_;
+        public long getRealWorldEntryTime() {
+          return realWorldEntryTime_;
         }
         /**
          * <pre>
-         *&#47; time that was spent in fetching query result rows.
+         **
+         * Time from the wall clock when the SQL statement entered the system.
+         * This is number of micro-seconds since 1970-01-01 00:00:00.
          * </pre>
          *
-         * <code>optional double fetch_time = 14;</code>
-         * @param value The fetchTime to set.
+         * <code>optional uint64 real_world_entry_time = 2;</code>
+         * @param value The realWorldEntryTime to set.
          * @return This builder for chaining.
          */
-        public Builder setFetchTime(double value) {
-          bitField0_ |= 0x00002000;
-          fetchTime_ = value;
+        public Builder setRealWorldEntryTime(long value) {
+          bitField0_ |= 0x00000002;
+          realWorldEntryTime_ = value;
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; time that was spent in fetching query result rows.
+         **
+         * Time from the wall clock when the SQL statement entered the system.
+         * This is number of micro-seconds since 1970-01-01 00:00:00.
          * </pre>
          *
-         * <code>optional double fetch_time = 14;</code>
+         * <code>optional uint64 real_world_entry_time = 2;</code>
          * @return This builder for chaining.
          */
-        public Builder clearFetchTime() {
+        public Builder clearRealWorldEntryTime() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          realWorldEntryTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long systemEntryTime_ ;
+        /**
+         * <pre>
+         **
+         * Time from the system clock when the SQL statement entered the system.
+         * This time is collected together with &#64;c real_world_entry_timestamp.
+         * </pre>
+         *
+         * <code>optional uint64 system_entry_time = 3;</code>
+         * @return Whether the systemEntryTime field is set.
+         */
+        public boolean hasSystemEntryTime() {
+          return ((bitField0_ & 0x00000004) != 0);
+        }
+        /**
+         * <pre>
+         **
+         * Time from the system clock when the SQL statement entered the system.
+         * This time is collected together with &#64;c real_world_entry_timestamp.
+         * </pre>
+         *
+         * <code>optional uint64 system_entry_time = 3;</code>
+         * @return The systemEntryTime.
+         */
+        public long getSystemEntryTime() {
+          return systemEntryTime_;
+        }
+        /**
+         * <pre>
+         **
+         * Time from the system clock when the SQL statement entered the system.
+         * This time is collected together with &#64;c real_world_entry_timestamp.
+         * </pre>
+         *
+         * <code>optional uint64 system_entry_time = 3;</code>
+         * @param value The systemEntryTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setSystemEntryTime(long value) {
+          bitField0_ |= 0x00000004;
+          systemEntryTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         **
+         * Time from the system clock when the SQL statement entered the system.
+         * This time is collected together with &#64;c real_world_entry_timestamp.
+         * </pre>
+         *
+         * <code>optional uint64 system_entry_time = 3;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearSystemEntryTime() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          systemEntryTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long prepareStartTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement was started
+         * </pre>
+         *
+         * <code>optional uint64 prepare_start_time = 4;</code>
+         * @return Whether the prepareStartTime field is set.
+         */
+        public boolean hasPrepareStartTime() {
+          return ((bitField0_ & 0x00000008) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement was started
+         * </pre>
+         *
+         * <code>optional uint64 prepare_start_time = 4;</code>
+         * @return The prepareStartTime.
+         */
+        public long getPrepareStartTime() {
+          return prepareStartTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement was started
+         * </pre>
+         *
+         * <code>optional uint64 prepare_start_time = 4;</code>
+         * @param value The prepareStartTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setPrepareStartTime(long value) {
+          bitField0_ |= 0x00000008;
+          prepareStartTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement was started
+         * </pre>
+         *
+         * <code>optional uint64 prepare_start_time = 4;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearPrepareStartTime() {
+          bitField0_ = (bitField0_ & ~0x00000008);
+          prepareStartTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long prepareFinishTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement has finished
+         * </pre>
+         *
+         * <code>optional uint64 prepare_finish_time = 5;</code>
+         * @return Whether the prepareFinishTime field is set.
+         */
+        public boolean hasPrepareFinishTime() {
+          return ((bitField0_ & 0x00000010) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement has finished
+         * </pre>
+         *
+         * <code>optional uint64 prepare_finish_time = 5;</code>
+         * @return The prepareFinishTime.
+         */
+        public long getPrepareFinishTime() {
+          return prepareFinishTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement has finished
+         * </pre>
+         *
+         * <code>optional uint64 prepare_finish_time = 5;</code>
+         * @param value The prepareFinishTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setPrepareFinishTime(long value) {
+          bitField0_ |= 0x00000010;
+          prepareFinishTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the prepare of the SQL statement has finished
+         * </pre>
+         *
+         * <code>optional uint64 prepare_finish_time = 5;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearPrepareFinishTime() {
+          bitField0_ = (bitField0_ & ~0x00000010);
+          prepareFinishTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long backendExecutionStartTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend was started
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_start_time = 6;</code>
+         * @return Whether the backendExecutionStartTime field is set.
+         */
+        public boolean hasBackendExecutionStartTime() {
+          return ((bitField0_ & 0x00000020) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend was started
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_start_time = 6;</code>
+         * @return The backendExecutionStartTime.
+         */
+        public long getBackendExecutionStartTime() {
+          return backendExecutionStartTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend was started
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_start_time = 6;</code>
+         * @param value The backendExecutionStartTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setBackendExecutionStartTime(long value) {
+          bitField0_ |= 0x00000020;
+          backendExecutionStartTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend was started
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_start_time = 6;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearBackendExecutionStartTime() {
+          bitField0_ = (bitField0_ & ~0x00000020);
+          backendExecutionStartTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long backendFirstRowFetchTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when the first row was fetched from the backend
+         * </pre>
+         *
+         * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+         * @return Whether the backendFirstRowFetchTime field is set.
+         */
+        public boolean hasBackendFirstRowFetchTime() {
+          return ((bitField0_ & 0x00000040) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the first row was fetched from the backend
+         * </pre>
+         *
+         * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+         * @return The backendFirstRowFetchTime.
+         */
+        public long getBackendFirstRowFetchTime() {
+          return backendFirstRowFetchTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the first row was fetched from the backend
+         * </pre>
+         *
+         * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+         * @param value The backendFirstRowFetchTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setBackendFirstRowFetchTime(long value) {
+          bitField0_ |= 0x00000040;
+          backendFirstRowFetchTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the first row was fetched from the backend
+         * </pre>
+         *
+         * <code>optional uint64 backend_first_row_fetch_time = 7;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearBackendFirstRowFetchTime() {
+          bitField0_ = (bitField0_ & ~0x00000040);
+          backendFirstRowFetchTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long backendExecutionFinishTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend finished
+         * / (note that result rows may still be fetched after statement execution finished)
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_finish_time = 8;</code>
+         * @return Whether the backendExecutionFinishTime field is set.
+         */
+        public boolean hasBackendExecutionFinishTime() {
+          return ((bitField0_ & 0x00000080) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend finished
+         * / (note that result rows may still be fetched after statement execution finished)
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_finish_time = 8;</code>
+         * @return The backendExecutionFinishTime.
+         */
+        public long getBackendExecutionFinishTime() {
+          return backendExecutionFinishTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend finished
+         * / (note that result rows may still be fetched after statement execution finished)
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_finish_time = 8;</code>
+         * @param value The backendExecutionFinishTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setBackendExecutionFinishTime(long value) {
+          bitField0_ |= 0x00000080;
+          backendExecutionFinishTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when execution of the SQL statement in the backend finished
+         * / (note that result rows may still be fetched after statement execution finished)
+         * </pre>
+         *
+         * <code>optional uint64 backend_execution_finish_time = 8;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearBackendExecutionFinishTime() {
+          bitField0_ = (bitField0_ & ~0x00000080);
+          backendExecutionFinishTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long clientLastRowFetchTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when the last row was requested/sent to the client
+         * </pre>
+         *
+         * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+         * @return Whether the clientLastRowFetchTime field is set.
+         */
+        public boolean hasClientLastRowFetchTime() {
+          return ((bitField0_ & 0x00000100) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the last row was requested/sent to the client
+         * </pre>
+         *
+         * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+         * @return The clientLastRowFetchTime.
+         */
+        public long getClientLastRowFetchTime() {
+          return clientLastRowFetchTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the last row was requested/sent to the client
+         * </pre>
+         *
+         * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+         * @param value The clientLastRowFetchTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setClientLastRowFetchTime(long value) {
+          bitField0_ |= 0x00000100;
+          clientLastRowFetchTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the last row was requested/sent to the client
+         * </pre>
+         *
+         * <code>optional uint64 client_last_row_fetch_time = 9;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearClientLastRowFetchTime() {
+          bitField0_ = (bitField0_ & ~0x00000100);
+          clientLastRowFetchTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long systemFinishTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when the execution in the accelerator finished; that time
+         * / does not include any post-processing time
+         * </pre>
+         *
+         * <code>optional uint64 system_finish_time = 10;</code>
+         * @return Whether the systemFinishTime field is set.
+         */
+        public boolean hasSystemFinishTime() {
+          return ((bitField0_ & 0x00000200) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the execution in the accelerator finished; that time
+         * / does not include any post-processing time
+         * </pre>
+         *
+         * <code>optional uint64 system_finish_time = 10;</code>
+         * @return The systemFinishTime.
+         */
+        public long getSystemFinishTime() {
+          return systemFinishTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the execution in the accelerator finished; that time
+         * / does not include any post-processing time
+         * </pre>
+         *
+         * <code>optional uint64 system_finish_time = 10;</code>
+         * @param value The systemFinishTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setSystemFinishTime(long value) {
+          bitField0_ |= 0x00000200;
+          systemFinishTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the execution in the accelerator finished; that time
+         * / does not include any post-processing time
+         * </pre>
+         *
+         * <code>optional uint64 system_finish_time = 10;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearSystemFinishTime() {
+          bitField0_ = (bitField0_ & ~0x00000200);
+          systemFinishTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long postProcessingExitTime_ ;
+        /**
+         * <pre>
+         *&#47; time from the system clock when the post-processing was finished
+         * </pre>
+         *
+         * <code>optional uint64 post_processing_exit_time = 11;</code>
+         * @return Whether the postProcessingExitTime field is set.
+         */
+        public boolean hasPostProcessingExitTime() {
+          return ((bitField0_ & 0x00000400) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the post-processing was finished
+         * </pre>
+         *
+         * <code>optional uint64 post_processing_exit_time = 11;</code>
+         * @return The postProcessingExitTime.
+         */
+        public long getPostProcessingExitTime() {
+          return postProcessingExitTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the post-processing was finished
+         * </pre>
+         *
+         * <code>optional uint64 post_processing_exit_time = 11;</code>
+         * @param value The postProcessingExitTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setPostProcessingExitTime(long value) {
+          bitField0_ |= 0x00000400;
+          postProcessingExitTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time from the system clock when the post-processing was finished
+         * </pre>
+         *
+         * <code>optional uint64 post_processing_exit_time = 11;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearPostProcessingExitTime() {
+          bitField0_ = (bitField0_ & ~0x00000400);
+          postProcessingExitTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long dwaCpuTime_ ;
+        /**
+         * <pre>
+         *&#47; CPU time spent for the SQL statement in the accelerator only
+         * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+         * </pre>
+         *
+         * <code>optional uint64 dwa_cpu_time = 12;</code>
+         * @return Whether the dwaCpuTime field is set.
+         */
+        public boolean hasDwaCpuTime() {
+          return ((bitField0_ & 0x00000800) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; CPU time spent for the SQL statement in the accelerator only
+         * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+         * </pre>
+         *
+         * <code>optional uint64 dwa_cpu_time = 12;</code>
+         * @return The dwaCpuTime.
+         */
+        public long getDwaCpuTime() {
+          return dwaCpuTime_;
+        }
+        /**
+         * <pre>
+         *&#47; CPU time spent for the SQL statement in the accelerator only
+         * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+         * </pre>
+         *
+         * <code>optional uint64 dwa_cpu_time = 12;</code>
+         * @param value The dwaCpuTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setDwaCpuTime(long value) {
+          bitField0_ |= 0x00000800;
+          dwaCpuTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; CPU time spent for the SQL statement in the accelerator only
+         * / (CPU time spent in the backend is tracked in field &#64;c backend_cpu_time)
+         * </pre>
+         *
+         * <code>optional uint64 dwa_cpu_time = 12;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearDwaCpuTime() {
+          bitField0_ = (bitField0_ & ~0x00000800);
+          dwaCpuTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long backendCpuTime_ ;
+        /**
+         * <pre>
+         **
+         * CPU time spend for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished. It may also include the CPU time spend for fetching
+         * the result set from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_cpu_time = 13;</code>
+         * @return Whether the backendCpuTime field is set.
+         */
+        public boolean hasBackendCpuTime() {
+          return ((bitField0_ & 0x00001000) != 0);
+        }
+        /**
+         * <pre>
+         **
+         * CPU time spend for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished. It may also include the CPU time spend for fetching
+         * the result set from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_cpu_time = 13;</code>
+         * @return The backendCpuTime.
+         */
+        public long getBackendCpuTime() {
+          return backendCpuTime_;
+        }
+        /**
+         * <pre>
+         **
+         * CPU time spend for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished. It may also include the CPU time spend for fetching
+         * the result set from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_cpu_time = 13;</code>
+         * @param value The backendCpuTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setBackendCpuTime(long value) {
+          bitField0_ |= 0x00001000;
+          backendCpuTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         **
+         * CPU time spend for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished. It may also include the CPU time spend for fetching
+         * the result set from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_cpu_time = 13;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearBackendCpuTime() {
+          bitField0_ = (bitField0_ & ~0x00001000);
+          backendCpuTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long backendWaitTime_ ;
+        /**
+         * <pre>
+         **
+         * Wait time for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished.
+         * </pre>
+         *
+         * <code>optional uint64 backend_wait_time = 14;</code>
+         * @return Whether the backendWaitTime field is set.
+         */
+        public boolean hasBackendWaitTime() {
+          return ((bitField0_ & 0x00002000) != 0);
+        }
+        /**
+         * <pre>
+         **
+         * Wait time for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished.
+         * </pre>
+         *
+         * <code>optional uint64 backend_wait_time = 14;</code>
+         * @return The backendWaitTime.
+         */
+        public long getBackendWaitTime() {
+          return backendWaitTime_;
+        }
+        /**
+         * <pre>
+         **
+         * Wait time for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished.
+         * </pre>
+         *
+         * <code>optional uint64 backend_wait_time = 14;</code>
+         * @param value The backendWaitTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setBackendWaitTime(long value) {
+          bitField0_ |= 0x00002000;
+          backendWaitTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         **
+         * Wait time for SQL statement in the backend.
+         * This information is available only after the SQL statement execution in the
+         * backend has finished.
+         * </pre>
+         *
+         * <code>optional uint64 backend_wait_time = 14;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearBackendWaitTime() {
           bitField0_ = (bitField0_ & ~0x00002000);
-          fetchTime_ = 0D;
+          backendWaitTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long backendAccountingCollectionTime_ ;
+        /**
+         * <pre>
+         **
+         * Time spend for collecting monitoring/accounting information from the backend.
+         * Additional queries are executed before/after the execution of the actual SQL
+         * statement to obtain monitoring counters from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+         * @return Whether the backendAccountingCollectionTime field is set.
+         */
+        public boolean hasBackendAccountingCollectionTime() {
+          return ((bitField0_ & 0x00004000) != 0);
+        }
+        /**
+         * <pre>
+         **
+         * Time spend for collecting monitoring/accounting information from the backend.
+         * Additional queries are executed before/after the execution of the actual SQL
+         * statement to obtain monitoring counters from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+         * @return The backendAccountingCollectionTime.
+         */
+        public long getBackendAccountingCollectionTime() {
+          return backendAccountingCollectionTime_;
+        }
+        /**
+         * <pre>
+         **
+         * Time spend for collecting monitoring/accounting information from the backend.
+         * Additional queries are executed before/after the execution of the actual SQL
+         * statement to obtain monitoring counters from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+         * @param value The backendAccountingCollectionTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setBackendAccountingCollectionTime(long value) {
+          bitField0_ |= 0x00004000;
+          backendAccountingCollectionTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         **
+         * Time spend for collecting monitoring/accounting information from the backend.
+         * Additional queries are executed before/after the execution of the actual SQL
+         * statement to obtain monitoring counters from the backend.
+         * </pre>
+         *
+         * <code>optional uint64 backend_accounting_collection_time = 15;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearBackendAccountingCollectionTime() {
+          bitField0_ = (bitField0_ & ~0x00004000);
+          backendAccountingCollectionTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private double prepareTime_ ;
+        /**
+         * <pre>
+         *&#47; time spend for preparing the SQL statement;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double prepare_time = 16;</code>
+         * @return Whether the prepareTime field is set.
+         */
+        public boolean hasPrepareTime() {
+          return ((bitField0_ & 0x00008000) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time spend for preparing the SQL statement;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double prepare_time = 16;</code>
+         * @return The prepareTime.
+         */
+        public double getPrepareTime() {
+          return prepareTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time spend for preparing the SQL statement;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double prepare_time = 16;</code>
+         * @param value The prepareTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setPrepareTime(double value) {
+          bitField0_ |= 0x00008000;
+          prepareTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time spend for preparing the SQL statement;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double prepare_time = 16;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearPrepareTime() {
+          bitField0_ = (bitField0_ & ~0x00008000);
+          prepareTime_ = 0D;
           onChanged();
           return this;
         }
@@ -5887,21 +6737,23 @@ public final class SQLStatementDetails {
         private double backendDBSExecTime_ ;
         /**
          * <pre>
-         *&#47; time that the SQL statement spend in executing in the BackendDBS backend
+         *&#47; time spend for executing the SQL statement (without result set fetching);
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double backendDBSExecTime = 15;</code>
+         * <code>optional double backendDBSExecTime = 17;</code>
          * @return Whether the backendDBSExecTime field is set.
          */
         public boolean hasBackendDBSExecTime() {
-          return ((bitField0_ & 0x00004000) != 0);
+          return ((bitField0_ & 0x00010000) != 0);
         }
         /**
          * <pre>
-         *&#47; time that the SQL statement spend in executing in the BackendDBS backend
+         *&#47; time spend for executing the SQL statement (without result set fetching);
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double backendDBSExecTime = 15;</code>
+         * <code>optional double backendDBSExecTime = 17;</code>
          * @return The backendDBSExecTime.
          */
         public double getBackendDBSExecTime() {
@@ -5909,30 +6761,89 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; time that the SQL statement spend in executing in the BackendDBS backend
+         *&#47; time spend for executing the SQL statement (without result set fetching);
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double backendDBSExecTime = 15;</code>
+         * <code>optional double backendDBSExecTime = 17;</code>
          * @param value The backendDBSExecTime to set.
          * @return This builder for chaining.
          */
         public Builder setBackendDBSExecTime(double value) {
-          bitField0_ |= 0x00004000;
+          bitField0_ |= 0x00010000;
           backendDBSExecTime_ = value;
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; time that the SQL statement spend in executing in the BackendDBS backend
+         *&#47; time spend for executing the SQL statement (without result set fetching);
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double backendDBSExecTime = 15;</code>
+         * <code>optional double backendDBSExecTime = 17;</code>
          * @return This builder for chaining.
          */
         public Builder clearBackendDBSExecTime() {
-          bitField0_ = (bitField0_ & ~0x00004000);
+          bitField0_ = (bitField0_ & ~0x00010000);
           backendDBSExecTime_ = 0D;
+          onChanged();
+          return this;
+        }
+
+        private double fetchTime_ ;
+        /**
+         * <pre>
+         *&#47; time spend for fetching the result set of the SQL statement after execution;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double fetch_time = 18;</code>
+         * @return Whether the fetchTime field is set.
+         */
+        public boolean hasFetchTime() {
+          return ((bitField0_ & 0x00020000) != 0);
+        }
+        /**
+         * <pre>
+         *&#47; time spend for fetching the result set of the SQL statement after execution;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double fetch_time = 18;</code>
+         * @return The fetchTime.
+         */
+        public double getFetchTime() {
+          return fetchTime_;
+        }
+        /**
+         * <pre>
+         *&#47; time spend for fetching the result set of the SQL statement after execution;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double fetch_time = 18;</code>
+         * @param value The fetchTime to set.
+         * @return This builder for chaining.
+         */
+        public Builder setFetchTime(double value) {
+          bitField0_ |= 0x00020000;
+          fetchTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *&#47; time spend for fetching the result set of the SQL statement after execution;
+         * / this is an elapsed time measured in seconds (with fractions)
+         * </pre>
+         *
+         * <code>optional double fetch_time = 18;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearFetchTime() {
+          bitField0_ = (bitField0_ & ~0x00020000);
+          fetchTime_ = 0D;
           onChanged();
           return this;
         }
@@ -5940,21 +6851,23 @@ public final class SQLStatementDetails {
         private double totalElapsedTime_ ;
         /**
          * <pre>
-         *&#47; the elapsed time for the SQL statement execution
+         *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double totalElapsedTime = 16;</code>
+         * <code>optional double totalElapsedTime = 19;</code>
          * @return Whether the totalElapsedTime field is set.
          */
         public boolean hasTotalElapsedTime() {
-          return ((bitField0_ & 0x00008000) != 0);
+          return ((bitField0_ & 0x00040000) != 0);
         }
         /**
          * <pre>
-         *&#47; the elapsed time for the SQL statement execution
+         *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double totalElapsedTime = 16;</code>
+         * <code>optional double totalElapsedTime = 19;</code>
          * @return The totalElapsedTime.
          */
         public double getTotalElapsedTime() {
@@ -5962,29 +6875,31 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; the elapsed time for the SQL statement execution
+         *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double totalElapsedTime = 16;</code>
+         * <code>optional double totalElapsedTime = 19;</code>
          * @param value The totalElapsedTime to set.
          * @return This builder for chaining.
          */
         public Builder setTotalElapsedTime(double value) {
-          bitField0_ |= 0x00008000;
+          bitField0_ |= 0x00040000;
           totalElapsedTime_ = value;
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; the elapsed time for the SQL statement execution
+         *&#47; time spend between &#64;c system_entry_time and &#64;c system_finish_time;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double totalElapsedTime = 16;</code>
+         * <code>optional double totalElapsedTime = 19;</code>
          * @return This builder for chaining.
          */
         public Builder clearTotalElapsedTime() {
-          bitField0_ = (bitField0_ & ~0x00008000);
+          bitField0_ = (bitField0_ & ~0x00040000);
           totalElapsedTime_ = 0D;
           onChanged();
           return this;
@@ -5993,21 +6908,23 @@ public final class SQLStatementDetails {
         private double postProcessingTime_ ;
         /**
          * <pre>
-         *&#47; the time since the SQL statement execution was finished until the post-processing is done.
+         *&#47; time spend for post-processing activities;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double postProcessingTime = 17;</code>
+         * <code>optional double postProcessingTime = 20;</code>
          * @return Whether the postProcessingTime field is set.
          */
         public boolean hasPostProcessingTime() {
-          return ((bitField0_ & 0x00010000) != 0);
+          return ((bitField0_ & 0x00080000) != 0);
         }
         /**
          * <pre>
-         *&#47; the time since the SQL statement execution was finished until the post-processing is done.
+         *&#47; time spend for post-processing activities;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double postProcessingTime = 17;</code>
+         * <code>optional double postProcessingTime = 20;</code>
          * @return The postProcessingTime.
          */
         public double getPostProcessingTime() {
@@ -6015,136 +6932,32 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; the time since the SQL statement execution was finished until the post-processing is done.
+         *&#47; time spend for post-processing activities;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double postProcessingTime = 17;</code>
+         * <code>optional double postProcessingTime = 20;</code>
          * @param value The postProcessingTime to set.
          * @return This builder for chaining.
          */
         public Builder setPostProcessingTime(double value) {
-          bitField0_ |= 0x00010000;
+          bitField0_ |= 0x00080000;
           postProcessingTime_ = value;
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; the time since the SQL statement execution was finished until the post-processing is done.
+         *&#47; time spend for post-processing activities;
+         * / this is an elapsed time measured in seconds (with fractions)
          * </pre>
          *
-         * <code>optional double postProcessingTime = 17;</code>
+         * <code>optional double postProcessingTime = 20;</code>
          * @return This builder for chaining.
          */
         public Builder clearPostProcessingTime() {
-          bitField0_ = (bitField0_ & ~0x00010000);
+          bitField0_ = (bitField0_ & ~0x00080000);
           postProcessingTime_ = 0D;
-          onChanged();
-          return this;
-        }
-
-        private long prepareStartTime_ ;
-        /**
-         * <pre>
-         *&#47; Start time when the prepare has started
-         * </pre>
-         *
-         * <code>optional uint64 prepare_start_time = 18;</code>
-         * @return Whether the prepareStartTime field is set.
-         */
-        public boolean hasPrepareStartTime() {
-          return ((bitField0_ & 0x00020000) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; Start time when the prepare has started
-         * </pre>
-         *
-         * <code>optional uint64 prepare_start_time = 18;</code>
-         * @return The prepareStartTime.
-         */
-        public long getPrepareStartTime() {
-          return prepareStartTime_;
-        }
-        /**
-         * <pre>
-         *&#47; Start time when the prepare has started
-         * </pre>
-         *
-         * <code>optional uint64 prepare_start_time = 18;</code>
-         * @param value The prepareStartTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setPrepareStartTime(long value) {
-          bitField0_ |= 0x00020000;
-          prepareStartTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; Start time when the prepare has started
-         * </pre>
-         *
-         * <code>optional uint64 prepare_start_time = 18;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearPrepareStartTime() {
-          bitField0_ = (bitField0_ & ~0x00020000);
-          prepareStartTime_ = 0L;
-          onChanged();
-          return this;
-        }
-
-        private long prepareTime_ ;
-        /**
-         * <pre>
-         *&#47; collected perpare time or calcualted while query is running
-         * </pre>
-         *
-         * <code>optional uint64 prepare_time = 19;</code>
-         * @return Whether the prepareTime field is set.
-         */
-        public boolean hasPrepareTime() {
-          return ((bitField0_ & 0x00040000) != 0);
-        }
-        /**
-         * <pre>
-         *&#47; collected perpare time or calcualted while query is running
-         * </pre>
-         *
-         * <code>optional uint64 prepare_time = 19;</code>
-         * @return The prepareTime.
-         */
-        public long getPrepareTime() {
-          return prepareTime_;
-        }
-        /**
-         * <pre>
-         *&#47; collected perpare time or calcualted while query is running
-         * </pre>
-         *
-         * <code>optional uint64 prepare_time = 19;</code>
-         * @param value The prepareTime to set.
-         * @return This builder for chaining.
-         */
-        public Builder setPrepareTime(long value) {
-          bitField0_ |= 0x00040000;
-          prepareTime_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <pre>
-         *&#47; collected perpare time or calcualted while query is running
-         * </pre>
-         *
-         * <code>optional uint64 prepare_time = 19;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearPrepareTime() {
-          bitField0_ = (bitField0_ & ~0x00040000);
-          prepareTime_ = 0L;
           onChanged();
           return this;
         }
@@ -6152,21 +6965,35 @@ public final class SQLStatementDetails {
         private long cachedParsedClientReferenceTimestamp_ ;
         /**
          * <pre>
-         *&#47; wall-clock time of the client reference timestamp provided via special registers
+         **
+         * The value of the special register value stored in field &#64;c client_reference_timestamp)
+         * is parsed into the internal representation and stored here. The value is a
+         * time from the wall clock that measures the number of seconds from
+         * 1970-01-01 00:00:00.
+         * Note that this is _not_ like all the other timers. The purpose of this field
+         * is very much unclear as well. But we cannot remove it to keep things
+         * backward-compatible.
          * </pre>
          *
-         * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
+         * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
          * @return Whether the cachedParsedClientReferenceTimestamp field is set.
          */
         public boolean hasCachedParsedClientReferenceTimestamp() {
-          return ((bitField0_ & 0x00080000) != 0);
+          return ((bitField0_ & 0x00100000) != 0);
         }
         /**
          * <pre>
-         *&#47; wall-clock time of the client reference timestamp provided via special registers
+         **
+         * The value of the special register value stored in field &#64;c client_reference_timestamp)
+         * is parsed into the internal representation and stored here. The value is a
+         * time from the wall clock that measures the number of seconds from
+         * 1970-01-01 00:00:00.
+         * Note that this is _not_ like all the other timers. The purpose of this field
+         * is very much unclear as well. But we cannot remove it to keep things
+         * backward-compatible.
          * </pre>
          *
-         * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
+         * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
          * @return The cachedParsedClientReferenceTimestamp.
          */
         public long getCachedParsedClientReferenceTimestamp() {
@@ -6174,29 +7001,43 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; wall-clock time of the client reference timestamp provided via special registers
+         **
+         * The value of the special register value stored in field &#64;c client_reference_timestamp)
+         * is parsed into the internal representation and stored here. The value is a
+         * time from the wall clock that measures the number of seconds from
+         * 1970-01-01 00:00:00.
+         * Note that this is _not_ like all the other timers. The purpose of this field
+         * is very much unclear as well. But we cannot remove it to keep things
+         * backward-compatible.
          * </pre>
          *
-         * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
+         * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
          * @param value The cachedParsedClientReferenceTimestamp to set.
          * @return This builder for chaining.
          */
         public Builder setCachedParsedClientReferenceTimestamp(long value) {
-          bitField0_ |= 0x00080000;
+          bitField0_ |= 0x00100000;
           cachedParsedClientReferenceTimestamp_ = value;
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; wall-clock time of the client reference timestamp provided via special registers
+         **
+         * The value of the special register value stored in field &#64;c client_reference_timestamp)
+         * is parsed into the internal representation and stored here. The value is a
+         * time from the wall clock that measures the number of seconds from
+         * 1970-01-01 00:00:00.
+         * Note that this is _not_ like all the other timers. The purpose of this field
+         * is very much unclear as well. But we cannot remove it to keep things
+         * backward-compatible.
          * </pre>
          *
-         * <code>optional uint64 cached_parsed_client_reference_timestamp = 20;</code>
+         * <code>optional uint64 cached_parsed_client_reference_timestamp = 21;</code>
          * @return This builder for chaining.
          */
         public Builder clearCachedParsedClientReferenceTimestamp() {
-          bitField0_ = (bitField0_ & ~0x00080000);
+          bitField0_ = (bitField0_ & ~0x00100000);
           cachedParsedClientReferenceTimestamp_ = 0L;
           onChanged();
           return this;
@@ -6205,21 +7046,31 @@ public final class SQLStatementDetails {
         private long totalContinueQueryWaitTime_ ;
         /**
          * <pre>
-         *&#47; collected wait times between continue query calls
+         **
+         * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+         * set from the accelerator. Each such message is responded to with another chunk
+         * of data in QRYDTA (Query Data) messages. The wait times between sending those
+         * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+         * following fields. The fields are updated and recalculated for each CNTQRY message.
          * </pre>
          *
-         * <code>optional int64 total_continue_query_wait_time = 21;</code>
+         * <code>optional int64 total_continue_query_wait_time = 22;</code>
          * @return Whether the totalContinueQueryWaitTime field is set.
          */
         public boolean hasTotalContinueQueryWaitTime() {
-          return ((bitField0_ & 0x00100000) != 0);
+          return ((bitField0_ & 0x00200000) != 0);
         }
         /**
          * <pre>
-         *&#47; collected wait times between continue query calls
+         **
+         * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+         * set from the accelerator. Each such message is responded to with another chunk
+         * of data in QRYDTA (Query Data) messages. The wait times between sending those
+         * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+         * following fields. The fields are updated and recalculated for each CNTQRY message.
          * </pre>
          *
-         * <code>optional int64 total_continue_query_wait_time = 21;</code>
+         * <code>optional int64 total_continue_query_wait_time = 22;</code>
          * @return The totalContinueQueryWaitTime.
          */
         public long getTotalContinueQueryWaitTime() {
@@ -6227,29 +7078,39 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; collected wait times between continue query calls
+         **
+         * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+         * set from the accelerator. Each such message is responded to with another chunk
+         * of data in QRYDTA (Query Data) messages. The wait times between sending those
+         * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+         * following fields. The fields are updated and recalculated for each CNTQRY message.
          * </pre>
          *
-         * <code>optional int64 total_continue_query_wait_time = 21;</code>
+         * <code>optional int64 total_continue_query_wait_time = 22;</code>
          * @param value The totalContinueQueryWaitTime to set.
          * @return This builder for chaining.
          */
         public Builder setTotalContinueQueryWaitTime(long value) {
-          bitField0_ |= 0x00100000;
+          bitField0_ |= 0x00200000;
           totalContinueQueryWaitTime_ = value;
           onChanged();
           return this;
         }
         /**
          * <pre>
-         *&#47; collected wait times between continue query calls
+         **
+         * The client sends CNTQRY (Continue Query) DRDA messages when fetching the result
+         * set from the accelerator. Each such message is responded to with another chunk
+         * of data in QRYDTA (Query Data) messages. The wait times between sending those
+         * QRYDTA messages and receiving the next CNTQRY messages are tracked in the
+         * following fields. The fields are updated and recalculated for each CNTQRY message.
          * </pre>
          *
-         * <code>optional int64 total_continue_query_wait_time = 21;</code>
+         * <code>optional int64 total_continue_query_wait_time = 22;</code>
          * @return This builder for chaining.
          */
         public Builder clearTotalContinueQueryWaitTime() {
-          bitField0_ = (bitField0_ & ~0x00100000);
+          bitField0_ = (bitField0_ & ~0x00200000);
           totalContinueQueryWaitTime_ = 0L;
           onChanged();
           return this;
@@ -6257,36 +7118,36 @@ public final class SQLStatementDetails {
 
         private long averageContinueQueryWaitTime_ ;
         /**
-         * <code>optional int64 average_continue_query_wait_time = 22;</code>
+         * <code>optional int64 average_continue_query_wait_time = 23;</code>
          * @return Whether the averageContinueQueryWaitTime field is set.
          */
         public boolean hasAverageContinueQueryWaitTime() {
-          return ((bitField0_ & 0x00200000) != 0);
+          return ((bitField0_ & 0x00400000) != 0);
         }
         /**
-         * <code>optional int64 average_continue_query_wait_time = 22;</code>
+         * <code>optional int64 average_continue_query_wait_time = 23;</code>
          * @return The averageContinueQueryWaitTime.
          */
         public long getAverageContinueQueryWaitTime() {
           return averageContinueQueryWaitTime_;
         }
         /**
-         * <code>optional int64 average_continue_query_wait_time = 22;</code>
+         * <code>optional int64 average_continue_query_wait_time = 23;</code>
          * @param value The averageContinueQueryWaitTime to set.
          * @return This builder for chaining.
          */
         public Builder setAverageContinueQueryWaitTime(long value) {
-          bitField0_ |= 0x00200000;
+          bitField0_ |= 0x00400000;
           averageContinueQueryWaitTime_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional int64 average_continue_query_wait_time = 22;</code>
+         * <code>optional int64 average_continue_query_wait_time = 23;</code>
          * @return This builder for chaining.
          */
         public Builder clearAverageContinueQueryWaitTime() {
-          bitField0_ = (bitField0_ & ~0x00200000);
+          bitField0_ = (bitField0_ & ~0x00400000);
           averageContinueQueryWaitTime_ = 0L;
           onChanged();
           return this;
@@ -6294,36 +7155,36 @@ public final class SQLStatementDetails {
 
         private long smallestContinueQueryWaitTime_ ;
         /**
-         * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+         * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
          * @return Whether the smallestContinueQueryWaitTime field is set.
          */
         public boolean hasSmallestContinueQueryWaitTime() {
-          return ((bitField0_ & 0x00400000) != 0);
+          return ((bitField0_ & 0x00800000) != 0);
         }
         /**
-         * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+         * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
          * @return The smallestContinueQueryWaitTime.
          */
         public long getSmallestContinueQueryWaitTime() {
           return smallestContinueQueryWaitTime_;
         }
         /**
-         * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+         * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
          * @param value The smallestContinueQueryWaitTime to set.
          * @return This builder for chaining.
          */
         public Builder setSmallestContinueQueryWaitTime(long value) {
-          bitField0_ |= 0x00400000;
+          bitField0_ |= 0x00800000;
           smallestContinueQueryWaitTime_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional int64 smallest_continue_query_wait_time = 23;</code>
+         * <code>optional int64 smallest_continue_query_wait_time = 24;</code>
          * @return This builder for chaining.
          */
         public Builder clearSmallestContinueQueryWaitTime() {
-          bitField0_ = (bitField0_ & ~0x00400000);
+          bitField0_ = (bitField0_ & ~0x00800000);
           smallestContinueQueryWaitTime_ = 0L;
           onChanged();
           return this;
@@ -6331,36 +7192,36 @@ public final class SQLStatementDetails {
 
         private long largestContinueQueryWaitTime_ ;
         /**
-         * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+         * <code>optional int64 largest_continue_query_wait_time = 25;</code>
          * @return Whether the largestContinueQueryWaitTime field is set.
          */
         public boolean hasLargestContinueQueryWaitTime() {
-          return ((bitField0_ & 0x00800000) != 0);
+          return ((bitField0_ & 0x01000000) != 0);
         }
         /**
-         * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+         * <code>optional int64 largest_continue_query_wait_time = 25;</code>
          * @return The largestContinueQueryWaitTime.
          */
         public long getLargestContinueQueryWaitTime() {
           return largestContinueQueryWaitTime_;
         }
         /**
-         * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+         * <code>optional int64 largest_continue_query_wait_time = 25;</code>
          * @param value The largestContinueQueryWaitTime to set.
          * @return This builder for chaining.
          */
         public Builder setLargestContinueQueryWaitTime(long value) {
-          bitField0_ |= 0x00800000;
+          bitField0_ |= 0x01000000;
           largestContinueQueryWaitTime_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional int64 largest_continue_query_wait_time = 24;</code>
+         * <code>optional int64 largest_continue_query_wait_time = 25;</code>
          * @return This builder for chaining.
          */
         public Builder clearLargestContinueQueryWaitTime() {
-          bitField0_ = (bitField0_ & ~0x00800000);
+          bitField0_ = (bitField0_ & ~0x01000000);
           largestContinueQueryWaitTime_ = 0L;
           onChanged();
           return this;
@@ -6368,36 +7229,36 @@ public final class SQLStatementDetails {
 
         private long numContinueQueryWaitTimes_ ;
         /**
-         * <code>optional int64 num_continue_query_wait_times = 25;</code>
+         * <code>optional int64 num_continue_query_wait_times = 26;</code>
          * @return Whether the numContinueQueryWaitTimes field is set.
          */
         public boolean hasNumContinueQueryWaitTimes() {
-          return ((bitField0_ & 0x01000000) != 0);
+          return ((bitField0_ & 0x02000000) != 0);
         }
         /**
-         * <code>optional int64 num_continue_query_wait_times = 25;</code>
+         * <code>optional int64 num_continue_query_wait_times = 26;</code>
          * @return The numContinueQueryWaitTimes.
          */
         public long getNumContinueQueryWaitTimes() {
           return numContinueQueryWaitTimes_;
         }
         /**
-         * <code>optional int64 num_continue_query_wait_times = 25;</code>
+         * <code>optional int64 num_continue_query_wait_times = 26;</code>
          * @param value The numContinueQueryWaitTimes to set.
          * @return This builder for chaining.
          */
         public Builder setNumContinueQueryWaitTimes(long value) {
-          bitField0_ |= 0x01000000;
+          bitField0_ |= 0x02000000;
           numContinueQueryWaitTimes_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional int64 num_continue_query_wait_times = 25;</code>
+         * <code>optional int64 num_continue_query_wait_times = 26;</code>
          * @return This builder for chaining.
          */
         public Builder clearNumContinueQueryWaitTimes() {
-          bitField0_ = (bitField0_ & ~0x01000000);
+          bitField0_ = (bitField0_ & ~0x02000000);
           numContinueQueryWaitTimes_ = 0L;
           onChanged();
           return this;
@@ -6461,7 +7322,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; BackendDBS error message (if SQL statement failed)
+       *&#47; Error message received from the backend if SQL statement execution failed there
        * </pre>
        *
        * <code>optional string backend_error_message = 1;</code>
@@ -6470,7 +7331,7 @@ public final class SQLStatementDetails {
       boolean hasBackendErrorMessage();
       /**
        * <pre>
-       *&#47; BackendDBS error message (if SQL statement failed)
+       *&#47; Error message received from the backend if SQL statement execution failed there
        * </pre>
        *
        * <code>optional string backend_error_message = 1;</code>
@@ -6479,7 +7340,7 @@ public final class SQLStatementDetails {
       java.lang.String getBackendErrorMessage();
       /**
        * <pre>
-       *&#47; BackendDBS error message (if SQL statement failed)
+       *&#47; Error message received from the backend if SQL statement execution failed there
        * </pre>
        *
        * <code>optional string backend_error_message = 1;</code>
@@ -6490,7 +7351,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; SQLState of statement execution
+       *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
        * </pre>
        *
        * <code>optional string sql_state = 2;</code>
@@ -6499,7 +7360,7 @@ public final class SQLStatementDetails {
       boolean hasSqlState();
       /**
        * <pre>
-       *&#47; SQLState of statement execution
+       *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
        * </pre>
        *
        * <code>optional string sql_state = 2;</code>
@@ -6508,7 +7369,7 @@ public final class SQLStatementDetails {
       java.lang.String getSqlState();
       /**
        * <pre>
-       *&#47; SQLState of statement execution
+       *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
        * </pre>
        *
        * <code>optional string sql_state = 2;</code>
@@ -6519,7 +7380,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; SQLCode of statement execution
+       *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
        * </pre>
        *
        * <code>optional int32 sql_code = 3;</code>
@@ -6528,7 +7389,7 @@ public final class SQLStatementDetails {
       boolean hasSqlCode();
       /**
        * <pre>
-       *&#47; SQLCode of statement execution
+       *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
        * </pre>
        *
        * <code>optional int32 sql_code = 3;</code>
@@ -6538,8 +7399,8 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; number of result rows produced by queries or affected by
-       * / insert/update/delete statements
+       *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+       * / affected by a DML statement like INSERT/UPDATE/DELETE.
        * </pre>
        *
        * <code>optional uint64 num_result_rows = 4;</code>
@@ -6548,8 +7409,8 @@ public final class SQLStatementDetails {
       boolean hasNumResultRows();
       /**
        * <pre>
-       *&#47; number of result rows produced by queries or affected by
-       * / insert/update/delete statements
+       *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+       * / affected by a DML statement like INSERT/UPDATE/DELETE.
        * </pre>
        *
        * <code>optional uint64 num_result_rows = 4;</code>
@@ -6688,7 +7549,7 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object backendErrorMessage_;
       /**
        * <pre>
-       *&#47; BackendDBS error message (if SQL statement failed)
+       *&#47; Error message received from the backend if SQL statement execution failed there
        * </pre>
        *
        * <code>optional string backend_error_message = 1;</code>
@@ -6699,7 +7560,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; BackendDBS error message (if SQL statement failed)
+       *&#47; Error message received from the backend if SQL statement execution failed there
        * </pre>
        *
        * <code>optional string backend_error_message = 1;</code>
@@ -6721,7 +7582,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; BackendDBS error message (if SQL statement failed)
+       *&#47; Error message received from the backend if SQL statement execution failed there
        * </pre>
        *
        * <code>optional string backend_error_message = 1;</code>
@@ -6745,7 +7606,7 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object sqlState_;
       /**
        * <pre>
-       *&#47; SQLState of statement execution
+       *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
        * </pre>
        *
        * <code>optional string sql_state = 2;</code>
@@ -6756,7 +7617,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQLState of statement execution
+       *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
        * </pre>
        *
        * <code>optional string sql_state = 2;</code>
@@ -6778,7 +7639,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQLState of statement execution
+       *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
        * </pre>
        *
        * <code>optional string sql_state = 2;</code>
@@ -6802,7 +7663,7 @@ public final class SQLStatementDetails {
       private int sqlCode_;
       /**
        * <pre>
-       *&#47; SQLCode of statement execution
+       *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
        * </pre>
        *
        * <code>optional int32 sql_code = 3;</code>
@@ -6813,7 +7674,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQLCode of statement execution
+       *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
        * </pre>
        *
        * <code>optional int32 sql_code = 3;</code>
@@ -6827,8 +7688,8 @@ public final class SQLStatementDetails {
       private long numResultRows_;
       /**
        * <pre>
-       *&#47; number of result rows produced by queries or affected by
-       * / insert/update/delete statements
+       *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+       * / affected by a DML statement like INSERT/UPDATE/DELETE.
        * </pre>
        *
        * <code>optional uint64 num_result_rows = 4;</code>
@@ -6839,8 +7700,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; number of result rows produced by queries or affected by
-       * / insert/update/delete statements
+       *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+       * / affected by a DML statement like INSERT/UPDATE/DELETE.
        * </pre>
        *
        * <code>optional uint64 num_result_rows = 4;</code>
@@ -7296,7 +8157,7 @@ public final class SQLStatementDetails {
         private java.lang.Object backendErrorMessage_ = "";
         /**
          * <pre>
-         *&#47; BackendDBS error message (if SQL statement failed)
+         *&#47; Error message received from the backend if SQL statement execution failed there
          * </pre>
          *
          * <code>optional string backend_error_message = 1;</code>
@@ -7307,7 +8168,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; BackendDBS error message (if SQL statement failed)
+         *&#47; Error message received from the backend if SQL statement execution failed there
          * </pre>
          *
          * <code>optional string backend_error_message = 1;</code>
@@ -7329,7 +8190,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; BackendDBS error message (if SQL statement failed)
+         *&#47; Error message received from the backend if SQL statement execution failed there
          * </pre>
          *
          * <code>optional string backend_error_message = 1;</code>
@@ -7350,7 +8211,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; BackendDBS error message (if SQL statement failed)
+         *&#47; Error message received from the backend if SQL statement execution failed there
          * </pre>
          *
          * <code>optional string backend_error_message = 1;</code>
@@ -7369,7 +8230,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; BackendDBS error message (if SQL statement failed)
+         *&#47; Error message received from the backend if SQL statement execution failed there
          * </pre>
          *
          * <code>optional string backend_error_message = 1;</code>
@@ -7383,7 +8244,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; BackendDBS error message (if SQL statement failed)
+         *&#47; Error message received from the backend if SQL statement execution failed there
          * </pre>
          *
          * <code>optional string backend_error_message = 1;</code>
@@ -7404,7 +8265,7 @@ public final class SQLStatementDetails {
         private java.lang.Object sqlState_ = "";
         /**
          * <pre>
-         *&#47; SQLState of statement execution
+         *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
          * </pre>
          *
          * <code>optional string sql_state = 2;</code>
@@ -7415,7 +8276,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLState of statement execution
+         *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
          * </pre>
          *
          * <code>optional string sql_state = 2;</code>
@@ -7437,7 +8298,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLState of statement execution
+         *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
          * </pre>
          *
          * <code>optional string sql_state = 2;</code>
@@ -7458,7 +8319,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLState of statement execution
+         *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
          * </pre>
          *
          * <code>optional string sql_state = 2;</code>
@@ -7477,7 +8338,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLState of statement execution
+         *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
          * </pre>
          *
          * <code>optional string sql_state = 2;</code>
@@ -7491,7 +8352,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLState of statement execution
+         *&#47; SQLState of statement execution (&gt;= 0 on success; negative for errors; +100 indicates end-of-result-set)
          * </pre>
          *
          * <code>optional string sql_state = 2;</code>
@@ -7512,7 +8373,7 @@ public final class SQLStatementDetails {
         private int sqlCode_ ;
         /**
          * <pre>
-         *&#47; SQLCode of statement execution
+         *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
          * </pre>
          *
          * <code>optional int32 sql_code = 3;</code>
@@ -7523,7 +8384,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLCode of statement execution
+         *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
          * </pre>
          *
          * <code>optional int32 sql_code = 3;</code>
@@ -7534,7 +8395,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLCode of statement execution
+         *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
          * </pre>
          *
          * <code>optional int32 sql_code = 3;</code>
@@ -7549,7 +8410,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; SQLCode of statement execution
+         *&#47; SQLCode of statement execution ("02000" indicates end-of-result-set)
          * </pre>
          *
          * <code>optional int32 sql_code = 3;</code>
@@ -7565,8 +8426,8 @@ public final class SQLStatementDetails {
         private long numResultRows_ ;
         /**
          * <pre>
-         *&#47; number of result rows produced by queries or affected by
-         * / insert/update/delete statements
+         *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+         * / affected by a DML statement like INSERT/UPDATE/DELETE.
          * </pre>
          *
          * <code>optional uint64 num_result_rows = 4;</code>
@@ -7577,8 +8438,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; number of result rows produced by queries or affected by
-         * / insert/update/delete statements
+         *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+         * / affected by a DML statement like INSERT/UPDATE/DELETE.
          * </pre>
          *
          * <code>optional uint64 num_result_rows = 4;</code>
@@ -7589,8 +8450,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; number of result rows produced by queries or affected by
-         * / insert/update/delete statements
+         *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+         * / affected by a DML statement like INSERT/UPDATE/DELETE.
          * </pre>
          *
          * <code>optional uint64 num_result_rows = 4;</code>
@@ -7605,8 +8466,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; number of result rows produced by queries or affected by
-         * / insert/update/delete statements
+         *&#47; Number of rows produced by the backend for the result set for a query; or the number of rows
+         * / affected by a DML statement like INSERT/UPDATE/DELETE.
          * </pre>
          *
          * <code>optional uint64 num_result_rows = 4;</code>
@@ -7749,7 +8610,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; start time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition started
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -7758,7 +8619,7 @@ public final class SQLStatementDetails {
       boolean hasTimeWaitedForDelayProtocolStartTime();
       /**
        * <pre>
-       *&#47; start time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition started
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -7768,7 +8629,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; finish time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition finished
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -7777,7 +8638,7 @@ public final class SQLStatementDetails {
       boolean hasTimeWaitedForDelayProtocolFinishTime();
       /**
        * <pre>
-       *&#47; finish time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition finished
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -7787,7 +8648,10 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; count for if the waitForLogPosition call expired,
+       **
+       * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+       * stored here in case the timeout for waitForLogPosition has expired and
+       * the desired log position count was not reached.
        * </pre>
        *
        * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -7796,7 +8660,10 @@ public final class SQLStatementDetails {
       boolean hasCountWaitTimeForDelayProtocolExpired();
       /**
        * <pre>
-       *&#47; count for if the waitForLogPosition call expired,
+       **
+       * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+       * stored here in case the timeout for waitForLogPosition has expired and
+       * the desired log position count was not reached.
        * </pre>
        *
        * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -7806,7 +8673,8 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -7815,7 +8683,8 @@ public final class SQLStatementDetails {
       boolean hasLogRecordSequenceNumberLogPosition();
       /**
        * <pre>
-       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -7824,7 +8693,8 @@ public final class SQLStatementDetails {
       java.lang.String getLogRecordSequenceNumberLogPosition();
       /**
        * <pre>
-       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -7835,7 +8705,8 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -7844,7 +8715,8 @@ public final class SQLStatementDetails {
       boolean hasRelativeByteAddressLogPosition();
       /**
        * <pre>
-       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -7853,7 +8725,8 @@ public final class SQLStatementDetails {
       java.lang.String getRelativeByteAddressLogPosition();
       /**
        * <pre>
-       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -7882,22 +8755,38 @@ public final class SQLStatementDetails {
       boolean getAllowNonReplicatedTablesForWaitForData();
 
       /**
+       * <pre>
+       *&#47; indicator whether the waitForLogPosition feature has been used
+       * </pre>
+       *
        * <code>optional bool use_delay_protocol = 8;</code>
        * @return Whether the useDelayProtocol field is set.
        */
       boolean hasUseDelayProtocol();
       /**
+       * <pre>
+       *&#47; indicator whether the waitForLogPosition feature has been used
+       * </pre>
+       *
        * <code>optional bool use_delay_protocol = 8;</code>
        * @return The useDelayProtocol.
        */
       boolean getUseDelayProtocol();
 
       /**
+       * <pre>
+       *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+       * </pre>
+       *
        * <code>optional double time_waited_for_delay_protocol = 9;</code>
        * @return Whether the timeWaitedForDelayProtocol field is set.
        */
       boolean hasTimeWaitedForDelayProtocol();
       /**
+       * <pre>
+       *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+       * </pre>
+       *
        * <code>optional double time_waited_for_delay_protocol = 9;</code>
        * @return The timeWaitedForDelayProtocol.
        */
@@ -8060,7 +8949,7 @@ public final class SQLStatementDetails {
       private long timeWaitedForDelayProtocolStartTime_;
       /**
        * <pre>
-       *&#47; start time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition started
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -8071,7 +8960,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; start time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition started
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -8085,7 +8974,7 @@ public final class SQLStatementDetails {
       private long timeWaitedForDelayProtocolFinishTime_;
       /**
        * <pre>
-       *&#47; finish time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition finished
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -8096,7 +8985,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; finish time of the waitForLogPosition call
+       *&#47; time from the system clock when waitForLogPosition finished
        * </pre>
        *
        * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -8110,7 +8999,10 @@ public final class SQLStatementDetails {
       private int countWaitTimeForDelayProtocolExpired_;
       /**
        * <pre>
-       *&#47; count for if the waitForLogPosition call expired,
+       **
+       * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+       * stored here in case the timeout for waitForLogPosition has expired and
+       * the desired log position count was not reached.
        * </pre>
        *
        * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -8121,7 +9013,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; count for if the waitForLogPosition call expired,
+       **
+       * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+       * stored here in case the timeout for waitForLogPosition has expired and
+       * the desired log position count was not reached.
        * </pre>
        *
        * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -8135,7 +9030,8 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object logRecordSequenceNumberLogPosition_;
       /**
        * <pre>
-       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -8146,7 +9042,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -8168,7 +9065,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+       *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -8192,7 +9090,8 @@ public final class SQLStatementDetails {
       private volatile java.lang.Object relativeByteAddressLogPosition_;
       /**
        * <pre>
-       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -8203,7 +9102,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -8225,7 +9125,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+       *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+       * / that should have been or was reached
        * </pre>
        *
        * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -8273,6 +9174,10 @@ public final class SQLStatementDetails {
       public static final int USE_DELAY_PROTOCOL_FIELD_NUMBER = 8;
       private boolean useDelayProtocol_;
       /**
+       * <pre>
+       *&#47; indicator whether the waitForLogPosition feature has been used
+       * </pre>
+       *
        * <code>optional bool use_delay_protocol = 8;</code>
        * @return Whether the useDelayProtocol field is set.
        */
@@ -8280,6 +9185,10 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000080) != 0);
       }
       /**
+       * <pre>
+       *&#47; indicator whether the waitForLogPosition feature has been used
+       * </pre>
+       *
        * <code>optional bool use_delay_protocol = 8;</code>
        * @return The useDelayProtocol.
        */
@@ -8290,6 +9199,10 @@ public final class SQLStatementDetails {
       public static final int TIME_WAITED_FOR_DELAY_PROTOCOL_FIELD_NUMBER = 9;
       private double timeWaitedForDelayProtocol_;
       /**
+       * <pre>
+       *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+       * </pre>
+       *
        * <code>optional double time_waited_for_delay_protocol = 9;</code>
        * @return Whether the timeWaitedForDelayProtocol field is set.
        */
@@ -8297,6 +9210,10 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000100) != 0);
       }
       /**
+       * <pre>
+       *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+       * </pre>
+       *
        * <code>optional double time_waited_for_delay_protocol = 9;</code>
        * @return The timeWaitedForDelayProtocol.
        */
@@ -8882,7 +9799,7 @@ public final class SQLStatementDetails {
         private long timeWaitedForDelayProtocolStartTime_ ;
         /**
          * <pre>
-         *&#47; start time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition started
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -8893,7 +9810,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; start time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition started
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -8904,7 +9821,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; start time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition started
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -8919,7 +9836,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; start time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition started
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_start_time = 2;</code>
@@ -8935,7 +9852,7 @@ public final class SQLStatementDetails {
         private long timeWaitedForDelayProtocolFinishTime_ ;
         /**
          * <pre>
-         *&#47; finish time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition finished
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -8946,7 +9863,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; finish time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition finished
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -8957,7 +9874,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; finish time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition finished
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -8972,7 +9889,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; finish time of the waitForLogPosition call
+         *&#47; time from the system clock when waitForLogPosition finished
          * </pre>
          *
          * <code>optional uint64 time_waited_for_delay_protocol_finish_time = 3;</code>
@@ -8988,7 +9905,10 @@ public final class SQLStatementDetails {
         private int countWaitTimeForDelayProtocolExpired_ ;
         /**
          * <pre>
-         *&#47; count for if the waitForLogPosition call expired,
+         **
+         * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+         * stored here in case the timeout for waitForLogPosition has expired and
+         * the desired log position count was not reached.
          * </pre>
          *
          * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -8999,7 +9919,10 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; count for if the waitForLogPosition call expired,
+         **
+         * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+         * stored here in case the timeout for waitForLogPosition has expired and
+         * the desired log position count was not reached.
          * </pre>
          *
          * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -9010,7 +9933,10 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; count for if the waitForLogPosition call expired,
+         **
+         * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+         * stored here in case the timeout for waitForLogPosition has expired and
+         * the desired log position count was not reached.
          * </pre>
          *
          * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -9025,7 +9951,10 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; count for if the waitForLogPosition call expired,
+         **
+         * This is the value of CURRENT QUERY ACCELERATION WAITFORDATA. It is
+         * stored here in case the timeout for waitForLogPosition has expired and
+         * the desired log position count was not reached.
          * </pre>
          *
          * <code>optional uint32 count_wait_time_for_delay_protocol_expired = 4;</code>
@@ -9041,7 +9970,8 @@ public final class SQLStatementDetails {
         private java.lang.Object logRecordSequenceNumberLogPosition_ = "";
         /**
          * <pre>
-         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -9052,7 +9982,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -9074,7 +10005,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -9095,7 +10027,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -9114,7 +10047,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -9128,7 +10062,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from DB2z
+         *&#47; value of the Log Record Sequence Number Log Position (LRSNLOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string log_record_sequence_number_log_position = 5;</code>
@@ -9149,7 +10084,8 @@ public final class SQLStatementDetails {
         private java.lang.Object relativeByteAddressLogPosition_ = "";
         /**
          * <pre>
-         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -9160,7 +10096,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -9182,7 +10119,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -9203,7 +10141,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -9222,7 +10161,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -9236,7 +10176,8 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from DB2z
+         *&#47; value of the Relative Byte Address Log Position (RBALOGP) from the client (DB2z)
+         * / that should have been or was reached
          * </pre>
          *
          * <code>optional string relative_byte_address_log_position = 6;</code>
@@ -9309,6 +10250,10 @@ public final class SQLStatementDetails {
 
         private boolean useDelayProtocol_ ;
         /**
+         * <pre>
+         *&#47; indicator whether the waitForLogPosition feature has been used
+         * </pre>
+         *
          * <code>optional bool use_delay_protocol = 8;</code>
          * @return Whether the useDelayProtocol field is set.
          */
@@ -9316,6 +10261,10 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000080) != 0);
         }
         /**
+         * <pre>
+         *&#47; indicator whether the waitForLogPosition feature has been used
+         * </pre>
+         *
          * <code>optional bool use_delay_protocol = 8;</code>
          * @return The useDelayProtocol.
          */
@@ -9323,6 +10272,10 @@ public final class SQLStatementDetails {
           return useDelayProtocol_;
         }
         /**
+         * <pre>
+         *&#47; indicator whether the waitForLogPosition feature has been used
+         * </pre>
+         *
          * <code>optional bool use_delay_protocol = 8;</code>
          * @param value The useDelayProtocol to set.
          * @return This builder for chaining.
@@ -9334,6 +10287,10 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
+         * <pre>
+         *&#47; indicator whether the waitForLogPosition feature has been used
+         * </pre>
+         *
          * <code>optional bool use_delay_protocol = 8;</code>
          * @return This builder for chaining.
          */
@@ -9346,6 +10303,10 @@ public final class SQLStatementDetails {
 
         private double timeWaitedForDelayProtocol_ ;
         /**
+         * <pre>
+         *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+         * </pre>
+         *
          * <code>optional double time_waited_for_delay_protocol = 9;</code>
          * @return Whether the timeWaitedForDelayProtocol field is set.
          */
@@ -9353,6 +10314,10 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000100) != 0);
         }
         /**
+         * <pre>
+         *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+         * </pre>
+         *
          * <code>optional double time_waited_for_delay_protocol = 9;</code>
          * @return The timeWaitedForDelayProtocol.
          */
@@ -9360,6 +10325,10 @@ public final class SQLStatementDetails {
           return timeWaitedForDelayProtocol_;
         }
         /**
+         * <pre>
+         *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+         * </pre>
+         *
          * <code>optional double time_waited_for_delay_protocol = 9;</code>
          * @param value The timeWaitedForDelayProtocol to set.
          * @return This builder for chaining.
@@ -9371,6 +10340,10 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
+         * <pre>
+         *&#47; overall time the SQL statement had to wait for the desired log position to be reached
+         * </pre>
+         *
          * <code>optional double time_waited_for_delay_protocol = 9;</code>
          * @return This builder for chaining.
          */
@@ -9439,7 +10412,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; multi-row insert enablement (default to false)
+       *&#47; indicator whether this is a multi-row insert statement
        * </pre>
        *
        * <code>optional bool enabled = 1;</code>
@@ -9448,7 +10421,7 @@ public final class SQLStatementDetails {
       boolean hasEnabled();
       /**
        * <pre>
-       *&#47; multi-row insert enablement (default to false)
+       *&#47; indicator whether this is a multi-row insert statement
        * </pre>
        *
        * <code>optional bool enabled = 1;</code>
@@ -9458,7 +10431,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; Is The Multi-Row Insert statement Atomic
+       *&#47; indicator whether this is an atomic multi-row insert statement
        * </pre>
        *
        * <code>optional bool atomic = 2;</code>
@@ -9467,7 +10440,7 @@ public final class SQLStatementDetails {
       boolean hasAtomic();
       /**
        * <pre>
-       *&#47; Is The Multi-Row Insert statement Atomic
+       *&#47; indicator whether this is an atomic multi-row insert statement
        * </pre>
        *
        * <code>optional bool atomic = 2;</code>
@@ -9477,7 +10450,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; Number of Rows about to be inserted
+       *&#47; number of rows that were requested to be inserted
        * </pre>
        *
        * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -9486,7 +10459,7 @@ public final class SQLStatementDetails {
       boolean hasNumberOfRowsReceivedFromClient();
       /**
        * <pre>
-       *&#47; Number of Rows about to be inserted
+       *&#47; number of rows that were requested to be inserted
        * </pre>
        *
        * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -9496,7 +10469,7 @@ public final class SQLStatementDetails {
 
       /**
        * <pre>
-       *&#47; Number of Rows that were actually inserted
+       *&#47; number of rows that were inserted into the backend
        * </pre>
        *
        * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -9505,7 +10478,7 @@ public final class SQLStatementDetails {
       boolean hasNumberOfRowsSuccessfullyInserted();
       /**
        * <pre>
-       *&#47; Number of Rows that were actually inserted
+       *&#47; number of rows that were inserted into the backend
        * </pre>
        *
        * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -9616,7 +10589,7 @@ public final class SQLStatementDetails {
       private boolean enabled_;
       /**
        * <pre>
-       *&#47; multi-row insert enablement (default to false)
+       *&#47; indicator whether this is a multi-row insert statement
        * </pre>
        *
        * <code>optional bool enabled = 1;</code>
@@ -9627,7 +10600,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; multi-row insert enablement (default to false)
+       *&#47; indicator whether this is a multi-row insert statement
        * </pre>
        *
        * <code>optional bool enabled = 1;</code>
@@ -9641,7 +10614,7 @@ public final class SQLStatementDetails {
       private boolean atomic_;
       /**
        * <pre>
-       *&#47; Is The Multi-Row Insert statement Atomic
+       *&#47; indicator whether this is an atomic multi-row insert statement
        * </pre>
        *
        * <code>optional bool atomic = 2;</code>
@@ -9652,7 +10625,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; Is The Multi-Row Insert statement Atomic
+       *&#47; indicator whether this is an atomic multi-row insert statement
        * </pre>
        *
        * <code>optional bool atomic = 2;</code>
@@ -9666,7 +10639,7 @@ public final class SQLStatementDetails {
       private long numberOfRowsReceivedFromClient_;
       /**
        * <pre>
-       *&#47; Number of Rows about to be inserted
+       *&#47; number of rows that were requested to be inserted
        * </pre>
        *
        * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -9677,7 +10650,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; Number of Rows about to be inserted
+       *&#47; number of rows that were requested to be inserted
        * </pre>
        *
        * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -9691,7 +10664,7 @@ public final class SQLStatementDetails {
       private long numberOfRowsSuccessfullyInserted_;
       /**
        * <pre>
-       *&#47; Number of Rows that were actually inserted
+       *&#47; number of rows that were inserted into the backend
        * </pre>
        *
        * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -9702,7 +10675,7 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; Number of Rows that were actually inserted
+       *&#47; number of rows that were inserted into the backend
        * </pre>
        *
        * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -10108,7 +11081,7 @@ public final class SQLStatementDetails {
         private boolean enabled_ ;
         /**
          * <pre>
-         *&#47; multi-row insert enablement (default to false)
+         *&#47; indicator whether this is a multi-row insert statement
          * </pre>
          *
          * <code>optional bool enabled = 1;</code>
@@ -10119,7 +11092,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; multi-row insert enablement (default to false)
+         *&#47; indicator whether this is a multi-row insert statement
          * </pre>
          *
          * <code>optional bool enabled = 1;</code>
@@ -10130,7 +11103,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; multi-row insert enablement (default to false)
+         *&#47; indicator whether this is a multi-row insert statement
          * </pre>
          *
          * <code>optional bool enabled = 1;</code>
@@ -10145,7 +11118,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; multi-row insert enablement (default to false)
+         *&#47; indicator whether this is a multi-row insert statement
          * </pre>
          *
          * <code>optional bool enabled = 1;</code>
@@ -10161,7 +11134,7 @@ public final class SQLStatementDetails {
         private boolean atomic_ ;
         /**
          * <pre>
-         *&#47; Is The Multi-Row Insert statement Atomic
+         *&#47; indicator whether this is an atomic multi-row insert statement
          * </pre>
          *
          * <code>optional bool atomic = 2;</code>
@@ -10172,7 +11145,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Is The Multi-Row Insert statement Atomic
+         *&#47; indicator whether this is an atomic multi-row insert statement
          * </pre>
          *
          * <code>optional bool atomic = 2;</code>
@@ -10183,7 +11156,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Is The Multi-Row Insert statement Atomic
+         *&#47; indicator whether this is an atomic multi-row insert statement
          * </pre>
          *
          * <code>optional bool atomic = 2;</code>
@@ -10198,7 +11171,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Is The Multi-Row Insert statement Atomic
+         *&#47; indicator whether this is an atomic multi-row insert statement
          * </pre>
          *
          * <code>optional bool atomic = 2;</code>
@@ -10214,7 +11187,7 @@ public final class SQLStatementDetails {
         private long numberOfRowsReceivedFromClient_ ;
         /**
          * <pre>
-         *&#47; Number of Rows about to be inserted
+         *&#47; number of rows that were requested to be inserted
          * </pre>
          *
          * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -10225,7 +11198,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Number of Rows about to be inserted
+         *&#47; number of rows that were requested to be inserted
          * </pre>
          *
          * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -10236,7 +11209,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Number of Rows about to be inserted
+         *&#47; number of rows that were requested to be inserted
          * </pre>
          *
          * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -10251,7 +11224,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Number of Rows about to be inserted
+         *&#47; number of rows that were requested to be inserted
          * </pre>
          *
          * <code>optional uint64 number_of_rows_received_from_client = 3;</code>
@@ -10267,7 +11240,7 @@ public final class SQLStatementDetails {
         private long numberOfRowsSuccessfullyInserted_ ;
         /**
          * <pre>
-         *&#47; Number of Rows that were actually inserted
+         *&#47; number of rows that were inserted into the backend
          * </pre>
          *
          * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -10278,7 +11251,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Number of Rows that were actually inserted
+         *&#47; number of rows that were inserted into the backend
          * </pre>
          *
          * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -10289,7 +11262,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Number of Rows that were actually inserted
+         *&#47; number of rows that were inserted into the backend
          * </pre>
          *
          * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -10304,7 +11277,7 @@ public final class SQLStatementDetails {
         }
         /**
          * <pre>
-         *&#47; Number of Rows that were actually inserted
+         *&#47; number of rows that were inserted into the backend
          * </pre>
          *
          * <code>optional uint64 number_of_rows_successfully_inserted = 4;</code>
@@ -10374,28 +11347,16 @@ public final class SQLStatementDetails {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <pre>
-       *&#47;&lt; client product ID
-       * </pre>
-       *
        * <code>optional string client_product_id = 1;</code>
        * @return Whether the clientProductId field is set.
        */
       boolean hasClientProductId();
       /**
-       * <pre>
-       *&#47;&lt; client product ID
-       * </pre>
-       *
        * <code>optional string client_product_id = 1;</code>
        * @return The clientProductId.
        */
       java.lang.String getClientProductId();
       /**
-       * <pre>
-       *&#47;&lt; client product ID
-       * </pre>
-       *
        * <code>optional string client_product_id = 1;</code>
        * @return The bytes for clientProductId.
        */
@@ -10403,28 +11364,16 @@ public final class SQLStatementDetails {
           getClientProductIdBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client location name
-       * </pre>
-       *
        * <code>optional string client_location_name = 2;</code>
        * @return Whether the clientLocationName field is set.
        */
       boolean hasClientLocationName();
       /**
-       * <pre>
-       *&#47;&lt; client location name
-       * </pre>
-       *
        * <code>optional string client_location_name = 2;</code>
        * @return The clientLocationName.
        */
       java.lang.String getClientLocationName();
       /**
-       * <pre>
-       *&#47;&lt; client location name
-       * </pre>
-       *
        * <code>optional string client_location_name = 2;</code>
        * @return The bytes for clientLocationName.
        */
@@ -10432,28 +11381,16 @@ public final class SQLStatementDetails {
           getClientLocationNameBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client network ID
-       * </pre>
-       *
        * <code>optional string client_network_id = 3;</code>
        * @return Whether the clientNetworkId field is set.
        */
       boolean hasClientNetworkId();
       /**
-       * <pre>
-       *&#47;&lt; client network ID
-       * </pre>
-       *
        * <code>optional string client_network_id = 3;</code>
        * @return The clientNetworkId.
        */
       java.lang.String getClientNetworkId();
       /**
-       * <pre>
-       *&#47;&lt; client network ID
-       * </pre>
-       *
        * <code>optional string client_network_id = 3;</code>
        * @return The bytes for clientNetworkId.
        */
@@ -10461,28 +11398,16 @@ public final class SQLStatementDetails {
           getClientNetworkIdBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client LU name
-       * </pre>
-       *
        * <code>optional string client_lu_name = 4;</code>
        * @return Whether the clientLuName field is set.
        */
       boolean hasClientLuName();
       /**
-       * <pre>
-       *&#47;&lt; client LU name
-       * </pre>
-       *
        * <code>optional string client_lu_name = 4;</code>
        * @return The clientLuName.
        */
       java.lang.String getClientLuName();
       /**
-       * <pre>
-       *&#47;&lt; client LU name
-       * </pre>
-       *
        * <code>optional string client_lu_name = 4;</code>
        * @return The bytes for clientLuName.
        */
@@ -10490,28 +11415,16 @@ public final class SQLStatementDetails {
           getClientLuNameBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client connection name
-       * </pre>
-       *
        * <code>optional string client_connection_name = 5;</code>
        * @return Whether the clientConnectionName field is set.
        */
       boolean hasClientConnectionName();
       /**
-       * <pre>
-       *&#47;&lt; client connection name
-       * </pre>
-       *
        * <code>optional string client_connection_name = 5;</code>
        * @return The clientConnectionName.
        */
       java.lang.String getClientConnectionName();
       /**
-       * <pre>
-       *&#47;&lt; client connection name
-       * </pre>
-       *
        * <code>optional string client_connection_name = 5;</code>
        * @return The bytes for clientConnectionName.
        */
@@ -10519,28 +11432,16 @@ public final class SQLStatementDetails {
           getClientConnectionNameBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client connection type
-       * </pre>
-       *
        * <code>optional string client_connection_type = 6;</code>
        * @return Whether the clientConnectionType field is set.
        */
       boolean hasClientConnectionType();
       /**
-       * <pre>
-       *&#47;&lt; client connection type
-       * </pre>
-       *
        * <code>optional string client_connection_type = 6;</code>
        * @return The clientConnectionType.
        */
       java.lang.String getClientConnectionType();
       /**
-       * <pre>
-       *&#47;&lt; client connection type
-       * </pre>
-       *
        * <code>optional string client_connection_type = 6;</code>
        * @return The bytes for clientConnectionType.
        */
@@ -10548,28 +11449,16 @@ public final class SQLStatementDetails {
           getClientConnectionTypeBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client correlation ID
-       * </pre>
-       *
        * <code>optional string client_correlation_id = 7;</code>
        * @return Whether the clientCorrelationId field is set.
        */
       boolean hasClientCorrelationId();
       /**
-       * <pre>
-       *&#47;&lt; client correlation ID
-       * </pre>
-       *
        * <code>optional string client_correlation_id = 7;</code>
        * @return The clientCorrelationId.
        */
       java.lang.String getClientCorrelationId();
       /**
-       * <pre>
-       *&#47;&lt; client correlation ID
-       * </pre>
-       *
        * <code>optional string client_correlation_id = 7;</code>
        * @return The bytes for clientCorrelationId.
        */
@@ -10577,28 +11466,16 @@ public final class SQLStatementDetails {
           getClientCorrelationIdBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client authorization ID
-       * </pre>
-       *
        * <code>optional string client_authorization_id = 8;</code>
        * @return Whether the clientAuthorizationId field is set.
        */
       boolean hasClientAuthorizationId();
       /**
-       * <pre>
-       *&#47;&lt; client authorization ID
-       * </pre>
-       *
        * <code>optional string client_authorization_id = 8;</code>
        * @return The clientAuthorizationId.
        */
       java.lang.String getClientAuthorizationId();
       /**
-       * <pre>
-       *&#47;&lt; client authorization ID
-       * </pre>
-       *
        * <code>optional string client_authorization_id = 8;</code>
        * @return The bytes for clientAuthorizationId.
        */
@@ -10606,28 +11483,16 @@ public final class SQLStatementDetails {
           getClientAuthorizationIdBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client workstation from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_workstation = 9;</code>
        * @return Whether the clientWorkstation field is set.
        */
       boolean hasClientWorkstation();
       /**
-       * <pre>
-       *&#47;&lt; client workstation from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_workstation = 9;</code>
        * @return The clientWorkstation.
        */
       java.lang.String getClientWorkstation();
       /**
-       * <pre>
-       *&#47;&lt; client workstation from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_workstation = 9;</code>
        * @return The bytes for clientWorkstation.
        */
@@ -10635,28 +11500,16 @@ public final class SQLStatementDetails {
           getClientWorkstationBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client application from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_application = 10;</code>
        * @return Whether the clientApplication field is set.
        */
       boolean hasClientApplication();
       /**
-       * <pre>
-       *&#47;&lt; client application from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_application = 10;</code>
        * @return The clientApplication.
        */
       java.lang.String getClientApplication();
       /**
-       * <pre>
-       *&#47;&lt; client application from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_application = 10;</code>
        * @return The bytes for clientApplication.
        */
@@ -10664,28 +11517,16 @@ public final class SQLStatementDetails {
           getClientApplicationBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client user ID that submitted the original SQL statement
-       * </pre>
-       *
        * <code>optional string client_user_id = 11;</code>
        * @return Whether the clientUserId field is set.
        */
       boolean hasClientUserId();
       /**
-       * <pre>
-       *&#47;&lt; client user ID that submitted the original SQL statement
-       * </pre>
-       *
        * <code>optional string client_user_id = 11;</code>
        * @return The clientUserId.
        */
       java.lang.String getClientUserId();
       /**
-       * <pre>
-       *&#47;&lt; client user ID that submitted the original SQL statement
-       * </pre>
-       *
        * <code>optional string client_user_id = 11;</code>
        * @return The bytes for clientUserId.
        */
@@ -10693,28 +11534,16 @@ public final class SQLStatementDetails {
           getClientUserIdBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; client SQL statement plan name
-       * </pre>
-       *
        * <code>optional string client_plan_name = 12;</code>
        * @return Whether the clientPlanName field is set.
        */
       boolean hasClientPlanName();
       /**
-       * <pre>
-       *&#47;&lt; client SQL statement plan name
-       * </pre>
-       *
        * <code>optional string client_plan_name = 12;</code>
        * @return The clientPlanName.
        */
       java.lang.String getClientPlanName();
       /**
-       * <pre>
-       *&#47;&lt; client SQL statement plan name
-       * </pre>
-       *
        * <code>optional string client_plan_name = 12;</code>
        * @return The bytes for clientPlanName.
        */
@@ -10722,28 +11551,16 @@ public final class SQLStatementDetails {
           getClientPlanNameBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; accounting details
-       * </pre>
-       *
        * <code>optional string client_accounting_details = 13;</code>
        * @return Whether the clientAccountingDetails field is set.
        */
       boolean hasClientAccountingDetails();
       /**
-       * <pre>
-       *&#47;&lt; accounting details
-       * </pre>
-       *
        * <code>optional string client_accounting_details = 13;</code>
        * @return The clientAccountingDetails.
        */
       java.lang.String getClientAccountingDetails();
       /**
-       * <pre>
-       *&#47;&lt; accounting details
-       * </pre>
-       *
        * <code>optional string client_accounting_details = 13;</code>
        * @return The bytes for clientAccountingDetails.
        */
@@ -10751,28 +11568,16 @@ public final class SQLStatementDetails {
           getClientAccountingDetailsBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; DB2 system ID from which the SQL statement was received
-       * </pre>
-       *
        * <code>optional string db2_system_id = 14;</code>
        * @return Whether the db2SystemId field is set.
        */
       boolean hasDb2SystemId();
       /**
-       * <pre>
-       *&#47;&lt; DB2 system ID from which the SQL statement was received
-       * </pre>
-       *
        * <code>optional string db2_system_id = 14;</code>
        * @return The db2SystemId.
        */
       java.lang.String getDb2SystemId();
       /**
-       * <pre>
-       *&#47;&lt; DB2 system ID from which the SQL statement was received
-       * </pre>
-       *
        * <code>optional string db2_system_id = 14;</code>
        * @return The bytes for db2SystemId.
        */
@@ -10780,28 +11585,16 @@ public final class SQLStatementDetails {
           getDb2SystemIdBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group member name
-       * </pre>
-       *
        * <code>optional string db2_member_name = 15;</code>
        * @return Whether the db2MemberName field is set.
        */
       boolean hasDb2MemberName();
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group member name
-       * </pre>
-       *
        * <code>optional string db2_member_name = 15;</code>
        * @return The db2MemberName.
        */
       java.lang.String getDb2MemberName();
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group member name
-       * </pre>
-       *
        * <code>optional string db2_member_name = 15;</code>
        * @return The bytes for db2MemberName.
        */
@@ -10809,28 +11602,16 @@ public final class SQLStatementDetails {
           getDb2MemberNameBytes();
 
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group name
-       * </pre>
-       *
        * <code>optional string db2_group_name = 16;</code>
        * @return Whether the db2GroupName field is set.
        */
       boolean hasDb2GroupName();
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group name
-       * </pre>
-       *
        * <code>optional string db2_group_name = 16;</code>
        * @return The db2GroupName.
        */
       java.lang.String getDb2GroupName();
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group name
-       * </pre>
-       *
        * <code>optional string db2_group_name = 16;</code>
        * @return The bytes for db2GroupName.
        */
@@ -10839,7 +11620,8 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     ** Deprecated/removed parsed client accounting info.
+     **
+     * Deprecated/removed parsed client accounting info.
      * In the past, we used to parse the value of &#64;a client_ccounting string and
      * cached the result in the following structure. That caching had several issues,
      * so it is no longer used. Although, Google Protobuf supports removal of attributes
@@ -11044,10 +11826,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_PRODUCT_ID_FIELD_NUMBER = 1;
       private volatile java.lang.Object clientProductId_;
       /**
-       * <pre>
-       *&#47;&lt; client product ID
-       * </pre>
-       *
        * <code>optional string client_product_id = 1;</code>
        * @return Whether the clientProductId field is set.
        */
@@ -11055,10 +11833,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client product ID
-       * </pre>
-       *
        * <code>optional string client_product_id = 1;</code>
        * @return The clientProductId.
        */
@@ -11077,10 +11851,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client product ID
-       * </pre>
-       *
        * <code>optional string client_product_id = 1;</code>
        * @return The bytes for clientProductId.
        */
@@ -11101,10 +11871,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_LOCATION_NAME_FIELD_NUMBER = 2;
       private volatile java.lang.Object clientLocationName_;
       /**
-       * <pre>
-       *&#47;&lt; client location name
-       * </pre>
-       *
        * <code>optional string client_location_name = 2;</code>
        * @return Whether the clientLocationName field is set.
        */
@@ -11112,10 +11878,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client location name
-       * </pre>
-       *
        * <code>optional string client_location_name = 2;</code>
        * @return The clientLocationName.
        */
@@ -11134,10 +11896,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client location name
-       * </pre>
-       *
        * <code>optional string client_location_name = 2;</code>
        * @return The bytes for clientLocationName.
        */
@@ -11158,10 +11916,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_NETWORK_ID_FIELD_NUMBER = 3;
       private volatile java.lang.Object clientNetworkId_;
       /**
-       * <pre>
-       *&#47;&lt; client network ID
-       * </pre>
-       *
        * <code>optional string client_network_id = 3;</code>
        * @return Whether the clientNetworkId field is set.
        */
@@ -11169,10 +11923,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client network ID
-       * </pre>
-       *
        * <code>optional string client_network_id = 3;</code>
        * @return The clientNetworkId.
        */
@@ -11191,10 +11941,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client network ID
-       * </pre>
-       *
        * <code>optional string client_network_id = 3;</code>
        * @return The bytes for clientNetworkId.
        */
@@ -11215,10 +11961,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_LU_NAME_FIELD_NUMBER = 4;
       private volatile java.lang.Object clientLuName_;
       /**
-       * <pre>
-       *&#47;&lt; client LU name
-       * </pre>
-       *
        * <code>optional string client_lu_name = 4;</code>
        * @return Whether the clientLuName field is set.
        */
@@ -11226,10 +11968,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client LU name
-       * </pre>
-       *
        * <code>optional string client_lu_name = 4;</code>
        * @return The clientLuName.
        */
@@ -11248,10 +11986,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client LU name
-       * </pre>
-       *
        * <code>optional string client_lu_name = 4;</code>
        * @return The bytes for clientLuName.
        */
@@ -11272,10 +12006,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_CONNECTION_NAME_FIELD_NUMBER = 5;
       private volatile java.lang.Object clientConnectionName_;
       /**
-       * <pre>
-       *&#47;&lt; client connection name
-       * </pre>
-       *
        * <code>optional string client_connection_name = 5;</code>
        * @return Whether the clientConnectionName field is set.
        */
@@ -11283,10 +12013,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000010) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client connection name
-       * </pre>
-       *
        * <code>optional string client_connection_name = 5;</code>
        * @return The clientConnectionName.
        */
@@ -11305,10 +12031,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client connection name
-       * </pre>
-       *
        * <code>optional string client_connection_name = 5;</code>
        * @return The bytes for clientConnectionName.
        */
@@ -11329,10 +12051,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_CONNECTION_TYPE_FIELD_NUMBER = 6;
       private volatile java.lang.Object clientConnectionType_;
       /**
-       * <pre>
-       *&#47;&lt; client connection type
-       * </pre>
-       *
        * <code>optional string client_connection_type = 6;</code>
        * @return Whether the clientConnectionType field is set.
        */
@@ -11340,10 +12058,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client connection type
-       * </pre>
-       *
        * <code>optional string client_connection_type = 6;</code>
        * @return The clientConnectionType.
        */
@@ -11362,10 +12076,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client connection type
-       * </pre>
-       *
        * <code>optional string client_connection_type = 6;</code>
        * @return The bytes for clientConnectionType.
        */
@@ -11386,10 +12096,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_CORRELATION_ID_FIELD_NUMBER = 7;
       private volatile java.lang.Object clientCorrelationId_;
       /**
-       * <pre>
-       *&#47;&lt; client correlation ID
-       * </pre>
-       *
        * <code>optional string client_correlation_id = 7;</code>
        * @return Whether the clientCorrelationId field is set.
        */
@@ -11397,10 +12103,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000040) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client correlation ID
-       * </pre>
-       *
        * <code>optional string client_correlation_id = 7;</code>
        * @return The clientCorrelationId.
        */
@@ -11419,10 +12121,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client correlation ID
-       * </pre>
-       *
        * <code>optional string client_correlation_id = 7;</code>
        * @return The bytes for clientCorrelationId.
        */
@@ -11443,10 +12141,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_AUTHORIZATION_ID_FIELD_NUMBER = 8;
       private volatile java.lang.Object clientAuthorizationId_;
       /**
-       * <pre>
-       *&#47;&lt; client authorization ID
-       * </pre>
-       *
        * <code>optional string client_authorization_id = 8;</code>
        * @return Whether the clientAuthorizationId field is set.
        */
@@ -11454,10 +12148,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000080) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client authorization ID
-       * </pre>
-       *
        * <code>optional string client_authorization_id = 8;</code>
        * @return The clientAuthorizationId.
        */
@@ -11476,10 +12166,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client authorization ID
-       * </pre>
-       *
        * <code>optional string client_authorization_id = 8;</code>
        * @return The bytes for clientAuthorizationId.
        */
@@ -11500,10 +12186,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_WORKSTATION_FIELD_NUMBER = 9;
       private volatile java.lang.Object clientWorkstation_;
       /**
-       * <pre>
-       *&#47;&lt; client workstation from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_workstation = 9;</code>
        * @return Whether the clientWorkstation field is set.
        */
@@ -11511,10 +12193,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000100) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client workstation from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_workstation = 9;</code>
        * @return The clientWorkstation.
        */
@@ -11533,10 +12211,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client workstation from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_workstation = 9;</code>
        * @return The bytes for clientWorkstation.
        */
@@ -11557,10 +12231,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_APPLICATION_FIELD_NUMBER = 10;
       private volatile java.lang.Object clientApplication_;
       /**
-       * <pre>
-       *&#47;&lt; client application from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_application = 10;</code>
        * @return Whether the clientApplication field is set.
        */
@@ -11568,10 +12238,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000200) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client application from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_application = 10;</code>
        * @return The clientApplication.
        */
@@ -11590,10 +12256,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client application from which the original SQL statement was received
-       * </pre>
-       *
        * <code>optional string client_application = 10;</code>
        * @return The bytes for clientApplication.
        */
@@ -11614,10 +12276,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_USER_ID_FIELD_NUMBER = 11;
       private volatile java.lang.Object clientUserId_;
       /**
-       * <pre>
-       *&#47;&lt; client user ID that submitted the original SQL statement
-       * </pre>
-       *
        * <code>optional string client_user_id = 11;</code>
        * @return Whether the clientUserId field is set.
        */
@@ -11625,10 +12283,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000400) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client user ID that submitted the original SQL statement
-       * </pre>
-       *
        * <code>optional string client_user_id = 11;</code>
        * @return The clientUserId.
        */
@@ -11647,10 +12301,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client user ID that submitted the original SQL statement
-       * </pre>
-       *
        * <code>optional string client_user_id = 11;</code>
        * @return The bytes for clientUserId.
        */
@@ -11671,10 +12321,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_PLAN_NAME_FIELD_NUMBER = 12;
       private volatile java.lang.Object clientPlanName_;
       /**
-       * <pre>
-       *&#47;&lt; client SQL statement plan name
-       * </pre>
-       *
        * <code>optional string client_plan_name = 12;</code>
        * @return Whether the clientPlanName field is set.
        */
@@ -11682,10 +12328,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00000800) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; client SQL statement plan name
-       * </pre>
-       *
        * <code>optional string client_plan_name = 12;</code>
        * @return The clientPlanName.
        */
@@ -11704,10 +12346,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; client SQL statement plan name
-       * </pre>
-       *
        * <code>optional string client_plan_name = 12;</code>
        * @return The bytes for clientPlanName.
        */
@@ -11728,10 +12366,6 @@ public final class SQLStatementDetails {
       public static final int CLIENT_ACCOUNTING_DETAILS_FIELD_NUMBER = 13;
       private volatile java.lang.Object clientAccountingDetails_;
       /**
-       * <pre>
-       *&#47;&lt; accounting details
-       * </pre>
-       *
        * <code>optional string client_accounting_details = 13;</code>
        * @return Whether the clientAccountingDetails field is set.
        */
@@ -11739,10 +12373,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00001000) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; accounting details
-       * </pre>
-       *
        * <code>optional string client_accounting_details = 13;</code>
        * @return The clientAccountingDetails.
        */
@@ -11761,10 +12391,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; accounting details
-       * </pre>
-       *
        * <code>optional string client_accounting_details = 13;</code>
        * @return The bytes for clientAccountingDetails.
        */
@@ -11785,10 +12411,6 @@ public final class SQLStatementDetails {
       public static final int DB2_SYSTEM_ID_FIELD_NUMBER = 14;
       private volatile java.lang.Object db2SystemId_;
       /**
-       * <pre>
-       *&#47;&lt; DB2 system ID from which the SQL statement was received
-       * </pre>
-       *
        * <code>optional string db2_system_id = 14;</code>
        * @return Whether the db2SystemId field is set.
        */
@@ -11796,10 +12418,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00002000) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; DB2 system ID from which the SQL statement was received
-       * </pre>
-       *
        * <code>optional string db2_system_id = 14;</code>
        * @return The db2SystemId.
        */
@@ -11818,10 +12436,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; DB2 system ID from which the SQL statement was received
-       * </pre>
-       *
        * <code>optional string db2_system_id = 14;</code>
        * @return The bytes for db2SystemId.
        */
@@ -11842,10 +12456,6 @@ public final class SQLStatementDetails {
       public static final int DB2_MEMBER_NAME_FIELD_NUMBER = 15;
       private volatile java.lang.Object db2MemberName_;
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group member name
-       * </pre>
-       *
        * <code>optional string db2_member_name = 15;</code>
        * @return Whether the db2MemberName field is set.
        */
@@ -11853,10 +12463,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00004000) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group member name
-       * </pre>
-       *
        * <code>optional string db2_member_name = 15;</code>
        * @return The db2MemberName.
        */
@@ -11875,10 +12481,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group member name
-       * </pre>
-       *
        * <code>optional string db2_member_name = 15;</code>
        * @return The bytes for db2MemberName.
        */
@@ -11899,10 +12501,6 @@ public final class SQLStatementDetails {
       public static final int DB2_GROUP_NAME_FIELD_NUMBER = 16;
       private volatile java.lang.Object db2GroupName_;
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group name
-       * </pre>
-       *
        * <code>optional string db2_group_name = 16;</code>
        * @return Whether the db2GroupName field is set.
        */
@@ -11910,10 +12508,6 @@ public final class SQLStatementDetails {
         return ((bitField0_ & 0x00008000) != 0);
       }
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group name
-       * </pre>
-       *
        * <code>optional string db2_group_name = 16;</code>
        * @return The db2GroupName.
        */
@@ -11932,10 +12526,6 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <pre>
-       *&#47;&lt; DB2 data sharing group name
-       * </pre>
-       *
        * <code>optional string db2_group_name = 16;</code>
        * @return The bytes for db2GroupName.
        */
@@ -12339,7 +12929,8 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       ** Deprecated/removed parsed client accounting info.
+       **
+       * Deprecated/removed parsed client accounting info.
        * In the past, we used to parse the value of &#64;a client_ccounting string and
        * cached the result in the following structure. That caching had several issues,
        * so it is no longer used. Although, Google Protobuf supports removal of attributes
@@ -12673,10 +13264,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientProductId_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client product ID
-         * </pre>
-         *
          * <code>optional string client_product_id = 1;</code>
          * @return Whether the clientProductId field is set.
          */
@@ -12684,10 +13271,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000001) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client product ID
-         * </pre>
-         *
          * <code>optional string client_product_id = 1;</code>
          * @return The clientProductId.
          */
@@ -12706,10 +13289,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client product ID
-         * </pre>
-         *
          * <code>optional string client_product_id = 1;</code>
          * @return The bytes for clientProductId.
          */
@@ -12727,10 +13306,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client product ID
-         * </pre>
-         *
          * <code>optional string client_product_id = 1;</code>
          * @param value The clientProductId to set.
          * @return This builder for chaining.
@@ -12746,10 +13321,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client product ID
-         * </pre>
-         *
          * <code>optional string client_product_id = 1;</code>
          * @return This builder for chaining.
          */
@@ -12760,10 +13331,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client product ID
-         * </pre>
-         *
          * <code>optional string client_product_id = 1;</code>
          * @param value The bytes for clientProductId to set.
          * @return This builder for chaining.
@@ -12781,10 +13348,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientLocationName_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client location name
-         * </pre>
-         *
          * <code>optional string client_location_name = 2;</code>
          * @return Whether the clientLocationName field is set.
          */
@@ -12792,10 +13355,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000002) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client location name
-         * </pre>
-         *
          * <code>optional string client_location_name = 2;</code>
          * @return The clientLocationName.
          */
@@ -12814,10 +13373,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client location name
-         * </pre>
-         *
          * <code>optional string client_location_name = 2;</code>
          * @return The bytes for clientLocationName.
          */
@@ -12835,10 +13390,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client location name
-         * </pre>
-         *
          * <code>optional string client_location_name = 2;</code>
          * @param value The clientLocationName to set.
          * @return This builder for chaining.
@@ -12854,10 +13405,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client location name
-         * </pre>
-         *
          * <code>optional string client_location_name = 2;</code>
          * @return This builder for chaining.
          */
@@ -12868,10 +13415,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client location name
-         * </pre>
-         *
          * <code>optional string client_location_name = 2;</code>
          * @param value The bytes for clientLocationName to set.
          * @return This builder for chaining.
@@ -12889,10 +13432,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientNetworkId_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client network ID
-         * </pre>
-         *
          * <code>optional string client_network_id = 3;</code>
          * @return Whether the clientNetworkId field is set.
          */
@@ -12900,10 +13439,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000004) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client network ID
-         * </pre>
-         *
          * <code>optional string client_network_id = 3;</code>
          * @return The clientNetworkId.
          */
@@ -12922,10 +13457,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client network ID
-         * </pre>
-         *
          * <code>optional string client_network_id = 3;</code>
          * @return The bytes for clientNetworkId.
          */
@@ -12943,10 +13474,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client network ID
-         * </pre>
-         *
          * <code>optional string client_network_id = 3;</code>
          * @param value The clientNetworkId to set.
          * @return This builder for chaining.
@@ -12962,10 +13489,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client network ID
-         * </pre>
-         *
          * <code>optional string client_network_id = 3;</code>
          * @return This builder for chaining.
          */
@@ -12976,10 +13499,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client network ID
-         * </pre>
-         *
          * <code>optional string client_network_id = 3;</code>
          * @param value The bytes for clientNetworkId to set.
          * @return This builder for chaining.
@@ -12997,10 +13516,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientLuName_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client LU name
-         * </pre>
-         *
          * <code>optional string client_lu_name = 4;</code>
          * @return Whether the clientLuName field is set.
          */
@@ -13008,10 +13523,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000008) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client LU name
-         * </pre>
-         *
          * <code>optional string client_lu_name = 4;</code>
          * @return The clientLuName.
          */
@@ -13030,10 +13541,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client LU name
-         * </pre>
-         *
          * <code>optional string client_lu_name = 4;</code>
          * @return The bytes for clientLuName.
          */
@@ -13051,10 +13558,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client LU name
-         * </pre>
-         *
          * <code>optional string client_lu_name = 4;</code>
          * @param value The clientLuName to set.
          * @return This builder for chaining.
@@ -13070,10 +13573,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client LU name
-         * </pre>
-         *
          * <code>optional string client_lu_name = 4;</code>
          * @return This builder for chaining.
          */
@@ -13084,10 +13583,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client LU name
-         * </pre>
-         *
          * <code>optional string client_lu_name = 4;</code>
          * @param value The bytes for clientLuName to set.
          * @return This builder for chaining.
@@ -13105,10 +13600,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientConnectionName_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client connection name
-         * </pre>
-         *
          * <code>optional string client_connection_name = 5;</code>
          * @return Whether the clientConnectionName field is set.
          */
@@ -13116,10 +13607,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000010) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection name
-         * </pre>
-         *
          * <code>optional string client_connection_name = 5;</code>
          * @return The clientConnectionName.
          */
@@ -13138,10 +13625,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection name
-         * </pre>
-         *
          * <code>optional string client_connection_name = 5;</code>
          * @return The bytes for clientConnectionName.
          */
@@ -13159,10 +13642,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection name
-         * </pre>
-         *
          * <code>optional string client_connection_name = 5;</code>
          * @param value The clientConnectionName to set.
          * @return This builder for chaining.
@@ -13178,10 +13657,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection name
-         * </pre>
-         *
          * <code>optional string client_connection_name = 5;</code>
          * @return This builder for chaining.
          */
@@ -13192,10 +13667,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection name
-         * </pre>
-         *
          * <code>optional string client_connection_name = 5;</code>
          * @param value The bytes for clientConnectionName to set.
          * @return This builder for chaining.
@@ -13213,10 +13684,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientConnectionType_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client connection type
-         * </pre>
-         *
          * <code>optional string client_connection_type = 6;</code>
          * @return Whether the clientConnectionType field is set.
          */
@@ -13224,10 +13691,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000020) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection type
-         * </pre>
-         *
          * <code>optional string client_connection_type = 6;</code>
          * @return The clientConnectionType.
          */
@@ -13246,10 +13709,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection type
-         * </pre>
-         *
          * <code>optional string client_connection_type = 6;</code>
          * @return The bytes for clientConnectionType.
          */
@@ -13267,10 +13726,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection type
-         * </pre>
-         *
          * <code>optional string client_connection_type = 6;</code>
          * @param value The clientConnectionType to set.
          * @return This builder for chaining.
@@ -13286,10 +13741,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection type
-         * </pre>
-         *
          * <code>optional string client_connection_type = 6;</code>
          * @return This builder for chaining.
          */
@@ -13300,10 +13751,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client connection type
-         * </pre>
-         *
          * <code>optional string client_connection_type = 6;</code>
          * @param value The bytes for clientConnectionType to set.
          * @return This builder for chaining.
@@ -13321,10 +13768,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientCorrelationId_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client correlation ID
-         * </pre>
-         *
          * <code>optional string client_correlation_id = 7;</code>
          * @return Whether the clientCorrelationId field is set.
          */
@@ -13332,10 +13775,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000040) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client correlation ID
-         * </pre>
-         *
          * <code>optional string client_correlation_id = 7;</code>
          * @return The clientCorrelationId.
          */
@@ -13354,10 +13793,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client correlation ID
-         * </pre>
-         *
          * <code>optional string client_correlation_id = 7;</code>
          * @return The bytes for clientCorrelationId.
          */
@@ -13375,10 +13810,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client correlation ID
-         * </pre>
-         *
          * <code>optional string client_correlation_id = 7;</code>
          * @param value The clientCorrelationId to set.
          * @return This builder for chaining.
@@ -13394,10 +13825,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client correlation ID
-         * </pre>
-         *
          * <code>optional string client_correlation_id = 7;</code>
          * @return This builder for chaining.
          */
@@ -13408,10 +13835,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client correlation ID
-         * </pre>
-         *
          * <code>optional string client_correlation_id = 7;</code>
          * @param value The bytes for clientCorrelationId to set.
          * @return This builder for chaining.
@@ -13429,10 +13852,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientAuthorizationId_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client authorization ID
-         * </pre>
-         *
          * <code>optional string client_authorization_id = 8;</code>
          * @return Whether the clientAuthorizationId field is set.
          */
@@ -13440,10 +13859,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000080) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client authorization ID
-         * </pre>
-         *
          * <code>optional string client_authorization_id = 8;</code>
          * @return The clientAuthorizationId.
          */
@@ -13462,10 +13877,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client authorization ID
-         * </pre>
-         *
          * <code>optional string client_authorization_id = 8;</code>
          * @return The bytes for clientAuthorizationId.
          */
@@ -13483,10 +13894,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client authorization ID
-         * </pre>
-         *
          * <code>optional string client_authorization_id = 8;</code>
          * @param value The clientAuthorizationId to set.
          * @return This builder for chaining.
@@ -13502,10 +13909,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client authorization ID
-         * </pre>
-         *
          * <code>optional string client_authorization_id = 8;</code>
          * @return This builder for chaining.
          */
@@ -13516,10 +13919,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client authorization ID
-         * </pre>
-         *
          * <code>optional string client_authorization_id = 8;</code>
          * @param value The bytes for clientAuthorizationId to set.
          * @return This builder for chaining.
@@ -13537,10 +13936,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientWorkstation_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client workstation from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_workstation = 9;</code>
          * @return Whether the clientWorkstation field is set.
          */
@@ -13548,10 +13943,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000100) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client workstation from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_workstation = 9;</code>
          * @return The clientWorkstation.
          */
@@ -13570,10 +13961,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client workstation from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_workstation = 9;</code>
          * @return The bytes for clientWorkstation.
          */
@@ -13591,10 +13978,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client workstation from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_workstation = 9;</code>
          * @param value The clientWorkstation to set.
          * @return This builder for chaining.
@@ -13610,10 +13993,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client workstation from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_workstation = 9;</code>
          * @return This builder for chaining.
          */
@@ -13624,10 +14003,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client workstation from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_workstation = 9;</code>
          * @param value The bytes for clientWorkstation to set.
          * @return This builder for chaining.
@@ -13645,10 +14020,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientApplication_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client application from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_application = 10;</code>
          * @return Whether the clientApplication field is set.
          */
@@ -13656,10 +14027,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000200) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client application from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_application = 10;</code>
          * @return The clientApplication.
          */
@@ -13678,10 +14045,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client application from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_application = 10;</code>
          * @return The bytes for clientApplication.
          */
@@ -13699,10 +14062,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client application from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_application = 10;</code>
          * @param value The clientApplication to set.
          * @return This builder for chaining.
@@ -13718,10 +14077,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client application from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_application = 10;</code>
          * @return This builder for chaining.
          */
@@ -13732,10 +14087,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client application from which the original SQL statement was received
-         * </pre>
-         *
          * <code>optional string client_application = 10;</code>
          * @param value The bytes for clientApplication to set.
          * @return This builder for chaining.
@@ -13753,10 +14104,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientUserId_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client user ID that submitted the original SQL statement
-         * </pre>
-         *
          * <code>optional string client_user_id = 11;</code>
          * @return Whether the clientUserId field is set.
          */
@@ -13764,10 +14111,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000400) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client user ID that submitted the original SQL statement
-         * </pre>
-         *
          * <code>optional string client_user_id = 11;</code>
          * @return The clientUserId.
          */
@@ -13786,10 +14129,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client user ID that submitted the original SQL statement
-         * </pre>
-         *
          * <code>optional string client_user_id = 11;</code>
          * @return The bytes for clientUserId.
          */
@@ -13807,10 +14146,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client user ID that submitted the original SQL statement
-         * </pre>
-         *
          * <code>optional string client_user_id = 11;</code>
          * @param value The clientUserId to set.
          * @return This builder for chaining.
@@ -13826,10 +14161,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client user ID that submitted the original SQL statement
-         * </pre>
-         *
          * <code>optional string client_user_id = 11;</code>
          * @return This builder for chaining.
          */
@@ -13840,10 +14171,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client user ID that submitted the original SQL statement
-         * </pre>
-         *
          * <code>optional string client_user_id = 11;</code>
          * @param value The bytes for clientUserId to set.
          * @return This builder for chaining.
@@ -13861,10 +14188,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientPlanName_ = "";
         /**
-         * <pre>
-         *&#47;&lt; client SQL statement plan name
-         * </pre>
-         *
          * <code>optional string client_plan_name = 12;</code>
          * @return Whether the clientPlanName field is set.
          */
@@ -13872,10 +14195,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00000800) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; client SQL statement plan name
-         * </pre>
-         *
          * <code>optional string client_plan_name = 12;</code>
          * @return The clientPlanName.
          */
@@ -13894,10 +14213,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client SQL statement plan name
-         * </pre>
-         *
          * <code>optional string client_plan_name = 12;</code>
          * @return The bytes for clientPlanName.
          */
@@ -13915,10 +14230,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; client SQL statement plan name
-         * </pre>
-         *
          * <code>optional string client_plan_name = 12;</code>
          * @param value The clientPlanName to set.
          * @return This builder for chaining.
@@ -13934,10 +14245,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client SQL statement plan name
-         * </pre>
-         *
          * <code>optional string client_plan_name = 12;</code>
          * @return This builder for chaining.
          */
@@ -13948,10 +14255,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; client SQL statement plan name
-         * </pre>
-         *
          * <code>optional string client_plan_name = 12;</code>
          * @param value The bytes for clientPlanName to set.
          * @return This builder for chaining.
@@ -13969,10 +14272,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object clientAccountingDetails_ = "";
         /**
-         * <pre>
-         *&#47;&lt; accounting details
-         * </pre>
-         *
          * <code>optional string client_accounting_details = 13;</code>
          * @return Whether the clientAccountingDetails field is set.
          */
@@ -13980,10 +14279,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00001000) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; accounting details
-         * </pre>
-         *
          * <code>optional string client_accounting_details = 13;</code>
          * @return The clientAccountingDetails.
          */
@@ -14002,10 +14297,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; accounting details
-         * </pre>
-         *
          * <code>optional string client_accounting_details = 13;</code>
          * @return The bytes for clientAccountingDetails.
          */
@@ -14023,10 +14314,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; accounting details
-         * </pre>
-         *
          * <code>optional string client_accounting_details = 13;</code>
          * @param value The clientAccountingDetails to set.
          * @return This builder for chaining.
@@ -14042,10 +14329,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; accounting details
-         * </pre>
-         *
          * <code>optional string client_accounting_details = 13;</code>
          * @return This builder for chaining.
          */
@@ -14056,10 +14339,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; accounting details
-         * </pre>
-         *
          * <code>optional string client_accounting_details = 13;</code>
          * @param value The bytes for clientAccountingDetails to set.
          * @return This builder for chaining.
@@ -14077,10 +14356,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object db2SystemId_ = "";
         /**
-         * <pre>
-         *&#47;&lt; DB2 system ID from which the SQL statement was received
-         * </pre>
-         *
          * <code>optional string db2_system_id = 14;</code>
          * @return Whether the db2SystemId field is set.
          */
@@ -14088,10 +14363,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00002000) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 system ID from which the SQL statement was received
-         * </pre>
-         *
          * <code>optional string db2_system_id = 14;</code>
          * @return The db2SystemId.
          */
@@ -14110,10 +14381,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 system ID from which the SQL statement was received
-         * </pre>
-         *
          * <code>optional string db2_system_id = 14;</code>
          * @return The bytes for db2SystemId.
          */
@@ -14131,10 +14398,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 system ID from which the SQL statement was received
-         * </pre>
-         *
          * <code>optional string db2_system_id = 14;</code>
          * @param value The db2SystemId to set.
          * @return This builder for chaining.
@@ -14150,10 +14413,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 system ID from which the SQL statement was received
-         * </pre>
-         *
          * <code>optional string db2_system_id = 14;</code>
          * @return This builder for chaining.
          */
@@ -14164,10 +14423,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 system ID from which the SQL statement was received
-         * </pre>
-         *
          * <code>optional string db2_system_id = 14;</code>
          * @param value The bytes for db2SystemId to set.
          * @return This builder for chaining.
@@ -14185,10 +14440,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object db2MemberName_ = "";
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group member name
-         * </pre>
-         *
          * <code>optional string db2_member_name = 15;</code>
          * @return Whether the db2MemberName field is set.
          */
@@ -14196,10 +14447,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00004000) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group member name
-         * </pre>
-         *
          * <code>optional string db2_member_name = 15;</code>
          * @return The db2MemberName.
          */
@@ -14218,10 +14465,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group member name
-         * </pre>
-         *
          * <code>optional string db2_member_name = 15;</code>
          * @return The bytes for db2MemberName.
          */
@@ -14239,10 +14482,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group member name
-         * </pre>
-         *
          * <code>optional string db2_member_name = 15;</code>
          * @param value The db2MemberName to set.
          * @return This builder for chaining.
@@ -14258,10 +14497,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group member name
-         * </pre>
-         *
          * <code>optional string db2_member_name = 15;</code>
          * @return This builder for chaining.
          */
@@ -14272,10 +14507,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group member name
-         * </pre>
-         *
          * <code>optional string db2_member_name = 15;</code>
          * @param value The bytes for db2MemberName to set.
          * @return This builder for chaining.
@@ -14293,10 +14524,6 @@ public final class SQLStatementDetails {
 
         private java.lang.Object db2GroupName_ = "";
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group name
-         * </pre>
-         *
          * <code>optional string db2_group_name = 16;</code>
          * @return Whether the db2GroupName field is set.
          */
@@ -14304,10 +14531,6 @@ public final class SQLStatementDetails {
           return ((bitField0_ & 0x00008000) != 0);
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group name
-         * </pre>
-         *
          * <code>optional string db2_group_name = 16;</code>
          * @return The db2GroupName.
          */
@@ -14326,10 +14549,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group name
-         * </pre>
-         *
          * <code>optional string db2_group_name = 16;</code>
          * @return The bytes for db2GroupName.
          */
@@ -14347,10 +14566,6 @@ public final class SQLStatementDetails {
           }
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group name
-         * </pre>
-         *
          * <code>optional string db2_group_name = 16;</code>
          * @param value The db2GroupName to set.
          * @return This builder for chaining.
@@ -14366,10 +14581,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group name
-         * </pre>
-         *
          * <code>optional string db2_group_name = 16;</code>
          * @return This builder for chaining.
          */
@@ -14380,10 +14591,6 @@ public final class SQLStatementDetails {
           return this;
         }
         /**
-         * <pre>
-         *&#47;&lt; DB2 data sharing group name
-         * </pre>
-         *
          * <code>optional string db2_group_name = 16;</code>
          * @param value The bytes for db2GroupName to set.
          * @return This builder for chaining.
@@ -14456,7 +14663,10 @@ public final class SQLStatementDetails {
     private long statementId_;
     /**
      * <pre>
-     *&#47; unique ID of the SQL statement
+     **
+     * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+     * only. The highest used statement ID is stored persistently in file
+     * "last-statement-id" in the same directory where the SQL history files reside.
      * </pre>
      *
      * <code>optional uint64 statement_id = 1;</code>
@@ -14467,7 +14677,10 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; unique ID of the SQL statement
+     **
+     * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+     * only. The highest used statement ID is stored persistently in file
+     * "last-statement-id" in the same directory where the SQL history files reside.
      * </pre>
      *
      * <code>optional uint64 statement_id = 1;</code>
@@ -14481,7 +14694,9 @@ public final class SQLStatementDetails {
     private long taskId_;
     /**
      * <pre>
-     *&#47; task ID of the SQL statement execution
+     **
+     * ID of the task that executes the SQL statement. Note that task IDs are reset
+     * upon restart of the accelerator.
      * </pre>
      *
      * <code>optional uint64 task_id = 2;</code>
@@ -14492,7 +14707,9 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; task ID of the SQL statement execution
+     **
+     * ID of the task that executes the SQL statement. Note that task IDs are reset
+     * upon restart of the accelerator.
      * </pre>
      *
      * <code>optional uint64 task_id = 2;</code>
@@ -14506,7 +14723,9 @@ public final class SQLStatementDetails {
     private volatile java.lang.Object databaseSystemLocationName_;
     /**
      * <pre>
-     *&#47; unique identifier of the database system of the SQL statement
+     **
+     * Each client must provide a unique location name when the pairing is established.
+     * That location name is stored for each SQL statement here.
      * </pre>
      *
      * <code>optional string database_system_location_name = 3;</code>
@@ -14517,7 +14736,9 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; unique identifier of the database system of the SQL statement
+     **
+     * Each client must provide a unique location name when the pairing is established.
+     * That location name is stored for each SQL statement here.
      * </pre>
      *
      * <code>optional string database_system_location_name = 3;</code>
@@ -14539,7 +14760,9 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; unique identifier of the database system of the SQL statement
+     **
+     * Each client must provide a unique location name when the pairing is established.
+     * That location name is stored for each SQL statement here.
      * </pre>
      *
      * <code>optional string database_system_location_name = 3;</code>
@@ -14563,7 +14786,11 @@ public final class SQLStatementDetails {
     private volatile java.lang.Object correlationToken_;
     /**
      * <pre>
-     *&#47; correlation token sent in the ACCRDB
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * uses "correlation tokens" to identify the connection. The correlation token
+     * is provided when the DRDA connection is established, and message ACCRDB
+     * (Access Relational Database) carries it.
      * </pre>
      *
      * <code>optional string correlation_token = 4;</code>
@@ -14574,7 +14801,11 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; correlation token sent in the ACCRDB
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * uses "correlation tokens" to identify the connection. The correlation token
+     * is provided when the DRDA connection is established, and message ACCRDB
+     * (Access Relational Database) carries it.
      * </pre>
      *
      * <code>optional string correlation_token = 4;</code>
@@ -14596,7 +14827,11 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; correlation token sent in the ACCRDB
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * uses "correlation tokens" to identify the connection. The correlation token
+     * is provided when the DRDA connection is established, and message ACCRDB
+     * (Access Relational Database) carries it.
      * </pre>
      *
      * <code>optional string correlation_token = 4;</code>
@@ -14620,7 +14855,9 @@ public final class SQLStatementDetails {
     private volatile java.lang.Object originalUserId_;
     /**
      * <pre>
-     *&#47; original UserID
+     **
+     * This is the user ID that was used when an application connects to the client
+     * database system (DB2z) for executing the SQL statement.
      * </pre>
      *
      * <code>optional string original_user_id = 5;</code>
@@ -14631,7 +14868,9 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; original UserID
+     **
+     * This is the user ID that was used when an application connects to the client
+     * database system (DB2z) for executing the SQL statement.
      * </pre>
      *
      * <code>optional string original_user_id = 5;</code>
@@ -14653,7 +14892,9 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; original UserID
+     **
+     * This is the user ID that was used when an application connects to the client
+     * database system (DB2z) for executing the SQL statement.
      * </pre>
      *
      * <code>optional string original_user_id = 5;</code>
@@ -14677,7 +14918,10 @@ public final class SQLStatementDetails {
     private volatile java.lang.Object externalName_;
     /**
      * <pre>
-     *&#47; EXTNAM of EXCSAT
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * contains an "external name". This name is provided in DRDA message EXCSAT
+     * (Exchange Server Attributes) in field EXTNAM (External Name).
      * </pre>
      *
      * <code>optional string external_name = 6;</code>
@@ -14688,7 +14932,10 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; EXTNAM of EXCSAT
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * contains an "external name". This name is provided in DRDA message EXCSAT
+     * (Exchange Server Attributes) in field EXTNAM (External Name).
      * </pre>
      *
      * <code>optional string external_name = 6;</code>
@@ -14710,7 +14957,10 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; EXTNAM of EXCSAT
+     **
+     * The DRDA communication protocol used between the client and the accelerator
+     * contains an "external name". This name is provided in DRDA message EXCSAT
+     * (Exchange Server Attributes) in field EXTNAM (External Name).
      * </pre>
      *
      * <code>optional string external_name = 6;</code>
@@ -14734,7 +14984,12 @@ public final class SQLStatementDetails {
     private volatile java.lang.Object peerIdentifier_;
     /**
      * <pre>
-     *&#47; IP address or resolved host name of remote client
+     **
+     * The client's IP address is obtained from the TCP/IP connection itself by
+     * querying the respective attributes from the socket.
+     * The client's port number is _not_ included because the port numbers are
+     * typically assigned randomly by the client's operating system when a
+     * &#64;c connect() system call is made.
      * </pre>
      *
      * <code>optional string peer_identifier = 7;</code>
@@ -14745,7 +15000,12 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; IP address or resolved host name of remote client
+     **
+     * The client's IP address is obtained from the TCP/IP connection itself by
+     * querying the respective attributes from the socket.
+     * The client's port number is _not_ included because the port numbers are
+     * typically assigned randomly by the client's operating system when a
+     * &#64;c connect() system call is made.
      * </pre>
      *
      * <code>optional string peer_identifier = 7;</code>
@@ -14767,7 +15027,12 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; IP address or resolved host name of remote client
+     **
+     * The client's IP address is obtained from the TCP/IP connection itself by
+     * querying the respective attributes from the socket.
+     * The client's port number is _not_ included because the port numbers are
+     * typically assigned randomly by the client's operating system when a
+     * &#64;c connect() system call is made.
      * </pre>
      *
      * <code>optional string peer_identifier = 7;</code>
@@ -14791,8 +15056,11 @@ public final class SQLStatementDetails {
     private volatile java.lang.Object originalSqlStatementText_;
     /**
      * <pre>
-     *&#47; SQL statement that the client has originally received. The client translated it
-     * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+     **
+     * An application sends a SQL statement to our client (DB2z). The client
+     * rewrites this original SQL statement to the backend (and does syntax
+     * adjustments, table name mappings). The original SQL statement text is
+     * provided to the accelerator, primarily for diagnostics purposes.
      * </pre>
      *
      * <code>optional string original_sql_statement_text = 8;</code>
@@ -14803,8 +15071,11 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; SQL statement that the client has originally received. The client translated it
-     * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+     **
+     * An application sends a SQL statement to our client (DB2z). The client
+     * rewrites this original SQL statement to the backend (and does syntax
+     * adjustments, table name mappings). The original SQL statement text is
+     * provided to the accelerator, primarily for diagnostics purposes.
      * </pre>
      *
      * <code>optional string original_sql_statement_text = 8;</code>
@@ -14826,8 +15097,11 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; SQL statement that the client has originally received. The client translated it
-     * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+     **
+     * An application sends a SQL statement to our client (DB2z). The client
+     * rewrites this original SQL statement to the backend (and does syntax
+     * adjustments, table name mappings). The original SQL statement text is
+     * provided to the accelerator, primarily for diagnostics purposes.
      * </pre>
      *
      * <code>optional string original_sql_statement_text = 8;</code>
@@ -14847,25 +15121,68 @@ public final class SQLStatementDetails {
       }
     }
 
-    public static final int BACKEND_SQL_STATEMENT_TEXT_FIELD_NUMBER = 9;
-    private volatile java.lang.Object backendSqlStatementText_;
+    public static final int ORIGINAL_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER = 9;
+    private long originalSqlStatementTextHash_;
     /**
      * <pre>
-     *&#47; BackendDBS SQL statement text with resolved parameter markers
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the original SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the original SQL statement text for two different statements
+     * is the same or not.
      * </pre>
      *
-     * <code>optional string backend_sql_statement_text = 9;</code>
-     * @return Whether the backendSqlStatementText field is set.
+     * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+     * @return Whether the originalSqlStatementTextHash field is set.
      */
-    public boolean hasBackendSqlStatementText() {
+    public boolean hasOriginalSqlStatementTextHash() {
       return ((bitField0_ & 0x00000100) != 0);
     }
     /**
      * <pre>
-     *&#47; BackendDBS SQL statement text with resolved parameter markers
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the original SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the original SQL statement text for two different statements
+     * is the same or not.
      * </pre>
      *
-     * <code>optional string backend_sql_statement_text = 9;</code>
+     * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+     * @return The originalSqlStatementTextHash.
+     */
+    public long getOriginalSqlStatementTextHash() {
+      return originalSqlStatementTextHash_;
+    }
+
+    public static final int BACKEND_SQL_STATEMENT_TEXT_FIELD_NUMBER = 10;
+    private volatile java.lang.Object backendSqlStatementText_;
+    /**
+     * <pre>
+     **
+     * The original SQL statement text (see &#64;c original_sql_statement_text)
+     * is rewritten by the client to adhere to the backend's SQL syntax and
+     * use the table/view names defined by the accelerator. This field here
+     * contains the rewritten SQL statement text, which is actually executed
+     * in the backend as-is.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text = 10;</code>
+     * @return Whether the backendSqlStatementText field is set.
+     */
+    public boolean hasBackendSqlStatementText() {
+      return ((bitField0_ & 0x00000200) != 0);
+    }
+    /**
+     * <pre>
+     **
+     * The original SQL statement text (see &#64;c original_sql_statement_text)
+     * is rewritten by the client to adhere to the backend's SQL syntax and
+     * use the table/view names defined by the accelerator. This field here
+     * contains the rewritten SQL statement text, which is actually executed
+     * in the backend as-is.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text = 10;</code>
      * @return The backendSqlStatementText.
      */
     public java.lang.String getBackendSqlStatementText() {
@@ -14884,10 +15201,15 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; BackendDBS SQL statement text with resolved parameter markers
+     **
+     * The original SQL statement text (see &#64;c original_sql_statement_text)
+     * is rewritten by the client to adhere to the backend's SQL syntax and
+     * use the table/view names defined by the accelerator. This field here
+     * contains the rewritten SQL statement text, which is actually executed
+     * in the backend as-is.
      * </pre>
      *
-     * <code>optional string backend_sql_statement_text = 9;</code>
+     * <code>optional string backend_sql_statement_text = 10;</code>
      * @return The bytes for backendSqlStatementText.
      */
     public com.google.protobuf.ByteString
@@ -14904,25 +15226,64 @@ public final class SQLStatementDetails {
       }
     }
 
-    public static final int PACKAGE_NAME_FIELD_NUMBER = 10;
-    private volatile java.lang.Object packageName_;
+    public static final int BACKEND_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER = 11;
+    private long backendSqlStatementTextHash_;
     /**
      * <pre>
-     *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the backend SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the backend SQL statement text for two different statements
+     * is the same or not.
      * </pre>
      *
-     * <code>optional string package_name = 10;</code>
-     * @return Whether the packageName field is set.
+     * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+     * @return Whether the backendSqlStatementTextHash field is set.
      */
-    public boolean hasPackageName() {
-      return ((bitField0_ & 0x00000200) != 0);
+    public boolean hasBackendSqlStatementTextHash() {
+      return ((bitField0_ & 0x00000400) != 0);
     }
     /**
      * <pre>
-     *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+     **
+     * For complex SQL statements it is sometimes not easy to spot differences in
+     * the backend SQL statement text. Here we store a hash so that it is much easier
+     * to identify whether the backend SQL statement text for two different statements
+     * is the same or not.
      * </pre>
      *
-     * <code>optional string package_name = 10;</code>
+     * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+     * @return The backendSqlStatementTextHash.
+     */
+    public long getBackendSqlStatementTextHash() {
+      return backendSqlStatementTextHash_;
+    }
+
+    public static final int PACKAGE_NAME_FIELD_NUMBER = 12;
+    private volatile java.lang.Object packageName_;
+    /**
+     * <pre>
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the name of the package in which that SQL statement was
+     * compiled into.
+     * </pre>
+     *
+     * <code>optional string package_name = 12;</code>
+     * @return Whether the packageName field is set.
+     */
+    public boolean hasPackageName() {
+      return ((bitField0_ & 0x00000800) != 0);
+    }
+    /**
+     * <pre>
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the name of the package in which that SQL statement was
+     * compiled into.
+     * </pre>
+     *
+     * <code>optional string package_name = 12;</code>
      * @return The packageName.
      */
     public java.lang.String getPackageName() {
@@ -14941,10 +15302,13 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the name of the package in which that SQL statement was
+     * compiled into.
      * </pre>
      *
-     * <code>optional string package_name = 10;</code>
+     * <code>optional string package_name = 12;</code>
      * @return The bytes for packageName.
      */
     public com.google.protobuf.ByteString
@@ -14961,25 +15325,29 @@ public final class SQLStatementDetails {
       }
     }
 
-    public static final int COLLECTION_ID_FIELD_NUMBER = 11;
+    public static final int COLLECTION_ID_FIELD_NUMBER = 13;
     private volatile java.lang.Object collectionId_;
     /**
      * <pre>
-     *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the collection ID related to that SQL statement.
      * </pre>
      *
-     * <code>optional string collection_id = 11;</code>
+     * <code>optional string collection_id = 13;</code>
      * @return Whether the collectionId field is set.
      */
     public boolean hasCollectionId() {
-      return ((bitField0_ & 0x00000400) != 0);
+      return ((bitField0_ & 0x00001000) != 0);
     }
     /**
      * <pre>
-     *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the collection ID related to that SQL statement.
      * </pre>
      *
-     * <code>optional string collection_id = 11;</code>
+     * <code>optional string collection_id = 13;</code>
      * @return The collectionId.
      */
     public java.lang.String getCollectionId() {
@@ -14998,10 +15366,12 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+     **
+     * If the client routes a static SQL statement to the accelerator, this
+     * field contains the collection ID related to that SQL statement.
      * </pre>
      *
-     * <code>optional string collection_id = 11;</code>
+     * <code>optional string collection_id = 13;</code>
      * @return The bytes for collectionId.
      */
     public com.google.protobuf.ByteString
@@ -15018,17 +15388,31 @@ public final class SQLStatementDetails {
       }
     }
 
-    public static final int DBID_OBID_OF_ACCESSED_TABLES_FIELD_NUMBER = 12;
+    public static final int DBID_OBID_OF_ACCESSED_TABLES_FIELD_NUMBER = 14;
     private volatile java.lang.Object dbidObidOfAccessedTables_;
     /**
-     * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+     * <pre>
+     **
+     * The client provides all IDs of tables that are referenced in a SQL statement.
+     * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+     * Object ID).
+     * </pre>
+     *
+     * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
      * @return Whether the dbidObidOfAccessedTables field is set.
      */
     public boolean hasDbidObidOfAccessedTables() {
-      return ((bitField0_ & 0x00000800) != 0);
+      return ((bitField0_ & 0x00002000) != 0);
     }
     /**
-     * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+     * <pre>
+     **
+     * The client provides all IDs of tables that are referenced in a SQL statement.
+     * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+     * Object ID).
+     * </pre>
+     *
+     * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
      * @return The dbidObidOfAccessedTables.
      */
     public java.lang.String getDbidObidOfAccessedTables() {
@@ -15046,7 +15430,14 @@ public final class SQLStatementDetails {
       }
     }
     /**
-     * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+     * <pre>
+     **
+     * The client provides all IDs of tables that are referenced in a SQL statement.
+     * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+     * Object ID).
+     * </pre>
+     *
+     * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
      * @return The bytes for dbidObidOfAccessedTables.
      */
     public com.google.protobuf.ByteString
@@ -15063,34 +15454,60 @@ public final class SQLStatementDetails {
       }
     }
 
-    public static final int BACKEND_SQL_SESSION_ID_FIELD_NUMBER = 13;
+    public static final int BACKEND_SQL_SESSION_ID_FIELD_NUMBER = 15;
     private long backendSqlSessionId_;
     /**
-     * <code>optional int64 backend_sql_session_id = 13;</code>
+     * <pre>
+     **
+     * Each SQL connection to the backend has an application handle. The application
+     * handle for the SQL connection on which the SQL statement is executed is
+     * stored here as SQL session ID.
+     * </pre>
+     *
+     * <code>optional int64 backend_sql_session_id = 15;</code>
      * @return Whether the backendSqlSessionId field is set.
      */
     public boolean hasBackendSqlSessionId() {
-      return ((bitField0_ & 0x00001000) != 0);
+      return ((bitField0_ & 0x00004000) != 0);
     }
     /**
-     * <code>optional int64 backend_sql_session_id = 13;</code>
+     * <pre>
+     **
+     * Each SQL connection to the backend has an application handle. The application
+     * handle for the SQL connection on which the SQL statement is executed is
+     * stored here as SQL session ID.
+     * </pre>
+     *
+     * <code>optional int64 backend_sql_session_id = 15;</code>
      * @return The backendSqlSessionId.
      */
     public long getBackendSqlSessionId() {
       return backendSqlSessionId_;
     }
 
-    public static final int BACKEND_SQL_APPLICATION_ID_FIELD_NUMBER = 27;
+    public static final int BACKEND_SQL_APPLICATION_ID_FIELD_NUMBER = 16;
     private volatile java.lang.Object backendSqlApplicationId_;
     /**
-     * <code>optional string backend_sql_application_id = 27;</code>
+     * <pre>
+     **
+     * Besides the application handle (see field &#64;c backend_sql_session_id), the
+     * backend has an application ID assigned to each SQL connection.
+     * </pre>
+     *
+     * <code>optional string backend_sql_application_id = 16;</code>
      * @return Whether the backendSqlApplicationId field is set.
      */
     public boolean hasBackendSqlApplicationId() {
-      return ((bitField0_ & 0x00002000) != 0);
+      return ((bitField0_ & 0x00008000) != 0);
     }
     /**
-     * <code>optional string backend_sql_application_id = 27;</code>
+     * <pre>
+     **
+     * Besides the application handle (see field &#64;c backend_sql_session_id), the
+     * backend has an application ID assigned to each SQL connection.
+     * </pre>
+     *
+     * <code>optional string backend_sql_application_id = 16;</code>
      * @return The backendSqlApplicationId.
      */
     public java.lang.String getBackendSqlApplicationId() {
@@ -15108,7 +15525,13 @@ public final class SQLStatementDetails {
       }
     }
     /**
-     * <code>optional string backend_sql_application_id = 27;</code>
+     * <pre>
+     **
+     * Besides the application handle (see field &#64;c backend_sql_session_id), the
+     * backend has an application ID assigned to each SQL connection.
+     * </pre>
+     *
+     * <code>optional string backend_sql_application_id = 16;</code>
      * @return The bytes for backendSqlApplicationId.
      */
     public com.google.protobuf.ByteString
@@ -15125,182 +15548,233 @@ public final class SQLStatementDetails {
       }
     }
 
-    public static final int TASK_PRIORITY_FIELD_NUMBER = 14;
+    public static final int TASK_PRIORITY_FIELD_NUMBER = 17;
     private int taskPriority_;
     /**
-     * <code>optional int32 task_priority = 14;</code>
+     * <pre>
+     **
+     * The task priority is derived from the client's WLM (workload management) importance level.
+     * </pre>
+     *
+     * <code>optional int32 task_priority = 17;</code>
      * @return Whether the taskPriority field is set.
      */
     public boolean hasTaskPriority() {
-      return ((bitField0_ & 0x00004000) != 0);
+      return ((bitField0_ & 0x00010000) != 0);
     }
     /**
-     * <code>optional int32 task_priority = 14;</code>
+     * <pre>
+     **
+     * The task priority is derived from the client's WLM (workload management) importance level.
+     * </pre>
+     *
+     * <code>optional int32 task_priority = 17;</code>
      * @return The taskPriority.
      */
     public int getTaskPriority() {
       return taskPriority_;
     }
 
-    public static final int SPECIAL_REGISTERS_FIELD_NUMBER = 15;
+    public static final int SPECIAL_REGISTERS_FIELD_NUMBER = 18;
     private SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters specialRegisters_;
     /**
-     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
      * @return Whether the specialRegisters field is set.
      */
     public boolean hasSpecialRegisters() {
-      return ((bitField0_ & 0x00008000) != 0);
+      return ((bitField0_ & 0x00020000) != 0);
     }
     /**
-     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
      * @return The specialRegisters.
      */
     public SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters getSpecialRegisters() {
       return specialRegisters_ == null ? SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.getDefaultInstance() : specialRegisters_;
     }
     /**
-     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+     * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
      */
     public SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegistersOrBuilder getSpecialRegistersOrBuilder() {
       return specialRegisters_ == null ? SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.getDefaultInstance() : specialRegisters_;
     }
 
-    public static final int FINISH_STATE_FIELD_NUMBER = 16;
+    public static final int FINISHED_FIELD_NUMBER = 19;
+    private boolean finished_;
+    /**
+     * <pre>
+     *&#47; indicator whether execution of the SQL statement has finished
+     * </pre>
+     *
+     * <code>optional bool finished = 19;</code>
+     * @return Whether the finished field is set.
+     */
+    public boolean hasFinished() {
+      return ((bitField0_ & 0x00040000) != 0);
+    }
+    /**
+     * <pre>
+     *&#47; indicator whether execution of the SQL statement has finished
+     * </pre>
+     *
+     * <code>optional bool finished = 19;</code>
+     * @return The finished.
+     */
+    public boolean getFinished() {
+      return finished_;
+    }
+
+    public static final int FINISH_STATE_FIELD_NUMBER = 20;
     private int finishState_;
     /**
-     * <code>optional uint32 finish_state = 16;</code>
+     * <pre>
+     **
+     * The state how the SQL statement execution was finished is one of:
+     *  - 3 = DONE (successful completion without error)
+     *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+     *  - 5 = CANCELLED (execution was canceled)
+     * </pre>
+     *
+     * <code>optional uint32 finish_state = 20;</code>
      * @return Whether the finishState field is set.
      */
     public boolean hasFinishState() {
-      return ((bitField0_ & 0x00010000) != 0);
+      return ((bitField0_ & 0x00080000) != 0);
     }
     /**
-     * <code>optional uint32 finish_state = 16;</code>
+     * <pre>
+     **
+     * The state how the SQL statement execution was finished is one of:
+     *  - 3 = DONE (successful completion without error)
+     *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+     *  - 5 = CANCELLED (execution was canceled)
+     * </pre>
+     *
+     * <code>optional uint32 finish_state = 20;</code>
      * @return The finishState.
      */
     public int getFinishState() {
       return finishState_;
     }
 
-    public static final int TIMINGS_FIELD_NUMBER = 17;
+    public static final int TIMINGS_FIELD_NUMBER = 21;
     private SQLStatementDetails.SQLStatementDetailsData.Timings timings_;
     /**
-     * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+     * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
      * @return Whether the timings field is set.
      */
     public boolean hasTimings() {
-      return ((bitField0_ & 0x00020000) != 0);
+      return ((bitField0_ & 0x00100000) != 0);
     }
     /**
-     * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+     * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
      * @return The timings.
      */
     public SQLStatementDetails.SQLStatementDetailsData.Timings getTimings() {
       return timings_ == null ? SQLStatementDetails.SQLStatementDetailsData.Timings.getDefaultInstance() : timings_;
     }
     /**
-     * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+     * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
      */
     public SQLStatementDetails.SQLStatementDetailsData.TimingsOrBuilder getTimingsOrBuilder() {
       return timings_ == null ? SQLStatementDetails.SQLStatementDetailsData.Timings.getDefaultInstance() : timings_;
     }
 
-    public static final int EXECUTION_RESULT_FIELD_NUMBER = 18;
+    public static final int EXECUTION_RESULT_FIELD_NUMBER = 22;
     private SQLStatementDetails.SQLStatementDetailsData.ExecutionResult executionResult_;
     /**
-     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
      * @return Whether the executionResult field is set.
      */
     public boolean hasExecutionResult() {
-      return ((bitField0_ & 0x00040000) != 0);
+      return ((bitField0_ & 0x00200000) != 0);
     }
     /**
-     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
      * @return The executionResult.
      */
     public SQLStatementDetails.SQLStatementDetailsData.ExecutionResult getExecutionResult() {
       return executionResult_ == null ? SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.getDefaultInstance() : executionResult_;
     }
     /**
-     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+     * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
      */
     public SQLStatementDetails.SQLStatementDetailsData.ExecutionResultOrBuilder getExecutionResultOrBuilder() {
       return executionResult_ == null ? SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.getDefaultInstance() : executionResult_;
     }
 
-    public static final int WAIT_FOR_DATA_FIELD_NUMBER = 19;
+    public static final int WAIT_FOR_DATA_FIELD_NUMBER = 23;
     private SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics waitForData_;
     /**
-     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
      * @return Whether the waitForData field is set.
      */
     public boolean hasWaitForData() {
-      return ((bitField0_ & 0x00080000) != 0);
+      return ((bitField0_ & 0x00400000) != 0);
     }
     /**
-     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
      * @return The waitForData.
      */
     public SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics getWaitForData() {
       return waitForData_ == null ? SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.getDefaultInstance() : waitForData_;
     }
     /**
-     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+     * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
      */
     public SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatisticsOrBuilder getWaitForDataOrBuilder() {
       return waitForData_ == null ? SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.getDefaultInstance() : waitForData_;
     }
 
-    public static final int MULTI_ROW_INSERT_FIELD_NUMBER = 20;
+    public static final int MULTI_ROW_INSERT_FIELD_NUMBER = 24;
     private SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails multiRowInsert_;
     /**
-     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
      * @return Whether the multiRowInsert field is set.
      */
     public boolean hasMultiRowInsert() {
-      return ((bitField0_ & 0x00100000) != 0);
+      return ((bitField0_ & 0x00800000) != 0);
     }
     /**
-     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
      * @return The multiRowInsert.
      */
     public SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails getMultiRowInsert() {
       return multiRowInsert_ == null ? SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.getDefaultInstance() : multiRowInsert_;
     }
     /**
-     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+     * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
      */
     public SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetailsOrBuilder getMultiRowInsertOrBuilder() {
       return multiRowInsert_ == null ? SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.getDefaultInstance() : multiRowInsert_;
     }
 
-    public static final int AUXILIARY_DATA_FIELD_NUMBER = 21;
+    public static final int AUXILIARY_DATA_FIELD_NUMBER = 25;
     private volatile java.lang.Object auxiliaryData_;
     /**
      * <pre>
-     *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-     * / statement execution. For example, profiling data for the individual execution phases
-     * / are gathered. A dump of those information is stored in the current attribute so
-     * / that they are available for problem determination purposes. Processing and filtering
-     * / based on this attribute is not supported as for the others.
+     **
+     * The SQL controller typically collects a lot of detailed information for each
+     * SQL statement execution. For example, profiling data for the individual execution
+     * phases are gathered. A dump (in XML format) of those information is stored so
+     * that it is available for problem determination purposes.
      * </pre>
      *
-     * <code>optional string auxiliary_data = 21;</code>
+     * <code>optional string auxiliary_data = 25;</code>
      * @return Whether the auxiliaryData field is set.
      */
     public boolean hasAuxiliaryData() {
-      return ((bitField0_ & 0x00200000) != 0);
+      return ((bitField0_ & 0x01000000) != 0);
     }
     /**
      * <pre>
-     *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-     * / statement execution. For example, profiling data for the individual execution phases
-     * / are gathered. A dump of those information is stored in the current attribute so
-     * / that they are available for problem determination purposes. Processing and filtering
-     * / based on this attribute is not supported as for the others.
+     **
+     * The SQL controller typically collects a lot of detailed information for each
+     * SQL statement execution. For example, profiling data for the individual execution
+     * phases are gathered. A dump (in XML format) of those information is stored so
+     * that it is available for problem determination purposes.
      * </pre>
      *
-     * <code>optional string auxiliary_data = 21;</code>
+     * <code>optional string auxiliary_data = 25;</code>
      * @return The auxiliaryData.
      */
     public java.lang.String getAuxiliaryData() {
@@ -15319,14 +15793,14 @@ public final class SQLStatementDetails {
     }
     /**
      * <pre>
-     *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-     * / statement execution. For example, profiling data for the individual execution phases
-     * / are gathered. A dump of those information is stored in the current attribute so
-     * / that they are available for problem determination purposes. Processing and filtering
-     * / based on this attribute is not supported as for the others.
+     **
+     * The SQL controller typically collects a lot of detailed information for each
+     * SQL statement execution. For example, profiling data for the individual execution
+     * phases are gathered. A dump (in XML format) of those information is stored so
+     * that it is available for problem determination purposes.
      * </pre>
      *
-     * <code>optional string auxiliary_data = 21;</code>
+     * <code>optional string auxiliary_data = 25;</code>
      * @return The bytes for auxiliaryData.
      */
     public com.google.protobuf.ByteString
@@ -15343,91 +15817,64 @@ public final class SQLStatementDetails {
       }
     }
 
-    public static final int CLIENT_ACCOUNTING_DETAILS_FIELD_NUMBER = 22;
+    public static final int CLIENT_ACCOUNTING_DETAILS_FIELD_NUMBER = 26;
     private SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails clientAccountingDetails_;
     /**
-     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
      * @return Whether the clientAccountingDetails field is set.
      */
     public boolean hasClientAccountingDetails() {
-      return ((bitField0_ & 0x00400000) != 0);
+      return ((bitField0_ & 0x02000000) != 0);
     }
     /**
-     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
      * @return The clientAccountingDetails.
      */
     public SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails getClientAccountingDetails() {
       return clientAccountingDetails_ == null ? SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.getDefaultInstance() : clientAccountingDetails_;
     }
     /**
-     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+     * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
      */
     public SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetailsOrBuilder getClientAccountingDetailsOrBuilder() {
       return clientAccountingDetails_ == null ? SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.getDefaultInstance() : clientAccountingDetails_;
     }
 
-    public static final int FINISHED_FIELD_NUMBER = 23;
-    private boolean finished_;
-    /**
-     * <code>optional bool finished = 23;</code>
-     * @return Whether the finished field is set.
-     */
-    public boolean hasFinished() {
-      return ((bitField0_ & 0x00800000) != 0);
-    }
-    /**
-     * <code>optional bool finished = 23;</code>
-     * @return The finished.
-     */
-    public boolean getFinished() {
-      return finished_;
-    }
-
-    public static final int ORIGINAL_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER = 24;
-    private long originalSqlStatementTextHash_;
-    /**
-     * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-     * @return Whether the originalSqlStatementTextHash field is set.
-     */
-    public boolean hasOriginalSqlStatementTextHash() {
-      return ((bitField0_ & 0x01000000) != 0);
-    }
-    /**
-     * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-     * @return The originalSqlStatementTextHash.
-     */
-    public long getOriginalSqlStatementTextHash() {
-      return originalSqlStatementTextHash_;
-    }
-
-    public static final int BACKEND_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER = 25;
-    private long backendSqlStatementTextHash_;
-    /**
-     * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-     * @return Whether the backendSqlStatementTextHash field is set.
-     */
-    public boolean hasBackendSqlStatementTextHash() {
-      return ((bitField0_ & 0x02000000) != 0);
-    }
-    /**
-     * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-     * @return The backendSqlStatementTextHash.
-     */
-    public long getBackendSqlStatementTextHash() {
-      return backendSqlStatementTextHash_;
-    }
-
-    public static final int BACKEND_SQL_STATEMENT_TEXT_HEX_FIELD_NUMBER = 26;
+    public static final int BACKEND_SQL_STATEMENT_TEXT_HEX_FIELD_NUMBER = 27;
     private volatile java.lang.Object backendSqlStatementTextHex_;
     /**
-     * <code>optional string backend_sql_statement_text_hex = 26;</code>
+     * <pre>
+     **
+     * Deprecrated.
+     * In the past, we used to store the backend SQL statement text as hex representation
+     * for all the individual bytes. That can be helpful to figure out, for example,
+     * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+     * (Unicode code U+00A0).
+     * We no longer store that hex representation these days. System command
+     * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+     * SQL statement text and/or the backend SQL statement text.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text_hex = 27;</code>
      * @return Whether the backendSqlStatementTextHex field is set.
      */
     public boolean hasBackendSqlStatementTextHex() {
       return ((bitField0_ & 0x04000000) != 0);
     }
     /**
-     * <code>optional string backend_sql_statement_text_hex = 26;</code>
+     * <pre>
+     **
+     * Deprecrated.
+     * In the past, we used to store the backend SQL statement text as hex representation
+     * for all the individual bytes. That can be helpful to figure out, for example,
+     * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+     * (Unicode code U+00A0).
+     * We no longer store that hex representation these days. System command
+     * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+     * SQL statement text and/or the backend SQL statement text.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text_hex = 27;</code>
      * @return The backendSqlStatementTextHex.
      */
     public java.lang.String getBackendSqlStatementTextHex() {
@@ -15445,7 +15892,19 @@ public final class SQLStatementDetails {
       }
     }
     /**
-     * <code>optional string backend_sql_statement_text_hex = 26;</code>
+     * <pre>
+     **
+     * Deprecrated.
+     * In the past, we used to store the backend SQL statement text as hex representation
+     * for all the individual bytes. That can be helpful to figure out, for example,
+     * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+     * (Unicode code U+00A0).
+     * We no longer store that hex representation these days. System command
+     * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+     * SQL statement text and/or the backend SQL statement text.
+     * </pre>
+     *
+     * <code>optional string backend_sql_statement_text_hex = 27;</code>
      * @return The bytes for backendSqlStatementTextHex.
      */
     public com.google.protobuf.ByteString
@@ -15501,61 +15960,61 @@ public final class SQLStatementDetails {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 8, originalSqlStatementText_);
       }
       if (((bitField0_ & 0x00000100) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, backendSqlStatementText_);
+        output.writeUInt64(9, originalSqlStatementTextHash_);
       }
       if (((bitField0_ & 0x00000200) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, packageName_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, backendSqlStatementText_);
       }
       if (((bitField0_ & 0x00000400) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, collectionId_);
+        output.writeUInt64(11, backendSqlStatementTextHash_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 12, dbidObidOfAccessedTables_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 12, packageName_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
-        output.writeInt64(13, backendSqlSessionId_);
-      }
-      if (((bitField0_ & 0x00004000) != 0)) {
-        output.writeInt32(14, taskPriority_);
-      }
-      if (((bitField0_ & 0x00008000) != 0)) {
-        output.writeMessage(15, getSpecialRegisters());
-      }
-      if (((bitField0_ & 0x00010000) != 0)) {
-        output.writeUInt32(16, finishState_);
-      }
-      if (((bitField0_ & 0x00020000) != 0)) {
-        output.writeMessage(17, getTimings());
-      }
-      if (((bitField0_ & 0x00040000) != 0)) {
-        output.writeMessage(18, getExecutionResult());
-      }
-      if (((bitField0_ & 0x00080000) != 0)) {
-        output.writeMessage(19, getWaitForData());
-      }
-      if (((bitField0_ & 0x00100000) != 0)) {
-        output.writeMessage(20, getMultiRowInsert());
-      }
-      if (((bitField0_ & 0x00200000) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 21, auxiliaryData_);
-      }
-      if (((bitField0_ & 0x00400000) != 0)) {
-        output.writeMessage(22, getClientAccountingDetails());
-      }
-      if (((bitField0_ & 0x00800000) != 0)) {
-        output.writeBool(23, finished_);
-      }
-      if (((bitField0_ & 0x01000000) != 0)) {
-        output.writeUInt64(24, originalSqlStatementTextHash_);
-      }
-      if (((bitField0_ & 0x02000000) != 0)) {
-        output.writeUInt64(25, backendSqlStatementTextHash_);
-      }
-      if (((bitField0_ & 0x04000000) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 26, backendSqlStatementTextHex_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 13, collectionId_);
       }
       if (((bitField0_ & 0x00002000) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 27, backendSqlApplicationId_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 14, dbidObidOfAccessedTables_);
+      }
+      if (((bitField0_ & 0x00004000) != 0)) {
+        output.writeInt64(15, backendSqlSessionId_);
+      }
+      if (((bitField0_ & 0x00008000) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 16, backendSqlApplicationId_);
+      }
+      if (((bitField0_ & 0x00010000) != 0)) {
+        output.writeInt32(17, taskPriority_);
+      }
+      if (((bitField0_ & 0x00020000) != 0)) {
+        output.writeMessage(18, getSpecialRegisters());
+      }
+      if (((bitField0_ & 0x00040000) != 0)) {
+        output.writeBool(19, finished_);
+      }
+      if (((bitField0_ & 0x00080000) != 0)) {
+        output.writeUInt32(20, finishState_);
+      }
+      if (((bitField0_ & 0x00100000) != 0)) {
+        output.writeMessage(21, getTimings());
+      }
+      if (((bitField0_ & 0x00200000) != 0)) {
+        output.writeMessage(22, getExecutionResult());
+      }
+      if (((bitField0_ & 0x00400000) != 0)) {
+        output.writeMessage(23, getWaitForData());
+      }
+      if (((bitField0_ & 0x00800000) != 0)) {
+        output.writeMessage(24, getMultiRowInsert());
+      }
+      if (((bitField0_ & 0x01000000) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 25, auxiliaryData_);
+      }
+      if (((bitField0_ & 0x02000000) != 0)) {
+        output.writeMessage(26, getClientAccountingDetails());
+      }
+      if (((bitField0_ & 0x04000000) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 27, backendSqlStatementTextHex_);
       }
       unknownFields.writeTo(output);
     }
@@ -15593,73 +16052,73 @@ public final class SQLStatementDetails {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, originalSqlStatementText_);
       }
       if (((bitField0_ & 0x00000100) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, backendSqlStatementText_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(9, originalSqlStatementTextHash_);
       }
       if (((bitField0_ & 0x00000200) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, packageName_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, backendSqlStatementText_);
       }
       if (((bitField0_ & 0x00000400) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, collectionId_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(11, backendSqlStatementTextHash_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, dbidObidOfAccessedTables_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, packageName_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(13, backendSqlSessionId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, collectionId_);
+      }
+      if (((bitField0_ & 0x00002000) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(14, dbidObidOfAccessedTables_);
       }
       if (((bitField0_ & 0x00004000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(14, taskPriority_);
+          .computeInt64Size(15, backendSqlSessionId_);
       }
       if (((bitField0_ & 0x00008000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(15, getSpecialRegisters());
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(16, backendSqlApplicationId_);
       }
       if (((bitField0_ & 0x00010000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(16, finishState_);
+          .computeInt32Size(17, taskPriority_);
       }
       if (((bitField0_ & 0x00020000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(17, getTimings());
+          .computeMessageSize(18, getSpecialRegisters());
       }
       if (((bitField0_ & 0x00040000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(18, getExecutionResult());
+          .computeBoolSize(19, finished_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(19, getWaitForData());
+          .computeUInt32Size(20, finishState_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20, getMultiRowInsert());
+          .computeMessageSize(21, getTimings());
       }
       if (((bitField0_ & 0x00200000) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(21, auxiliaryData_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getExecutionResult());
       }
       if (((bitField0_ & 0x00400000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(22, getClientAccountingDetails());
+          .computeMessageSize(23, getWaitForData());
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(23, finished_);
+          .computeMessageSize(24, getMultiRowInsert());
       }
       if (((bitField0_ & 0x01000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(24, originalSqlStatementTextHash_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(25, auxiliaryData_);
       }
       if (((bitField0_ & 0x02000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(25, backendSqlStatementTextHash_);
+          .computeMessageSize(26, getClientAccountingDetails());
       }
       if (((bitField0_ & 0x04000000) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(26, backendSqlStatementTextHex_);
-      }
-      if (((bitField0_ & 0x00002000) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(27, backendSqlApplicationId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(27, backendSqlStatementTextHex_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -15716,10 +16175,20 @@ public final class SQLStatementDetails {
         if (!getOriginalSqlStatementText()
             .equals(other.getOriginalSqlStatementText())) return false;
       }
+      if (hasOriginalSqlStatementTextHash() != other.hasOriginalSqlStatementTextHash()) return false;
+      if (hasOriginalSqlStatementTextHash()) {
+        if (getOriginalSqlStatementTextHash()
+            != other.getOriginalSqlStatementTextHash()) return false;
+      }
       if (hasBackendSqlStatementText() != other.hasBackendSqlStatementText()) return false;
       if (hasBackendSqlStatementText()) {
         if (!getBackendSqlStatementText()
             .equals(other.getBackendSqlStatementText())) return false;
+      }
+      if (hasBackendSqlStatementTextHash() != other.hasBackendSqlStatementTextHash()) return false;
+      if (hasBackendSqlStatementTextHash()) {
+        if (getBackendSqlStatementTextHash()
+            != other.getBackendSqlStatementTextHash()) return false;
       }
       if (hasPackageName() != other.hasPackageName()) return false;
       if (hasPackageName()) {
@@ -15756,6 +16225,11 @@ public final class SQLStatementDetails {
         if (!getSpecialRegisters()
             .equals(other.getSpecialRegisters())) return false;
       }
+      if (hasFinished() != other.hasFinished()) return false;
+      if (hasFinished()) {
+        if (getFinished()
+            != other.getFinished()) return false;
+      }
       if (hasFinishState() != other.hasFinishState()) return false;
       if (hasFinishState()) {
         if (getFinishState()
@@ -15790,21 +16264,6 @@ public final class SQLStatementDetails {
       if (hasClientAccountingDetails()) {
         if (!getClientAccountingDetails()
             .equals(other.getClientAccountingDetails())) return false;
-      }
-      if (hasFinished() != other.hasFinished()) return false;
-      if (hasFinished()) {
-        if (getFinished()
-            != other.getFinished()) return false;
-      }
-      if (hasOriginalSqlStatementTextHash() != other.hasOriginalSqlStatementTextHash()) return false;
-      if (hasOriginalSqlStatementTextHash()) {
-        if (getOriginalSqlStatementTextHash()
-            != other.getOriginalSqlStatementTextHash()) return false;
-      }
-      if (hasBackendSqlStatementTextHash() != other.hasBackendSqlStatementTextHash()) return false;
-      if (hasBackendSqlStatementTextHash()) {
-        if (getBackendSqlStatementTextHash()
-            != other.getBackendSqlStatementTextHash()) return false;
       }
       if (hasBackendSqlStatementTextHex() != other.hasBackendSqlStatementTextHex()) return false;
       if (hasBackendSqlStatementTextHex()) {
@@ -15856,9 +16315,19 @@ public final class SQLStatementDetails {
         hash = (37 * hash) + ORIGINAL_SQL_STATEMENT_TEXT_FIELD_NUMBER;
         hash = (53 * hash) + getOriginalSqlStatementText().hashCode();
       }
+      if (hasOriginalSqlStatementTextHash()) {
+        hash = (37 * hash) + ORIGINAL_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getOriginalSqlStatementTextHash());
+      }
       if (hasBackendSqlStatementText()) {
         hash = (37 * hash) + BACKEND_SQL_STATEMENT_TEXT_FIELD_NUMBER;
         hash = (53 * hash) + getBackendSqlStatementText().hashCode();
+      }
+      if (hasBackendSqlStatementTextHash()) {
+        hash = (37 * hash) + BACKEND_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getBackendSqlStatementTextHash());
       }
       if (hasPackageName()) {
         hash = (37 * hash) + PACKAGE_NAME_FIELD_NUMBER;
@@ -15889,6 +16358,11 @@ public final class SQLStatementDetails {
         hash = (37 * hash) + SPECIAL_REGISTERS_FIELD_NUMBER;
         hash = (53 * hash) + getSpecialRegisters().hashCode();
       }
+      if (hasFinished()) {
+        hash = (37 * hash) + FINISHED_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getFinished());
+      }
       if (hasFinishState()) {
         hash = (37 * hash) + FINISH_STATE_FIELD_NUMBER;
         hash = (53 * hash) + getFinishState();
@@ -15916,21 +16390,6 @@ public final class SQLStatementDetails {
       if (hasClientAccountingDetails()) {
         hash = (37 * hash) + CLIENT_ACCOUNTING_DETAILS_FIELD_NUMBER;
         hash = (53 * hash) + getClientAccountingDetails().hashCode();
-      }
-      if (hasFinished()) {
-        hash = (37 * hash) + FINISHED_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getFinished());
-      }
-      if (hasOriginalSqlStatementTextHash()) {
-        hash = (37 * hash) + ORIGINAL_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getOriginalSqlStatementTextHash());
-      }
-      if (hasBackendSqlStatementTextHash()) {
-        hash = (37 * hash) + BACKEND_SQL_STATEMENT_TEXT_HASH_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getBackendSqlStatementTextHash());
       }
       if (hasBackendSqlStatementTextHex()) {
         hash = (37 * hash) + BACKEND_SQL_STATEMENT_TEXT_HEX_FIELD_NUMBER;
@@ -16032,6 +16491,24 @@ public final class SQLStatementDetails {
       return builder;
     }
     /**
+     * <pre>
+     **
+     * Proto object describing the details for the execution of a user-driver SQL statement.
+     * Various attributes are collected for a SQL statement that was executed
+     * on behalf of the client (DB2z). The attributes are tracked for currently
+     * running SQL statements and also for already finished ones.
+     ********************************************************************************
+     * &#64;attention These proto objects are serialized in Text Format and that is written
+     *            persistently to SQL history files! We do not use any binary representation
+     *            of the proto objects. That implies:
+     *             (1) Attribute names MUST NOT be changed or removed because (persisted)
+     *                 values are identified by them.
+     *             (2) Attribute numbers/IDs can be changed. In fact, they should be changed
+     *                 as they define the sequence for the fields in the SQL history file.
+     *                 A logical sequence makes it easier to consume that file.
+     ********************************************************************************
+     * </pre>
+     *
      * Protobuf type {@code SQLStatementDetailsData}
      */
     public static final class Builder extends
@@ -16091,65 +16568,65 @@ public final class SQLStatementDetails {
         bitField0_ = (bitField0_ & ~0x00000040);
         originalSqlStatementText_ = "";
         bitField0_ = (bitField0_ & ~0x00000080);
-        backendSqlStatementText_ = "";
+        originalSqlStatementTextHash_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000100);
-        packageName_ = "";
+        backendSqlStatementText_ = "";
         bitField0_ = (bitField0_ & ~0x00000200);
-        collectionId_ = "";
+        backendSqlStatementTextHash_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000400);
-        dbidObidOfAccessedTables_ = "";
+        packageName_ = "";
         bitField0_ = (bitField0_ & ~0x00000800);
-        backendSqlSessionId_ = 0L;
+        collectionId_ = "";
         bitField0_ = (bitField0_ & ~0x00001000);
-        backendSqlApplicationId_ = "";
+        dbidObidOfAccessedTables_ = "";
         bitField0_ = (bitField0_ & ~0x00002000);
-        taskPriority_ = 0;
+        backendSqlSessionId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00004000);
+        backendSqlApplicationId_ = "";
+        bitField0_ = (bitField0_ & ~0x00008000);
+        taskPriority_ = 0;
+        bitField0_ = (bitField0_ & ~0x00010000);
         if (specialRegistersBuilder_ == null) {
           specialRegisters_ = null;
         } else {
           specialRegistersBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00020000);
+        finished_ = false;
+        bitField0_ = (bitField0_ & ~0x00040000);
         finishState_ = 0;
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x00080000);
         if (timingsBuilder_ == null) {
           timings_ = null;
         } else {
           timingsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00100000);
         if (executionResultBuilder_ == null) {
           executionResult_ = null;
         } else {
           executionResultBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00040000);
+        bitField0_ = (bitField0_ & ~0x00200000);
         if (waitForDataBuilder_ == null) {
           waitForData_ = null;
         } else {
           waitForDataBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00080000);
+        bitField0_ = (bitField0_ & ~0x00400000);
         if (multiRowInsertBuilder_ == null) {
           multiRowInsert_ = null;
         } else {
           multiRowInsertBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00100000);
+        bitField0_ = (bitField0_ & ~0x00800000);
         auxiliaryData_ = "";
-        bitField0_ = (bitField0_ & ~0x00200000);
+        bitField0_ = (bitField0_ & ~0x01000000);
         if (clientAccountingDetailsBuilder_ == null) {
           clientAccountingDetails_ = null;
         } else {
           clientAccountingDetailsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00400000);
-        finished_ = false;
-        bitField0_ = (bitField0_ & ~0x00800000);
-        originalSqlStatementTextHash_ = 0L;
-        bitField0_ = (bitField0_ & ~0x01000000);
-        backendSqlStatementTextHash_ = 0L;
         bitField0_ = (bitField0_ & ~0x02000000);
         backendSqlStatementTextHex_ = "";
         bitField0_ = (bitField0_ & ~0x04000000);
@@ -16214,99 +16691,99 @@ public final class SQLStatementDetails {
         }
         result.originalSqlStatementText_ = originalSqlStatementText_;
         if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.originalSqlStatementTextHash_ = originalSqlStatementTextHash_;
           to_bitField0_ |= 0x00000100;
         }
-        result.backendSqlStatementText_ = backendSqlStatementText_;
         if (((from_bitField0_ & 0x00000200) != 0)) {
           to_bitField0_ |= 0x00000200;
         }
-        result.packageName_ = packageName_;
+        result.backendSqlStatementText_ = backendSqlStatementText_;
         if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.backendSqlStatementTextHash_ = backendSqlStatementTextHash_;
           to_bitField0_ |= 0x00000400;
         }
-        result.collectionId_ = collectionId_;
         if (((from_bitField0_ & 0x00000800) != 0)) {
           to_bitField0_ |= 0x00000800;
         }
-        result.dbidObidOfAccessedTables_ = dbidObidOfAccessedTables_;
+        result.packageName_ = packageName_;
         if (((from_bitField0_ & 0x00001000) != 0)) {
-          result.backendSqlSessionId_ = backendSqlSessionId_;
           to_bitField0_ |= 0x00001000;
         }
+        result.collectionId_ = collectionId_;
         if (((from_bitField0_ & 0x00002000) != 0)) {
           to_bitField0_ |= 0x00002000;
         }
-        result.backendSqlApplicationId_ = backendSqlApplicationId_;
+        result.dbidObidOfAccessedTables_ = dbidObidOfAccessedTables_;
         if (((from_bitField0_ & 0x00004000) != 0)) {
-          result.taskPriority_ = taskPriority_;
+          result.backendSqlSessionId_ = backendSqlSessionId_;
           to_bitField0_ |= 0x00004000;
         }
         if (((from_bitField0_ & 0x00008000) != 0)) {
+          to_bitField0_ |= 0x00008000;
+        }
+        result.backendSqlApplicationId_ = backendSqlApplicationId_;
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.taskPriority_ = taskPriority_;
+          to_bitField0_ |= 0x00010000;
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
           if (specialRegistersBuilder_ == null) {
             result.specialRegisters_ = specialRegisters_;
           } else {
             result.specialRegisters_ = specialRegistersBuilder_.build();
           }
-          to_bitField0_ |= 0x00008000;
+          to_bitField0_ |= 0x00020000;
         }
-        if (((from_bitField0_ & 0x00010000) != 0)) {
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          result.finished_ = finished_;
+          to_bitField0_ |= 0x00040000;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
           result.finishState_ = finishState_;
-          to_bitField0_ |= 0x00010000;
+          to_bitField0_ |= 0x00080000;
         }
-        if (((from_bitField0_ & 0x00020000) != 0)) {
+        if (((from_bitField0_ & 0x00100000) != 0)) {
           if (timingsBuilder_ == null) {
             result.timings_ = timings_;
           } else {
             result.timings_ = timingsBuilder_.build();
           }
-          to_bitField0_ |= 0x00020000;
+          to_bitField0_ |= 0x00100000;
         }
-        if (((from_bitField0_ & 0x00040000) != 0)) {
+        if (((from_bitField0_ & 0x00200000) != 0)) {
           if (executionResultBuilder_ == null) {
             result.executionResult_ = executionResult_;
           } else {
             result.executionResult_ = executionResultBuilder_.build();
           }
-          to_bitField0_ |= 0x00040000;
+          to_bitField0_ |= 0x00200000;
         }
-        if (((from_bitField0_ & 0x00080000) != 0)) {
+        if (((from_bitField0_ & 0x00400000) != 0)) {
           if (waitForDataBuilder_ == null) {
             result.waitForData_ = waitForData_;
           } else {
             result.waitForData_ = waitForDataBuilder_.build();
           }
-          to_bitField0_ |= 0x00080000;
+          to_bitField0_ |= 0x00400000;
         }
-        if (((from_bitField0_ & 0x00100000) != 0)) {
+        if (((from_bitField0_ & 0x00800000) != 0)) {
           if (multiRowInsertBuilder_ == null) {
             result.multiRowInsert_ = multiRowInsert_;
           } else {
             result.multiRowInsert_ = multiRowInsertBuilder_.build();
           }
-          to_bitField0_ |= 0x00100000;
+          to_bitField0_ |= 0x00800000;
         }
-        if (((from_bitField0_ & 0x00200000) != 0)) {
-          to_bitField0_ |= 0x00200000;
+        if (((from_bitField0_ & 0x01000000) != 0)) {
+          to_bitField0_ |= 0x01000000;
         }
         result.auxiliaryData_ = auxiliaryData_;
-        if (((from_bitField0_ & 0x00400000) != 0)) {
+        if (((from_bitField0_ & 0x02000000) != 0)) {
           if (clientAccountingDetailsBuilder_ == null) {
             result.clientAccountingDetails_ = clientAccountingDetails_;
           } else {
             result.clientAccountingDetails_ = clientAccountingDetailsBuilder_.build();
           }
-          to_bitField0_ |= 0x00400000;
-        }
-        if (((from_bitField0_ & 0x00800000) != 0)) {
-          result.finished_ = finished_;
-          to_bitField0_ |= 0x00800000;
-        }
-        if (((from_bitField0_ & 0x01000000) != 0)) {
-          result.originalSqlStatementTextHash_ = originalSqlStatementTextHash_;
-          to_bitField0_ |= 0x01000000;
-        }
-        if (((from_bitField0_ & 0x02000000) != 0)) {
-          result.backendSqlStatementTextHash_ = backendSqlStatementTextHash_;
           to_bitField0_ |= 0x02000000;
         }
         if (((from_bitField0_ & 0x04000000) != 0)) {
@@ -16398,23 +16875,29 @@ public final class SQLStatementDetails {
           originalSqlStatementText_ = other.originalSqlStatementText_;
           onChanged();
         }
+        if (other.hasOriginalSqlStatementTextHash()) {
+          setOriginalSqlStatementTextHash(other.getOriginalSqlStatementTextHash());
+        }
         if (other.hasBackendSqlStatementText()) {
-          bitField0_ |= 0x00000100;
+          bitField0_ |= 0x00000200;
           backendSqlStatementText_ = other.backendSqlStatementText_;
           onChanged();
         }
+        if (other.hasBackendSqlStatementTextHash()) {
+          setBackendSqlStatementTextHash(other.getBackendSqlStatementTextHash());
+        }
         if (other.hasPackageName()) {
-          bitField0_ |= 0x00000200;
+          bitField0_ |= 0x00000800;
           packageName_ = other.packageName_;
           onChanged();
         }
         if (other.hasCollectionId()) {
-          bitField0_ |= 0x00000400;
+          bitField0_ |= 0x00001000;
           collectionId_ = other.collectionId_;
           onChanged();
         }
         if (other.hasDbidObidOfAccessedTables()) {
-          bitField0_ |= 0x00000800;
+          bitField0_ |= 0x00002000;
           dbidObidOfAccessedTables_ = other.dbidObidOfAccessedTables_;
           onChanged();
         }
@@ -16422,7 +16905,7 @@ public final class SQLStatementDetails {
           setBackendSqlSessionId(other.getBackendSqlSessionId());
         }
         if (other.hasBackendSqlApplicationId()) {
-          bitField0_ |= 0x00002000;
+          bitField0_ |= 0x00008000;
           backendSqlApplicationId_ = other.backendSqlApplicationId_;
           onChanged();
         }
@@ -16431,6 +16914,9 @@ public final class SQLStatementDetails {
         }
         if (other.hasSpecialRegisters()) {
           mergeSpecialRegisters(other.getSpecialRegisters());
+        }
+        if (other.hasFinished()) {
+          setFinished(other.getFinished());
         }
         if (other.hasFinishState()) {
           setFinishState(other.getFinishState());
@@ -16448,21 +16934,12 @@ public final class SQLStatementDetails {
           mergeMultiRowInsert(other.getMultiRowInsert());
         }
         if (other.hasAuxiliaryData()) {
-          bitField0_ |= 0x00200000;
+          bitField0_ |= 0x01000000;
           auxiliaryData_ = other.auxiliaryData_;
           onChanged();
         }
         if (other.hasClientAccountingDetails()) {
           mergeClientAccountingDetails(other.getClientAccountingDetails());
-        }
-        if (other.hasFinished()) {
-          setFinished(other.getFinished());
-        }
-        if (other.hasOriginalSqlStatementTextHash()) {
-          setOriginalSqlStatementTextHash(other.getOriginalSqlStatementTextHash());
-        }
-        if (other.hasBackendSqlStatementTextHash()) {
-          setBackendSqlStatementTextHash(other.getBackendSqlStatementTextHash());
         }
         if (other.hasBackendSqlStatementTextHex()) {
           bitField0_ |= 0x04000000;
@@ -16502,7 +16979,10 @@ public final class SQLStatementDetails {
       private long statementId_ ;
       /**
        * <pre>
-       *&#47; unique ID of the SQL statement
+       **
+       * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+       * only. The highest used statement ID is stored persistently in file
+       * "last-statement-id" in the same directory where the SQL history files reside.
        * </pre>
        *
        * <code>optional uint64 statement_id = 1;</code>
@@ -16513,7 +16993,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique ID of the SQL statement
+       **
+       * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+       * only. The highest used statement ID is stored persistently in file
+       * "last-statement-id" in the same directory where the SQL history files reside.
        * </pre>
        *
        * <code>optional uint64 statement_id = 1;</code>
@@ -16524,7 +17007,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique ID of the SQL statement
+       **
+       * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+       * only. The highest used statement ID is stored persistently in file
+       * "last-statement-id" in the same directory where the SQL history files reside.
        * </pre>
        *
        * <code>optional uint64 statement_id = 1;</code>
@@ -16539,7 +17025,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique ID of the SQL statement
+       **
+       * This ID is unique within the scope of a single &#64;c DatabaseSystem (aka a pairing)
+       * only. The highest used statement ID is stored persistently in file
+       * "last-statement-id" in the same directory where the SQL history files reside.
        * </pre>
        *
        * <code>optional uint64 statement_id = 1;</code>
@@ -16555,7 +17044,9 @@ public final class SQLStatementDetails {
       private long taskId_ ;
       /**
        * <pre>
-       *&#47; task ID of the SQL statement execution
+       **
+       * ID of the task that executes the SQL statement. Note that task IDs are reset
+       * upon restart of the accelerator.
        * </pre>
        *
        * <code>optional uint64 task_id = 2;</code>
@@ -16566,7 +17057,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; task ID of the SQL statement execution
+       **
+       * ID of the task that executes the SQL statement. Note that task IDs are reset
+       * upon restart of the accelerator.
        * </pre>
        *
        * <code>optional uint64 task_id = 2;</code>
@@ -16577,7 +17070,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; task ID of the SQL statement execution
+       **
+       * ID of the task that executes the SQL statement. Note that task IDs are reset
+       * upon restart of the accelerator.
        * </pre>
        *
        * <code>optional uint64 task_id = 2;</code>
@@ -16592,7 +17087,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; task ID of the SQL statement execution
+       **
+       * ID of the task that executes the SQL statement. Note that task IDs are reset
+       * upon restart of the accelerator.
        * </pre>
        *
        * <code>optional uint64 task_id = 2;</code>
@@ -16608,7 +17105,9 @@ public final class SQLStatementDetails {
       private java.lang.Object databaseSystemLocationName_ = "";
       /**
        * <pre>
-       *&#47; unique identifier of the database system of the SQL statement
+       **
+       * Each client must provide a unique location name when the pairing is established.
+       * That location name is stored for each SQL statement here.
        * </pre>
        *
        * <code>optional string database_system_location_name = 3;</code>
@@ -16619,7 +17118,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique identifier of the database system of the SQL statement
+       **
+       * Each client must provide a unique location name when the pairing is established.
+       * That location name is stored for each SQL statement here.
        * </pre>
        *
        * <code>optional string database_system_location_name = 3;</code>
@@ -16641,7 +17142,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique identifier of the database system of the SQL statement
+       **
+       * Each client must provide a unique location name when the pairing is established.
+       * That location name is stored for each SQL statement here.
        * </pre>
        *
        * <code>optional string database_system_location_name = 3;</code>
@@ -16662,7 +17165,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique identifier of the database system of the SQL statement
+       **
+       * Each client must provide a unique location name when the pairing is established.
+       * That location name is stored for each SQL statement here.
        * </pre>
        *
        * <code>optional string database_system_location_name = 3;</code>
@@ -16681,7 +17186,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique identifier of the database system of the SQL statement
+       **
+       * Each client must provide a unique location name when the pairing is established.
+       * That location name is stored for each SQL statement here.
        * </pre>
        *
        * <code>optional string database_system_location_name = 3;</code>
@@ -16695,7 +17202,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; unique identifier of the database system of the SQL statement
+       **
+       * Each client must provide a unique location name when the pairing is established.
+       * That location name is stored for each SQL statement here.
        * </pre>
        *
        * <code>optional string database_system_location_name = 3;</code>
@@ -16716,7 +17225,11 @@ public final class SQLStatementDetails {
       private java.lang.Object correlationToken_ = "";
       /**
        * <pre>
-       *&#47; correlation token sent in the ACCRDB
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * uses "correlation tokens" to identify the connection. The correlation token
+       * is provided when the DRDA connection is established, and message ACCRDB
+       * (Access Relational Database) carries it.
        * </pre>
        *
        * <code>optional string correlation_token = 4;</code>
@@ -16727,7 +17240,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; correlation token sent in the ACCRDB
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * uses "correlation tokens" to identify the connection. The correlation token
+       * is provided when the DRDA connection is established, and message ACCRDB
+       * (Access Relational Database) carries it.
        * </pre>
        *
        * <code>optional string correlation_token = 4;</code>
@@ -16749,7 +17266,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; correlation token sent in the ACCRDB
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * uses "correlation tokens" to identify the connection. The correlation token
+       * is provided when the DRDA connection is established, and message ACCRDB
+       * (Access Relational Database) carries it.
        * </pre>
        *
        * <code>optional string correlation_token = 4;</code>
@@ -16770,7 +17291,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; correlation token sent in the ACCRDB
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * uses "correlation tokens" to identify the connection. The correlation token
+       * is provided when the DRDA connection is established, and message ACCRDB
+       * (Access Relational Database) carries it.
        * </pre>
        *
        * <code>optional string correlation_token = 4;</code>
@@ -16789,7 +17314,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; correlation token sent in the ACCRDB
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * uses "correlation tokens" to identify the connection. The correlation token
+       * is provided when the DRDA connection is established, and message ACCRDB
+       * (Access Relational Database) carries it.
        * </pre>
        *
        * <code>optional string correlation_token = 4;</code>
@@ -16803,7 +17332,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; correlation token sent in the ACCRDB
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * uses "correlation tokens" to identify the connection. The correlation token
+       * is provided when the DRDA connection is established, and message ACCRDB
+       * (Access Relational Database) carries it.
        * </pre>
        *
        * <code>optional string correlation_token = 4;</code>
@@ -16824,7 +17357,9 @@ public final class SQLStatementDetails {
       private java.lang.Object originalUserId_ = "";
       /**
        * <pre>
-       *&#47; original UserID
+       **
+       * This is the user ID that was used when an application connects to the client
+       * database system (DB2z) for executing the SQL statement.
        * </pre>
        *
        * <code>optional string original_user_id = 5;</code>
@@ -16835,7 +17370,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; original UserID
+       **
+       * This is the user ID that was used when an application connects to the client
+       * database system (DB2z) for executing the SQL statement.
        * </pre>
        *
        * <code>optional string original_user_id = 5;</code>
@@ -16857,7 +17394,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; original UserID
+       **
+       * This is the user ID that was used when an application connects to the client
+       * database system (DB2z) for executing the SQL statement.
        * </pre>
        *
        * <code>optional string original_user_id = 5;</code>
@@ -16878,7 +17417,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; original UserID
+       **
+       * This is the user ID that was used when an application connects to the client
+       * database system (DB2z) for executing the SQL statement.
        * </pre>
        *
        * <code>optional string original_user_id = 5;</code>
@@ -16897,7 +17438,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; original UserID
+       **
+       * This is the user ID that was used when an application connects to the client
+       * database system (DB2z) for executing the SQL statement.
        * </pre>
        *
        * <code>optional string original_user_id = 5;</code>
@@ -16911,7 +17454,9 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; original UserID
+       **
+       * This is the user ID that was used when an application connects to the client
+       * database system (DB2z) for executing the SQL statement.
        * </pre>
        *
        * <code>optional string original_user_id = 5;</code>
@@ -16932,7 +17477,10 @@ public final class SQLStatementDetails {
       private java.lang.Object externalName_ = "";
       /**
        * <pre>
-       *&#47; EXTNAM of EXCSAT
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * contains an "external name". This name is provided in DRDA message EXCSAT
+       * (Exchange Server Attributes) in field EXTNAM (External Name).
        * </pre>
        *
        * <code>optional string external_name = 6;</code>
@@ -16943,7 +17491,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; EXTNAM of EXCSAT
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * contains an "external name". This name is provided in DRDA message EXCSAT
+       * (Exchange Server Attributes) in field EXTNAM (External Name).
        * </pre>
        *
        * <code>optional string external_name = 6;</code>
@@ -16965,7 +17516,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; EXTNAM of EXCSAT
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * contains an "external name". This name is provided in DRDA message EXCSAT
+       * (Exchange Server Attributes) in field EXTNAM (External Name).
        * </pre>
        *
        * <code>optional string external_name = 6;</code>
@@ -16986,7 +17540,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; EXTNAM of EXCSAT
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * contains an "external name". This name is provided in DRDA message EXCSAT
+       * (Exchange Server Attributes) in field EXTNAM (External Name).
        * </pre>
        *
        * <code>optional string external_name = 6;</code>
@@ -17005,7 +17562,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; EXTNAM of EXCSAT
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * contains an "external name". This name is provided in DRDA message EXCSAT
+       * (Exchange Server Attributes) in field EXTNAM (External Name).
        * </pre>
        *
        * <code>optional string external_name = 6;</code>
@@ -17019,7 +17579,10 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; EXTNAM of EXCSAT
+       **
+       * The DRDA communication protocol used between the client and the accelerator
+       * contains an "external name". This name is provided in DRDA message EXCSAT
+       * (Exchange Server Attributes) in field EXTNAM (External Name).
        * </pre>
        *
        * <code>optional string external_name = 6;</code>
@@ -17040,7 +17603,12 @@ public final class SQLStatementDetails {
       private java.lang.Object peerIdentifier_ = "";
       /**
        * <pre>
-       *&#47; IP address or resolved host name of remote client
+       **
+       * The client's IP address is obtained from the TCP/IP connection itself by
+       * querying the respective attributes from the socket.
+       * The client's port number is _not_ included because the port numbers are
+       * typically assigned randomly by the client's operating system when a
+       * &#64;c connect() system call is made.
        * </pre>
        *
        * <code>optional string peer_identifier = 7;</code>
@@ -17051,7 +17619,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; IP address or resolved host name of remote client
+       **
+       * The client's IP address is obtained from the TCP/IP connection itself by
+       * querying the respective attributes from the socket.
+       * The client's port number is _not_ included because the port numbers are
+       * typically assigned randomly by the client's operating system when a
+       * &#64;c connect() system call is made.
        * </pre>
        *
        * <code>optional string peer_identifier = 7;</code>
@@ -17073,7 +17646,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; IP address or resolved host name of remote client
+       **
+       * The client's IP address is obtained from the TCP/IP connection itself by
+       * querying the respective attributes from the socket.
+       * The client's port number is _not_ included because the port numbers are
+       * typically assigned randomly by the client's operating system when a
+       * &#64;c connect() system call is made.
        * </pre>
        *
        * <code>optional string peer_identifier = 7;</code>
@@ -17094,7 +17672,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; IP address or resolved host name of remote client
+       **
+       * The client's IP address is obtained from the TCP/IP connection itself by
+       * querying the respective attributes from the socket.
+       * The client's port number is _not_ included because the port numbers are
+       * typically assigned randomly by the client's operating system when a
+       * &#64;c connect() system call is made.
        * </pre>
        *
        * <code>optional string peer_identifier = 7;</code>
@@ -17113,7 +17696,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; IP address or resolved host name of remote client
+       **
+       * The client's IP address is obtained from the TCP/IP connection itself by
+       * querying the respective attributes from the socket.
+       * The client's port number is _not_ included because the port numbers are
+       * typically assigned randomly by the client's operating system when a
+       * &#64;c connect() system call is made.
        * </pre>
        *
        * <code>optional string peer_identifier = 7;</code>
@@ -17127,7 +17715,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; IP address or resolved host name of remote client
+       **
+       * The client's IP address is obtained from the TCP/IP connection itself by
+       * querying the respective attributes from the socket.
+       * The client's port number is _not_ included because the port numbers are
+       * typically assigned randomly by the client's operating system when a
+       * &#64;c connect() system call is made.
        * </pre>
        *
        * <code>optional string peer_identifier = 7;</code>
@@ -17148,8 +17741,11 @@ public final class SQLStatementDetails {
       private java.lang.Object originalSqlStatementText_ = "";
       /**
        * <pre>
-       *&#47; SQL statement that the client has originally received. The client translated it
-       * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+       **
+       * An application sends a SQL statement to our client (DB2z). The client
+       * rewrites this original SQL statement to the backend (and does syntax
+       * adjustments, table name mappings). The original SQL statement text is
+       * provided to the accelerator, primarily for diagnostics purposes.
        * </pre>
        *
        * <code>optional string original_sql_statement_text = 8;</code>
@@ -17160,8 +17756,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQL statement that the client has originally received. The client translated it
-       * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+       **
+       * An application sends a SQL statement to our client (DB2z). The client
+       * rewrites this original SQL statement to the backend (and does syntax
+       * adjustments, table name mappings). The original SQL statement text is
+       * provided to the accelerator, primarily for diagnostics purposes.
        * </pre>
        *
        * <code>optional string original_sql_statement_text = 8;</code>
@@ -17183,8 +17782,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQL statement that the client has originally received. The client translated it
-       * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+       **
+       * An application sends a SQL statement to our client (DB2z). The client
+       * rewrites this original SQL statement to the backend (and does syntax
+       * adjustments, table name mappings). The original SQL statement text is
+       * provided to the accelerator, primarily for diagnostics purposes.
        * </pre>
        *
        * <code>optional string original_sql_statement_text = 8;</code>
@@ -17205,8 +17807,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQL statement that the client has originally received. The client translated it
-       * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+       **
+       * An application sends a SQL statement to our client (DB2z). The client
+       * rewrites this original SQL statement to the backend (and does syntax
+       * adjustments, table name mappings). The original SQL statement text is
+       * provided to the accelerator, primarily for diagnostics purposes.
        * </pre>
        *
        * <code>optional string original_sql_statement_text = 8;</code>
@@ -17225,8 +17830,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQL statement that the client has originally received. The client translated it
-       * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+       **
+       * An application sends a SQL statement to our client (DB2z). The client
+       * rewrites this original SQL statement to the backend (and does syntax
+       * adjustments, table name mappings). The original SQL statement text is
+       * provided to the accelerator, primarily for diagnostics purposes.
        * </pre>
        *
        * <code>optional string original_sql_statement_text = 8;</code>
@@ -17240,8 +17848,11 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; SQL statement that the client has originally received. The client translated it
-       * / the SQL dialect of backend, which is stored in backend_sql_statement_text
+       **
+       * An application sends a SQL statement to our client (DB2z). The client
+       * rewrites this original SQL statement to the backend (and does syntax
+       * adjustments, table name mappings). The original SQL statement text is
+       * provided to the accelerator, primarily for diagnostics purposes.
        * </pre>
        *
        * <code>optional string original_sql_statement_text = 8;</code>
@@ -17259,24 +17870,103 @@ public final class SQLStatementDetails {
         return this;
       }
 
-      private java.lang.Object backendSqlStatementText_ = "";
+      private long originalSqlStatementTextHash_ ;
       /**
        * <pre>
-       *&#47; BackendDBS SQL statement text with resolved parameter markers
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the original SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the original SQL statement text for two different statements
+       * is the same or not.
        * </pre>
        *
-       * <code>optional string backend_sql_statement_text = 9;</code>
-       * @return Whether the backendSqlStatementText field is set.
+       * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+       * @return Whether the originalSqlStatementTextHash field is set.
        */
-      public boolean hasBackendSqlStatementText() {
+      public boolean hasOriginalSqlStatementTextHash() {
         return ((bitField0_ & 0x00000100) != 0);
       }
       /**
        * <pre>
-       *&#47; BackendDBS SQL statement text with resolved parameter markers
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the original SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the original SQL statement text for two different statements
+       * is the same or not.
        * </pre>
        *
-       * <code>optional string backend_sql_statement_text = 9;</code>
+       * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+       * @return The originalSqlStatementTextHash.
+       */
+      public long getOriginalSqlStatementTextHash() {
+        return originalSqlStatementTextHash_;
+      }
+      /**
+       * <pre>
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the original SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the original SQL statement text for two different statements
+       * is the same or not.
+       * </pre>
+       *
+       * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+       * @param value The originalSqlStatementTextHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOriginalSqlStatementTextHash(long value) {
+        bitField0_ |= 0x00000100;
+        originalSqlStatementTextHash_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the original SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the original SQL statement text for two different statements
+       * is the same or not.
+       * </pre>
+       *
+       * <code>optional uint64 original_sql_statement_text_hash = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOriginalSqlStatementTextHash() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        originalSqlStatementTextHash_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object backendSqlStatementText_ = "";
+      /**
+       * <pre>
+       **
+       * The original SQL statement text (see &#64;c original_sql_statement_text)
+       * is rewritten by the client to adhere to the backend's SQL syntax and
+       * use the table/view names defined by the accelerator. This field here
+       * contains the rewritten SQL statement text, which is actually executed
+       * in the backend as-is.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text = 10;</code>
+       * @return Whether the backendSqlStatementText field is set.
+       */
+      public boolean hasBackendSqlStatementText() {
+        return ((bitField0_ & 0x00000200) != 0);
+      }
+      /**
+       * <pre>
+       **
+       * The original SQL statement text (see &#64;c original_sql_statement_text)
+       * is rewritten by the client to adhere to the backend's SQL syntax and
+       * use the table/view names defined by the accelerator. This field here
+       * contains the rewritten SQL statement text, which is actually executed
+       * in the backend as-is.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text = 10;</code>
        * @return The backendSqlStatementText.
        */
       public java.lang.String getBackendSqlStatementText() {
@@ -17295,10 +17985,15 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; BackendDBS SQL statement text with resolved parameter markers
+       **
+       * The original SQL statement text (see &#64;c original_sql_statement_text)
+       * is rewritten by the client to adhere to the backend's SQL syntax and
+       * use the table/view names defined by the accelerator. This field here
+       * contains the rewritten SQL statement text, which is actually executed
+       * in the backend as-is.
        * </pre>
        *
-       * <code>optional string backend_sql_statement_text = 9;</code>
+       * <code>optional string backend_sql_statement_text = 10;</code>
        * @return The bytes for backendSqlStatementText.
        */
       public com.google.protobuf.ByteString
@@ -17316,10 +18011,15 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; BackendDBS SQL statement text with resolved parameter markers
+       **
+       * The original SQL statement text (see &#64;c original_sql_statement_text)
+       * is rewritten by the client to adhere to the backend's SQL syntax and
+       * use the table/view names defined by the accelerator. This field here
+       * contains the rewritten SQL statement text, which is actually executed
+       * in the backend as-is.
        * </pre>
        *
-       * <code>optional string backend_sql_statement_text = 9;</code>
+       * <code>optional string backend_sql_statement_text = 10;</code>
        * @param value The backendSqlStatementText to set.
        * @return This builder for chaining.
        */
@@ -17328,31 +18028,41 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000100;
+  bitField0_ |= 0x00000200;
         backendSqlStatementText_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; BackendDBS SQL statement text with resolved parameter markers
+       **
+       * The original SQL statement text (see &#64;c original_sql_statement_text)
+       * is rewritten by the client to adhere to the backend's SQL syntax and
+       * use the table/view names defined by the accelerator. This field here
+       * contains the rewritten SQL statement text, which is actually executed
+       * in the backend as-is.
        * </pre>
        *
-       * <code>optional string backend_sql_statement_text = 9;</code>
+       * <code>optional string backend_sql_statement_text = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearBackendSqlStatementText() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         backendSqlStatementText_ = getDefaultInstance().getBackendSqlStatementText();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; BackendDBS SQL statement text with resolved parameter markers
+       **
+       * The original SQL statement text (see &#64;c original_sql_statement_text)
+       * is rewritten by the client to adhere to the backend's SQL syntax and
+       * use the table/view names defined by the accelerator. This field here
+       * contains the rewritten SQL statement text, which is actually executed
+       * in the backend as-is.
        * </pre>
        *
-       * <code>optional string backend_sql_statement_text = 9;</code>
+       * <code>optional string backend_sql_statement_text = 10;</code>
        * @param value The bytes for backendSqlStatementText to set.
        * @return This builder for chaining.
        */
@@ -17361,8 +18071,77 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000100;
+  bitField0_ |= 0x00000200;
         backendSqlStatementText_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long backendSqlStatementTextHash_ ;
+      /**
+       * <pre>
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the backend SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the backend SQL statement text for two different statements
+       * is the same or not.
+       * </pre>
+       *
+       * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+       * @return Whether the backendSqlStatementTextHash field is set.
+       */
+      public boolean hasBackendSqlStatementTextHash() {
+        return ((bitField0_ & 0x00000400) != 0);
+      }
+      /**
+       * <pre>
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the backend SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the backend SQL statement text for two different statements
+       * is the same or not.
+       * </pre>
+       *
+       * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+       * @return The backendSqlStatementTextHash.
+       */
+      public long getBackendSqlStatementTextHash() {
+        return backendSqlStatementTextHash_;
+      }
+      /**
+       * <pre>
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the backend SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the backend SQL statement text for two different statements
+       * is the same or not.
+       * </pre>
+       *
+       * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+       * @param value The backendSqlStatementTextHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBackendSqlStatementTextHash(long value) {
+        bitField0_ |= 0x00000400;
+        backendSqlStatementTextHash_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       **
+       * For complex SQL statements it is sometimes not easy to spot differences in
+       * the backend SQL statement text. Here we store a hash so that it is much easier
+       * to identify whether the backend SQL statement text for two different statements
+       * is the same or not.
+       * </pre>
+       *
+       * <code>optional uint64 backend_sql_statement_text_hash = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBackendSqlStatementTextHash() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        backendSqlStatementTextHash_ = 0L;
         onChanged();
         return this;
       }
@@ -17370,21 +18149,27 @@ public final class SQLStatementDetails {
       private java.lang.Object packageName_ = "";
       /**
        * <pre>
-       *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the name of the package in which that SQL statement was
+       * compiled into.
        * </pre>
        *
-       * <code>optional string package_name = 10;</code>
+       * <code>optional string package_name = 12;</code>
        * @return Whether the packageName field is set.
        */
       public boolean hasPackageName() {
-        return ((bitField0_ & 0x00000200) != 0);
+        return ((bitField0_ & 0x00000800) != 0);
       }
       /**
        * <pre>
-       *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the name of the package in which that SQL statement was
+       * compiled into.
        * </pre>
        *
-       * <code>optional string package_name = 10;</code>
+       * <code>optional string package_name = 12;</code>
        * @return The packageName.
        */
       public java.lang.String getPackageName() {
@@ -17403,10 +18188,13 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the name of the package in which that SQL statement was
+       * compiled into.
        * </pre>
        *
-       * <code>optional string package_name = 10;</code>
+       * <code>optional string package_name = 12;</code>
        * @return The bytes for packageName.
        */
       public com.google.protobuf.ByteString
@@ -17424,10 +18212,13 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the name of the package in which that SQL statement was
+       * compiled into.
        * </pre>
        *
-       * <code>optional string package_name = 10;</code>
+       * <code>optional string package_name = 12;</code>
        * @param value The packageName to set.
        * @return This builder for chaining.
        */
@@ -17436,31 +18227,37 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000200;
+  bitField0_ |= 0x00000800;
         packageName_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the name of the package in which that SQL statement was
+       * compiled into.
        * </pre>
        *
-       * <code>optional string package_name = 10;</code>
+       * <code>optional string package_name = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearPackageName() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000800);
         packageName_ = getDefaultInstance().getPackageName();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; package name derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the name of the package in which that SQL statement was
+       * compiled into.
        * </pre>
        *
-       * <code>optional string package_name = 10;</code>
+       * <code>optional string package_name = 12;</code>
        * @param value The bytes for packageName to set.
        * @return This builder for chaining.
        */
@@ -17469,7 +18266,7 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000200;
+  bitField0_ |= 0x00000800;
         packageName_ = value;
         onChanged();
         return this;
@@ -17478,21 +18275,25 @@ public final class SQLStatementDetails {
       private java.lang.Object collectionId_ = "";
       /**
        * <pre>
-       *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the collection ID related to that SQL statement.
        * </pre>
        *
-       * <code>optional string collection_id = 11;</code>
+       * <code>optional string collection_id = 13;</code>
        * @return Whether the collectionId field is set.
        */
       public boolean hasCollectionId() {
-        return ((bitField0_ & 0x00000400) != 0);
+        return ((bitField0_ & 0x00001000) != 0);
       }
       /**
        * <pre>
-       *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the collection ID related to that SQL statement.
        * </pre>
        *
-       * <code>optional string collection_id = 11;</code>
+       * <code>optional string collection_id = 13;</code>
        * @return The collectionId.
        */
       public java.lang.String getCollectionId() {
@@ -17511,10 +18312,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the collection ID related to that SQL statement.
        * </pre>
        *
-       * <code>optional string collection_id = 11;</code>
+       * <code>optional string collection_id = 13;</code>
        * @return The bytes for collectionId.
        */
       public com.google.protobuf.ByteString
@@ -17532,10 +18335,12 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the collection ID related to that SQL statement.
        * </pre>
        *
-       * <code>optional string collection_id = 11;</code>
+       * <code>optional string collection_id = 13;</code>
        * @param value The collectionId to set.
        * @return This builder for chaining.
        */
@@ -17544,31 +18349,35 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000400;
+  bitField0_ |= 0x00001000;
         collectionId_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the collection ID related to that SQL statement.
        * </pre>
        *
-       * <code>optional string collection_id = 11;</code>
+       * <code>optional string collection_id = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearCollectionId() {
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00001000);
         collectionId_ = getDefaultInstance().getCollectionId();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; collection ID derived from RDBPackageSectionNumber (available for static query)
+       **
+       * If the client routes a static SQL statement to the accelerator, this
+       * field contains the collection ID related to that SQL statement.
        * </pre>
        *
-       * <code>optional string collection_id = 11;</code>
+       * <code>optional string collection_id = 13;</code>
        * @param value The bytes for collectionId to set.
        * @return This builder for chaining.
        */
@@ -17577,7 +18386,7 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000400;
+  bitField0_ |= 0x00001000;
         collectionId_ = value;
         onChanged();
         return this;
@@ -17585,14 +18394,28 @@ public final class SQLStatementDetails {
 
       private java.lang.Object dbidObidOfAccessedTables_ = "";
       /**
-       * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+       * <pre>
+       **
+       * The client provides all IDs of tables that are referenced in a SQL statement.
+       * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+       * Object ID).
+       * </pre>
+       *
+       * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
        * @return Whether the dbidObidOfAccessedTables field is set.
        */
       public boolean hasDbidObidOfAccessedTables() {
-        return ((bitField0_ & 0x00000800) != 0);
+        return ((bitField0_ & 0x00002000) != 0);
       }
       /**
-       * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+       * <pre>
+       **
+       * The client provides all IDs of tables that are referenced in a SQL statement.
+       * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+       * Object ID).
+       * </pre>
+       *
+       * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
        * @return The dbidObidOfAccessedTables.
        */
       public java.lang.String getDbidObidOfAccessedTables() {
@@ -17610,7 +18433,14 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+       * <pre>
+       **
+       * The client provides all IDs of tables that are referenced in a SQL statement.
+       * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+       * Object ID).
+       * </pre>
+       *
+       * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
        * @return The bytes for dbidObidOfAccessedTables.
        */
       public com.google.protobuf.ByteString
@@ -17627,7 +18457,14 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+       * <pre>
+       **
+       * The client provides all IDs of tables that are referenced in a SQL statement.
+       * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+       * Object ID).
+       * </pre>
+       *
+       * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
        * @param value The dbidObidOfAccessedTables to set.
        * @return This builder for chaining.
        */
@@ -17636,23 +18473,37 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00002000;
         dbidObidOfAccessedTables_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+       * <pre>
+       **
+       * The client provides all IDs of tables that are referenced in a SQL statement.
+       * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+       * Object ID).
+       * </pre>
+       *
+       * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearDbidObidOfAccessedTables() {
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00002000);
         dbidObidOfAccessedTables_ = getDefaultInstance().getDbidObidOfAccessedTables();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string dbid_obid_of_accessed_tables = 12;</code>
+       * <pre>
+       **
+       * The client provides all IDs of tables that are referenced in a SQL statement.
+       * Those tables are identified in DB2z by a pair of DBID/OBID (Database ID and
+       * Object ID).
+       * </pre>
+       *
+       * <code>optional string dbid_obid_of_accessed_tables = 14;</code>
        * @param value The bytes for dbidObidOfAccessedTables to set.
        * @return This builder for chaining.
        */
@@ -17661,7 +18512,7 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00002000;
         dbidObidOfAccessedTables_ = value;
         onChanged();
         return this;
@@ -17669,36 +18520,64 @@ public final class SQLStatementDetails {
 
       private long backendSqlSessionId_ ;
       /**
-       * <code>optional int64 backend_sql_session_id = 13;</code>
+       * <pre>
+       **
+       * Each SQL connection to the backend has an application handle. The application
+       * handle for the SQL connection on which the SQL statement is executed is
+       * stored here as SQL session ID.
+       * </pre>
+       *
+       * <code>optional int64 backend_sql_session_id = 15;</code>
        * @return Whether the backendSqlSessionId field is set.
        */
       public boolean hasBackendSqlSessionId() {
-        return ((bitField0_ & 0x00001000) != 0);
+        return ((bitField0_ & 0x00004000) != 0);
       }
       /**
-       * <code>optional int64 backend_sql_session_id = 13;</code>
+       * <pre>
+       **
+       * Each SQL connection to the backend has an application handle. The application
+       * handle for the SQL connection on which the SQL statement is executed is
+       * stored here as SQL session ID.
+       * </pre>
+       *
+       * <code>optional int64 backend_sql_session_id = 15;</code>
        * @return The backendSqlSessionId.
        */
       public long getBackendSqlSessionId() {
         return backendSqlSessionId_;
       }
       /**
-       * <code>optional int64 backend_sql_session_id = 13;</code>
+       * <pre>
+       **
+       * Each SQL connection to the backend has an application handle. The application
+       * handle for the SQL connection on which the SQL statement is executed is
+       * stored here as SQL session ID.
+       * </pre>
+       *
+       * <code>optional int64 backend_sql_session_id = 15;</code>
        * @param value The backendSqlSessionId to set.
        * @return This builder for chaining.
        */
       public Builder setBackendSqlSessionId(long value) {
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00004000;
         backendSqlSessionId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 backend_sql_session_id = 13;</code>
+       * <pre>
+       **
+       * Each SQL connection to the backend has an application handle. The application
+       * handle for the SQL connection on which the SQL statement is executed is
+       * stored here as SQL session ID.
+       * </pre>
+       *
+       * <code>optional int64 backend_sql_session_id = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearBackendSqlSessionId() {
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00004000);
         backendSqlSessionId_ = 0L;
         onChanged();
         return this;
@@ -17706,14 +18585,26 @@ public final class SQLStatementDetails {
 
       private java.lang.Object backendSqlApplicationId_ = "";
       /**
-       * <code>optional string backend_sql_application_id = 27;</code>
+       * <pre>
+       **
+       * Besides the application handle (see field &#64;c backend_sql_session_id), the
+       * backend has an application ID assigned to each SQL connection.
+       * </pre>
+       *
+       * <code>optional string backend_sql_application_id = 16;</code>
        * @return Whether the backendSqlApplicationId field is set.
        */
       public boolean hasBackendSqlApplicationId() {
-        return ((bitField0_ & 0x00002000) != 0);
+        return ((bitField0_ & 0x00008000) != 0);
       }
       /**
-       * <code>optional string backend_sql_application_id = 27;</code>
+       * <pre>
+       **
+       * Besides the application handle (see field &#64;c backend_sql_session_id), the
+       * backend has an application ID assigned to each SQL connection.
+       * </pre>
+       *
+       * <code>optional string backend_sql_application_id = 16;</code>
        * @return The backendSqlApplicationId.
        */
       public java.lang.String getBackendSqlApplicationId() {
@@ -17731,7 +18622,13 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional string backend_sql_application_id = 27;</code>
+       * <pre>
+       **
+       * Besides the application handle (see field &#64;c backend_sql_session_id), the
+       * backend has an application ID assigned to each SQL connection.
+       * </pre>
+       *
+       * <code>optional string backend_sql_application_id = 16;</code>
        * @return The bytes for backendSqlApplicationId.
        */
       public com.google.protobuf.ByteString
@@ -17748,7 +18645,13 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional string backend_sql_application_id = 27;</code>
+       * <pre>
+       **
+       * Besides the application handle (see field &#64;c backend_sql_session_id), the
+       * backend has an application ID assigned to each SQL connection.
+       * </pre>
+       *
+       * <code>optional string backend_sql_application_id = 16;</code>
        * @param value The backendSqlApplicationId to set.
        * @return This builder for chaining.
        */
@@ -17757,23 +18660,35 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00002000;
+  bitField0_ |= 0x00008000;
         backendSqlApplicationId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string backend_sql_application_id = 27;</code>
+       * <pre>
+       **
+       * Besides the application handle (see field &#64;c backend_sql_session_id), the
+       * backend has an application ID assigned to each SQL connection.
+       * </pre>
+       *
+       * <code>optional string backend_sql_application_id = 16;</code>
        * @return This builder for chaining.
        */
       public Builder clearBackendSqlApplicationId() {
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00008000);
         backendSqlApplicationId_ = getDefaultInstance().getBackendSqlApplicationId();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string backend_sql_application_id = 27;</code>
+       * <pre>
+       **
+       * Besides the application handle (see field &#64;c backend_sql_session_id), the
+       * backend has an application ID assigned to each SQL connection.
+       * </pre>
+       *
+       * <code>optional string backend_sql_application_id = 16;</code>
        * @param value The bytes for backendSqlApplicationId to set.
        * @return This builder for chaining.
        */
@@ -17782,7 +18697,7 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00002000;
+  bitField0_ |= 0x00008000;
         backendSqlApplicationId_ = value;
         onChanged();
         return this;
@@ -17790,36 +18705,56 @@ public final class SQLStatementDetails {
 
       private int taskPriority_ ;
       /**
-       * <code>optional int32 task_priority = 14;</code>
+       * <pre>
+       **
+       * The task priority is derived from the client's WLM (workload management) importance level.
+       * </pre>
+       *
+       * <code>optional int32 task_priority = 17;</code>
        * @return Whether the taskPriority field is set.
        */
       public boolean hasTaskPriority() {
-        return ((bitField0_ & 0x00004000) != 0);
+        return ((bitField0_ & 0x00010000) != 0);
       }
       /**
-       * <code>optional int32 task_priority = 14;</code>
+       * <pre>
+       **
+       * The task priority is derived from the client's WLM (workload management) importance level.
+       * </pre>
+       *
+       * <code>optional int32 task_priority = 17;</code>
        * @return The taskPriority.
        */
       public int getTaskPriority() {
         return taskPriority_;
       }
       /**
-       * <code>optional int32 task_priority = 14;</code>
+       * <pre>
+       **
+       * The task priority is derived from the client's WLM (workload management) importance level.
+       * </pre>
+       *
+       * <code>optional int32 task_priority = 17;</code>
        * @param value The taskPriority to set.
        * @return This builder for chaining.
        */
       public Builder setTaskPriority(int value) {
-        bitField0_ |= 0x00004000;
+        bitField0_ |= 0x00010000;
         taskPriority_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 task_priority = 14;</code>
+       * <pre>
+       **
+       * The task priority is derived from the client's WLM (workload management) importance level.
+       * </pre>
+       *
+       * <code>optional int32 task_priority = 17;</code>
        * @return This builder for chaining.
        */
       public Builder clearTaskPriority() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00010000);
         taskPriority_ = 0;
         onChanged();
         return this;
@@ -17829,14 +18764,14 @@ public final class SQLStatementDetails {
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters, SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.Builder, SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegistersOrBuilder> specialRegistersBuilder_;
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        * @return Whether the specialRegisters field is set.
        */
       public boolean hasSpecialRegisters() {
-        return ((bitField0_ & 0x00008000) != 0);
+        return ((bitField0_ & 0x00020000) != 0);
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        * @return The specialRegisters.
        */
       public SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters getSpecialRegisters() {
@@ -17847,7 +18782,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        */
       public Builder setSpecialRegisters(SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters value) {
         if (specialRegistersBuilder_ == null) {
@@ -17859,11 +18794,11 @@ public final class SQLStatementDetails {
         } else {
           specialRegistersBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00020000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        */
       public Builder setSpecialRegisters(
           SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.Builder builderForValue) {
@@ -17873,15 +18808,15 @@ public final class SQLStatementDetails {
         } else {
           specialRegistersBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00020000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        */
       public Builder mergeSpecialRegisters(SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters value) {
         if (specialRegistersBuilder_ == null) {
-          if (((bitField0_ & 0x00008000) != 0) &&
+          if (((bitField0_ & 0x00020000) != 0) &&
               specialRegisters_ != null &&
               specialRegisters_ != SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.getDefaultInstance()) {
             specialRegisters_ =
@@ -17893,11 +18828,11 @@ public final class SQLStatementDetails {
         } else {
           specialRegistersBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00020000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        */
       public Builder clearSpecialRegisters() {
         if (specialRegistersBuilder_ == null) {
@@ -17906,19 +18841,19 @@ public final class SQLStatementDetails {
         } else {
           specialRegistersBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00020000);
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.Builder getSpecialRegistersBuilder() {
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00020000;
         onChanged();
         return getSpecialRegistersFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegistersOrBuilder getSpecialRegistersOrBuilder() {
         if (specialRegistersBuilder_ != null) {
@@ -17929,7 +18864,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 15;</code>
+       * <code>optional .SQLStatementDetailsData.QuerySpecialRegisters special_registers = 18;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters, SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegisters.Builder, SQLStatementDetails.SQLStatementDetailsData.QuerySpecialRegistersOrBuilder>
@@ -17945,38 +18880,123 @@ public final class SQLStatementDetails {
         return specialRegistersBuilder_;
       }
 
+      private boolean finished_ ;
+      /**
+       * <pre>
+       *&#47; indicator whether execution of the SQL statement has finished
+       * </pre>
+       *
+       * <code>optional bool finished = 19;</code>
+       * @return Whether the finished field is set.
+       */
+      public boolean hasFinished() {
+        return ((bitField0_ & 0x00040000) != 0);
+      }
+      /**
+       * <pre>
+       *&#47; indicator whether execution of the SQL statement has finished
+       * </pre>
+       *
+       * <code>optional bool finished = 19;</code>
+       * @return The finished.
+       */
+      public boolean getFinished() {
+        return finished_;
+      }
+      /**
+       * <pre>
+       *&#47; indicator whether execution of the SQL statement has finished
+       * </pre>
+       *
+       * <code>optional bool finished = 19;</code>
+       * @param value The finished to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFinished(boolean value) {
+        bitField0_ |= 0x00040000;
+        finished_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *&#47; indicator whether execution of the SQL statement has finished
+       * </pre>
+       *
+       * <code>optional bool finished = 19;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFinished() {
+        bitField0_ = (bitField0_ & ~0x00040000);
+        finished_ = false;
+        onChanged();
+        return this;
+      }
+
       private int finishState_ ;
       /**
-       * <code>optional uint32 finish_state = 16;</code>
+       * <pre>
+       **
+       * The state how the SQL statement execution was finished is one of:
+       *  - 3 = DONE (successful completion without error)
+       *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+       *  - 5 = CANCELLED (execution was canceled)
+       * </pre>
+       *
+       * <code>optional uint32 finish_state = 20;</code>
        * @return Whether the finishState field is set.
        */
       public boolean hasFinishState() {
-        return ((bitField0_ & 0x00010000) != 0);
+        return ((bitField0_ & 0x00080000) != 0);
       }
       /**
-       * <code>optional uint32 finish_state = 16;</code>
+       * <pre>
+       **
+       * The state how the SQL statement execution was finished is one of:
+       *  - 3 = DONE (successful completion without error)
+       *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+       *  - 5 = CANCELLED (execution was canceled)
+       * </pre>
+       *
+       * <code>optional uint32 finish_state = 20;</code>
        * @return The finishState.
        */
       public int getFinishState() {
         return finishState_;
       }
       /**
-       * <code>optional uint32 finish_state = 16;</code>
+       * <pre>
+       **
+       * The state how the SQL statement execution was finished is one of:
+       *  - 3 = DONE (successful completion without error)
+       *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+       *  - 5 = CANCELLED (execution was canceled)
+       * </pre>
+       *
+       * <code>optional uint32 finish_state = 20;</code>
        * @param value The finishState to set.
        * @return This builder for chaining.
        */
       public Builder setFinishState(int value) {
-        bitField0_ |= 0x00010000;
+        bitField0_ |= 0x00080000;
         finishState_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 finish_state = 16;</code>
+       * <pre>
+       **
+       * The state how the SQL statement execution was finished is one of:
+       *  - 3 = DONE (successful completion without error)
+       *  - 4 = ABORTED (execution failed with some error - either in the backend or in the accelerator)
+       *  - 5 = CANCELLED (execution was canceled)
+       * </pre>
+       *
+       * <code>optional uint32 finish_state = 20;</code>
        * @return This builder for chaining.
        */
       public Builder clearFinishState() {
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x00080000);
         finishState_ = 0;
         onChanged();
         return this;
@@ -17986,14 +19006,14 @@ public final class SQLStatementDetails {
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.Timings, SQLStatementDetails.SQLStatementDetailsData.Timings.Builder, SQLStatementDetails.SQLStatementDetailsData.TimingsOrBuilder> timingsBuilder_;
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        * @return Whether the timings field is set.
        */
       public boolean hasTimings() {
-        return ((bitField0_ & 0x00020000) != 0);
+        return ((bitField0_ & 0x00100000) != 0);
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        * @return The timings.
        */
       public SQLStatementDetails.SQLStatementDetailsData.Timings getTimings() {
@@ -18004,7 +19024,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        */
       public Builder setTimings(SQLStatementDetails.SQLStatementDetailsData.Timings value) {
         if (timingsBuilder_ == null) {
@@ -18016,11 +19036,11 @@ public final class SQLStatementDetails {
         } else {
           timingsBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00100000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        */
       public Builder setTimings(
           SQLStatementDetails.SQLStatementDetailsData.Timings.Builder builderForValue) {
@@ -18030,15 +19050,15 @@ public final class SQLStatementDetails {
         } else {
           timingsBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00100000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        */
       public Builder mergeTimings(SQLStatementDetails.SQLStatementDetailsData.Timings value) {
         if (timingsBuilder_ == null) {
-          if (((bitField0_ & 0x00020000) != 0) &&
+          if (((bitField0_ & 0x00100000) != 0) &&
               timings_ != null &&
               timings_ != SQLStatementDetails.SQLStatementDetailsData.Timings.getDefaultInstance()) {
             timings_ =
@@ -18050,11 +19070,11 @@ public final class SQLStatementDetails {
         } else {
           timingsBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00100000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        */
       public Builder clearTimings() {
         if (timingsBuilder_ == null) {
@@ -18063,19 +19083,19 @@ public final class SQLStatementDetails {
         } else {
           timingsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00100000);
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.Timings.Builder getTimingsBuilder() {
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00100000;
         onChanged();
         return getTimingsFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.TimingsOrBuilder getTimingsOrBuilder() {
         if (timingsBuilder_ != null) {
@@ -18086,7 +19106,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.Timings timings = 17;</code>
+       * <code>optional .SQLStatementDetailsData.Timings timings = 21;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.Timings, SQLStatementDetails.SQLStatementDetailsData.Timings.Builder, SQLStatementDetails.SQLStatementDetailsData.TimingsOrBuilder>
@@ -18106,14 +19126,14 @@ public final class SQLStatementDetails {
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.ExecutionResult, SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.Builder, SQLStatementDetails.SQLStatementDetailsData.ExecutionResultOrBuilder> executionResultBuilder_;
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        * @return Whether the executionResult field is set.
        */
       public boolean hasExecutionResult() {
-        return ((bitField0_ & 0x00040000) != 0);
+        return ((bitField0_ & 0x00200000) != 0);
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        * @return The executionResult.
        */
       public SQLStatementDetails.SQLStatementDetailsData.ExecutionResult getExecutionResult() {
@@ -18124,7 +19144,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        */
       public Builder setExecutionResult(SQLStatementDetails.SQLStatementDetailsData.ExecutionResult value) {
         if (executionResultBuilder_ == null) {
@@ -18136,11 +19156,11 @@ public final class SQLStatementDetails {
         } else {
           executionResultBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00040000;
+        bitField0_ |= 0x00200000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        */
       public Builder setExecutionResult(
           SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.Builder builderForValue) {
@@ -18150,15 +19170,15 @@ public final class SQLStatementDetails {
         } else {
           executionResultBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00040000;
+        bitField0_ |= 0x00200000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        */
       public Builder mergeExecutionResult(SQLStatementDetails.SQLStatementDetailsData.ExecutionResult value) {
         if (executionResultBuilder_ == null) {
-          if (((bitField0_ & 0x00040000) != 0) &&
+          if (((bitField0_ & 0x00200000) != 0) &&
               executionResult_ != null &&
               executionResult_ != SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.getDefaultInstance()) {
             executionResult_ =
@@ -18170,11 +19190,11 @@ public final class SQLStatementDetails {
         } else {
           executionResultBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00040000;
+        bitField0_ |= 0x00200000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        */
       public Builder clearExecutionResult() {
         if (executionResultBuilder_ == null) {
@@ -18183,19 +19203,19 @@ public final class SQLStatementDetails {
         } else {
           executionResultBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00040000);
+        bitField0_ = (bitField0_ & ~0x00200000);
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.Builder getExecutionResultBuilder() {
-        bitField0_ |= 0x00040000;
+        bitField0_ |= 0x00200000;
         onChanged();
         return getExecutionResultFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.ExecutionResultOrBuilder getExecutionResultOrBuilder() {
         if (executionResultBuilder_ != null) {
@@ -18206,7 +19226,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 18;</code>
+       * <code>optional .SQLStatementDetailsData.ExecutionResult execution_result = 22;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.ExecutionResult, SQLStatementDetails.SQLStatementDetailsData.ExecutionResult.Builder, SQLStatementDetails.SQLStatementDetailsData.ExecutionResultOrBuilder>
@@ -18226,14 +19246,14 @@ public final class SQLStatementDetails {
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics, SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.Builder, SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatisticsOrBuilder> waitForDataBuilder_;
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        * @return Whether the waitForData field is set.
        */
       public boolean hasWaitForData() {
-        return ((bitField0_ & 0x00080000) != 0);
+        return ((bitField0_ & 0x00400000) != 0);
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        * @return The waitForData.
        */
       public SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics getWaitForData() {
@@ -18244,7 +19264,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        */
       public Builder setWaitForData(SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics value) {
         if (waitForDataBuilder_ == null) {
@@ -18256,11 +19276,11 @@ public final class SQLStatementDetails {
         } else {
           waitForDataBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00080000;
+        bitField0_ |= 0x00400000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        */
       public Builder setWaitForData(
           SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.Builder builderForValue) {
@@ -18270,15 +19290,15 @@ public final class SQLStatementDetails {
         } else {
           waitForDataBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00080000;
+        bitField0_ |= 0x00400000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        */
       public Builder mergeWaitForData(SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics value) {
         if (waitForDataBuilder_ == null) {
-          if (((bitField0_ & 0x00080000) != 0) &&
+          if (((bitField0_ & 0x00400000) != 0) &&
               waitForData_ != null &&
               waitForData_ != SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.getDefaultInstance()) {
             waitForData_ =
@@ -18290,11 +19310,11 @@ public final class SQLStatementDetails {
         } else {
           waitForDataBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00080000;
+        bitField0_ |= 0x00400000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        */
       public Builder clearWaitForData() {
         if (waitForDataBuilder_ == null) {
@@ -18303,19 +19323,19 @@ public final class SQLStatementDetails {
         } else {
           waitForDataBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00080000);
+        bitField0_ = (bitField0_ & ~0x00400000);
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.Builder getWaitForDataBuilder() {
-        bitField0_ |= 0x00080000;
+        bitField0_ |= 0x00400000;
         onChanged();
         return getWaitForDataFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatisticsOrBuilder getWaitForDataOrBuilder() {
         if (waitForDataBuilder_ != null) {
@@ -18326,7 +19346,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 19;</code>
+       * <code>optional .SQLStatementDetailsData.WaitForDataStatistics wait_for_data = 23;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics, SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatistics.Builder, SQLStatementDetails.SQLStatementDetailsData.WaitForDataStatisticsOrBuilder>
@@ -18346,14 +19366,14 @@ public final class SQLStatementDetails {
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails, SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.Builder, SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetailsOrBuilder> multiRowInsertBuilder_;
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        * @return Whether the multiRowInsert field is set.
        */
       public boolean hasMultiRowInsert() {
-        return ((bitField0_ & 0x00100000) != 0);
+        return ((bitField0_ & 0x00800000) != 0);
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        * @return The multiRowInsert.
        */
       public SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails getMultiRowInsert() {
@@ -18364,7 +19384,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        */
       public Builder setMultiRowInsert(SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails value) {
         if (multiRowInsertBuilder_ == null) {
@@ -18376,11 +19396,11 @@ public final class SQLStatementDetails {
         } else {
           multiRowInsertBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00100000;
+        bitField0_ |= 0x00800000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        */
       public Builder setMultiRowInsert(
           SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.Builder builderForValue) {
@@ -18390,15 +19410,15 @@ public final class SQLStatementDetails {
         } else {
           multiRowInsertBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00100000;
+        bitField0_ |= 0x00800000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        */
       public Builder mergeMultiRowInsert(SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails value) {
         if (multiRowInsertBuilder_ == null) {
-          if (((bitField0_ & 0x00100000) != 0) &&
+          if (((bitField0_ & 0x00800000) != 0) &&
               multiRowInsert_ != null &&
               multiRowInsert_ != SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.getDefaultInstance()) {
             multiRowInsert_ =
@@ -18410,11 +19430,11 @@ public final class SQLStatementDetails {
         } else {
           multiRowInsertBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00100000;
+        bitField0_ |= 0x00800000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        */
       public Builder clearMultiRowInsert() {
         if (multiRowInsertBuilder_ == null) {
@@ -18423,19 +19443,19 @@ public final class SQLStatementDetails {
         } else {
           multiRowInsertBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00100000);
+        bitField0_ = (bitField0_ & ~0x00800000);
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.Builder getMultiRowInsertBuilder() {
-        bitField0_ |= 0x00100000;
+        bitField0_ |= 0x00800000;
         onChanged();
         return getMultiRowInsertFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetailsOrBuilder getMultiRowInsertOrBuilder() {
         if (multiRowInsertBuilder_ != null) {
@@ -18446,7 +19466,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 20;</code>
+       * <code>optional .SQLStatementDetailsData.MultiRowInsertDetails multi_row_insert = 24;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails, SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetails.Builder, SQLStatementDetails.SQLStatementDetailsData.MultiRowInsertDetailsOrBuilder>
@@ -18465,29 +19485,29 @@ public final class SQLStatementDetails {
       private java.lang.Object auxiliaryData_ = "";
       /**
        * <pre>
-       *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-       * / statement execution. For example, profiling data for the individual execution phases
-       * / are gathered. A dump of those information is stored in the current attribute so
-       * / that they are available for problem determination purposes. Processing and filtering
-       * / based on this attribute is not supported as for the others.
+       **
+       * The SQL controller typically collects a lot of detailed information for each
+       * SQL statement execution. For example, profiling data for the individual execution
+       * phases are gathered. A dump (in XML format) of those information is stored so
+       * that it is available for problem determination purposes.
        * </pre>
        *
-       * <code>optional string auxiliary_data = 21;</code>
+       * <code>optional string auxiliary_data = 25;</code>
        * @return Whether the auxiliaryData field is set.
        */
       public boolean hasAuxiliaryData() {
-        return ((bitField0_ & 0x00200000) != 0);
+        return ((bitField0_ & 0x01000000) != 0);
       }
       /**
        * <pre>
-       *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-       * / statement execution. For example, profiling data for the individual execution phases
-       * / are gathered. A dump of those information is stored in the current attribute so
-       * / that they are available for problem determination purposes. Processing and filtering
-       * / based on this attribute is not supported as for the others.
+       **
+       * The SQL controller typically collects a lot of detailed information for each
+       * SQL statement execution. For example, profiling data for the individual execution
+       * phases are gathered. A dump (in XML format) of those information is stored so
+       * that it is available for problem determination purposes.
        * </pre>
        *
-       * <code>optional string auxiliary_data = 21;</code>
+       * <code>optional string auxiliary_data = 25;</code>
        * @return The auxiliaryData.
        */
       public java.lang.String getAuxiliaryData() {
@@ -18506,14 +19526,14 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-       * / statement execution. For example, profiling data for the individual execution phases
-       * / are gathered. A dump of those information is stored in the current attribute so
-       * / that they are available for problem determination purposes. Processing and filtering
-       * / based on this attribute is not supported as for the others.
+       **
+       * The SQL controller typically collects a lot of detailed information for each
+       * SQL statement execution. For example, profiling data for the individual execution
+       * phases are gathered. A dump (in XML format) of those information is stored so
+       * that it is available for problem determination purposes.
        * </pre>
        *
-       * <code>optional string auxiliary_data = 21;</code>
+       * <code>optional string auxiliary_data = 25;</code>
        * @return The bytes for auxiliaryData.
        */
       public com.google.protobuf.ByteString
@@ -18531,14 +19551,14 @@ public final class SQLStatementDetails {
       }
       /**
        * <pre>
-       *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-       * / statement execution. For example, profiling data for the individual execution phases
-       * / are gathered. A dump of those information is stored in the current attribute so
-       * / that they are available for problem determination purposes. Processing and filtering
-       * / based on this attribute is not supported as for the others.
+       **
+       * The SQL controller typically collects a lot of detailed information for each
+       * SQL statement execution. For example, profiling data for the individual execution
+       * phases are gathered. A dump (in XML format) of those information is stored so
+       * that it is available for problem determination purposes.
        * </pre>
        *
-       * <code>optional string auxiliary_data = 21;</code>
+       * <code>optional string auxiliary_data = 25;</code>
        * @param value The auxiliaryData to set.
        * @return This builder for chaining.
        */
@@ -18547,39 +19567,39 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00200000;
+  bitField0_ |= 0x01000000;
         auxiliaryData_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-       * / statement execution. For example, profiling data for the individual execution phases
-       * / are gathered. A dump of those information is stored in the current attribute so
-       * / that they are available for problem determination purposes. Processing and filtering
-       * / based on this attribute is not supported as for the others.
+       **
+       * The SQL controller typically collects a lot of detailed information for each
+       * SQL statement execution. For example, profiling data for the individual execution
+       * phases are gathered. A dump (in XML format) of those information is stored so
+       * that it is available for problem determination purposes.
        * </pre>
        *
-       * <code>optional string auxiliary_data = 21;</code>
+       * <code>optional string auxiliary_data = 25;</code>
        * @return This builder for chaining.
        */
       public Builder clearAuxiliaryData() {
-        bitField0_ = (bitField0_ & ~0x00200000);
+        bitField0_ = (bitField0_ & ~0x01000000);
         auxiliaryData_ = getDefaultInstance().getAuxiliaryData();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *&#47; The SQL controller typically collects a lot of detailed information for each SQL
-       * / statement execution. For example, profiling data for the individual execution phases
-       * / are gathered. A dump of those information is stored in the current attribute so
-       * / that they are available for problem determination purposes. Processing and filtering
-       * / based on this attribute is not supported as for the others.
+       **
+       * The SQL controller typically collects a lot of detailed information for each
+       * SQL statement execution. For example, profiling data for the individual execution
+       * phases are gathered. A dump (in XML format) of those information is stored so
+       * that it is available for problem determination purposes.
        * </pre>
        *
-       * <code>optional string auxiliary_data = 21;</code>
+       * <code>optional string auxiliary_data = 25;</code>
        * @param value The bytes for auxiliaryData to set.
        * @return This builder for chaining.
        */
@@ -18588,7 +19608,7 @@ public final class SQLStatementDetails {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00200000;
+  bitField0_ |= 0x01000000;
         auxiliaryData_ = value;
         onChanged();
         return this;
@@ -18598,14 +19618,14 @@ public final class SQLStatementDetails {
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails, SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.Builder, SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetailsOrBuilder> clientAccountingDetailsBuilder_;
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        * @return Whether the clientAccountingDetails field is set.
        */
       public boolean hasClientAccountingDetails() {
-        return ((bitField0_ & 0x00400000) != 0);
+        return ((bitField0_ & 0x02000000) != 0);
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        * @return The clientAccountingDetails.
        */
       public SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails getClientAccountingDetails() {
@@ -18616,7 +19636,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        */
       public Builder setClientAccountingDetails(SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails value) {
         if (clientAccountingDetailsBuilder_ == null) {
@@ -18628,11 +19648,11 @@ public final class SQLStatementDetails {
         } else {
           clientAccountingDetailsBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00400000;
+        bitField0_ |= 0x02000000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        */
       public Builder setClientAccountingDetails(
           SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.Builder builderForValue) {
@@ -18642,15 +19662,15 @@ public final class SQLStatementDetails {
         } else {
           clientAccountingDetailsBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00400000;
+        bitField0_ |= 0x02000000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        */
       public Builder mergeClientAccountingDetails(SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails value) {
         if (clientAccountingDetailsBuilder_ == null) {
-          if (((bitField0_ & 0x00400000) != 0) &&
+          if (((bitField0_ & 0x02000000) != 0) &&
               clientAccountingDetails_ != null &&
               clientAccountingDetails_ != SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.getDefaultInstance()) {
             clientAccountingDetails_ =
@@ -18662,11 +19682,11 @@ public final class SQLStatementDetails {
         } else {
           clientAccountingDetailsBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00400000;
+        bitField0_ |= 0x02000000;
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        */
       public Builder clearClientAccountingDetails() {
         if (clientAccountingDetailsBuilder_ == null) {
@@ -18675,19 +19695,19 @@ public final class SQLStatementDetails {
         } else {
           clientAccountingDetailsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00400000);
+        bitField0_ = (bitField0_ & ~0x02000000);
         return this;
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.Builder getClientAccountingDetailsBuilder() {
-        bitField0_ |= 0x00400000;
+        bitField0_ |= 0x02000000;
         onChanged();
         return getClientAccountingDetailsFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        */
       public SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetailsOrBuilder getClientAccountingDetailsOrBuilder() {
         if (clientAccountingDetailsBuilder_ != null) {
@@ -18698,7 +19718,7 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 22;</code>
+       * <code>optional .SQLStatementDetailsData.ClientAccountingDetails client_accounting_details = 26;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails, SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetails.Builder, SQLStatementDetails.SQLStatementDetailsData.ClientAccountingDetailsOrBuilder>
@@ -18714,127 +19734,40 @@ public final class SQLStatementDetails {
         return clientAccountingDetailsBuilder_;
       }
 
-      private boolean finished_ ;
-      /**
-       * <code>optional bool finished = 23;</code>
-       * @return Whether the finished field is set.
-       */
-      public boolean hasFinished() {
-        return ((bitField0_ & 0x00800000) != 0);
-      }
-      /**
-       * <code>optional bool finished = 23;</code>
-       * @return The finished.
-       */
-      public boolean getFinished() {
-        return finished_;
-      }
-      /**
-       * <code>optional bool finished = 23;</code>
-       * @param value The finished to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFinished(boolean value) {
-        bitField0_ |= 0x00800000;
-        finished_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool finished = 23;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFinished() {
-        bitField0_ = (bitField0_ & ~0x00800000);
-        finished_ = false;
-        onChanged();
-        return this;
-      }
-
-      private long originalSqlStatementTextHash_ ;
-      /**
-       * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-       * @return Whether the originalSqlStatementTextHash field is set.
-       */
-      public boolean hasOriginalSqlStatementTextHash() {
-        return ((bitField0_ & 0x01000000) != 0);
-      }
-      /**
-       * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-       * @return The originalSqlStatementTextHash.
-       */
-      public long getOriginalSqlStatementTextHash() {
-        return originalSqlStatementTextHash_;
-      }
-      /**
-       * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-       * @param value The originalSqlStatementTextHash to set.
-       * @return This builder for chaining.
-       */
-      public Builder setOriginalSqlStatementTextHash(long value) {
-        bitField0_ |= 0x01000000;
-        originalSqlStatementTextHash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 original_sql_statement_text_hash = 24;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearOriginalSqlStatementTextHash() {
-        bitField0_ = (bitField0_ & ~0x01000000);
-        originalSqlStatementTextHash_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long backendSqlStatementTextHash_ ;
-      /**
-       * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-       * @return Whether the backendSqlStatementTextHash field is set.
-       */
-      public boolean hasBackendSqlStatementTextHash() {
-        return ((bitField0_ & 0x02000000) != 0);
-      }
-      /**
-       * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-       * @return The backendSqlStatementTextHash.
-       */
-      public long getBackendSqlStatementTextHash() {
-        return backendSqlStatementTextHash_;
-      }
-      /**
-       * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-       * @param value The backendSqlStatementTextHash to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBackendSqlStatementTextHash(long value) {
-        bitField0_ |= 0x02000000;
-        backendSqlStatementTextHash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 backend_sql_statement_text_hash = 25;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearBackendSqlStatementTextHash() {
-        bitField0_ = (bitField0_ & ~0x02000000);
-        backendSqlStatementTextHash_ = 0L;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object backendSqlStatementTextHex_ = "";
       /**
-       * <code>optional string backend_sql_statement_text_hex = 26;</code>
+       * <pre>
+       **
+       * Deprecrated.
+       * In the past, we used to store the backend SQL statement text as hex representation
+       * for all the individual bytes. That can be helpful to figure out, for example,
+       * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+       * (Unicode code U+00A0).
+       * We no longer store that hex representation these days. System command
+       * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+       * SQL statement text and/or the backend SQL statement text.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text_hex = 27;</code>
        * @return Whether the backendSqlStatementTextHex field is set.
        */
       public boolean hasBackendSqlStatementTextHex() {
         return ((bitField0_ & 0x04000000) != 0);
       }
       /**
-       * <code>optional string backend_sql_statement_text_hex = 26;</code>
+       * <pre>
+       **
+       * Deprecrated.
+       * In the past, we used to store the backend SQL statement text as hex representation
+       * for all the individual bytes. That can be helpful to figure out, for example,
+       * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+       * (Unicode code U+00A0).
+       * We no longer store that hex representation these days. System command
+       * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+       * SQL statement text and/or the backend SQL statement text.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text_hex = 27;</code>
        * @return The backendSqlStatementTextHex.
        */
       public java.lang.String getBackendSqlStatementTextHex() {
@@ -18852,7 +19785,19 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional string backend_sql_statement_text_hex = 26;</code>
+       * <pre>
+       **
+       * Deprecrated.
+       * In the past, we used to store the backend SQL statement text as hex representation
+       * for all the individual bytes. That can be helpful to figure out, for example,
+       * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+       * (Unicode code U+00A0).
+       * We no longer store that hex representation these days. System command
+       * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+       * SQL statement text and/or the backend SQL statement text.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text_hex = 27;</code>
        * @return The bytes for backendSqlStatementTextHex.
        */
       public com.google.protobuf.ByteString
@@ -18869,7 +19814,19 @@ public final class SQLStatementDetails {
         }
       }
       /**
-       * <code>optional string backend_sql_statement_text_hex = 26;</code>
+       * <pre>
+       **
+       * Deprecrated.
+       * In the past, we used to store the backend SQL statement text as hex representation
+       * for all the individual bytes. That can be helpful to figure out, for example,
+       * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+       * (Unicode code U+00A0).
+       * We no longer store that hex representation these days. System command
+       * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+       * SQL statement text and/or the backend SQL statement text.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text_hex = 27;</code>
        * @param value The backendSqlStatementTextHex to set.
        * @return This builder for chaining.
        */
@@ -18884,7 +19841,19 @@ public final class SQLStatementDetails {
         return this;
       }
       /**
-       * <code>optional string backend_sql_statement_text_hex = 26;</code>
+       * <pre>
+       **
+       * Deprecrated.
+       * In the past, we used to store the backend SQL statement text as hex representation
+       * for all the individual bytes. That can be helpful to figure out, for example,
+       * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+       * (Unicode code U+00A0).
+       * We no longer store that hex representation these days. System command
+       * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+       * SQL statement text and/or the backend SQL statement text.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text_hex = 27;</code>
        * @return This builder for chaining.
        */
       public Builder clearBackendSqlStatementTextHex() {
@@ -18894,7 +19863,19 @@ public final class SQLStatementDetails {
         return this;
       }
       /**
-       * <code>optional string backend_sql_statement_text_hex = 26;</code>
+       * <pre>
+       **
+       * Deprecrated.
+       * In the past, we used to store the backend SQL statement text as hex representation
+       * for all the individual bytes. That can be helpful to figure out, for example,
+       * whether a character is a regular space (ASCII code 0x20) or non-breaking space
+       * (Unicode code U+00A0).
+       * We no longer store that hex representation these days. System command
+       * "hexdump -C &lt;file&gt;" can be used on the SQL history file to inspect the original
+       * SQL statement text and/or the backend SQL statement text.
+       * </pre>
+       *
+       * <code>optional string backend_sql_statement_text_hex = 27;</code>
        * @param value The bytes for backendSqlStatementTextHex to set.
        * @return This builder for chaining.
        */
@@ -19005,91 +19986,92 @@ public final class SQLStatementDetails {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\031SQLStatementDetails.proto\"\243\032\n\027SQLState" +
+      "\n\031SQLStatementDetails.proto\"\300\032\n\027SQLState" +
       "mentDetailsData\022\024\n\014statement_id\030\001 \001(\004\022\017\n" +
       "\007task_id\030\002 \001(\004\022%\n\035database_system_locati" +
       "on_name\030\003 \001(\t\022\031\n\021correlation_token\030\004 \001(\t" +
       "\022\030\n\020original_user_id\030\005 \001(\t\022\025\n\rexternal_n" +
       "ame\030\006 \001(\t\022\027\n\017peer_identifier\030\007 \001(\t\022#\n\033or" +
-      "iginal_sql_statement_text\030\010 \001(\t\022\"\n\032backe" +
-      "nd_sql_statement_text\030\t \001(\t\022\024\n\014package_n" +
-      "ame\030\n \001(\t\022\025\n\rcollection_id\030\013 \001(\t\022$\n\034dbid" +
-      "_obid_of_accessed_tables\030\014 \001(\t\022\036\n\026backen" +
-      "d_sql_session_id\030\r \001(\003\022\"\n\032backend_sql_ap" +
-      "plication_id\030\033 \001(\t\022\025\n\rtask_priority\030\016 \001(" +
-      "\005\022I\n\021special_registers\030\017 \001(\0132..SQLStatem" +
-      "entDetailsData.QuerySpecialRegisters\022\024\n\014" +
-      "finish_state\030\020 \001(\r\0221\n\007timings\030\021 \001(\0132 .SQ" +
-      "LStatementDetailsData.Timings\022B\n\020executi" +
-      "on_result\030\022 \001(\0132(.SQLStatementDetailsDat" +
-      "a.ExecutionResult\022E\n\rwait_for_data\030\023 \001(\013" +
-      "2..SQLStatementDetailsData.WaitForDataSt" +
-      "atistics\022H\n\020multi_row_insert\030\024 \001(\0132..SQL" +
-      "StatementDetailsData.MultiRowInsertDetai" +
-      "ls\022\026\n\016auxiliary_data\030\025 \001(\t\022S\n\031client_acc" +
-      "ounting_details\030\026 \001(\01320.SQLStatementDeta" +
-      "ilsData.ClientAccountingDetails\022\020\n\010finis" +
-      "hed\030\027 \001(\010\022(\n original_sql_statement_text" +
-      "_hash\030\030 \001(\004\022\'\n\037backend_sql_statement_tex" +
-      "t_hash\030\031 \001(\004\022&\n\036backend_sql_statement_te" +
-      "xt_hex\030\032 \001(\t\032\372\001\n\025QuerySpecialRegisters\022\"" +
+      "iginal_sql_statement_text\030\010 \001(\t\022(\n origi" +
+      "nal_sql_statement_text_hash\030\t \001(\004\022\"\n\032bac" +
+      "kend_sql_statement_text\030\n \001(\t\022\'\n\037backend" +
+      "_sql_statement_text_hash\030\013 \001(\004\022\024\n\014packag" +
+      "e_name\030\014 \001(\t\022\025\n\rcollection_id\030\r \001(\t\022$\n\034d" +
+      "bid_obid_of_accessed_tables\030\016 \001(\t\022\036\n\026bac" +
+      "kend_sql_session_id\030\017 \001(\003\022\"\n\032backend_sql" +
+      "_application_id\030\020 \001(\t\022\025\n\rtask_priority\030\021" +
+      " \001(\005\022I\n\021special_registers\030\022 \001(\0132..SQLSta" +
+      "tementDetailsData.QuerySpecialRegisters\022" +
+      "\020\n\010finished\030\023 \001(\010\022\024\n\014finish_state\030\024 \001(\r\022" +
+      "1\n\007timings\030\025 \001(\0132 .SQLStatementDetailsDa" +
+      "ta.Timings\022B\n\020execution_result\030\026 \001(\0132(.S" +
+      "QLStatementDetailsData.ExecutionResult\022E" +
+      "\n\rwait_for_data\030\027 \001(\0132..SQLStatementDeta" +
+      "ilsData.WaitForDataStatistics\022H\n\020multi_r" +
+      "ow_insert\030\030 \001(\0132..SQLStatementDetailsDat" +
+      "a.MultiRowInsertDetails\022\026\n\016auxiliary_dat" +
+      "a\030\031 \001(\t\022S\n\031client_accounting_details\030\032 \001" +
+      "(\01320.SQLStatementDetailsData.ClientAccou" +
+      "ntingDetails\022&\n\036backend_sql_statement_te" +
+      "xt_hex\030\033 \001(\t\032\372\001\n\025QuerySpecialRegisters\022\"" +
       "\n\032client_reference_timestamp\030\001 \001(\t\022!\n\031cl" +
       "ient_reference_timezone\030\002 \001(\t\022/\n\'client_" +
       "reference_timestamp_receive_time\030\003 \001(\004\022\026" +
       "\n\016client_user_id\030\004 \001(\t\022\032\n\022client_worksta" +
       "tion\030\005 \001(\t\022\032\n\022client_application\030\006 \001(\t\022\031" +
-      "\n\021client_accounting\030\007 \001(\t\032\314\006\n\007Timings\022\035\n" +
-      "\025real_world_entry_time\030\001 \001(\004\022\031\n\021system_e" +
-      "ntry_time\030\002 \001(\004\022$\n\034backend_execution_sta" +
-      "rt_time\030\003 \001(\004\022$\n\034backend_first_row_fetch" +
-      "_time\030\004 \001(\004\022%\n\035backend_execution_finish_" +
-      "time\030\005 \001(\004\022\"\n\032client_last_row_fetch_time" +
-      "\030\006 \001(\004\022\032\n\022system_finish_time\030\007 \001(\004\022!\n\031po" +
-      "st_processing_exit_time\030\010 \001(\004\022\024\n\014dwa_cpu" +
-      "_time\030\t \001(\004\022\030\n\020backend_cpu_time\030\n \001(\004\022\031\n" +
-      "\021backend_wait_time\030\013 \001(\004\022*\n\"backend_acco" +
-      "unting_collection_time\030\014 \001(\004\022\"\n\032real_wor" +
-      "ld_entry_timestamp\030\r \001(\t\022\022\n\nfetch_time\030\016" +
-      " \001(\001\022\032\n\022backendDBSExecTime\030\017 \001(\001\022\030\n\020tota" +
-      "lElapsedTime\030\020 \001(\001\022\032\n\022postProcessingTime" +
-      "\030\021 \001(\001\022\032\n\022prepare_start_time\030\022 \001(\004\022\024\n\014pr" +
-      "epare_time\030\023 \001(\004\0220\n(cached_parsed_client" +
-      "_reference_timestamp\030\024 \001(\004\022&\n\036total_cont" +
-      "inue_query_wait_time\030\025 \001(\003\022(\n average_co" +
-      "ntinue_query_wait_time\030\026 \001(\003\022)\n!smallest" +
-      "_continue_query_wait_time\030\027 \001(\003\022(\n large" +
-      "st_continue_query_wait_time\030\030 \001(\003\022%\n\035num" +
-      "_continue_query_wait_times\030\031 \001(\003\032\210\001\n\017Exe" +
-      "cutionResult\022\035\n\025backend_error_message\030\001 " +
-      "\001(\t\022\021\n\tsql_state\030\002 \001(\t\022\020\n\010sql_code\030\003 \001(\005" +
-      "\022\027\n\017num_result_rows\030\004 \001(\004\022\030\n\020num_result_" +
-      "bytes\030\005 \001(\004\032\260\003\n\025WaitForDataStatistics\022$\n" +
-      "\034wait_for_log_position_result\030\001 \001(\r\0221\n)t" +
-      "ime_waited_for_delay_protocol_start_time" +
-      "\030\002 \001(\004\0222\n*time_waited_for_delay_protocol" +
-      "_finish_time\030\003 \001(\004\0222\n*count_wait_time_fo" +
-      "r_delay_protocol_expired\030\004 \001(\r\022/\n\'log_re" +
-      "cord_sequence_number_log_position\030\005 \001(\t\022" +
-      "*\n\"relative_byte_address_log_position\030\006 " +
-      "\001(\t\0225\n-allow_non_replicated_tables_for_w" +
-      "ait_for_data\030\007 \001(\010\022\032\n\022use_delay_protocol" +
-      "\030\010 \001(\010\022&\n\036time_waited_for_delay_protocol" +
-      "\030\t \001(\001\032\223\001\n\025MultiRowInsertDetails\022\017\n\007enab" +
-      "led\030\001 \001(\010\022\016\n\006atomic\030\002 \001(\010\022+\n#number_of_r" +
-      "ows_received_from_client\030\003 \001(\004\022,\n$number" +
-      "_of_rows_successfully_inserted\030\004 \001(\004\032\332\003\n" +
-      "\027ClientAccountingDetails\022\031\n\021client_produ" +
-      "ct_id\030\001 \001(\t\022\034\n\024client_location_name\030\002 \001(" +
-      "\t\022\031\n\021client_network_id\030\003 \001(\t\022\026\n\016client_l" +
-      "u_name\030\004 \001(\t\022\036\n\026client_connection_name\030\005" +
-      " \001(\t\022\036\n\026client_connection_type\030\006 \001(\t\022\035\n\025" +
-      "client_correlation_id\030\007 \001(\t\022\037\n\027client_au" +
-      "thorization_id\030\010 \001(\t\022\032\n\022client_workstati" +
-      "on\030\t \001(\t\022\032\n\022client_application\030\n \001(\t\022\026\n\016" +
-      "client_user_id\030\013 \001(\t\022\030\n\020client_plan_name" +
-      "\030\014 \001(\t\022!\n\031client_accounting_details\030\r \001(" +
-      "\t\022\025\n\rdb2_system_id\030\016 \001(\t\022\027\n\017db2_member_n" +
-      "ame\030\017 \001(\t\022\026\n\016db2_group_name\030\020 \001(\t"
+      "\n\021client_accounting\030\007 \001(\t\032\351\006\n\007Timings\022\"\n" +
+      "\032real_world_entry_timestamp\030\001 \001(\t\022\035\n\025rea" +
+      "l_world_entry_time\030\002 \001(\004\022\031\n\021system_entry" +
+      "_time\030\003 \001(\004\022\032\n\022prepare_start_time\030\004 \001(\004\022" +
+      "\033\n\023prepare_finish_time\030\005 \001(\004\022$\n\034backend_" +
+      "execution_start_time\030\006 \001(\004\022$\n\034backend_fi" +
+      "rst_row_fetch_time\030\007 \001(\004\022%\n\035backend_exec" +
+      "ution_finish_time\030\010 \001(\004\022\"\n\032client_last_r" +
+      "ow_fetch_time\030\t \001(\004\022\032\n\022system_finish_tim" +
+      "e\030\n \001(\004\022!\n\031post_processing_exit_time\030\013 \001" +
+      "(\004\022\024\n\014dwa_cpu_time\030\014 \001(\004\022\030\n\020backend_cpu_" +
+      "time\030\r \001(\004\022\031\n\021backend_wait_time\030\016 \001(\004\022*\n" +
+      "\"backend_accounting_collection_time\030\017 \001(" +
+      "\004\022\024\n\014prepare_time\030\020 \001(\001\022\032\n\022backendDBSExe" +
+      "cTime\030\021 \001(\001\022\022\n\nfetch_time\030\022 \001(\001\022\030\n\020total" +
+      "ElapsedTime\030\023 \001(\001\022\032\n\022postProcessingTime\030" +
+      "\024 \001(\001\0220\n(cached_parsed_client_reference_" +
+      "timestamp\030\025 \001(\004\022&\n\036total_continue_query_" +
+      "wait_time\030\026 \001(\003\022(\n average_continue_quer" +
+      "y_wait_time\030\027 \001(\003\022)\n!smallest_continue_q" +
+      "uery_wait_time\030\030 \001(\003\022(\n largest_continue" +
+      "_query_wait_time\030\031 \001(\003\022%\n\035num_continue_q" +
+      "uery_wait_times\030\032 \001(\003\032\210\001\n\017ExecutionResul" +
+      "t\022\035\n\025backend_error_message\030\001 \001(\t\022\021\n\tsql_" +
+      "state\030\002 \001(\t\022\020\n\010sql_code\030\003 \001(\005\022\027\n\017num_res" +
+      "ult_rows\030\004 \001(\004\022\030\n\020num_result_bytes\030\005 \001(\004" +
+      "\032\260\003\n\025WaitForDataStatistics\022$\n\034wait_for_l" +
+      "og_position_result\030\001 \001(\r\0221\n)time_waited_" +
+      "for_delay_protocol_start_time\030\002 \001(\004\0222\n*t" +
+      "ime_waited_for_delay_protocol_finish_tim" +
+      "e\030\003 \001(\004\0222\n*count_wait_time_for_delay_pro" +
+      "tocol_expired\030\004 \001(\r\022/\n\'log_record_sequen" +
+      "ce_number_log_position\030\005 \001(\t\022*\n\"relative" +
+      "_byte_address_log_position\030\006 \001(\t\0225\n-allo" +
+      "w_non_replicated_tables_for_wait_for_dat" +
+      "a\030\007 \001(\010\022\032\n\022use_delay_protocol\030\010 \001(\010\022&\n\036t" +
+      "ime_waited_for_delay_protocol\030\t \001(\001\032\223\001\n\025" +
+      "MultiRowInsertDetails\022\017\n\007enabled\030\001 \001(\010\022\016" +
+      "\n\006atomic\030\002 \001(\010\022+\n#number_of_rows_receive" +
+      "d_from_client\030\003 \001(\004\022,\n$number_of_rows_su" +
+      "ccessfully_inserted\030\004 \001(\004\032\332\003\n\027ClientAcco" +
+      "untingDetails\022\031\n\021client_product_id\030\001 \001(\t" +
+      "\022\034\n\024client_location_name\030\002 \001(\t\022\031\n\021client" +
+      "_network_id\030\003 \001(\t\022\026\n\016client_lu_name\030\004 \001(" +
+      "\t\022\036\n\026client_connection_name\030\005 \001(\t\022\036\n\026cli" +
+      "ent_connection_type\030\006 \001(\t\022\035\n\025client_corr" +
+      "elation_id\030\007 \001(\t\022\037\n\027client_authorization" +
+      "_id\030\010 \001(\t\022\032\n\022client_workstation\030\t \001(\t\022\032\n" +
+      "\022client_application\030\n \001(\t\022\026\n\016client_user" +
+      "_id\030\013 \001(\t\022\030\n\020client_plan_name\030\014 \001(\t\022!\n\031c" +
+      "lient_accounting_details\030\r \001(\t\022\025\n\rdb2_sy" +
+      "stem_id\030\016 \001(\t\022\027\n\017db2_member_name\030\017 \001(\t\022\026" +
+      "\n\016db2_group_name\030\020 \001(\t"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -19100,7 +20082,7 @@ public final class SQLStatementDetails {
     internal_static_SQLStatementDetailsData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SQLStatementDetailsData_descriptor,
-        new java.lang.String[] { "StatementId", "TaskId", "DatabaseSystemLocationName", "CorrelationToken", "OriginalUserId", "ExternalName", "PeerIdentifier", "OriginalSqlStatementText", "BackendSqlStatementText", "PackageName", "CollectionId", "DbidObidOfAccessedTables", "BackendSqlSessionId", "BackendSqlApplicationId", "TaskPriority", "SpecialRegisters", "FinishState", "Timings", "ExecutionResult", "WaitForData", "MultiRowInsert", "AuxiliaryData", "ClientAccountingDetails", "Finished", "OriginalSqlStatementTextHash", "BackendSqlStatementTextHash", "BackendSqlStatementTextHex", });
+        new java.lang.String[] { "StatementId", "TaskId", "DatabaseSystemLocationName", "CorrelationToken", "OriginalUserId", "ExternalName", "PeerIdentifier", "OriginalSqlStatementText", "OriginalSqlStatementTextHash", "BackendSqlStatementText", "BackendSqlStatementTextHash", "PackageName", "CollectionId", "DbidObidOfAccessedTables", "BackendSqlSessionId", "BackendSqlApplicationId", "TaskPriority", "SpecialRegisters", "Finished", "FinishState", "Timings", "ExecutionResult", "WaitForData", "MultiRowInsert", "AuxiliaryData", "ClientAccountingDetails", "BackendSqlStatementTextHex", });
     internal_static_SQLStatementDetailsData_QuerySpecialRegisters_descriptor =
       internal_static_SQLStatementDetailsData_descriptor.getNestedTypes().get(0);
     internal_static_SQLStatementDetailsData_QuerySpecialRegisters_fieldAccessorTable = new
@@ -19112,7 +20094,7 @@ public final class SQLStatementDetails {
     internal_static_SQLStatementDetailsData_Timings_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SQLStatementDetailsData_Timings_descriptor,
-        new java.lang.String[] { "RealWorldEntryTime", "SystemEntryTime", "BackendExecutionStartTime", "BackendFirstRowFetchTime", "BackendExecutionFinishTime", "ClientLastRowFetchTime", "SystemFinishTime", "PostProcessingExitTime", "DwaCpuTime", "BackendCpuTime", "BackendWaitTime", "BackendAccountingCollectionTime", "RealWorldEntryTimestamp", "FetchTime", "BackendDBSExecTime", "TotalElapsedTime", "PostProcessingTime", "PrepareStartTime", "PrepareTime", "CachedParsedClientReferenceTimestamp", "TotalContinueQueryWaitTime", "AverageContinueQueryWaitTime", "SmallestContinueQueryWaitTime", "LargestContinueQueryWaitTime", "NumContinueQueryWaitTimes", });
+        new java.lang.String[] { "RealWorldEntryTimestamp", "RealWorldEntryTime", "SystemEntryTime", "PrepareStartTime", "PrepareFinishTime", "BackendExecutionStartTime", "BackendFirstRowFetchTime", "BackendExecutionFinishTime", "ClientLastRowFetchTime", "SystemFinishTime", "PostProcessingExitTime", "DwaCpuTime", "BackendCpuTime", "BackendWaitTime", "BackendAccountingCollectionTime", "PrepareTime", "BackendDBSExecTime", "FetchTime", "TotalElapsedTime", "PostProcessingTime", "CachedParsedClientReferenceTimestamp", "TotalContinueQueryWaitTime", "AverageContinueQueryWaitTime", "SmallestContinueQueryWaitTime", "LargestContinueQueryWaitTime", "NumContinueQueryWaitTimes", });
     internal_static_SQLStatementDetailsData_ExecutionResult_descriptor =
       internal_static_SQLStatementDetailsData_descriptor.getNestedTypes().get(2);
     internal_static_SQLStatementDetailsData_ExecutionResult_fieldAccessorTable = new
