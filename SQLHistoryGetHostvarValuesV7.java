@@ -157,7 +157,6 @@ public class SQLHistoryGetHostvarValuesV7 {
 
 	private static String replacePMWithValues(String clientSQLQuery, String parameterMarkerValues) {
 		String newDb2zSQLStmt = new String();
-
 		if (parameterMarkerValues != null && !parameterMarkerValues.equals("N/A")) {
 			StringTokenizer pmTokenizer = new StringTokenizer(parameterMarkerValues, ",");
 			int numPM = pmTokenizer.countTokens();
