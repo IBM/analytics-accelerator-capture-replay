@@ -157,7 +157,6 @@ public class SQLHistoryGetHostvarValuesV7 {
 
 	private static String replacePMWithValues(String clientSQLQuery, String parameterMarkerValues) {
 		String newDb2zSQLStmt = new String();
-
 		if (parameterMarkerValues != null && !parameterMarkerValues.equals("N/A")) {
 			StringTokenizer pmTokenizer = new StringTokenizer(parameterMarkerValues, ",");
 			int numPM = pmTokenizer.countTokens();
@@ -167,6 +166,7 @@ public class SQLHistoryGetHostvarValuesV7 {
 			} else {
 				for (int i = 0; i < numPM; i++) {
 					String pmVal = pmTokenizer.nextToken();
+					pmVal = pmVal.replaceAll("'''","'");
 					clientSQLQuery = clientSQLQuery.replaceFirst("\\?", pmVal);
 				}
 			}
