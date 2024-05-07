@@ -167,7 +167,6 @@ public class SQLHistoryGetHostvarValuesV7 {
 			} else {
 				for (int i = 0; i < numPM; i++) {
 					String pmVal = pmTokenizer.nextToken();
-					pmVal = pmVal.replaceAll("'''","'");
 					clientSQLQuery = clientSQLQuery.replaceFirst("\\?", pmVal);
 				}
 			}
