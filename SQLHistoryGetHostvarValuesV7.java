@@ -186,17 +186,17 @@ public class SQLHistoryGetHostvarValuesV7 {
 		String newDb2zSQLStmt = new String();
 
 		if (parameterMarkerValues != null && !parameterMarkerValues.equals("N/A")) {
-			StringTokenizer pmTokenizer = new StringTokenizer(parameterMarkerValues, ",");
-			int numPM = pmTokenizer.countTokens();
+			parameterMarkerValues = parameterMarkerValues.replaceAll(",\"$", ""); // remove any trailing comma
+			String[] pmTokens = parameterMarkerValues.split(",(?=(?:[^']*'[^']*')*[^']*$)");
+			int numPM = pmTokens.length;
 			long countPM = clientSQLQuery.chars().filter(ch -> ch == '?').count();
 			if (numPM != countPM) {
 				throw new IllegalArgumentException(
-						"Number of ? in SQL does not match number of parameter marker values in\n parameterMarkerValues="
-								+ parameterMarkerValues + "\n in SQLHistory ");
+						"Number of ? in SQL "+countPM+" does not match number of parameter marker values "+numPM+" in\n parameterMarkerValues="
+								+ parameterMarkerValues + "\n in SQLHistory");
 			} else {
-				for (int i = 0; i < numPM; i++) {
-					String pmVal = pmTokenizer.nextToken();
-					clientSQLQuery = clientSQLQuery.replaceFirst("\\?", pmVal);
+				for (String pmVal:pmTokens ) {
+					clientSQLQuery = clientSQLQuery.replaceFirst("\\?", pmVal.trim());
 				}
 			}
 		}
@@ -720,3 +720,4 @@ public class SQLHistoryGetHostvarValuesV7 {
 		}
 	}
 }
+
