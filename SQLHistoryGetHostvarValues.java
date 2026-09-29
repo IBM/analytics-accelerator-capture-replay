@@ -170,18 +170,6 @@ public class SQLHistoryGetHostvarValues {
 		return newDb2zSQLStmt;
 	}
 
-	private static boolean queryHasDateorTimestampLiteral(String db2zSQLStmt) {
-		String dateRegex = "'\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])*'";
-		String timestampRegex = "'\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])-([0-2][0-9].[0-5][0-9].[0-5][0-9].[0-9]{6})*'";
-
-		Pattern datePattern = Pattern.compile(dateRegex);
-		Pattern timestampPattern = Pattern.compile(timestampRegex);
-		Matcher dateMatcher = datePattern.matcher(db2zSQLStmt);
-		Matcher timestampMatcher = timestampPattern.matcher(db2zSQLStmt);
-		return (dateMatcher.find() || timestampMatcher.find());
-
-	}
-
 	public static void main(String[] args) throws IOException {
 		int numSQLperTIAUL = 100; // number of SQL statements per DSNTIAUL file, max is 100. CHANGE WITH CAUTION
 		BigInteger maxInt = new BigInteger("2147483647");
